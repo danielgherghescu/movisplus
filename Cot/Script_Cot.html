@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chestionar clinic ghidat pentru articulația cotului — Movis+</title>
+<link href="https://fonts.googleapis.com/css2?family=Museo+Moderno:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:    #0f0f0f;
+    --green:    #00e4a7;
+    --white:    #ffffff;
+    --grey-dark: #515151;
+    --grey-mid:  #c1c1c1;
+    --grey-light: #e2e2e2;
+    --bg:       #f7f7f7;
+
+    --font-display: 'Museo Moderno', sans-serif;
+    --font-body:    'Plus Jakarta Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--black);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── HEADER ─────────────────────────────────────────────── */
+  .header {
+    background: var(--black);
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-logo img { height: 32px; display: block; }
+  .header-badge {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green);
+    border: 1px solid rgba(0,228,167,0.3);
+    padding: 5px 14px;
+    border-radius: 100px;
+  }
+
+  /* ─── HERO ───────────────────────────────────────────────── */
+  .hero {
+    background: var(--black);
+    padding: 64px 40px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 80% 50%, rgba(0,228,167,0.07) 0%, transparent 60%),
+      radial-gradient(circle at 20% 80%, rgba(2,178,128,0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+  .hero-tag-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    flex-shrink: 0;
+  }
+  .hero-tag-text {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green);
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(38px, 5.5vw, 60px);
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.08;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+  .hero h1 span { color: var(--green); }
+  .hero-desc {
+    color: var(--grey-mid);
+    font-size: 15px;
+    line-height: 1.75;
+    max-width: 540px;
+    font-weight: 300;
+  }
+
+  /* ─── PROGRESS ───────────────────────────────────────────── */
+  .progress-wrap {
+    background: var(--black);
+    padding: 0 40px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .progress-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding-top: 16px;
+  }
+  .progress-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--grey-dark);
+    white-space: nowrap;
+  }
+  .progress-track {
+    flex: 1;
+    height: 2px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--green);
+    border-radius: 2px;
+    transition: width 0.4s ease;
+  }
+  .progress-pct {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--grey-dark);
+    letter-spacing: 0.05em;
+    min-width: 36px;
+    text-align: right;
+  }
+
+  /* ─── CONTAINER ──────────────────────────────────────────── */
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px 100px;
+  }
+
+  /* ─── SECTION LABEL ──────────────────────────────────────── */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 52px 0 24px;
+  }
+  .section-label-line {
+    flex: 1;
+    height: 1px;
+    background: var(--grey-light);
+  }
+  .section-label-text {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--grey-dark);
+    white-space: nowrap;
+  }
+  .section-label-num {
+    font-family: var(--font-display);
+    font-size: 11px;
+    color: var(--green);
+    font-weight: 600;
+  }
+
+  /* ─── QUESTION CARD ──────────────────────────────────────── */
+  .question-card {
+    background: var(--white);
+    border: 1px solid var(--grey-light);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 12px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .question-card:hover {
+    border-color: var(--grey-mid);
+  }
+  .question-card.answered {
+    border-color: rgba(0,228,167,0.3);
+  }
+  .question-number {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green);
+    margin-bottom: 10px;
+  }
+  .question-text {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.55;
+    color: var(--black);
+    margin-bottom: 20px;
+  }
+
+  /* ─── OPTIONS ─────────────────────────────────────────────── */
+  .options { display: flex; flex-direction: column; gap: 8px; }
+
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1.5px solid var(--grey-light);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: none;
+    background: var(--bg);
+  }
+  .option:hover {
+    border-color: var(--green);
+    background: rgba(0,228,167,0.04);
+  }
+  .option input { display: none; }
+  .option.selected {
+    border-color: var(--green);
+    background: rgba(0,228,167,0.06);
+  }
+
+  .option-radio {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--grey-light);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    background: var(--white);
+  }
+  .option.selected .option-radio {
+    border-color: var(--green);
+    background: var(--green);
+  }
+  .option.selected .option-radio::after {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--black);
+  }
+  .option-label {
+    font-size: 14px;
+    color: var(--grey-dark);
+    line-height: 1.4;
+    font-weight: 400;
+  }
+  .option.selected .option-label {
+    color: var(--black);
+    font-weight: 500;
+  }
+
+  /* ─── COLOR OPTIONS ──────────────────────────────────────── */
+  .color-options { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .color-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 14px;
+    border-radius: 8px;
+    border: 1.5px solid var(--grey-light);
+    cursor: pointer;
+    background: var(--bg);
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .color-option:hover {
+    border-color: var(--green);
+    background: rgba(0,228,167,0.04);
+  }
+  .color-option.selected {
+    border-color: var(--green);
+    background: rgba(0,228,167,0.06);
+  }
+
+  .color-swatch {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  .color-swatch.green  { background: #22c55e; }
+  .color-swatch.yellow { background: #f59e0b; }
+  .color-swatch.red    { background: #ef4444; }
+  .color-swatch.blue   { background: #3b82f6; }
+
+  .color-option-label { font-size: 13px; color: var(--black); font-weight: 400; }
+  .color-option.selected .color-option-label { font-weight: 500; }
+
+  /* ─── TEST CARD ───────────────────────────────────────────── */
+  .test-card {
+    background: var(--white);
+    border: 1px solid var(--grey-light);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .test-card.answered { border-color: rgba(0,228,167,0.3); }
+
+  .test-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--grey-light);
+    background: var(--white);
+  }
+
+  .test-badge {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 6px;
+    flex-shrink: 0;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+  .test-badge.optional {
+    background: transparent;
+    color: var(--grey-dark);
+    border: 1px solid var(--grey-light);
+  }
+  .test-badge .badge-accent { color: var(--green); }
+
+  .test-instructions {
+    color: var(--grey-dark);
+    font-size: 13px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .test-body { padding: 24px 28px; }
+
+  .test-question {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--black);
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+  .sub-question {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--grey-dark);
+    margin: 20px 0 10px;
+    padding-left: 12px;
+    border-left: 2px solid var(--green);
+  }
+
+  .instruction-steps {
+    background: #f9fafb;
+    border-left: 2px solid var(--green);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: var(--grey-dark);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+  .instruction-steps strong {
+    color: var(--black);
+    font-weight: 500;
+  }
+
+  /* ─── IMAGES ─────────────────────────────────────────────── */
+  .test-images {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .test-img-wrap {
+    flex-shrink: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--grey-light);
+    background: #f1f5f9;
+    position: relative;
+  }
+  .test-img-wrap img {
+    display: block;
+    width: auto;
+    height: 190px;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.2s;
+    cursor: zoom-in;
+  }
+  .test-img-wrap:hover img { transform: scale(1.02); }
+  .img-label {
+    position: absolute;
+    bottom: 6px; left: 8px;
+    background: rgba(15,15,15,0.8);
+    color: var(--white);
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 100px;
+    letter-spacing: 0.06em;
+  }
+
+  /* ─── LIGHTBOX ───────────────────────────────────────────── */
+  .lightbox {
+    position: fixed; inset: 0;
+    background: rgba(15,15,15,0.92);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+  .lightbox.open { opacity: 1; pointer-events: all; }
+  .lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 8px; }
+  .lightbox-close {
+    position: absolute;
+    top: 24px; right: 28px;
+    color: var(--grey-mid);
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.15s;
+  }
+  .lightbox-close:hover { color: var(--white); }
+
+  /* ─── SUBMIT AREA ─────────────────────────────────────────── */
+  .submit-area {
+    margin-top: 52px;
+    background: var(--black);
+    border-radius: 16px;
+    padding: 48px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .submit-area::before {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,228,167,0.08) 0%, transparent 70%);
+    top: -150px; right: -100px;
+    pointer-events: none;
+  }
+  .submit-title {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .submit-title span { color: var(--green); }
+  .submit-subtitle {
+    color: var(--grey-dark);
+    font-size: 13px;
+    margin-bottom: 32px;
+    font-weight: 300;
+  }
+
+  .submit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--green);
+    color: var(--black);
+    border: none;
+    padding: 15px 40px;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
+  }
+  .submit-btn:hover {
+    background: var(--white);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(0,228,167,0.2);
+  }
+  .submit-btn-icon { font-size: 16px; transition: transform 0.2s; }
+  .submit-btn:hover .submit-btn-icon { transform: translateX(3px); }
+
+  .submit-note {
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--grey-dark);
+    font-weight: 300;
+  }
+
+  /* ─── TOAST ──────────────────────────────────────────────── */
+  .toast {
+    position: fixed;
+    bottom: 32px; right: 32px;
+    background: var(--black);
+    color: var(--white);
+    border: 1px solid rgba(0,228,167,0.3);
+    padding: 14px 20px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 100;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+  .toast-icon {
+    width: 22px; height: 22px;
+    background: var(--green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 12px;
+    color: var(--black);
+    font-weight: 700;
+  }
+
+  /* ─── MISSING / VALIDATION ───────────────────────────────── */
+  .question-card.missing {
+    border-color: rgba(239,68,68,0.5);
+    background: rgba(239,68,68,0.02);
+  }
+  .test-card.missing {
+    border-color: rgba(239,68,68,0.5);
+  }
+  .toast.error { border-color: rgba(239,68,68,0.5); }
+  .toast.error .toast-icon { background: #ef4444; content: '!'; }
+
+  /* ─── RESPONSIVE ─────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .header { padding: 16px 20px; }
+    .hero { padding: 48px 20px 64px; }
+    .progress-wrap { padding: 0 20px 24px; }
+    .container { padding: 0 16px 80px; }
+    .question-card { padding: 22px 20px; }
+    .test-header, .test-body { padding: 18px 20px; }
+    .submit-area { padding: 36px 24px; border-radius: 12px; }
+    .color-options { flex-direction: column; }
+    .test-img-wrap img { height: 150px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-logo">
+    <a href="https://www.movisplus.com" target="_blank" rel="noopener noreferrer">
+      <img src="https://cdn.prod.website-files.com/69834dd53c9c7bcf1c2bf529/6984c62bb3578b0ae7237ddb_Moviswhite.svg" alt="Movis+">
+    </a>
+  </div>
+  <div class="header-badge">Chestionar Clinic</div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">
+      <div class="hero-tag-dot"></div>
+      <div class="hero-tag-text">Evaluare clinică ghidată</div>
+    </div>
+    <h1>Chestionar clinic ghidat pentru <span>articulația cotului</span></h1>
+    <p class="hero-desc">Acest chestionar ne ajută să înțelegem ce probleme din RMN sunt relevante clinic pentru durerea ta de cot. Răspunde cât mai sincer.</p>
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <span class="progress-label">Progres</span>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill"></div>
+    </div>
+    <span class="progress-pct" id="progressPct">0%</span>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+  <div class="section-label">
+    <div class="section-label-line"></div>
+    <span class="section-label-num">01</span>
+    <div class="section-label-text">Întrebări Specifice</div>
+    <div class="section-label-line"></div>
+  </div>
+
+  <!-- Q1 -->
+  <div class="question-card" id="card-q1">
+    <div class="question-number">Întrebarea 01</div>
+    <div class="question-text">Când te doare cotul cel mai mult?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'q1')"><input type="radio" name="q1"><div class="option-radio"></div><span class="option-label">Mă doare aproape tot timpul, chiar și când nu îl mișc</span></label>
+      <label class="option" onclick="sel(this,'q1')"><input type="radio" name="q1"><div class="option-radio"></div><span class="option-label">Mă doare doar când îl folosesc sau îl mișc</span></label>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="question-card" id="card-q2">
+    <div class="question-number">Întrebarea 02</div>
+    <div class="question-text">Te doare cotul noaptea?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'q2')"><input type="radio" name="q2"><div class="option-radio"></div><span class="option-label">Da, mă trezește din somn</span></label>
+      <label class="option" onclick="sel(this,'q2')"><input type="radio" name="q2"><div class="option-radio"></div><span class="option-label">Nu, noaptea nu mă deranjează</span></label>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="question-card" id="card-q3">
+    <div class="question-number">Întrebarea 03</div>
+    <div class="question-text">Ce este mai deranjant pentru tine?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'q3')"><input type="radio" name="q3"><div class="option-radio"></div><span class="option-label">Durerea</span></label>
+      <label class="option" onclick="sel(this,'q3')"><input type="radio" name="q3"><div class="option-radio"></div><span class="option-label">Lipsa de forță / mișcare</span></label>
+      <label class="option" onclick="sel(this,'q3')"><input type="radio" name="q3"><div class="option-radio"></div><span class="option-label">Ambele în mod similar</span></label>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="question-card" id="card-q4">
+    <div class="question-number">Întrebarea 04</div>
+    <div class="question-text">Ai amorțeli, furnicături sau senzație de curent pe braț sau în mână?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'q4')"><input type="radio" name="q4"><div class="option-radio"></div><span class="option-label">Da</span></label>
+      <label class="option" onclick="sel(this,'q4')"><input type="radio" name="q4"><div class="option-radio"></div><span class="option-label">Nu</span></label>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="question-card" id="card-q5">
+    <div class="question-number">Întrebarea 05</div>
+    <div class="question-text">Simți că articulația cotului este mai slabă în general, nu doar dureroasă?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'q5')"><input type="radio" name="q5"><div class="option-radio"></div><span class="option-label">Da</span></label>
+      <label class="option" onclick="sel(this,'q5')"><input type="radio" name="q5"><div class="option-radio"></div><span class="option-label">Nu</span></label>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="question-card" id="card-q6">
+    <div class="question-number">Întrebarea 06</div>
+    <div class="question-text">Ți-a sărit vreodată cotul din loc și a fost pus la loc într-o cameră de gardă?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'q6')"><input type="radio" name="q6"><div class="option-radio"></div><span class="option-label">Da</span></label>
+      <label class="option" onclick="sel(this,'q6')"><input type="radio" name="q6"><div class="option-radio"></div><span class="option-label">Nu</span></label>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="question-card" id="card-q7">
+    <div class="question-number">Întrebarea 07</div>
+    <div class="question-text">Ai senzația că articulația cotului „iese" sau „alunecă" din loc la mișcări specifice sau chiar și banale?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'q7')"><input type="radio" name="q7"><div class="option-radio"></div><span class="option-label">Da</span></label>
+      <label class="option" onclick="sel(this,'q7')"><input type="radio" name="q7"><div class="option-radio"></div><span class="option-label">Nu</span></label>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="question-card" id="card-q8">
+    <div class="question-number">Întrebarea 08</div>
+    <div class="question-text">Te consideri o persoană „foarte flexibilă" sau „hipermobilă" (îndoi ușor degetele, coatele, genunchii)?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'q8')"><input type="radio" name="q8"><div class="option-radio"></div><span class="option-label">Da</span></label>
+      <label class="option" onclick="sel(this,'q8')"><input type="radio" name="q8"><div class="option-radio"></div><span class="option-label">Nu</span></label>
+      <label class="option" onclick="sel(this,'q8')"><input type="radio" name="q8"><div class="option-radio"></div><span class="option-label">Nu știu</span></label>
+    </div>
+  </div>
+
+  <div class="section-label">
+    <div class="section-label-line"></div>
+    <span class="section-label-num">02</span>
+    <div class="section-label-text">Teste Specifice</div>
+    <div class="section-label-line"></div>
+  </div>
+
+  <!-- TEST 1 -->
+  <div class="test-card" id="card-t1">
+    <div class="test-header">
+      <div class="test-badge">T<span class="badge-accent">01</span></div>
+      <div class="test-instructions">Flexie și extensie cot — evaluarea amplitudinii de mișcare</div>
+    </div>
+    <div class="test-body">
+      <div class="test-images">
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image9.jpg" alt="Poziția 1 — start"><div class="img-label">Poziția 1 — start</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image2.jpg" alt="Poziția 2 — flexie"><div class="img-label">Poziția 2 — flexie</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image23.jpg" alt="Poziția 3 — extensie"><div class="img-label">Poziția 3 — extensie</div></div>
+      </div>
+      <div class="instruction-steps">
+        Pornești din poziția relaxată cu cotul îndoit la 90°, ca în imaginea 1.<br>
+        <strong>Poziția 2:</strong> Îndoaie cotul cât poți de mult, ca în imaginea 2. Compară cu scala de culori.<br>
+        <strong>Poziția 3:</strong> Din aceeași poziție inițială, îndreaptă cotul cât poți, ca în imaginea 3. Compară cu scala.
+      </div>
+      <div class="test-question">Cât de mult poți îndoi cotul? (Poziția 2)</div>
+      <div class="color-options">
+        <label class="color-option" onclick="selColor(this,'t1a')"><input type="radio" name="t1a" style="display:none"><div class="color-swatch green"></div><span class="color-option-label">Verde — Pot îndoi cotul maxim</span></label>
+        <label class="color-option" onclick="selColor(this,'t1a')"><input type="radio" name="t1a" style="display:none"><div class="color-swatch yellow"></div><span class="color-option-label">Galben — Pot îndoi cotul, dar nu complet</span></label>
+        <label class="color-option" onclick="selColor(this,'t1a')"><input type="radio" name="t1a" style="display:none"><div class="color-swatch red"></div><span class="color-option-label">Roșu — Nu pot îndoi cotul aproape deloc față de poziția de start</span></label>
+      </div>
+      <div class="test-question" style="margin-top:20px">Cât de mult poți îndrepta cotul? (Poziția 3)</div>
+      <div class="color-options">
+        <label class="color-option" onclick="selColor(this,'t1b')"><input type="radio" name="t1b" style="display:none"><div class="color-swatch green"></div><span class="color-option-label">Verde — Pot îndrepta cotul maxim</span></label>
+        <label class="color-option" onclick="selColor(this,'t1b')"><input type="radio" name="t1b" style="display:none"><div class="color-swatch blue"></div><span class="color-option-label">Albastru — Pot îndrepta cotul destul de mult, dar nu total</span></label>
+        <label class="color-option" onclick="selColor(this,'t1b')"><input type="radio" name="t1b" style="display:none"><div class="color-swatch yellow"></div><span class="color-option-label">Galben — Pot îndrepta cotul, dar foarte puțin</span></label>
+        <label class="color-option" onclick="selColor(this,'t1b')"><input type="radio" name="t1b" style="display:none"><div class="color-swatch red"></div><span class="color-option-label">Roșu — Nu pot îndrepta cotul aproape deloc față de poziția de start</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST 2 -->
+  <div class="test-card" id="card-t2">
+    <div class="test-header">
+      <div class="test-badge">T<span class="badge-accent">02</span></div>
+      <div class="test-instructions">Rotație antebraț — evaluarea pronosupinației</div>
+    </div>
+    <div class="test-body">
+      <div class="test-images">
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image14.jpg" alt="Poziția 1 — neutral"><div class="img-label">Poziția 1 — neutral</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image4.jpg" alt="Poziția 2 — pronație"><div class="img-label">Poziția 2 — pronație</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image8.jpg" alt="Poziția 3 — supinație"><div class="img-label">Poziția 3 — supinație</div></div>
+      </div>
+      <div class="instruction-steps">
+        Pornești din poziția 1: brațul pe lângă corp, cotul la 90°, palma ca și cum dai mâna (neutru).<br>
+        <strong>Poziția 2:</strong> Rotește antebrațul astfel încât palma să se ducă în jos. Compară cu scala.<br>
+        <strong>Poziția 3:</strong> Din aceeași poziție inițială, rotește antebrațul astfel încât palma să se ducă în sus. Compară cu scala.
+      </div>
+      <div class="test-question">Cât de mult poți roti palma în jos? (Poziția 2)</div>
+      <div class="color-options">
+        <label class="color-option" onclick="selColor(this,'t2a')"><input type="radio" name="t2a" style="display:none"><div class="color-swatch green"></div><span class="color-option-label">Verde — Pot roti palma total în jos</span></label>
+        <label class="color-option" onclick="selColor(this,'t2a')"><input type="radio" name="t2a" style="display:none"><div class="color-swatch blue"></div><span class="color-option-label">Albastru — Pot roti palma destul de mult, dar nu total</span></label>
+        <label class="color-option" onclick="selColor(this,'t2a')"><input type="radio" name="t2a" style="display:none"><div class="color-swatch yellow"></div><span class="color-option-label">Galben — Pot roti palma, dar foarte puțin</span></label>
+        <label class="color-option" onclick="selColor(this,'t2a')"><input type="radio" name="t2a" style="display:none"><div class="color-swatch red"></div><span class="color-option-label">Roșu — Nu pot roti palma aproape deloc față de poziția de start</span></label>
+      </div>
+      <div class="test-question" style="margin-top:20px">Cât de mult poți roti palma în sus? (Poziția 3)</div>
+      <div class="color-options">
+        <label class="color-option" onclick="selColor(this,'t2b')"><input type="radio" name="t2b" style="display:none"><div class="color-swatch green"></div><span class="color-option-label">Verde — Pot roti palma total în sus</span></label>
+        <label class="color-option" onclick="selColor(this,'t2b')"><input type="radio" name="t2b" style="display:none"><div class="color-swatch blue"></div><span class="color-option-label">Albastru — Pot roti palma destul de mult, dar nu total</span></label>
+        <label class="color-option" onclick="selColor(this,'t2b')"><input type="radio" name="t2b" style="display:none"><div class="color-swatch yellow"></div><span class="color-option-label">Galben — Pot roti palma, dar foarte puțin</span></label>
+        <label class="color-option" onclick="selColor(this,'t2b')"><input type="radio" name="t2b" style="display:none"><div class="color-swatch red"></div><span class="color-option-label">Roșu — Nu pot roti palma aproape deloc față de poziția de start</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST 3 -->
+  <div class="test-card" id="card-t3">
+    <div class="test-header">
+      <div class="test-badge">T<span class="badge-accent">03</span></div>
+      <div class="test-instructions">Localizarea durerii — apasă zonele marcate</div>
+    </div>
+    <div class="test-body">
+      <div class="test-images">
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image1.jpg" alt="Față cot"><div class="img-label">Față cot</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image16.jpg" alt="Spate cot"><div class="img-label">Spate cot</div></div>
+      </div>
+      <div class="instruction-steps">
+        Privește imaginile. Apasă cu degetele pe fiecare dintre zonele marcate și gândește-te care reproduce cel mai bine durerea ta obișnuită.
+      </div>
+      <div class="test-question">Care culoare corespunde zonei care doare cel mai mult?</div>
+      <div class="color-options">
+        <label class="color-option" onclick="selColor(this,'t3')"><input type="radio" name="t3" style="display:none"><div class="color-swatch green"></div><span class="color-option-label">Verde</span></label>
+        <label class="color-option" onclick="selColor(this,'t3')"><input type="radio" name="t3" style="display:none"><div class="color-swatch blue"></div><span class="color-option-label">Albastru</span></label>
+        <label class="color-option" onclick="selColor(this,'t3')"><input type="radio" name="t3" style="display:none"><div class="color-swatch yellow"></div><span class="color-option-label">Galben</span></label>
+        <label class="color-option" onclick="selColor(this,'t3')"><input type="radio" name="t3" style="display:none"><div class="color-swatch red"></div><span class="color-option-label">Roșu</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST 4 -->
+  <div class="test-card" id="card-t4">
+    <div class="test-header">
+      <div class="test-badge">T<span class="badge-accent">04</span></div>
+      <div class="test-instructions">Stress valgus — testul stabilității ligamentare mediale</div>
+    </div>
+    <div class="test-body">
+      <div class="test-images">
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image11.jpg" alt="Poziția 1 — start"><div class="img-label">Poziția 1 — start</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image13.jpg" alt="Poziția 2 — rotație"><div class="img-label">Poziția 2 — rotație</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image12.jpg" alt="Poziția 3 — rezistență"><div class="img-label">Poziția 3 — rezistență</div></div>
+      </div>
+      <div class="instruction-steps">
+        Stai așezat pe scaun și sprijină cotul afectat pe o suprafață stabilă, cu cotul îndoit (aprox. 60°) și palma spre tine (imaginea 1).<br>
+        Rotește umărul spre exterior, ca în imaginea 2, menținând cotul în aceeași poziție. Rotește cât poți, până apare o ușoară durere sau tensiune la nivelul umărului. Nu forța peste acest punct.<br>
+        Cu mâna sănătoasă, apasă ușor pe mână sau pe antebrațul brațului afectat, accentuând rotația (imaginea 3).<br>
+        <strong>⚠️ Ignoră senzațiile din umăr. Fii atent DOAR la zona marcată cu bulina galbenă (partea internă a cotului).</strong>
+      </div>
+      <div class="test-question">În timpul acestui test, apare durere și/sau senzație de instabilitate în zona marcată cu bulina galbenă?</div>
+      <div class="options">
+        <label class="option" onclick="sel(this,'t4')"><input type="radio" name="t4"><div class="option-radio"></div><span class="option-label">Da</span></label>
+        <label class="option" onclick="sel(this,'t4')"><input type="radio" name="t4"><div class="option-radio"></div><span class="option-label">Nu</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST 5 -->
+  <div class="test-card" id="card-t5">
+    <div class="test-header">
+      <div class="test-badge">T<span class="badge-accent">05</span></div>
+      <div class="test-instructions">Testul de impingement — evaluează instabilitatea</div>
+    </div>
+    <div class="test-body">
+      <div class="test-images">
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image10.jpg" alt="Poziția testului"><div class="img-label">Poziția testului</div></div>
+      </div>
+      <div class="instruction-steps">
+        Stai așezat pe scaun, cu mâna afectată sprijinită pe marginea scaunului sau pe brațul scaunului, palma în jos și încheietura pumnului orientată în față, cotul ușor îndoit.<br>
+        Împinge în mâna sprijinită și încearcă să îți ridici ușor corpul de pe scaun, transferând greutatea mai ales pe cotul afectat.<br>
+        Menține poziția câteva secunde, fără să forțezi excesiv.
+      </div>
+      <div class="test-question">În timpul acestui test, apare durere și/sau senzație de instabilitate la nivelul cotului?</div>
+      <div class="options">
+        <label class="option" onclick="sel(this,'t5')"><input type="radio" name="t5"><div class="option-radio"></div><span class="option-label">Da</span></label>
+        <label class="option" onclick="sel(this,'t5')"><input type="radio" name="t5"><div class="option-radio"></div><span class="option-label">Nu</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST 6 -->
+  <div class="test-card" id="card-t6">
+    <div class="test-header">
+      <div class="test-badge">T<span class="badge-accent">06</span></div>
+      <div class="test-instructions">Flexie/extensie în decubit — evaluează gravitația</div>
+    </div>
+    <div class="test-body">
+      <div class="test-images">
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image15.jpg" alt="Poziția 1 — start"><div class="img-label">Poziția 1 — start</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image17.jpg" alt="Poziția 2 — extensie"><div class="img-label">Poziția 2 — extensie</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image18.jpg" alt="Poziția 3 — flexie"><div class="img-label">Poziția 3 — flexie</div></div>
+      </div>
+      <div class="instruction-steps">
+        Întinde-te pe pat sau pe o suprafață plană, pe spate, cu brațul afectat ridicat, cotul îndoit aproximativ 90° (imaginea 1).<br>
+        Îndreaptă cotul cât poți de mult, lăsând brațul să se miște liber, asistat de gravitație (imaginea 2).<br>
+        Apoi îndoaie cotul din nou cât poți de mult, tot lăsând mișcarea să fie ghidată de gravitație (imaginea 3).<br>
+        Repetă trecerea între pozițiile 2 și 3 de câteva ori.
+      </div>
+      <div class="test-question">Comparativ cu mișcarea de flexie/extensie făcută din poziție verticală (în picioare sau pe scaun), această mișcare ți se pare:</div>
+      <div class="options">
+        <label class="option" onclick="sel(this,'t6')"><input type="radio" name="t6"><div class="option-radio"></div><span class="option-label">Mai ușoară / mai stabilă</span></label>
+        <label class="option" onclick="sel(this,'t6')"><input type="radio" name="t6"><div class="option-radio"></div><span class="option-label">La fel</span></label>
+        <label class="option" onclick="sel(this,'t6')"><input type="radio" name="t6"><div class="option-radio"></div><span class="option-label">Mai dificilă / mai instabilă</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST 7 -->
+  <div class="test-card" id="card-t7">
+    <div class="test-header">
+      <div class="test-badge">T<span class="badge-accent">07</span></div>
+      <div class="test-instructions">Extensie rezistată — testul epicondilitei laterale</div>
+    </div>
+    <div class="test-body">
+      <div class="test-images">
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image19.jpg" alt="Poziția 1 — start"><div class="img-label">Poziția 1 — start</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image20.jpg" alt="Poziția 2 — ridicare"><div class="img-label">Poziția 2 — ridicare</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image22.jpg" alt="Poziția 3 — rezistență"><div class="img-label">Poziția 3 — rezistență</div></div>
+      </div>
+      <div class="instruction-steps">
+        Stai așezat pe scaun și sprijină antebrațul afectat pe brațul scaunului sau pe o suprafață stabilă, cu palma orientată în jos (imaginea 1).<br>
+        Strânge pumnul și încearcă să ridici mâna în sus / îndrepți pumnul (imaginea 2).<br>
+        Cu mâna sănătoasă, opune rezistență acestei mișcări, apăsând pe dosul mâinii (imaginea 3). Menține presiunea câteva secunde.
+      </div>
+      <div class="test-question">În timpul acestui test, apare durere la nivelul părții externe a cotului (zona marcată cu punctul roșu)?</div>
+      <div class="options">
+        <label class="option" onclick="sel(this,'t7')"><input type="radio" name="t7"><div class="option-radio"></div><span class="option-label">Da</span></label>
+        <label class="option" onclick="sel(this,'t7')"><input type="radio" name="t7"><div class="option-radio"></div><span class="option-label">Nu</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST 8 -->
+  <div class="test-card" id="card-t8">
+    <div class="test-header">
+      <div class="test-badge">T<span class="badge-accent">08</span></div>
+      <div class="test-instructions">Palparea cordonului bicipital — evaluează tendonul</div>
+    </div>
+    <div class="test-body">
+      <div class="test-images">
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image21.jpg" alt="Zona de palpare"><div class="img-label">Zona de palpare</div></div>
+      </div>
+      <div class="instruction-steps">
+        Ține cotul afectat ușor îndoit, cu degetul mare orientat în sus.<br>
+        Relaxează antebrațul.<br>
+        Cu degetul arătător al mâinii sănătoase, încearcă să „agăți" sau să prinzi ca într-un cârlig o structură fermă, ca o coardă, în zona din fața cotului, exact ca în imagine.
+      </div>
+      <div class="test-question">Simți clar sub deget o structură fermă, ca o coardă, în zona din fața cotului?</div>
+      <div class="options">
+        <label class="option" onclick="sel(this,'t8')"><input type="radio" name="t8"><div class="option-radio"></div><span class="option-label">Da</span></label>
+        <label class="option" onclick="sel(this,'t8')"><input type="radio" name="t8"><div class="option-radio"></div><span class="option-label">Nu</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST 9 — OPTIONAL -->
+  <div class="test-card" id="card-t9">
+    <div class="test-header">
+      <div class="test-badge optional">T09 — Opțional</div>
+      <div class="test-instructions">Tapotare epicondil medial — testul nervului ulnar</div>
+    </div>
+    <div class="test-body">
+      <div class="test-images">
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image24.jpg" alt="Zona de tapotare"><div class="img-label">Zona de tapotare</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image3.jpg" alt="Traiect simptome"><div class="img-label">Traiect simptome</div></div>
+      </div>
+      <div class="instruction-steps">
+        Ține cotul afectat ușor îndoit, cu palma orientată în sus.<br>
+        Cu degetele mâinii sănătoase, lovește ușor (tapotează) de 2–3 ori zona indicată în imagine, pe partea internă a cotului.<br>
+        Nu lovi tare și nu forța.
+      </div>
+      <div class="test-question">În timpul acestei manevre, simți furnicături, amorțeală sau senzație de „curent electric" care poate coborî pe antebraț sau spre degete?</div>
+      <div class="options">
+        <label class="option" onclick="sel(this,'t9')"><input type="radio" name="t9"><div class="option-radio"></div><span class="option-label">Da</span></label>
+        <label class="option" onclick="sel(this,'t9')"><input type="radio" name="t9"><div class="option-radio"></div><span class="option-label">Nu</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST 10 — OPTIONAL -->
+  <div class="test-card" id="card-t10">
+    <div class="test-header">
+      <div class="test-badge optional">T10 — Opțional</div>
+      <div class="test-instructions">Rezistență la rotație — necesită ajutorul unei alte persoane</div>
+    </div>
+    <div class="test-body">
+      <div class="test-images">
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image5.jpg" alt="Poziția 1 — dat noroc"><div class="img-label">Poziția 1 — dat noroc</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image6.jpg" alt="Poziția 2 — rotație supinație"><div class="img-label">Poziția 2 — rotație supinație</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image7.jpg" alt="Poziția 3 — rotație pronație"><div class="img-label">Poziția 3 — rotație pronație</div></div>
+      </div>
+      <div class="instruction-steps">
+        Stai așezat pe scaun. Întinde mâna afectată înainte și strânge mâna unui ajutor, ca într-un salut, palma orientată în jos (imaginea 1).<br>
+        <strong>Poziția 2:</strong> Ajutorul încearcă să îți rotească antebrațul astfel încât palma să se întoarcă în sus. Tu încearcă să te opui acestei mișcări, fără să inițiezi rotația.<br>
+        <strong>Poziția 3:</strong> Stai cu palma orientată în sus. Ajutorul încearcă să întoarcă palma în jos. Tu încearcă să opui mișcarea.
+      </div>
+      <div class="test-question">Poziția 2 — apare durere în zona marcată cu punctul roșu (partea internă a cotului / antebrațului)?</div>
+      <div class="options">
+        <label class="option" onclick="sel(this,'t10a')"><input type="radio" name="t10a"><div class="option-radio"></div><span class="option-label">Da</span></label>
+        <label class="option" onclick="sel(this,'t10a')"><input type="radio" name="t10a"><div class="option-radio"></div><span class="option-label">Nu</span></label>
+      </div>
+      <div class="test-question" style="margin-top:20px">Poziția 3 — apare durere în zona marcată cu punctul roșu (partea externă a cotului / antebrațului)?</div>
+      <div class="options">
+        <label class="option" onclick="sel(this,'t10b')"><input type="radio" name="t10b"><div class="option-radio"></div><span class="option-label">Da</span></label>
+        <label class="option" onclick="sel(this,'t10b')"><input type="radio" name="t10b"><div class="option-radio"></div><span class="option-label">Nu</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUBMIT -->
+  <div class="submit-area">
+    <div class="submit-title">Trimite <span>răspunsurile</span> tale</div>
+    <p class="submit-subtitle">Răspunsurile de mai sus vor fi trimise către platforma Medicai. La pasul următor, în platforma Medicai, vei completa câteva informații personale și vei încărca RMN-ul.</p>
+    <button class="submit-btn" onclick="generateJSON()">
+      Trimite răspunsuri
+      <span class="submit-btn-icon">→</span>
+    </button>
+    <p class="submit-note">Vei fi redirecționat către platforma Medicai.</p>
+  </div>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close">✕</span>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="toast-icon" id="toastIcon">✓</div>
+  <span id="toastMsg">JSON generat cu succes!</span>
+</div>
+
+<script>
+  const answered = new Set();
+  const total = 18;
+
+  function sel(el, name) {
+    const container = el.closest('.options, .test-body, .question-card');
+    container.querySelectorAll('.option').forEach(s => s.classList.remove('selected'));
+    el.classList.add('selected');
+    answered.add(name);
+    updateProgress();
+    const card = el.closest('.question-card');
+    if (card) { card.classList.add('answered'); card.classList.remove('missing'); }
+    const testCard = el.closest('.test-card');
+    if (testCard) { testCard.classList.add('answered'); testCard.classList.remove('missing'); }
+  }
+
+  function selColor(el, name) {
+    const container = el.closest('.color-options');
+    container.querySelectorAll('.color-option').forEach(s => s.classList.remove('selected'));
+    el.classList.add('selected');
+    answered.add(name);
+    updateProgress();
+    const testCard = el.closest('.test-card');
+    if (testCard) {
+      // For T1 and T2, only mark card as answered when both sub-questions are answered
+      const cardId = testCard.id;
+      if (cardId === 'card-t1') {
+        if (answered.has('t1a') && answered.has('t1b')) {
+          testCard.classList.add('answered');
+          testCard.classList.remove('missing');
+        }
+      } else if (cardId === 'card-t2') {
+        if (answered.has('t2a') && answered.has('t2b')) {
+          testCard.classList.add('answered');
+          testCard.classList.remove('missing');
+        }
+      } else {
+        testCard.classList.add('answered');
+        testCard.classList.remove('missing');
+      }
+    }
+  }
+
+  function updateProgress() {
+    const pct = Math.min(100, Math.round(answered.size / total * 100));
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressPct').textContent = pct + '%';
+  }
+
+  function zoom(wrap) {
+    document.getElementById('lightboxImg').src = wrap.querySelector('img').src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  function showToast(msg, isError) {
+    const toast = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
+    document.getElementById('toastIcon').textContent = isError ? '!' : '✓';
+    toast.classList.toggle('error', !!isError);
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3500);
+  }
+
+  function generateJSON() {
+    // Validare câmpuri obligatorii
+    document.querySelectorAll('.missing').forEach(el => el.classList.remove('missing'));
+    const MANDATORY = [
+      { key: 'q1', cardId: 'card-q1' }, { key: 'q2', cardId: 'card-q2' },
+      { key: 'q3', cardId: 'card-q3' }, { key: 'q4', cardId: 'card-q4' },
+      { key: 'q5', cardId: 'card-q5' }, { key: 'q6', cardId: 'card-q6' },
+      { key: 'q7', cardId: 'card-q7' }, { key: 'q8', cardId: 'card-q8' },
+      { key: 't1a', cardId: 'card-t1' }, { key: 't1b', cardId: 'card-t1' },
+      { key: 't2a', cardId: 'card-t2' }, { key: 't2b', cardId: 'card-t2' },
+      { key: 't3', cardId: 'card-t3' },
+      { key: 't4', cardId: 'card-t4' }, { key: 't5', cardId: 'card-t5' },
+      { key: 't6', cardId: 'card-t6' }, { key: 't7', cardId: 'card-t7' },
+      { key: 't8', cardId: 'card-t8' },
+    ];
+    const missing = MANDATORY.filter(m => !answered.has(m.key));
+    // Deduplicate missing cards
+    const missingCards = [...new Map(missing.map(m => [m.cardId, m])).values()];
+    if (missing.length > 0) {
+      missingCards.forEach(m => document.getElementById(m.cardId)?.classList.add('missing'));
+      document.getElementById(missingCards[0].cardId)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      showToast(`${missing.length} ${missing.length === 1 ? 'întrebare' : 'întrebări'} fără răspuns`, true);
+      return;
+    }
+
+    const COLORS = { green: 'Verde', yellow: 'Galben', red: 'Roșu', blue: 'Albastru' };
+
+    function ans(n) {
+      const inputs = document.querySelectorAll(`input[name="${n}"]`);
+      for (const inp of inputs) {
+        const parent = inp.closest('.option.selected, .color-option.selected');
+        if (parent) {
+          const swatch = parent.querySelector('.color-swatch');
+          if (swatch) { const cls = [...swatch.classList].find(c => c !== 'color-swatch'); return COLORS[cls] || cls; }
+          const span = parent.querySelector('.option-label, .color-option-label');
+          return span ? span.textContent.trim() : '—';
+        }
+      }
+      return '—';
+    }
+
+    const QUESTIONS = [
+      { key: 'q1', label: 'Când te doare cotul cel mai mult?' },
+      { key: 'q2', label: 'Te doare cotul noaptea?' },
+      { key: 'q3', label: 'Ce este mai deranjant pentru tine?' },
+      { key: 'q4', label: 'Ai amorțeli, furnicături sau senzație de curent pe braț sau în mână?' },
+      { key: 'q5', label: 'Simți că articulația cotului este mai slabă în general, nu doar dureroasă?' },
+      { key: 'q6', label: 'Ți-a sărit vreodată cotul din loc și a fost pus la loc într-o cameră de gardă?' },
+      { key: 'q7', label: 'Ai senzația că articulația cotului „iese" sau „alunecă" din loc la mișcări specifice sau chiar și banale?' },
+      { key: 'q8', label: 'Te consideri o persoană „foarte flexibilă" sau „hipermobilă"?' },
+    ];
+
+    let mdIntrebari = '';
+    QUESTIONS.forEach((q, i) => {
+      mdIntrebari += `**Q${i + 1}:** ${q.label}  \n`;
+      mdIntrebari += `A: ${ans(q.key)}  \n\n`;
+    });
+
+    const TESTS = [
+      { key: 't1a', label: 'T01 — Flexie și extensie cot', q: 'Cât de mult poți îndoi cotul? (Poziția 2)' },
+      { key: 't1b', label: 'T01 — Flexie și extensie cot', q: 'Cât de mult poți îndrepta cotul? (Poziția 3)' },
+      { key: 't2a', label: 'T02 — Rotație antebraț', q: 'Cât de mult poți roti palma în jos? (Poziția 2)' },
+      { key: 't2b', label: 'T02 — Rotație antebraț', q: 'Cât de mult poți roti palma în sus? (Poziția 3)' },
+      { key: 't3', label: 'T03 — Localizarea durerii', q: 'Care culoare corespunde zonei care doare cel mai mult?' },
+      { key: 't4', label: 'T04 — Stress valgus', q: 'Apare durere și/sau senzație de instabilitate în zona marcată cu bulina galbenă?' },
+      { key: 't5', label: 'T05 — Testul de impingement', q: 'Apare durere și/sau senzație de instabilitate la nivelul cotului?' },
+      { key: 't6', label: 'T06 — Flexie/extensie în decubit', q: 'Comparativ cu mișcarea din poziție verticală, această mișcare ți se pare:' },
+      { key: 't7', label: 'T07 — Extensie rezistată', q: 'Apare durere la nivelul părții externe a cotului (zona marcată cu punctul roșu)?' },
+      { key: 't8', label: 'T08 — Palparea cordonului bicipital', q: 'Simți clar sub deget o structură fermă, ca o coardă, în zona din fața cotului?' },
+    ];
+
+    let mdTeste = '';
+    TESTS.forEach(t => {
+      mdTeste += `**${t.label}:**  \n`;
+      mdTeste += `**Q:** ${t.q}  \n`;
+      mdTeste += `A: ${ans(t.key)}  \n\n`;
+    });
+
+    mdTeste += `**T09 (opțional):** Tapotare epicondil medial — testul nervului ulnar  \n`;
+    mdTeste += `**Q:** Simți furnicături, amorțeală sau senzație de „curent electric" care poate coborî pe antebraț sau spre degete?  \n`;
+    mdTeste += `A: ${ans('t9')}  \n\n`;
+
+    mdTeste += `**T10 (opțional):** Rezistență la rotație — necesită ajutorul unei alte persoane  \n`;
+    mdTeste += `**Q:** Poziția 2 — apare durere în zona marcată cu punctul roșu (partea internă a cotului / antebrațului)?  \n`;
+    mdTeste += `A: ${ans('t10a')}  \n`;
+    mdTeste += `**Q:** Poziția 3 — apare durere în zona marcată cu punctul roșu (partea externă a cotului / antebrațului)?  \n`;
+    mdTeste += `A: ${ans('t10b')}  \n`;
+
+    const sessionId = new URLSearchParams(window.location.search).get('session_id');
+
+    let url = 'https://app.medicai.io/upload/movisplus?';
+    if (sessionId) url += 'session_id=' + encodeURIComponent(sessionId) + '&';
+    url += 'region=cot';
+    url += '&chestionar_intrebari=' + encodeURIComponent(mdIntrebari.trim());
+    url += '&chestionar_teste=' + encodeURIComponent(mdTeste.trim());
+
+    window.location.href = url;
+  }
+</script>
+</body>
+</html>
