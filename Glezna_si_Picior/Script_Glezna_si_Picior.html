@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Chestionar clinic ghidat pentru articulația șoldului — Movis+</title>
+<title>Chestionar clinic ghidat pentru gleznă și picior — Movis+</title>
 <link href="https://fonts.googleapis.com/css2?family=Museo+Moderno:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -314,6 +314,8 @@
   .color-swatch.yellow { background: #f59e0b; }
   .color-swatch.red    { background: #ef4444; }
   .color-swatch.blue   { background: #3b82f6; }
+  .color-swatch.orange { background: #f97316; }
+  .color-swatch.purple { background: #a855f7; }
 
   .color-option-label { font-size: 13px; color: var(--black); font-weight: 400; }
   .color-option.selected .color-option-label { font-weight: 500; }
@@ -605,8 +607,8 @@
       <div class="hero-tag-dot"></div>
       <div class="hero-tag-text">Evaluare clinică ghidată</div>
     </div>
-    <h1>Chestionar clinic ghidat pentru <span>articulația șoldului</span></h1>
-    <p class="hero-desc">Acest chestionar ne ajută să înțelegem ce probleme din RMN sunt relevante clinic pentru durerea ta de șold. Răspunde cât mai sincer.</p>
+    <h1>Chestionar clinic ghidat pentru <span>gleznă și picior</span></h1>
+    <p class="hero-desc">Acest chestionar ne ajută să înțelegem ce probleme din RMN sunt relevante clinic pentru durerea ta de gleznă și picior. Răspunde cât mai sincer.</p>
   </div>
 </div>
 
@@ -634,38 +636,37 @@
   <!-- Q1 -->
   <div class="question-card" id="card-q1">
     <div class="question-number">Întrebarea 01</div>
-    <div class="question-text">Când te doare șoldul cel mai mult?</div>
+    <div class="question-text">Când te doare cel mai mult?</div>
     <div class="options">
-      <label class="option" onclick="sel(this,'q1')"><input type="radio" name="q1"><div class="option-radio"></div><span class="option-label">Mă doare aproape tot timpul, chiar și când nu îl mișc</span></label>
-      <label class="option" onclick="sel(this,'q1')"><input type="radio" name="q1"><div class="option-radio"></div><span class="option-label">Mă doare doar când îl folosesc sau îl mișc</span></label>
+      <label class="option" onclick="sel(this,'q1')"><input type="radio" name="q1"><div class="option-radio"></div><span class="option-label">Aproape tot timpul, chiar și în repaus</span></label>
+      <label class="option" onclick="sel(this,'q1')"><input type="radio" name="q1"><div class="option-radio"></div><span class="option-label">Doar când folosesc piciorul / merg / stau în picioare</span></label>
     </div>
   </div>
 
   <!-- Q2 -->
   <div class="question-card" id="card-q2">
     <div class="question-number">Întrebarea 02</div>
-    <div class="question-text">Te doare șoldul noaptea?</div>
+    <div class="question-text">Te doare noaptea sau te trezește din somn?</div>
     <div class="options">
-      <label class="option" onclick="sel(this,'q2')"><input type="radio" name="q2"><div class="option-radio"></div><span class="option-label">Da, mă trezește din somn</span></label>
-      <label class="option" onclick="sel(this,'q2')"><input type="radio" name="q2"><div class="option-radio"></div><span class="option-label">Nu, noaptea nu mă deranjează</span></label>
+      <label class="option" onclick="sel(this,'q2')"><input type="radio" name="q2"><div class="option-radio"></div><span class="option-label">Da</span></label>
+      <label class="option" onclick="sel(this,'q2')"><input type="radio" name="q2"><div class="option-radio"></div><span class="option-label">Nu</span></label>
     </div>
   </div>
 
   <!-- Q3 -->
   <div class="question-card" id="card-q3">
     <div class="question-number">Întrebarea 03</div>
-    <div class="question-text">Ce este mai deranjant pentru tine?</div>
+    <div class="question-text">Primii pași dimineața sunt dureroși (sub călcâi)?</div>
     <div class="options">
-      <label class="option" onclick="sel(this,'q3')"><input type="radio" name="q3"><div class="option-radio"></div><span class="option-label">Durerea</span></label>
-      <label class="option" onclick="sel(this,'q3')"><input type="radio" name="q3"><div class="option-radio"></div><span class="option-label">Lipsa de forță / mișcare</span></label>
-      <label class="option" onclick="sel(this,'q3')"><input type="radio" name="q3"><div class="option-radio"></div><span class="option-label">Ambele în mod similar</span></label>
+      <label class="option" onclick="sel(this,'q3')"><input type="radio" name="q3"><div class="option-radio"></div><span class="option-label">Da</span></label>
+      <label class="option" onclick="sel(this,'q3')"><input type="radio" name="q3"><div class="option-radio"></div><span class="option-label">Nu</span></label>
     </div>
   </div>
 
   <!-- Q4 -->
   <div class="question-card" id="card-q4">
     <div class="question-number">Întrebarea 04</div>
-    <div class="question-text">Ai amorțeli, furnicături sau senzație de curent în zona șoldului sau pe coapsă?</div>
+    <div class="question-text">Simți că glezna „fuge", cedează sau nu e sigură când calci?</div>
     <div class="options">
       <label class="option" onclick="sel(this,'q4')"><input type="radio" name="q4"><div class="option-radio"></div><span class="option-label">Da</span></label>
       <label class="option" onclick="sel(this,'q4')"><input type="radio" name="q4"><div class="option-radio"></div><span class="option-label">Nu</span></label>
@@ -675,7 +676,7 @@
   <!-- Q5 -->
   <div class="question-card" id="card-q5">
     <div class="question-number">Întrebarea 05</div>
-    <div class="question-text">Simți că articulația șoldului este mai rigidă (senzație că șoldul pentru care ai făcut RMN e mai blocat)?</div>
+    <div class="question-text">Durerea apare mai ales când mergi desculț sau pe teren denivelat?</div>
     <div class="options">
       <label class="option" onclick="sel(this,'q5')"><input type="radio" name="q5"><div class="option-radio"></div><span class="option-label">Da</span></label>
       <label class="option" onclick="sel(this,'q5')"><input type="radio" name="q5"><div class="option-radio"></div><span class="option-label">Nu</span></label>
@@ -685,22 +686,20 @@
   <!-- Q6 -->
   <div class="question-card" id="card-q6">
     <div class="question-number">Întrebarea 06</div>
-    <div class="question-text">Dacă stai confortabil pe un scaun / fotoliu sau la marginea patului, poți duce genunchiul la piept?</div>
+    <div class="question-text">Ai amorțeli, furnicături sau senzație de curent în talpă sau degete?</div>
     <div class="options">
       <label class="option" onclick="sel(this,'q6')"><input type="radio" name="q6"><div class="option-radio"></div><span class="option-label">Da</span></label>
       <label class="option" onclick="sel(this,'q6')"><input type="radio" name="q6"><div class="option-radio"></div><span class="option-label">Nu</span></label>
-      <label class="option" onclick="sel(this,'q6')"><input type="radio" name="q6"><div class="option-radio"></div><span class="option-label">Nu pot, dar nu pentru că doare, ci pentru că mă ține burta</span></label>
     </div>
   </div>
 
   <!-- Q7 -->
   <div class="question-card" id="card-q7">
     <div class="question-number">Întrebarea 07</div>
-    <div class="question-text">Te consideri o persoană „foarte flexibilă" sau „hipermobilă" (îndoi ușor degetele, coatele, genunchii)?</div>
+    <div class="question-text">Durerea a apărut după o entorsă sau „călcat strâmb"?</div>
     <div class="options">
       <label class="option" onclick="sel(this,'q7')"><input type="radio" name="q7"><div class="option-radio"></div><span class="option-label">Da</span></label>
       <label class="option" onclick="sel(this,'q7')"><input type="radio" name="q7"><div class="option-radio"></div><span class="option-label">Nu</span></label>
-      <label class="option" onclick="sel(this,'q7')"><input type="radio" name="q7"><div class="option-radio"></div><span class="option-label">Nu știu</span></label>
     </div>
   </div>
 
@@ -715,23 +714,30 @@
   <div class="test-card" id="card-t1">
     <div class="test-header">
       <div class="test-badge">T<span class="badge-accent">01</span></div>
-      <div class="test-instructions">Localizarea durerii — alege 1 sau maximum 2 zone</div>
+      <div class="test-instructions">Localizarea durerii — față și lateral gleznă</div>
     </div>
     <div class="test-body">
       <div class="test-images">
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Sold/images/image1.jpg" alt="Față / Lateral"><div class="img-label">Față / Lateral</div></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Sold/images/image3.jpg" alt="Spate"><div class="img-label">Spate</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Glezna_si_Picior/images/image1.jpg" alt="Față / Lateral gleznă"><div class="img-label">Față / Lateral gleznă</div></div>
       </div>
       <div class="instruction-steps">
-        Privește imaginile de mai jos și răspunde doar pentru șoldul cu probleme (cel pentru care ai încărcat RMN-ul).<br>
-        Alege <strong>1 zonă sau maximum 2 zone</strong> unde simți durerea cel mai frecvent sau cel mai intens.
+        Suflecă pantalonii și stai fără ciorapi, cu glezna și piciorul complet vizibile.<br>
+        Stai în picioare, relaxat.<br>
+        Privește imaginea și alege 1 sau maximum 2 puncte / zone colorate care dor cel mai mult din această perspectivă.
       </div>
-      <div class="test-question">Unde doare cel mai mult? (selectează una sau două variante)</div>
+      <div class="test-question">Alege zona/zonele dureroase din această imagine (max. 2)</div>
       <div class="color-options">
-        <label class="color-option" onclick="selMulti(this,'t1',2,event)"><input type="checkbox" name="t1" style="display:none"><div class="color-swatch red"></div><span class="color-option-label">Roșu — Înainte (zona inghinală)</span></label>
-        <label class="color-option" onclick="selMulti(this,'t1',2,event)"><input type="checkbox" name="t1" style="display:none"><div class="color-swatch yellow"></div><span class="color-option-label">Galben — Lateral (pe os, zona proeminentă)</span></label>
-        <label class="color-option" onclick="selMulti(this,'t1',2,event)"><input type="checkbox" name="t1" style="display:none"><div class="color-swatch green"></div><span class="color-option-label">Verde — Spate (fesier)</span></label>
-        <label class="color-option" onclick="selMulti(this,'t1',2,event)"><input type="checkbox" name="t1" style="display:none"><div class="color-swatch blue"></div><span class="color-option-label">Albastru — Jos în spate, la baza coloanei</span></label>
+        <label class="color-option" onclick="selMulti(this,'t1',2,event)"><input type="checkbox" name="t1" style="display:none"><div class="color-swatch green"></div><span class="color-option-label">Verde</span></label>
+        <label class="color-option" onclick="selMulti(this,'t1',2,event)"><input type="checkbox" name="t1" style="display:none"><div class="color-swatch blue"></div><span class="color-option-label">Albastru</span></label>
+        <label class="color-option" onclick="selMulti(this,'t1',2,event)"><input type="checkbox" name="t1" style="display:none"><div class="color-swatch red"></div><span class="color-option-label">Roșu</span></label>
+        <label class="color-option" onclick="selMulti(this,'t1',2,event)"><input type="checkbox" name="t1" style="display:none"><div class="color-swatch orange"></div><span class="color-option-label">Portocaliu</span></label>
+        <label class="color-option" onclick="selMulti(this,'t1',2,event)"><input type="checkbox" name="t1" style="display:none"><div class="color-swatch purple"></div><span class="color-option-label">Mov</span></label>
+      </div>
+      <div style="margin-top:10px">
+        <label class="option" onclick="sel(this,'t1-none')" style="display:inline-flex;">
+          <input type="radio" name="t1-none"><div class="option-radio"></div>
+          <span class="option-label">Nicio zonă din această imagine</span>
+        </label>
       </div>
     </div>
   </div>
@@ -740,24 +746,28 @@
   <div class="test-card" id="card-t2">
     <div class="test-header">
       <div class="test-badge">T<span class="badge-accent">02</span></div>
-      <div class="test-instructions">Rotație externă — testul mobilității șoldului</div>
+      <div class="test-instructions">Localizarea durerii — spate gleznă / călcâi</div>
     </div>
     <div class="test-body">
       <div class="test-images">
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Sold/images/image2.jpg" alt="Poziția 1"><div class="img-label">Poziția 1</div></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Sold/images/image5.jpg" alt="Poziția 2"><div class="img-label">Poziția 2</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Glezna_si_Picior/images/image3.jpg" alt="Spate gleznă și călcâi"><div class="img-label">Spate gleznă și călcâi</div></div>
       </div>
       <div class="instruction-steps">
-        Stai relaxat pe un scaun, fotoliu sau la marginea patului, ca în imaginea 1.<br>
-        Ține coapsele sprijinite și genunchii îndoiți.<br>
-        Fără să miști genunchiul, rotește laba piciorului în afară, ca în imaginea 2, cât poți de mult.
+        Rămâi în aceeași poziție, cu glezna și călcâiul complet vizibile.<br>
+        Stai în picioare, relaxat.
       </div>
-      <div class="test-question">Ce simți în timpul mișcării? (răspunde doar pentru șoldul cu probleme)</div>
-      <div class="options">
-        <label class="option" onclick="sel(this,'t2')"><input type="radio" name="t2"><div class="option-radio"></div><span class="option-label">Nu simt durere și pot face mișcarea normal</span></label>
-        <label class="option" onclick="sel(this,'t2')"><input type="radio" name="t2"><div class="option-radio"></div><span class="option-label">Simt durere în zona inghinală</span></label>
-        <label class="option" onclick="sel(this,'t2')"><input type="radio" name="t2"><div class="option-radio"></div><span class="option-label">Nu simt durere, dar mișcarea este clar limitată comparativ cu celălalt șold</span></label>
-        <label class="option" onclick="sel(this,'t2')"><input type="radio" name="t2"><div class="option-radio"></div><span class="option-label">Simt atât durere inghinală, cât și limitare de mișcare</span></label>
+      <div class="test-question">Alege zona/zonele dureroase din această imagine (max. 2)</div>
+      <div class="color-options">
+        <label class="color-option" onclick="selMulti(this,'t2',2,event)"><input type="checkbox" name="t2" style="display:none"><div class="color-swatch blue"></div><span class="color-option-label">Albastru (zonă hașurată)</span></label>
+        <label class="color-option" onclick="selMulti(this,'t2',2,event)"><input type="checkbox" name="t2" style="display:none"><div class="color-swatch yellow"></div><span class="color-option-label">Galben (zonă hașurată)</span></label>
+        <label class="color-option" onclick="selMulti(this,'t2',2,event)"><input type="checkbox" name="t2" style="display:none"><div class="color-swatch red"></div><span class="color-option-label">Roșu (punct roșu)</span></label>
+        <label class="color-option" onclick="selMulti(this,'t2',2,event)"><input type="checkbox" name="t2" style="display:none"><div class="color-swatch green"></div><span class="color-option-label">Verde (punct verde)</span></label>
+      </div>
+      <div style="margin-top:10px">
+        <label class="option" onclick="sel(this,'t2-none')" style="display:inline-flex;">
+          <input type="radio" name="t2-none"><div class="option-radio"></div>
+          <span class="option-label">Nicio zonă din această imagine</span>
+        </label>
       </div>
     </div>
   </div>
@@ -766,26 +776,29 @@
   <div class="test-card" id="card-t3">
     <div class="test-header">
       <div class="test-badge">T<span class="badge-accent">03</span></div>
-      <div class="test-instructions">Testul FABER — rezistență din șold</div>
+      <div class="test-instructions">Localizarea durerii — medial (interior) gleznă</div>
     </div>
     <div class="test-body">
       <div class="test-images">
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Sold/images/image4.jpg" alt="Poziția 1"><div class="img-label">Poziția 1</div></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Sold/images/image7.jpg" alt="Poziția 2"><div class="img-label">Poziția 2</div></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Sold/images/image6.jpg" alt="Poziția 2'"><div class="img-label">Poziția 2'</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Glezna_si_Picior/images/image2.jpg" alt="Interior gleznă"><div class="img-label">Interior gleznă</div></div>
       </div>
       <div class="instruction-steps">
-        Pornește din poziția testului anterior.<br>
-        Stai picior peste picior, ca în imaginea 3.<br>
-        Cu mâna de pe aceeași parte (sau cu ajutorul altei persoane), apasă ușor în jos pe genunchi, ca în imaginile 4 și 4'.<br>
-        În același timp, încearcă să opui rezistență din șold (să nu lași genunchiul să coboare).
+        Rămâi în aceeași poziție.<br>
+        Stai în picioare, relaxat.
       </div>
-      <div class="test-question">Ce simți în zona inghinală (marcată cu roșu)? (răspunde doar pentru șoldul cu probleme)</div>
-      <div class="options">
-        <label class="option" onclick="sel(this,'t3')"><input type="radio" name="t3"><div class="option-radio"></div><span class="option-label">Nu simt durere și pot opune rezistență normal</span></label>
-        <label class="option" onclick="sel(this,'t3')"><input type="radio" name="t3"><div class="option-radio"></div><span class="option-label">Simt durere în zona inghinală</span></label>
-        <label class="option" onclick="sel(this,'t3')"><input type="radio" name="t3"><div class="option-radio"></div><span class="option-label">Nu simt durere, dar forța este clar mai mică decât pe partea cealaltă</span></label>
-        <label class="option" onclick="sel(this,'t3')"><input type="radio" name="t3"><div class="option-radio"></div><span class="option-label">Simt atât durere inghinală, cât și slăbiciune</span></label>
+      <div class="test-question">Alege zona/zonele dureroase din această imagine (max. 2)</div>
+      <div class="color-options">
+        <label class="color-option" onclick="selMulti(this,'t3',2,event)"><input type="checkbox" name="t3" style="display:none"><div class="color-swatch purple"></div><span class="color-option-label">Mov (zonă hașurată)</span></label>
+        <label class="color-option" onclick="selMulti(this,'t3',2,event)"><input type="checkbox" name="t3" style="display:none"><div class="color-swatch green"></div><span class="color-option-label">Verde (punct)</span></label>
+        <label class="color-option" onclick="selMulti(this,'t3',2,event)"><input type="checkbox" name="t3" style="display:none"><div class="color-swatch red"></div><span class="color-option-label">Roșu (punct)</span></label>
+        <label class="color-option" onclick="selMulti(this,'t3',2,event)"><input type="checkbox" name="t3" style="display:none"><div class="color-swatch yellow"></div><span class="color-option-label">Galben (zonă hașurată)</span></label>
+        <label class="color-option" onclick="selMulti(this,'t3',2,event)"><input type="checkbox" name="t3" style="display:none"><div class="color-swatch blue"></div><span class="color-option-label">Albastru (zonă hașurată)</span></label>
+      </div>
+      <div style="margin-top:10px">
+        <label class="option" onclick="sel(this,'t3-none')" style="display:inline-flex;">
+          <input type="radio" name="t3-none"><div class="option-radio"></div>
+          <span class="option-label">Nicio zonă din această imagine</span>
+        </label>
       </div>
     </div>
   </div>
@@ -794,25 +807,29 @@
   <div class="test-card" id="card-t4">
     <div class="test-header">
       <div class="test-badge">T<span class="badge-accent">04</span></div>
-      <div class="test-instructions">Adducție cu rezistență — testul stabilității</div>
+      <div class="test-instructions">Localizarea durerii — față picior și degete</div>
     </div>
     <div class="test-body">
       <div class="test-images">
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Sold/images/image9.jpg" alt="Poziția 1"><div class="img-label">Poziția 1</div></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Sold/images/image8.jpg" alt="Poziția 2"><div class="img-label">Poziția 2</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Glezna_si_Picior/images/image5.jpg" alt="Față picior și degete"><div class="img-label">Față picior și degete</div></div>
       </div>
       <div class="instruction-steps">
-        Stai pe un scaun sau fotoliu, similar cu testele anterioare.<br>
-        Adu piciorul cu probleme strâns peste celălalt, ca în imaginea 5 (genunchii sunt apropiați).<br>
-        Cu mâna opusă (sau cu ajutorul altei persoane), apasă ușor pe genunchi, ca în imaginea 6.<br>
-        În același timp, încearcă să ții genunchiul pe loc (să nu îl lași să se miște).
+        Rămâi în aceeași poziție.<br>
+        Stai în picioare, relaxat.
       </div>
-      <div class="test-question">Ce simți în timpul testului? (răspunde doar pentru șoldul cu probleme)</div>
-      <div class="options">
-        <label class="option" onclick="sel(this,'t4')"><input type="radio" name="t4"><div class="option-radio"></div><span class="option-label">Nu simt nimic neobișnuit</span></label>
-        <label class="option" onclick="sel(this,'t4')"><input type="radio" name="t4"><div class="option-radio"></div><span class="option-label">Simt durere în față șoldului (inghinal)</span></label>
-        <label class="option" onclick="sel(this,'t4')"><input type="radio" name="t4"><div class="option-radio"></div><span class="option-label">Simt durere în spatele șoldului</span></label>
-        <label class="option" onclick="sel(this,'t4')"><input type="radio" name="t4"><div class="option-radio"></div><span class="option-label">Simt durere în spatele șoldului și coboară pe coapsă</span></label>
+      <div class="test-question">Alege zona/zonele dureroase din această imagine (max. 2)</div>
+      <div class="color-options">
+        <label class="color-option" onclick="selMulti(this,'t4',2,event)"><input type="checkbox" name="t4" style="display:none"><div class="color-swatch red"></div><span class="color-option-label">Roșu (zonă hașurată)</span></label>
+        <label class="color-option" onclick="selMulti(this,'t4',2,event)"><input type="checkbox" name="t4" style="display:none"><div class="color-swatch yellow"></div><span class="color-option-label">Galben (zonă hașurată)</span></label>
+        <label class="color-option" onclick="selMulti(this,'t4',2,event)"><input type="checkbox" name="t4" style="display:none"><div class="color-swatch green"></div><span class="color-option-label">Verde (punct)</span></label>
+        <label class="color-option" onclick="selMulti(this,'t4',2,event)"><input type="checkbox" name="t4" style="display:none"><div class="color-swatch blue"></div><span class="color-option-label">Albastru (punct)</span></label>
+        <label class="color-option" onclick="selMulti(this,'t4',2,event)"><input type="checkbox" name="t4" style="display:none"><div class="color-swatch purple"></div><span class="color-option-label">Mov (punct)</span></label>
+      </div>
+      <div style="margin-top:10px">
+        <label class="option" onclick="sel(this,'t4-none')" style="display:inline-flex;">
+          <input type="radio" name="t4-none"><div class="option-radio"></div>
+          <span class="option-label">Nicio zonă din această imagine</span>
+        </label>
       </div>
     </div>
   </div>
@@ -821,20 +838,17 @@
   <div class="test-card" id="card-t5">
     <div class="test-header">
       <div class="test-badge">T<span class="badge-accent">05</span></div>
-      <div class="test-instructions">Flexie cu rezistență — testul psoas</div>
+      <div class="test-instructions">Compresia transversală — testul Morton</div>
     </div>
     <div class="test-body">
       <div class="test-images">
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Sold/images/image12.jpg" alt="Poziția 1"><div class="img-label">Poziția 1</div></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Sold/images/image10.jpg" alt="Poziția 2"><div class="img-label">Poziția 2</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Glezna_si_Picior/images/image4.jpg" alt="Poziția compresiei"><div class="img-label">Poziția compresiei</div></div>
       </div>
       <div class="instruction-steps">
-        Stai pe un scaun, fotoliu sau la marginea patului, ca în testele anterioare.<br>
-        Ridică genunchiul de pe partea dureroasă cât îți permite confortul, ca în imaginea 7 (spre piept).<br>
-        După ce l-ai ridicat, apasă ușor în jos pe genunchi cu mâna ta sau cu ajutorul altei persoane, ca în imaginea 8.<br>
-        În același timp, încearcă să opui rezistență (să ții genunchiul sus).
+        Stai confortabil pe un scaun, fotoliu sau la marginea patului.<br>
+        Cu o mână (sau cu ajutorul altei persoane), apucă partea din față a piciorului (zona degetelor) și strânge din lateral, ca în imagine, astfel încât degetele să se apropie între ele.
       </div>
-      <div class="test-question">Simți durere sau disconfort în zona inghinală? (răspunde doar pentru șoldul cu probleme)</div>
+      <div class="test-question">Simți o durere între degete sau o senzație de „curent", arsură sau furnicături?</div>
       <div class="options">
         <label class="option" onclick="sel(this,'t5')"><input type="radio" name="t5"><div class="option-radio"></div><span class="option-label">Da</span></label>
         <label class="option" onclick="sel(this,'t5')"><input type="radio" name="t5"><div class="option-radio"></div><span class="option-label">Nu</span></label>
@@ -846,22 +860,23 @@
   <div class="test-card" id="card-t6">
     <div class="test-header">
       <div class="test-badge">T<span class="badge-accent">06</span></div>
-      <div class="test-instructions">Sprijin unipodal — testul stabilității pelvine</div>
+      <div class="test-instructions">Talar tilt extern — testul stabilității ligamentare laterale</div>
     </div>
     <div class="test-body">
       <div class="test-images">
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Sold/images/image11.jpg" alt="Poziția 1"><div class="img-label">Poziția 1</div></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Sold/images/image13.jpg" alt="Poziția 2"><div class="img-label">Poziția 2</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Glezna_si_Picior/images/image7.jpg" alt="Poziția 1 — start"><div class="img-label">Poziția 1 — start</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Glezna_si_Picior/images/image6.jpg" alt="Rotație externă"><div class="img-label">Rotație externă</div></div>
       </div>
       <div class="instruction-steps">
-        Stai drept și încearcă să te sprijini doar pe piciorul cu șoldul afectat, ca în imaginea 1.<br>
-        Ține poziția <strong>5–10 secunde</strong>, fără să te ții de nimic.
+        Stai confortabil pe un scaun sau la marginea patului.<br>
+        Ține talpa pe sol și trage vârful piciorului în sus, ca în imaginea 1.<br>
+        Pe tot parcursul testului, ține genunchiul nemișcat, apăsând ușor cu mâna.<br>
+        Din această poziție, rotește piciorul spre exterior, ca în imaginea 2.
       </div>
-      <div class="test-question">Ce se întâmplă când stai pe un singur picior?</div>
+      <div class="test-question">Simți durere în zona marcată cu punct galben?</div>
       <div class="options">
-        <label class="option" onclick="sel(this,'t6')"><input type="radio" name="t6"><div class="option-radio"></div><span class="option-label">Da, pot să-mi țin echilibrul fără probleme</span></label>
-        <label class="option" onclick="sel(this,'t6')"><input type="radio" name="t6"><div class="option-radio"></div><span class="option-label">Nu pot să-mi țin echilibrul fără să-mi aplec trunchiul (imaginea 2)</span></label>
-        <label class="option" onclick="sel(this,'t6')"><input type="radio" name="t6"><div class="option-radio"></div><span class="option-label">Nu pot deloc să-mi țin echilibrul pe un singur picior</span></label>
+        <label class="option" onclick="sel(this,'t6')"><input type="radio" name="t6"><div class="option-radio"></div><span class="option-label">Da</span></label>
+        <label class="option" onclick="sel(this,'t6')"><input type="radio" name="t6"><div class="option-radio"></div><span class="option-label">Nu</span></label>
       </div>
     </div>
   </div>
@@ -870,23 +885,90 @@
   <div class="test-card" id="card-t7">
     <div class="test-header">
       <div class="test-badge">T<span class="badge-accent">07</span></div>
-      <div class="test-instructions">Testul Thomas — evaluarea flexorilor de șold</div>
+      <div class="test-instructions">Talar tilt intern — testul stabilității ligamentare mediale</div>
     </div>
     <div class="test-body">
       <div class="test-images">
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Sold/images/image14.jpg" alt="Poziția 1"><div class="img-label">Poziția 1</div></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Sold/images/image15.jpg" alt="Poziția 2"><div class="img-label">Poziția 2</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Glezna_si_Picior/images/image9.jpg" alt="Poziția 1 — start"><div class="img-label">Poziția 1 — start</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Glezna_si_Picior/images/image8.jpg" alt="Rotație internă"><div class="img-label">Rotație internă</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Glezna_si_Picior/images/image12.jpg" alt="Perspectivă alternativă"><div class="img-label">Perspectivă alternativă</div></div>
       </div>
       <div class="instruction-steps">
-        Întinde-te pe o parte, la marginea patului, cu șoldul dureros în sus, ca în imaginea 1.<br>
-        Lasă piciorul de sus să cadă încet în spate, peste marginea patului, ca în imaginea 2.<br>
-        Relaxează-te și lasă greutatea piciorului să acționeze.<br>
-        Dacă nu e clar, poți apăsa ușor pe punctul marcat cu roșu sau poți ruga pe cineva să apese.
+        Rămâi în aceeași poziție ca la testul anterior.<br>
+        Ține talpa pe sol și trage vârful piciorului în sus, ca în imaginea 1.<br>
+        Pe tot parcursul testului, ține genunchiul nemișcat, apăsând ușor cu mâna.<br>
+        Din această poziție, rotește piciorul spre interior, ca în imaginile 2 și 3.
       </div>
-      <div class="test-question">Ce simți în punctul marcat cu roșu?</div>
+      <div class="test-question">Simți durere în zona marcată cu punct galben?</div>
       <div class="options">
-        <label class="option" onclick="sel(this,'t7')"><input type="radio" name="t7"><div class="option-radio"></div><span class="option-label">Da, mă doare</span></label>
-        <label class="option" onclick="sel(this,'t7')"><input type="radio" name="t7"><div class="option-radio"></div><span class="option-label">Nu, nu mă doare</span></label>
+        <label class="option" onclick="sel(this,'t7')"><input type="radio" name="t7"><div class="option-radio"></div><span class="option-label">Da</span></label>
+        <label class="option" onclick="sel(this,'t7')"><input type="radio" name="t7"><div class="option-radio"></div><span class="option-label">Nu</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST 8 -->
+  <div class="test-card" id="card-t8">
+    <div class="test-header">
+      <div class="test-badge">T<span class="badge-accent">08</span></div>
+      <div class="test-instructions">Ridicare pe vârfuri — testul tendonului lui Ahile</div>
+    </div>
+    <div class="test-body">
+      <div class="test-images">
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Glezna_si_Picior/images/image10.jpg" alt="Poziția 1 — neutral"><div class="img-label">Poziția 1 — neutral</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Glezna_si_Picior/images/image11.jpg" alt="Poziția 2 — pe vârfuri"><div class="img-label">Poziția 2 — pe vârfuri</div></div>
+      </div>
+      <div class="instruction-steps">
+        Stai relaxat, lângă o ușă sau un perete, ca în imaginea 1.<br>
+        Poți folosi mâinile doar pentru echilibru.<br>
+        Stai pe un singur picior (cel afectat) și ridică-te pe vârfuri, ca în imaginea 2.<br>
+        Încearcă să menții poziția câteva secunde.
+      </div>
+      <div class="test-question">Poți să te ridici pe vârfuri pe piciorul afectat?</div>
+      <div class="options">
+        <label class="option" onclick="sel(this,'t8')"><input type="radio" name="t8"><div class="option-radio"></div><span class="option-label">Da, fără probleme (mă ridic ușor, stau stabil, fără durere)</span></label>
+        <label class="option" onclick="sel(this,'t8')"><input type="radio" name="t8"><div class="option-radio"></div><span class="option-label">Da, dar apare durere (în spatele gleznei / tendon / talpă / interior)</span></label>
+        <label class="option" onclick="sel(this,'t8')"><input type="radio" name="t8"><div class="option-radio"></div><span class="option-label">Da, dar piciorul nu este stabil (simt că „fuge" stânga-dreapta sau că nu am forță)</span></label>
+        <label class="option" onclick="sel(this,'t8')"><input type="radio" name="t8"><div class="option-radio"></div><span class="option-label">Cu dificultate (mă ridic greu sau nu pot menține poziția)</span></label>
+        <label class="option" onclick="sel(this,'t8')"><input type="radio" name="t8"><div class="option-radio"></div><span class="option-label">Nu pot să mă ridic pe vârfuri</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST 9 -->
+  <div class="test-card" id="card-t9">
+    <div class="test-header">
+      <div class="test-badge">T<span class="badge-accent">09</span></div>
+      <div class="test-instructions">Testul Silfverskiöld — evaluarea complexului gastrocnemian-solear</div>
+    </div>
+    <div class="test-body">
+      <div class="test-images">
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Glezna_si_Picior/images/image13.jpg" alt="Gen. întins — poziția"><div class="img-label">Gen. întins — poziția</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Glezna_si_Picior/images/image14.jpg" alt="Gen. întins — talpă"><div class="img-label">Gen. întins — talpă</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Glezna_si_Picior/images/image15.jpg" alt="Gen. îndoit — poziția"><div class="img-label">Gen. îndoit — poziția</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Glezna_si_Picior/images/image16.jpg" alt="Gen. îndoit — talpă"><div class="img-label">Gen. îndoit — talpă</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Glezna_si_Picior/images/image17.jpg" alt="Comparație 1"><div class="img-label">Comparație 1</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Glezna_si_Picior/images/image18.jpg" alt="Comparație 2"><div class="img-label">Comparație 2</div></div>
+      </div>
+      <div class="instruction-steps">
+        Stai confortabil pe un scaun sau la marginea patului.<br>
+        <strong>Pasul 1 – Genunchiul întins:</strong> Ține genunchiul drept, ca în imaginile 1 și 2. Trage vârful degetelor și talpa piciorului spre tine, cât poți.<br>
+        <strong>Pasul 2 – Genunchiul îndoit:</strong> Îndoaie genunchiul, ca în imaginile 3 și 4. Din această poziție, trage din nou vârful degetelor și talpa piciorului spre tine, cât poți.
+      </div>
+      <div class="sub-question">Pasul 1 — Genunchiul întins: Simți că „te ține" sau o tensiune în zona indicată (deget + punt galben)?</div>
+      <div class="options">
+        <label class="option" onclick="sel(this,'t9a')"><input type="radio" name="t9a"><div class="option-radio"></div><span class="option-label">Da</span></label>
+        <label class="option" onclick="sel(this,'t9a')"><input type="radio" name="t9a"><div class="option-radio"></div><span class="option-label">Nu</span></label>
+      </div>
+      <div class="sub-question">Pasul 2 — Genunchiul îndoit: Simți că „te ține" sau o tensiune în talpă (punt galben)?</div>
+      <div class="options">
+        <label class="option" onclick="sel(this,'t9b')"><input type="radio" name="t9b"><div class="option-radio"></div><span class="option-label">Da</span></label>
+        <label class="option" onclick="sel(this,'t9b')"><input type="radio" name="t9b"><div class="option-radio"></div><span class="option-label">Nu</span></label>
+      </div>
+      <div class="sub-question">Compararea pozițiilor: În poziția cu genunchiul îndoit, poți trage talpa mai mult în sus decât cu genunchiul întins?</div>
+      <div class="options">
+        <label class="option" onclick="sel(this,'t9c')"><input type="radio" name="t9c"><div class="option-radio"></div><span class="option-label">Da</span></label>
+        <label class="option" onclick="sel(this,'t9c')"><input type="radio" name="t9c"><div class="option-radio"></div><span class="option-label">Nu</span></label>
       </div>
     </div>
   </div>
@@ -918,7 +1000,7 @@
 
 <script>
   const answered = new Set();
-  const total = 14;
+  const total = 18;
 
   function sel(el, name) {
     const container = el.closest('.options, .test-body, .question-card');
@@ -979,19 +1061,27 @@
   }
 
   function generateJSON() {
-    // Validare câmpuri obligatorii
     document.querySelectorAll('.missing').forEach(el => el.classList.remove('missing'));
     const MANDATORY = [
       { key: 'q1', cardId: 'card-q1' }, { key: 'q2', cardId: 'card-q2' },
       { key: 'q3', cardId: 'card-q3' }, { key: 'q4', cardId: 'card-q4' },
       { key: 'q5', cardId: 'card-q5' }, { key: 'q6', cardId: 'card-q6' },
       { key: 'q7', cardId: 'card-q7' },
-      { key: 't1', cardId: 'card-t1' }, { key: 't2', cardId: 'card-t2' },
-      { key: 't3', cardId: 'card-t3' }, { key: 't4', cardId: 'card-t4' },
-      { key: 't5', cardId: 'card-t5' }, { key: 't6', cardId: 'card-t6' },
+      { key: 't1', cardId: 'card-t1', altKey: 't1-none' },
+      { key: 't2', cardId: 'card-t2', altKey: 't2-none' },
+      { key: 't3', cardId: 'card-t3', altKey: 't3-none' },
+      { key: 't4', cardId: 'card-t4', altKey: 't4-none' },
+      { key: 't5', cardId: 'card-t5' },
+      { key: 't6', cardId: 'card-t6' },
       { key: 't7', cardId: 'card-t7' },
+      { key: 't8', cardId: 'card-t8' },
+      { key: 't9a', cardId: 'card-t9' },
+      { key: 't9b', cardId: 'card-t9' },
+      { key: 't9c', cardId: 'card-t9' },
     ];
-    const missing = MANDATORY.filter(m => !answered.has(m.key));
+    const missing = MANDATORY.filter(m =>
+      m.altKey ? (!answered.has(m.key) && !answered.has(m.altKey)) : !answered.has(m.key)
+    );
     if (missing.length > 0) {
       missing.forEach(m => document.getElementById(m.cardId)?.classList.add('missing'));
       document.getElementById(missing[0].cardId)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -999,7 +1089,7 @@
       return;
     }
 
-    const COLORS = { green: 'Verde', yellow: 'Galben', red: 'Roșu', blue: 'Albastru' };
+    const COLORS = { green: 'Verde', yellow: 'Galben', red: 'Roșu', blue: 'Albastru', orange: 'Portocaliu', purple: 'Mov' };
 
     function ans(n) {
       const inputs = document.querySelectorAll(`input[name="${n}"]`);
@@ -1015,27 +1105,28 @@
       return '—';
     }
 
-    function multiAns() {
+    function multiAns(name, noneKey) {
       const results = [];
-      document.querySelectorAll('input[name="t1"]').forEach(inp => {
+      document.querySelectorAll(`input[name="${name}"]`).forEach(inp => {
         if (inp.closest('.color-option.selected')) {
           const swatch = inp.closest('.color-option').querySelector('.color-swatch');
           const cls = [...swatch.classList].find(c => c !== 'color-swatch');
-          const label = inp.closest('.color-option').querySelector('.color-option-label');
-          results.push(label ? label.textContent.trim() : (COLORS[cls] || cls));
+          results.push(COLORS[cls] || cls);
         }
       });
+      const noPain = document.querySelector(`input[name="${noneKey}"]`);
+      if (noPain && noPain.closest('.option.selected')) results.push('Nicio zonă din această imagine');
       return results.length ? results.join(', ') : '—';
     }
 
     const QUESTIONS = [
-      { key: 'q1', label: 'Când te doare șoldul cel mai mult?' },
-      { key: 'q2', label: 'Te doare șoldul noaptea?' },
-      { key: 'q3', label: 'Ce este mai deranjant pentru tine?' },
-      { key: 'q4', label: 'Ai amorțeli, furnicături sau senzație de curent în zona șoldului sau pe coapsă?' },
-      { key: 'q5', label: 'Simți că articulația șoldului este mai rigidă (senzație că șoldul pentru care ai făcut RMN e mai blocat)?' },
-      { key: 'q6', label: 'Dacă stai confortabil pe un scaun / fotoliu sau la marginea patului, poți duce genunchiul la piept?' },
-      { key: 'q7', label: 'Te consideri o persoană „foarte flexibilă" sau „hipermobilă" (îndoi ușor degetele, coatele, genunchii)?' },
+      { key: 'q1', label: 'Când te doare cel mai mult?' },
+      { key: 'q2', label: 'Te doare noaptea sau te trezește din somn?' },
+      { key: 'q3', label: 'Primii pași dimineața sunt dureroși (sub călcâi)?' },
+      { key: 'q4', label: 'Simți că glezna „fuge", cedează sau nu e sigură când calci?' },
+      { key: 'q5', label: 'Durerea apare mai ales când mergi desculț sau pe teren denivelat?' },
+      { key: 'q6', label: 'Ai amorțeli, furnicături sau senzație de curent în talpă sau degete?' },
+      { key: 'q7', label: 'Durerea a apărut după o entorsă sau „călcat strâmb"?' },
     ];
 
     let mdIntrebari = '';
@@ -1045,27 +1136,35 @@
     });
 
     const TESTS = [
-      { key: 't1', label: 'T01 — Localizarea durerii', q: 'Unde doare cel mai mult? (selectează una sau două variante)', multi: true },
-      { key: 't2', label: 'T02 — Rotație externă', q: 'Ce simți în timpul mișcării? (răspunde doar pentru șoldul cu probleme)' },
-      { key: 't3', label: 'T03 — Testul FABER', q: 'Ce simți în zona inghinală (marcată cu roșu)? (răspunde doar pentru șoldul cu probleme)' },
-      { key: 't4', label: 'T04 — Adducție cu rezistență', q: 'Ce simți în timpul testului? (răspunde doar pentru șoldul cu probleme)' },
-      { key: 't5', label: 'T05 — Flexie cu rezistență', q: 'Simți durere sau disconfort în zona inghinală? (răspunde doar pentru șoldul cu probleme)' },
-      { key: 't6', label: 'T06 — Sprijin unipodal', q: 'Ce se întâmplă când stai pe un singur picior?' },
-      { key: 't7', label: 'T07 — Testul Thomas', q: 'Ce simți în punctul marcat cu roșu?' },
+      { key: 't1', label: 'T01 — Localizarea durerii — față și lateral gleznă', q: 'Alege zona/zonele dureroase din această imagine (max. 2)', multi: true, noneKey: 't1-none' },
+      { key: 't2', label: 'T02 — Localizarea durerii — spate gleznă / călcâi', q: 'Alege zona/zonele dureroase din această imagine (max. 2)', multi: true, noneKey: 't2-none' },
+      { key: 't3', label: 'T03 — Localizarea durerii — medial (interior) gleznă', q: 'Alege zona/zonele dureroase din această imagine (max. 2)', multi: true, noneKey: 't3-none' },
+      { key: 't4', label: 'T04 — Localizarea durerii — față picior și degete', q: 'Alege zona/zonele dureroase din această imagine (max. 2)', multi: true, noneKey: 't4-none' },
+      { key: 't5', label: 'T05 — Compresia transversală — testul Morton', q: 'Simți o durere între degete sau o senzație de „curent", arsură sau furnicături?' },
+      { key: 't6', label: 'T06 — Talar tilt extern — testul stabilității ligamentare laterale', q: 'Simți durere în zona marcată cu punct galben?' },
+      { key: 't7', label: 'T07 — Talar tilt intern — testul stabilității ligamentare mediale', q: 'Simți durere în zona marcată cu punct galben?' },
+      { key: 't8', label: 'T08 — Ridicare pe vârfuri — testul tendonului lui Ahile', q: 'Poți să te ridici pe vârfuri pe piciorul afectat?' },
     ];
 
     let mdTeste = '';
     TESTS.forEach(t => {
       mdTeste += `**${t.label}:**  \n`;
       mdTeste += `**Q:** ${t.q}  \n`;
-      mdTeste += `A: ${t.multi ? multiAns() : ans(t.key)}  \n\n`;
+      mdTeste += `A: ${t.multi ? multiAns(t.key, t.noneKey) : ans(t.key)}  \n\n`;
     });
+    mdTeste += `**T09 — Testul Silfverskiöld — evaluarea complexului gastrocnemian-solear:**  \n`;
+    mdTeste += `**Q:** Pasul 1 — Genunchiul întins: Simți că „te ține" sau o tensiune în zona indicată (deget + punt galben)?  \n`;
+    mdTeste += `A: ${ans('t9a')}  \n`;
+    mdTeste += `**Q:** Pasul 2 — Genunchiul îndoit: Simți că „te ține" sau o tensiune în talpă (punt galben)?  \n`;
+    mdTeste += `A: ${ans('t9b')}  \n`;
+    mdTeste += `**Q:** Compararea pozițiilor: În poziția cu genunchiul îndoit, poți trage talpa mai mult în sus decât cu genunchiul întins?  \n`;
+    mdTeste += `A: ${ans('t9c')}  \n`;
 
     const sessionId = new URLSearchParams(window.location.search).get('session_id');
 
     let url = 'https://app.medicai.io/upload/movisplus?';
     if (sessionId) url += 'session_id=' + encodeURIComponent(sessionId) + '&';
-    url += 'region=sold';
+    url += 'region=glezna-si-picior';
     url += '&chestionar_intrebari=' + encodeURIComponent(mdIntrebari.trim());
     url += '&chestionar_teste=' + encodeURIComponent(mdTeste.trim());
 
