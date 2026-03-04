@@ -182,7 +182,7 @@
     font-weight: 700;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--white);
+    color: var(--grey-dark);
     white-space: nowrap;
   }
   .section-label-num {
@@ -269,6 +269,31 @@
     border-radius: 50%;
     background: var(--black);
   }
+
+  /* ─── CHECKBOX INDICATOR ─────────────────────────────────── */
+  .option-check {
+    width: 18px; height: 18px;
+    border-radius: 4px;
+    border: 2px solid var(--grey-light);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    background: var(--white);
+  }
+  .option.selected .option-check {
+    border-color: var(--green);
+    background: var(--green);
+  }
+  .option.selected .option-check::after {
+    content: '✓';
+    font-size: 11px;
+    color: var(--black);
+    font-weight: 700;
+    line-height: 1;
+  }
+
   .option-label {
     font-size: 14px;
     color: var(--grey-dark);
@@ -638,6 +663,326 @@
 <!-- CONTENT -->
 <div class="container">
 
+
+  <!-- ─── ANAMNEZĂ GENERALĂ ─── -->
+  <div class="section-label">
+    <div class="section-label-line"></div>
+    <span class="section-label-num">00</span>
+    <div class="section-label-text">Anamneză Generală</div>
+    <div class="section-label-line"></div>
+  </div>
+
+  <!-- Sub I -->
+  <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
+    <div class="section-label-line"></div>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">I — Despre Problema Actuală</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <!-- A1 -->
+  <div class="question-card" id="card-a1">
+    <div class="question-number">Anamneză A01</div>
+    <div class="question-text">De cât timp ai simptomele?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a1')"><input type="radio" name="a1"><div class="option-radio"></div><span class="option-label">Sub 2 săptămâni</span></label>
+      <label class="option" onclick="sel(this,'a1')"><input type="radio" name="a1"><div class="option-radio"></div><span class="option-label">2–6 săptămâni</span></label>
+      <label class="option" onclick="sel(this,'a1')"><input type="radio" name="a1"><div class="option-radio"></div><span class="option-label">6 săptămâni – 3 luni</span></label>
+      <label class="option" onclick="sel(this,'a1')"><input type="radio" name="a1"><div class="option-radio"></div><span class="option-label">3–12 luni</span></label>
+      <label class="option" onclick="sel(this,'a1')"><input type="radio" name="a1"><div class="option-radio"></div><span class="option-label">Peste 1 an</span></label>
+    </div>
+  </div>
+
+  <!-- A2 -->
+  <div class="question-card" id="card-a2">
+    <div class="question-number">Anamneză A02</div>
+    <div class="question-text">Cum au apărut simptomele?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a2')"><input type="radio" name="a2"><div class="option-radio"></div><span class="option-label">Brusc, după un eveniment clar (cădere, accident, mișcare bruscă)</span></label>
+      <label class="option" onclick="sel(this,'a2')"><input type="radio" name="a2"><div class="option-radio"></div><span class="option-label">După efort repetitiv / suprasolicitare</span></label>
+      <label class="option" onclick="sel(this,'a2')"><input type="radio" name="a2"><div class="option-radio"></div><span class="option-label">Treptat, fără un motiv clar</span></label>
+      <label class="option" onclick="sel(this,'a2')"><input type="radio" name="a2"><div class="option-radio"></div><span class="option-label">Am mai avut episoade similare în trecut</span></label>
+    </div>
+  </div>
+
+  <!-- A3 -->
+  <div class="question-card" id="card-a3">
+    <div class="question-number">Anamneză A03</div>
+    <div class="question-text">Evoluția în timp:</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a3')"><input type="radio" name="a3"><div class="option-radio"></div><span class="option-label">Se ameliorează treptat</span></label>
+      <label class="option" onclick="sel(this,'a3')"><input type="radio" name="a3"><div class="option-radio"></div><span class="option-label">Este stabilă</span></label>
+      <label class="option" onclick="sel(this,'a3')"><input type="radio" name="a3"><div class="option-radio"></div><span class="option-label">Se agravează lent</span></label>
+      <label class="option" onclick="sel(this,'a3')"><input type="radio" name="a3"><div class="option-radio"></div><span class="option-label">Se agravează rapid în ultimele săptămâni</span></label>
+    </div>
+  </div>
+
+  <!-- Sub II -->
+  <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
+    <div class="section-label-line"></div>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">II — Caracterul Durerii</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <!-- A4 -->
+  <div class="question-card" id="card-a4">
+    <div class="question-number">Anamneză A04</div>
+    <div class="question-text">Cât de intensă este durerea, în medie?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a4')"><input type="radio" name="a4"><div class="option-radio"></div><span class="option-label">0–2 (ușoară)</span></label>
+      <label class="option" onclick="sel(this,'a4')"><input type="radio" name="a4"><div class="option-radio"></div><span class="option-label">3–5 (moderată)</span></label>
+      <label class="option" onclick="sel(this,'a4')"><input type="radio" name="a4"><div class="option-radio"></div><span class="option-label">6–8 (mare)</span></label>
+      <label class="option" onclick="sel(this,'a4')"><input type="radio" name="a4"><div class="option-radio"></div><span class="option-label">9–10 (foarte severă)</span></label>
+    </div>
+  </div>
+
+  <!-- A5 -->
+  <div class="question-card" id="card-a5">
+    <div class="question-number">Anamneză A05</div>
+    <div class="question-text">Durerea este:</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a5')"><input type="radio" name="a5"><div class="option-radio"></div><span class="option-label">Doar la mișcare / efort</span></label>
+      <label class="option" onclick="sel(this,'a5')"><input type="radio" name="a5"><div class="option-radio"></div><span class="option-label">Și la mișcare, și în repaus</span></label>
+      <label class="option" onclick="sel(this,'a5')"><input type="radio" name="a5"><div class="option-radio"></div><span class="option-label">Constantă, inclusiv noaptea</span></label>
+      <label class="option" onclick="sel(this,'a5')"><input type="radio" name="a5"><div class="option-radio"></div><span class="option-label">Mă trezește frecvent din somn</span></label>
+    </div>
+  </div>
+
+  <!-- A6 -->
+  <div class="question-card" id="card-a6">
+    <div class="question-number">Anamneză A06</div>
+    <div class="question-text">Dimineața, zona afectată este:</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a6')"><input type="radio" name="a6"><div class="option-radio"></div><span class="option-label">Normală</span></label>
+      <label class="option" onclick="sel(this,'a6')"><input type="radio" name="a6"><div class="option-radio"></div><span class="option-label">Rigidă sub 30 minute</span></label>
+      <label class="option" onclick="sel(this,'a6')"><input type="radio" name="a6"><div class="option-radio"></div><span class="option-label">Rigidă peste 30–60 minute</span></label>
+      <label class="option" onclick="sel(this,'a6')"><input type="radio" name="a6"><div class="option-radio"></div><span class="option-label">Rigidă peste 1 oră</span></label>
+    </div>
+  </div>
+
+  <!-- A7 multi -->
+  <div class="question-card" id="card-a7">
+    <div class="question-number">Anamneză A07</div>
+    <div class="question-text">Ai senzații de: <small style="font-weight:300;font-size:12px;">(poți bifa mai multe)</small></div>
+    <div class="options">
+      <label class="option" onclick="selCheck(this,'a7','a7-none')"><input type="checkbox" name="a7"><div class="option-check"></div><span class="option-label">Amorțeală</span></label>
+      <label class="option" onclick="selCheck(this,'a7','a7-none')"><input type="checkbox" name="a7"><div class="option-check"></div><span class="option-label">Furnicături</span></label>
+      <label class="option" onclick="selCheck(this,'a7','a7-none')"><input type="checkbox" name="a7"><div class="option-check"></div><span class="option-label">Slăbiciune clară</span></label>
+    </div>
+    <div style="margin-top:8px;">
+      <label class="option" onclick="selNone(this,'a7-none','a7')"><input type="radio" name="a7-none"><div class="option-radio"></div><span class="option-label">Niciuna dintre acestea</span></label>
+    </div>
+  </div>
+
+  <!-- Sub III -->
+  <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
+    <div class="section-label-line"></div>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">III — Impact Funcțional</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <!-- A8 -->
+  <div class="question-card" id="card-a8">
+    <div class="question-number">Anamneză A08</div>
+    <div class="question-text">Din cauza problemei actuale:</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a8')"><input type="radio" name="a8"><div class="option-radio"></div><span class="option-label">Pot face aproape toate activitățile normale</span></label>
+      <label class="option" onclick="sel(this,'a8')"><input type="radio" name="a8"><div class="option-radio"></div><span class="option-label">Evit anumite mișcări / activități</span></label>
+      <label class="option" onclick="sel(this,'a8')"><input type="radio" name="a8"><div class="option-radio"></div><span class="option-label">Mi-am redus semnificativ activitatea</span></label>
+      <label class="option" onclick="sel(this,'a8')"><input type="radio" name="a8"><div class="option-radio"></div><span class="option-label">Nu pot face activități uzuale (mers, urcat scări, ridicat obiecte)</span></label>
+    </div>
+  </div>
+
+  <!-- A9 multi -->
+  <div class="question-card" id="card-a9">
+    <div class="question-number">Anamneză A09</div>
+    <div class="question-text">Problema îți afectează: <small style="font-weight:300;font-size:12px;">(poți bifa mai multe)</small></div>
+    <div class="options">
+      <label class="option" onclick="selCheck(this,'a9','a9-none')"><input type="checkbox" name="a9"><div class="option-check"></div><span class="option-label">Somnul</span></label>
+      <label class="option" onclick="selCheck(this,'a9','a9-none')"><input type="checkbox" name="a9"><div class="option-check"></div><span class="option-label">Mersul</span></label>
+      <label class="option" onclick="selCheck(this,'a9','a9-none')"><input type="checkbox" name="a9"><div class="option-check"></div><span class="option-label">Munca</span></label>
+      <label class="option" onclick="selCheck(this,'a9','a9-none')"><input type="checkbox" name="a9"><div class="option-check"></div><span class="option-label">Sportul</span></label>
+    </div>
+    <div style="margin-top:8px;">
+      <label class="option" onclick="selNone(this,'a9-none','a9')"><input type="radio" name="a9-none"><div class="option-radio"></div><span class="option-label">Niciuna semnificativ</span></label>
+    </div>
+  </div>
+
+  <!-- Sub IV -->
+  <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
+    <div class="section-label-line"></div>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">IV — Semnale de Alarmă</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <!-- A10 multi -->
+  <div class="question-card" id="card-a10">
+    <div class="question-number">Anamneză A10</div>
+    <div class="question-text">În ultimele luni ai avut: <small style="font-weight:300;font-size:12px;">(poți bifa mai multe)</small></div>
+    <div class="options">
+      <label class="option" onclick="selCheck(this,'a10','a10-none')"><input type="checkbox" name="a10"><div class="option-check"></div><span class="option-label">Scădere în greutate neintenționate</span></label>
+      <label class="option" onclick="selCheck(this,'a10','a10-none')"><input type="checkbox" name="a10"><div class="option-check"></div><span class="option-label">Febră inexplicabilă</span></label>
+      <label class="option" onclick="selCheck(this,'a10','a10-none')"><input type="checkbox" name="a10"><div class="option-check"></div><span class="option-label">Transpirații nocturne persistente</span></label>
+      <label class="option" onclick="selCheck(this,'a10','a10-none')"><input type="checkbox" name="a10"><div class="option-check"></div><span class="option-label">Istoric personal de cancer</span></label>
+    </div>
+    <div style="margin-top:8px;">
+      <label class="option" onclick="selNone(this,'a10-none','a10')"><input type="radio" name="a10-none"><div class="option-radio"></div><span class="option-label">Niciuna dintre acestea</span></label>
+    </div>
+  </div>
+
+  <!-- A11 multi -->
+  <div class="question-card" id="card-a11">
+    <div class="question-number">Anamneză A11</div>
+    <div class="question-text">Ai avut recent: <small style="font-weight:300;font-size:12px;">(poți bifa mai multe)</small></div>
+    <div class="options">
+      <label class="option" onclick="selCheck(this,'a11','a11-none')"><input type="checkbox" name="a11"><div class="option-check"></div><span class="option-label">Traumatism major (accident, cădere serioasă)</span></label>
+      <label class="option" onclick="selCheck(this,'a11','a11-none')"><input type="checkbox" name="a11"><div class="option-check"></div><span class="option-label">Slăbiciune progresivă accentuată</span></label>
+      <label class="option" onclick="selCheck(this,'a11','a11-none')"><input type="checkbox" name="a11"><div class="option-check"></div><span class="option-label">Probleme noi cu controlul urinei sau scaunului</span></label>
+    </div>
+    <div style="margin-top:8px;">
+      <label class="option" onclick="selNone(this,'a11-none','a11')"><input type="radio" name="a11-none"><div class="option-radio"></div><span class="option-label">Niciuna</span></label>
+    </div>
+  </div>
+
+  <!-- Sub V -->
+  <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
+    <div class="section-label-line"></div>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">V — Tratament Anterior</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <!-- A12 multi -->
+  <div class="question-card" id="card-a12">
+    <div class="question-number">Anamneză A12</div>
+    <div class="question-text">Ce ai încercat până acum? <small style="font-weight:300;font-size:12px;">(poți bifa mai multe)</small></div>
+    <div class="options">
+      <label class="option" onclick="selCheck(this,'a12','a12-none')"><input type="checkbox" name="a12"><div class="option-check"></div><span class="option-label">Antiinflamatoare / analgezice</span></label>
+      <label class="option" onclick="selCheck(this,'a12','a12-none')"><input type="checkbox" name="a12"><div class="option-check"></div><span class="option-label">Fizioterapie / kinetoterapie</span></label>
+      <label class="option" onclick="selCheck(this,'a12','a12-none')"><input type="checkbox" name="a12"><div class="option-check"></div><span class="option-label">Infiltrații</span></label>
+      <label class="option" onclick="selCheck(this,'a12','a12-none')"><input type="checkbox" name="a12"><div class="option-check"></div><span class="option-label">Repaus</span></label>
+    </div>
+    <div style="margin-top:8px;">
+      <label class="option" onclick="selNone(this,'a12-none','a12')"><input type="radio" name="a12-none"><div class="option-radio"></div><span class="option-label">Nimic până acum</span></label>
+    </div>
+  </div>
+
+  <!-- A13 -->
+  <div class="question-card" id="card-a13">
+    <div class="question-number">Anamneză A13</div>
+    <div class="question-text">Tratamentul a fost:</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a13')"><input type="radio" name="a13"><div class="option-radio"></div><span class="option-label">Clar eficient</span></label>
+      <label class="option" onclick="sel(this,'a13')"><input type="radio" name="a13"><div class="option-radio"></div><span class="option-label">Parțial eficient</span></label>
+      <label class="option" onclick="sel(this,'a13')"><input type="radio" name="a13"><div class="option-radio"></div><span class="option-label">Fără efect</span></label>
+      <label class="option" onclick="sel(this,'a13')"><input type="radio" name="a13"><div class="option-radio"></div><span class="option-label">Nu pot aprecia</span></label>
+    </div>
+  </div>
+
+  <!-- Sub VI -->
+  <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
+    <div class="section-label-line"></div>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">VI — Context Medical</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <!-- A14 multi -->
+  <div class="question-card" id="card-a14">
+    <div class="question-number">Anamneză A14</div>
+    <div class="question-text">Ai fost diagnosticat cu: <small style="font-weight:300;font-size:12px;">(poți bifa mai multe)</small></div>
+    <div class="options">
+      <label class="option" onclick="selCheck(this,'a14','a14-none')"><input type="checkbox" name="a14"><div class="option-check"></div><span class="option-label">Boală reumatologică</span></label>
+      <label class="option" onclick="selCheck(this,'a14','a14-none')"><input type="checkbox" name="a14"><div class="option-check"></div><span class="option-label">Diabet</span></label>
+      <label class="option" onclick="selCheck(this,'a14','a14-none')"><input type="checkbox" name="a14"><div class="option-check"></div><span class="option-label">Osteoporoză</span></label>
+      <label class="option" onclick="selCheck(this,'a14','a14-none')"><input type="checkbox" name="a14"><div class="option-check"></div><span class="option-label">Afecțiune neurologică</span></label>
+      <label class="option" onclick="selCheck(this,'a14','a14-none')"><input type="checkbox" name="a14"><div class="option-check"></div><span class="option-label">Boală oncologică în trecut</span></label>
+    </div>
+    <div style="margin-top:8px;">
+      <label class="option" onclick="selNone(this,'a14-none','a14')"><input type="radio" name="a14-none"><div class="option-radio"></div><span class="option-label">Niciuna dintre acestea</span></label>
+    </div>
+  </div>
+
+  <!-- A15 -->
+  <div class="question-card" id="card-a15">
+    <div class="question-number">Anamneză A15</div>
+    <div class="question-text">Ai suferit intervenții chirurgicale în zona investigată?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a15')"><input type="radio" name="a15"><div class="option-radio"></div><span class="option-label">Da</span></label>
+      <label class="option" onclick="sel(this,'a15')"><input type="radio" name="a15"><div class="option-radio"></div><span class="option-label">Nu</span></label>
+    </div>
+  </div>
+
+  <!-- Sub VII -->
+  <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
+    <div class="section-label-line"></div>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">VII — Stil de Viață</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <!-- A16 -->
+  <div class="question-card" id="card-a16">
+    <div class="question-number">Anamneză A16</div>
+    <div class="question-text">Nivelul tău de activitate este:</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a16')"><input type="radio" name="a16"><div class="option-radio"></div><span class="option-label">Predominant sedentar</span></label>
+      <label class="option" onclick="sel(this,'a16')"><input type="radio" name="a16"><div class="option-radio"></div><span class="option-label">Activ moderat (mers, activitate fizică ușoară)</span></label>
+      <label class="option" onclick="sel(this,'a16')"><input type="radio" name="a16"><div class="option-radio"></div><span class="option-label">Activ regulat (sport 2–3 ori / săptămână)</span></label>
+      <label class="option" onclick="sel(this,'a16')"><input type="radio" name="a16"><div class="option-radio"></div><span class="option-label">Foarte activ / sport intensiv</span></label>
+    </div>
+  </div>
+
+  <!-- A17 -->
+  <div class="question-card" id="card-a17">
+    <div class="question-number">Anamneză A17</div>
+    <div class="question-text">La locul de muncă:</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a17')"><input type="radio" name="a17"><div class="option-radio"></div><span class="option-label">Stau mai mult pe scaun</span></label>
+      <label class="option" onclick="sel(this,'a17')"><input type="radio" name="a17"><div class="option-radio"></div><span class="option-label">Stau mult în picioare</span></label>
+      <label class="option" onclick="sel(this,'a17')"><input type="radio" name="a17"><div class="option-radio"></div><span class="option-label">Ridic greutăți frecvent</span></label>
+      <label class="option" onclick="sel(this,'a17')"><input type="radio" name="a17"><div class="option-radio"></div><span class="option-label">Activitate mixtă</span></label>
+    </div>
+  </div>
+
+  <!-- A18 -->
+  <div class="question-card" id="card-a18">
+    <div class="question-number">Anamneză A18</div>
+    <div class="question-text">Fumezi?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a18')"><input type="radio" name="a18"><div class="option-radio"></div><span class="option-label">Nu</span></label>
+      <label class="option" onclick="sel(this,'a18')"><input type="radio" name="a18"><div class="option-radio"></div><span class="option-label">Ocazional</span></label>
+      <label class="option" onclick="sel(this,'a18')"><input type="radio" name="a18"><div class="option-radio"></div><span class="option-label">Zilnic</span></label>
+    </div>
+  </div>
+
+  <!-- A19 -->
+  <div class="question-card" id="card-a19">
+    <div class="question-number">Anamneză A19</div>
+    <div class="question-text">Greutatea corporală:</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a19')"><input type="radio" name="a19"><div class="option-radio"></div><span class="option-label">Normoponderal</span></label>
+      <label class="option" onclick="sel(this,'a19')"><input type="radio" name="a19"><div class="option-radio"></div><span class="option-label">Ușor supraponderal</span></label>
+      <label class="option" onclick="sel(this,'a19')"><input type="radio" name="a19"><div class="option-radio"></div><span class="option-label">Obez</span></label>
+      <label class="option" onclick="sel(this,'a19')"><input type="radio" name="a19"><div class="option-radio"></div><span class="option-label">Nu știu / prefer să nu răspund</span></label>
+    </div>
+  </div>
+
+  <!-- Sub VIII -->
+  <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
+    <div class="section-label-line"></div>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">VIII — Obiectivul Tău</span>
+    <div class="section-label-line"></div>
+  </div>
+
+  <!-- A20 -->
+  <div class="question-card" id="card-a20">
+    <div class="question-number">Anamneză A20</div>
+    <div class="question-text">Ce ți-ai dori cel mai mult să poți face fără durere?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a20')"><input type="radio" name="a20"><div class="option-radio"></div><span class="option-label">Activități zilnice fără limitare</span></label>
+      <label class="option" onclick="sel(this,'a20')"><input type="radio" name="a20"><div class="option-radio"></div><span class="option-label">Revenirea la sport</span></label>
+      <label class="option" onclick="sel(this,'a20')"><input type="radio" name="a20"><div class="option-radio"></div><span class="option-label">Revenirea la muncă normal</span></label>
+      <label class="option" onclick="sel(this,'a20')"><input type="radio" name="a20"><div class="option-radio"></div><span class="option-label">Reducerea durerii, chiar dacă rămân unele limitări</span></label>
+    </div>
+  </div>
+
   <div class="section-label">
     <div class="section-label-line"></div>
     <span class="section-label-num">01</span>
@@ -974,7 +1319,7 @@
 
 <script>
   const answered = new Set();
-  const total = 15;
+  const total = 35;
 
   function sel(el, name) {
     const container = el.closest('.options, .test-body, .question-card');
@@ -1012,7 +1357,42 @@
     updateProgress();
   }
 
-  function updateProgress() {
+  function selCheck(el, name, noneName) {
+    const card = el.closest('.question-card');
+    el.classList.toggle('selected');
+    // Clear the "none" option
+    card.querySelectorAll(`input[name="${noneName}"]`).forEach(inp =>
+      inp.closest('.option')?.classList.remove('selected'));
+    answered.delete(noneName);
+    // Update answered state for this group
+    const anySelected = [...card.querySelectorAll(`input[name="${name}"]`)]
+      .some(inp => inp.closest('.option.selected'));
+    if (anySelected) {
+      answered.add(name);
+      card.classList.add('answered'); card.classList.remove('missing');
+    } else {
+      answered.delete(name);
+      card.classList.remove('answered');
+    }
+    updateProgress();
+  }
+
+  function selNone(el, name, checkName) {
+    const card = el.closest('.question-card');
+    // Clear all checkboxes for this group
+    card.querySelectorAll(`input[name="${checkName}"]`).forEach(inp =>
+      inp.closest('.option')?.classList.remove('selected'));
+    answered.delete(checkName);
+    // Clear previous none selection, then select this
+    card.querySelectorAll(`input[name="${name}"]`).forEach(inp =>
+      inp.closest('.option')?.classList.remove('selected'));
+    el.classList.add('selected');
+    answered.add(name);
+    card.classList.add('answered'); card.classList.remove('missing');
+    updateProgress();
+  }
+
+    function updateProgress() {
     const pct = Math.min(100, Math.round(answered.size / total * 100));
     document.getElementById('progressFill').style.width = pct + '%';
     document.getElementById('progressPct').textContent = pct + '%';
@@ -1038,6 +1418,21 @@
     // Validare câmpuri obligatorii
     document.querySelectorAll('.missing').forEach(el => el.classList.remove('missing'));
     const MANDATORY = [
+      { key: 'a1',  cardId: 'card-a1'  }, { key: 'a2',  cardId: 'card-a2'  },
+      { key: 'a3',  cardId: 'card-a3'  }, { key: 'a4',  cardId: 'card-a4'  },
+      { key: 'a5',  cardId: 'card-a5'  }, { key: 'a6',  cardId: 'card-a6'  },
+      { key: 'a7',  cardId: 'card-a7',  altKey: 'a7-none'  },
+      { key: 'a8',  cardId: 'card-a8'  },
+      { key: 'a9',  cardId: 'card-a9',  altKey: 'a9-none'  },
+      { key: 'a10', cardId: 'card-a10', altKey: 'a10-none' },
+      { key: 'a11', cardId: 'card-a11', altKey: 'a11-none' },
+      { key: 'a12', cardId: 'card-a12', altKey: 'a12-none' },
+      { key: 'a13', cardId: 'card-a13' },
+      { key: 'a14', cardId: 'card-a14', altKey: 'a14-none' },
+      { key: 'a15', cardId: 'card-a15' },
+      { key: 'a16', cardId: 'card-a16' }, { key: 'a17', cardId: 'card-a17' },
+      { key: 'a18', cardId: 'card-a18' }, { key: 'a19', cardId: 'card-a19' },
+      { key: 'a20', cardId: 'card-a20' },
       { key: 'q1', cardId: 'card-q1' }, { key: 'q2', cardId: 'card-q2' },
       { key: 'q3', cardId: 'card-q3' }, { key: 'q4', cardId: 'card-q4' },
       { key: 'q5', cardId: 'card-q5' }, { key: 'q6', cardId: 'card-q6' },
@@ -1059,7 +1454,22 @@
 
     const COLORS = { green: 'Verde', yellow: 'Galben', red: 'Roșu', blue: 'Albastru' };
 
-    function ans(n) {
+    function multiAnsCheck(checkName, noneName) {
+      const results = [];
+      document.querySelectorAll(`input[name="${checkName}"]`).forEach(inp => {
+        if (inp.closest('.option.selected')) {
+          const span = inp.closest('.option').querySelector('.option-label');
+          if (span) results.push(span.textContent.trim());
+        }
+      });
+      if (results.length) return results.join(', ');
+      const noneInp = document.querySelector(`input[name="${noneName}"]`);
+      if (noneInp?.closest('.option.selected'))
+        return noneInp.closest('.option').querySelector('.option-label')?.textContent.trim() || '—';
+      return '—';
+    }
+
+        function ans(n) {
       const inputs = document.querySelectorAll(`input[name="${n}"]`);
       for (const inp of inputs) {
         const parent = inp.closest('.option.selected, .color-option.selected');
@@ -1087,7 +1497,36 @@
       return results.length ? results.join(', ') : '—';
     }
 
-    const QUESTIONS = [
+    const ANAMNEZA_Q = [
+      { key: 'a1',  label: 'De cât timp ai simptomele?' },
+      { key: 'a2',  label: 'Cum au apărut simptomele?' },
+      { key: 'a3',  label: 'Evoluția în timp' },
+      { key: 'a4',  label: 'Cât de intensă este durerea, în medie?' },
+      { key: 'a5',  label: 'Durerea este:' },
+      { key: 'a6',  label: 'Dimineața, zona afectată este:' },
+      { key: 'a7',  label: 'Ai senzații de:', multi: true, noneName: 'a7-none' },
+      { key: 'a8',  label: 'Din cauza problemei actuale:' },
+      { key: 'a9',  label: 'Problema îți afectează:', multi: true, noneName: 'a9-none' },
+      { key: 'a10', label: 'În ultimele luni ai avut:', multi: true, noneName: 'a10-none' },
+      { key: 'a11', label: 'Ai avut recent:', multi: true, noneName: 'a11-none' },
+      { key: 'a12', label: 'Ce ai încercat până acum?', multi: true, noneName: 'a12-none' },
+      { key: 'a13', label: 'Tratamentul a fost:' },
+      { key: 'a14', label: 'Ai fost diagnosticat cu:', multi: true, noneName: 'a14-none' },
+      { key: 'a15', label: 'Intervenții chirurgicale în zona investigată?' },
+      { key: 'a16', label: 'Nivelul de activitate:' },
+      { key: 'a17', label: 'Activitatea la locul de muncă:' },
+      { key: 'a18', label: 'Fumezi?' },
+      { key: 'a19', label: 'Greutatea corporală:' },
+      { key: 'a20', label: 'Ce ți-ai dori cel mai mult să poți face fără durere?' },
+    ];
+
+    let mdAnamneza = '';
+    ANAMNEZA_Q.forEach((q, i) => {
+      mdAnamneza += `**A${i + 1}:** ${q.label}  \n`;
+      mdAnamneza += `R: ${q.multi ? multiAnsCheck(q.key, q.noneName) : ans(q.key)}  \n\n`;
+    });
+
+        const QUESTIONS = [
       { key: 'q1', label: 'Când te doare genunchiul cel mai mult?' },
       { key: 'q2', label: 'Te doare genunchiul noaptea?' },
       { key: 'q3', label: 'Ce este mai deranjant pentru tine?' },
@@ -1130,6 +1569,7 @@
     let url = 'https://app.medicai.io/upload/movisplus?';
     if (sessionId) url += 'session_id=' + encodeURIComponent(sessionId) + '&';
     url += 'region=genunchi';
+    url += '&chestionar_anamneza=' + encodeURIComponent(mdAnamneza.trim());
     url += '&chestionar_intrebari=' + encodeURIComponent(mdIntrebari.trim());
     url += '&chestionar_teste=' + encodeURIComponent(mdTeste.trim());
 
