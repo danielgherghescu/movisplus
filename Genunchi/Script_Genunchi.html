@@ -112,7 +112,7 @@
   /* ─── PROGRESS ───────────────────────────────────────────── */
   .progress-wrap {
     background: var(--black);
-    padding: 0 40px 16px;
+    padding: 0 40px 14px;
     position: sticky;
     top: 0;
     z-index: 50;
@@ -123,39 +123,35 @@
     max-width: 1140px;
     margin: 0 auto;
     display: flex;
-    align-items: center;
-    gap: 14px;
-    padding-top: 16px;
+    gap: 24px;
+    padding-top: 14px;
+  }
+  .progress-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
   }
   .progress-label {
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: var(--white);
     white-space: nowrap;
   }
   .progress-track {
-    flex: 1;
-    height: 2px;
+    height: 8px;
     background: rgba(255,255,255,0.1);
-    border-radius: 2px;
+    border-radius: 4px;
     overflow: hidden;
   }
   .progress-fill {
     height: 100%;
     width: 0%;
     background: var(--green);
-    border-radius: 2px;
+    border-radius: 4px;
     transition: width 0.4s ease;
-  }
-  .progress-pct {
-    font-size: 11px;
-    font-weight: 600;
-    color: var(--white);
-    letter-spacing: 0.05em;
-    min-width: 36px;
-    text-align: right;
   }
 
   /* ─── CONTAINER ──────────────────────────────────────────── */
@@ -684,7 +680,9 @@
   @media (max-width: 640px) {
     .header { padding: 16px 20px; }
     .hero { padding: 48px 20px 64px; }
-    .progress-wrap { padding: 0 20px 24px; }
+    .progress-wrap { padding: 0 20px 14px; }
+    .progress-inner { gap: 12px; }
+    .progress-label { font-size: 8px; }
     .container { padding: 0 16px 80px; }
     .question-card { padding: 22px 20px; }
     .test-header, .test-body { padding: 18px 20px; }
@@ -721,11 +719,18 @@
 <!-- PROGRESS -->
 <div class="progress-wrap">
   <div class="progress-inner">
-    <span class="progress-label">Progres</span>
-    <div class="progress-track">
-      <div class="progress-fill" id="progressFill"></div>
+    <div class="progress-section">
+      <span class="progress-label">Anamneză Generală</span>
+      <div class="progress-track"><div class="progress-fill" id="progressFillA"></div></div>
     </div>
-    <span class="progress-pct" id="progressPct">0%</span>
+    <div class="progress-section">
+      <span class="progress-label">Întrebări Specifice</span>
+      <div class="progress-track"><div class="progress-fill" id="progressFillQ"></div></div>
+    </div>
+    <div class="progress-section">
+      <span class="progress-label">Teste Specifice</span>
+      <div class="progress-track"><div class="progress-fill" id="progressFillT"></div></div>
+    </div>
   </div>
 </div>
 
@@ -1491,11 +1496,15 @@
     updateProgress();
   }
 
+    const SECTION_A = [['a1'],['a2'],['a3'],['a4'],['a5'],['a6'],['a7','a7-none'],['a8'],['a9','a9-none'],['a10','a10-none'],['a11','a11-none'],['a12','a12-none'],['a13'],['a14','a14-none'],['a15'],['a16'],['a17'],['a18'],['a19'],['a20']];
+    const SECTION_Q = [['q1'],['q2'],['q3'],['q4'],['q5'],['q6']];
+    const SECTION_T = [['t1'],['t2'],['t3','t3-none'],['t4'],['t5'],['t6'],['t7'],['t8']];
+    function countSec(groups) { return groups.filter(g => g.some(k => answered.has(k))).length; }
     function updateProgress() {
-    const pct = Math.min(100, Math.round(answered.size / total * 100));
-    document.getElementById('progressFill').style.width = pct + '%';
-    document.getElementById('progressPct').textContent = pct + '%';
-  }
+      document.getElementById('progressFillA').style.width = Math.round(countSec(SECTION_A) / SECTION_A.length * 100) + '%';
+      document.getElementById('progressFillQ').style.width = Math.round(countSec(SECTION_Q) / SECTION_Q.length * 100) + '%';
+      document.getElementById('progressFillT').style.width = Math.round(countSec(SECTION_T) / SECTION_T.length * 100) + '%';
+    }
 
   function zoom(wrap) {
     document.getElementById('lightboxImg').src = wrap.querySelector('img').src;
