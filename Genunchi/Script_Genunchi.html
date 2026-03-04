@@ -170,26 +170,27 @@
     display: flex;
     align-items: center;
     gap: 16px;
-    margin: 52px 0 24px;
+    margin: 64px 0 32px;
   }
   .section-label-line {
     flex: 1;
-    height: 1px;
-    background: var(--grey-light);
+    height: 2px;
+    background: var(--green);
+    opacity: 0.25;
   }
   .section-label-text {
-    font-size: 10px;
+    font-size: 14px;
     font-weight: 700;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--grey-dark);
     white-space: nowrap;
   }
   .section-label-num {
     font-family: var(--font-display);
-    font-size: 11px;
+    font-size: 13px;
     color: var(--green);
-    font-weight: 600;
+    font-weight: 700;
   }
 
   /* ─── QUESTION CARD ──────────────────────────────────────── */
@@ -208,12 +209,7 @@
     border-color: rgba(0,228,167,0.3);
   }
   .question-number {
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: var(--green);
-    margin-bottom: 10px;
+    display: none;
   }
   .question-text {
     font-size: 15px;
@@ -1625,8 +1621,8 @@
 
     let mdAnamneza = '';
     ANAMNEZA_Q.forEach((q, i) => {
-      mdAnamneza += `**A${i + 1}:** ${q.label}  \n`;
-      mdAnamneza += `R: ${q.multi ? multiAnsCheck(q.key, q.noneName) : ans(q.key)}  \n\n`;
+      mdAnamneza += `**Q:** ${q.label}  \n`;
+      mdAnamneza += `**A:** ${q.multi ? multiAnsCheck(q.key, q.noneName) : ans(q.key)}  \n\n`;
     });
 
         const QUESTIONS = [
@@ -1640,8 +1636,8 @@
 
     let mdIntrebari = '';
     QUESTIONS.forEach((q, i) => {
-      mdIntrebari += `**Q${i + 1}:** ${q.label}  \n`;
-      mdIntrebari += `A: ${ans(q.key)}  \n\n`;
+      mdIntrebari += `**Q:** ${q.label}  \n`;
+      mdIntrebari += `**A:** ${ans(q.key)}  \n\n`;
     });
 
     const TESTS = [
@@ -1657,15 +1653,13 @@
 
     let mdTeste = '';
     TESTS.forEach(t => {
-      mdTeste += `**${t.label}:**  \n`;
       mdTeste += `**Q:** ${t.q}  \n`;
-      mdTeste += `A: ${t.multi ? multiAns() : ans(t.key)}  \n\n`;
+      mdTeste += `**A:** ${t.multi ? multiAns() : ans(t.key)}  \n\n`;
     });
-    mdTeste += `**T09 (opțional):** Rotație tibială — necesită ajutorul unei alte persoane  \n`;
     mdTeste += `**Q:** Cu genunchii îndoiți mai puțin (30–45°): piciorul afectat este rotit mai mult spre exterior sau stă diferit față de celălalt?  \n`;
-    mdTeste += `A: ${ans('t9a')}  \n`;
+    mdTeste += `**A:** ${ans('t9a')}  \n`;
     mdTeste += `**Q:** Cu genunchii îndoiți mai mult (90°): piciorul afectat stă diferit față de celălalt?  \n`;
-    mdTeste += `A: ${ans('t9b')}  \n`;
+    mdTeste += `**A:** ${ans('t9b')}  \n`;
 
     const sessionId = new URLSearchParams(window.location.search).get('session_id');
 
