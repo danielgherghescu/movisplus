@@ -135,16 +135,30 @@
   .progress-label {
     font-size: 9px;
     font-weight: 700;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
     color: var(--white);
     white-space: nowrap;
   }
+  .progress-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
   .progress-track {
+    flex: 1;
     height: 8px;
     background: rgba(255,255,255,0.1);
     border-radius: 4px;
     overflow: hidden;
+  }
+  .progress-pct {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.05em;
+    min-width: 28px;
+    text-align: right;
   }
   .progress-fill {
     height: 100%;
@@ -727,15 +741,24 @@
   <div class="progress-inner">
     <div class="progress-section">
       <span class="progress-label">Anamneză Generală</span>
-      <div class="progress-track"><div class="progress-fill" id="progressFillA"></div></div>
+      <div class="progress-row">
+        <div class="progress-track"><div class="progress-fill" id="progressFillA"></div></div>
+        <span class="progress-pct" id="progressPctA">0%</span>
+      </div>
     </div>
     <div class="progress-section">
       <span class="progress-label">Întrebări Specifice</span>
-      <div class="progress-track"><div class="progress-fill" id="progressFillQ"></div></div>
+      <div class="progress-row">
+        <div class="progress-track"><div class="progress-fill" id="progressFillQ"></div></div>
+        <span class="progress-pct" id="progressPctQ">0%</span>
+      </div>
     </div>
     <div class="progress-section">
       <span class="progress-label">Teste Specifice</span>
-      <div class="progress-track"><div class="progress-fill" id="progressFillT"></div></div>
+      <div class="progress-row">
+        <div class="progress-track"><div class="progress-fill" id="progressFillT"></div></div>
+        <span class="progress-pct" id="progressPctT">0%</span>
+      </div>
     </div>
   </div>
 </div>
@@ -1504,9 +1527,15 @@
     const SECTION_T = [['t1'],['t2'],['t3','t3-none'],['t4'],['t5'],['t6'],['t7'],['t8']];
     function countSec(groups) { return groups.filter(g => g.some(k => answered.has(k))).length; }
     function updateProgress() {
-      document.getElementById('progressFillA').style.width = Math.round(countSec(SECTION_A) / SECTION_A.length * 100) + '%';
-      document.getElementById('progressFillQ').style.width = Math.round(countSec(SECTION_Q) / SECTION_Q.length * 100) + '%';
-      document.getElementById('progressFillT').style.width = Math.round(countSec(SECTION_T) / SECTION_T.length * 100) + '%';
+      const pA = Math.round(countSec(SECTION_A) / SECTION_A.length * 100);
+      const pQ = Math.round(countSec(SECTION_Q) / SECTION_Q.length * 100);
+      const pT = Math.round(countSec(SECTION_T) / SECTION_T.length * 100);
+      document.getElementById('progressFillA').style.width = pA + '%';
+      document.getElementById('progressFillQ').style.width = pQ + '%';
+      document.getElementById('progressFillT').style.width = pT + '%';
+      document.getElementById('progressPctA').textContent = pA + '%';
+      document.getElementById('progressPctQ').textContent = pQ + '%';
+      document.getElementById('progressPctT').textContent = pT + '%';
     }
 
   function zoom(wrap) {
