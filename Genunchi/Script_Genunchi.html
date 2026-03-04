@@ -1660,6 +1660,9 @@
     const sessionId = new URLSearchParams(window.location.search).get('session_id');
 
     let url = 'https://app.medicai.io/upload/movisplus?';
+    console.log(mdAnamneza);
+    console.log(mdIntrebari);
+    console.log(mdTeste);
     if (sessionId) url += 'session_id=' + encodeURIComponent(sessionId) + '&';
     url += 'region=genunchi';
     url += '&chestionar_anamneza=' + encodeURIComponent(mdAnamneza.trim());
@@ -1725,4 +1728,5 @@
       carousel.appendChild(next);
     });
   })();
+</script>
 </script>
