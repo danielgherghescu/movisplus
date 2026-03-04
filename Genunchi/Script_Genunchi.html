@@ -526,6 +526,16 @@
     letter-spacing: 0.05em;
     white-space: nowrap;
   }
+
+  /* ─── CAROUSEL: desktop — revert to side-by-side ─────────── */
+  @media (min-width: 768px) {
+    .carousel-btn,
+    .carousel-counter { display: none; }
+    .carousel .test-images { display: flex; overflow-x: auto; gap: 8px; }
+    .carousel .test-img-wrap { display: block; width: auto; }
+    .carousel .test-img-wrap.carousel-active img { width: auto; }
+  }
+
   .img-label {
     position: absolute;
     bottom: 6px; left: 8px;
