@@ -1603,6 +1603,14 @@
       return '—';
     }
 
+    function normRo(str) {
+      return str
+        .replace(/[ăâ]/g, 'a').replace(/î/g, 'i')
+        .replace(/[șş]/g, 's').replace(/[țţ]/g, 't')
+        .replace(/[ĂÂ]/g, 'A').replace(/Î/g, 'I')
+        .replace(/[ȘŞ]/g, 'S').replace(/[ȚŢ]/g, 'T');
+    }
+
         function ans(n) {
       const inputs = document.querySelectorAll(`input[name="${n}"]`);
       for (const inp of inputs) {
@@ -1657,7 +1665,7 @@
     let mdAnamneza = '';
     ANAMNEZA_Q.forEach((q, i) => {
       mdAnamneza += `**Q:** ${q.label}  \n`;
-      mdAnamneza += `**A:** ${q.multi ? multiAnsCheck(q.key, q.noneName) : ans(q.key)}  \n\n`;
+      mdAnamneza += `**A:** ${normRo(q.multi ? multiAnsCheck(q.key, q.noneName) : ans(q.key))}  \n\n`;
     });
 
         const QUESTIONS = [
@@ -1672,7 +1680,7 @@
     let mdIntrebari = '';
     QUESTIONS.forEach((q, i) => {
       mdIntrebari += `**Q:** ${q.label}  \n`;
-      mdIntrebari += `**A:** ${ans(q.key)}  \n\n`;
+      mdIntrebari += `**A:** ${normRo(ans(q.key))}  \n\n`;
     });
 
     const TESTS = [
@@ -1709,16 +1717,16 @@
     let mdTeste = '';
     TESTS.forEach(t => {
       mdTeste += `**Q:** ${t.clinName}  \n`;
-      mdTeste += `**A:** ${t.multi ? clinMultiAns() : clinAns(t.key)}  \n\n`;
+      mdTeste += `**A:** ${normRo(t.multi ? clinMultiAns() : clinAns(t.key))}  \n\n`;
       if (t.key === 't6') {
         mdTeste += `**Q:** ACL Lever Test  \n`;
-        mdTeste += `**A:** ${clinAns('t6b')}  \n\n`;
+        mdTeste += `**A:** ${normRo(clinAns('t6b'))}  \n\n`;
       }
     });
     mdTeste += `**Q:** Dial Test (30-45°)  \n`;
-    mdTeste += `**A:** ${clinAns('t9a')}  \n`;
+    mdTeste += `**A:** ${normRo(clinAns('t9a'))}  \n`;
     mdTeste += `**Q:** Dial Test (90°)  \n`;
-    mdTeste += `**A:** ${clinAns('t9b')}  \n`;
+    mdTeste += `**A:** ${normRo(clinAns('t9b'))}  \n`;
 
     const sessionId = new URLSearchParams(window.location.search).get('session_id');
 
