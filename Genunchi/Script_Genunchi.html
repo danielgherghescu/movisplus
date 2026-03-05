@@ -843,7 +843,7 @@
     <div class="question-number">Anamneză A06</div>
     <div class="question-text">Dimineața, zona afectată este:</div>
     <div class="options">
-      <label class="option" onclick="sel(this,'a6')"><input type="radio" name="a6"><div class="option-radio"></div><span class="option-label">Normală</span></label>
+      <label class="option" onclick="sel(this,'a6')"><input type="radio" name="a6"><div class="option-radio"></div><span class="option-label">Fara redoare matinala</span></label>
       <label class="option" onclick="sel(this,'a6')"><input type="radio" name="a6"><div class="option-radio"></div><span class="option-label">Rigidă sub 30 minute</span></label>
       <label class="option" onclick="sel(this,'a6')"><input type="radio" name="a6"><div class="option-radio"></div><span class="option-label">Rigidă peste 30–60 minute</span></label>
       <label class="option" onclick="sel(this,'a6')"><input type="radio" name="a6"><div class="option-radio"></div><span class="option-label">Rigidă peste 1 oră</span></label>
@@ -860,7 +860,7 @@
       <label class="option" onclick="selCheck(this,'a7','a7-none',event)"><input type="checkbox" name="a7"><div class="option-check"></div><span class="option-label">Slăbiciune clară</span></label>
     </div>
     <div style="margin-top:8px;">
-      <label class="option" onclick="selNone(this,'a7-none','a7',event)"><input type="radio" name="a7-none"><div class="option-radio"></div><span class="option-label">Niciuna dintre acestea</span></label>
+      <label class="option" onclick="selNone(this,'a7-none','a7',event)"><input type="radio" name="a7-none"><div class="option-radio"></div><span class="option-label">Fara amorteli, furnicaturi sau slabiciune</span></label>
     </div>
   </div>
 
@@ -894,7 +894,7 @@
       <label class="option" onclick="selCheck(this,'a9','a9-none',event)"><input type="checkbox" name="a9"><div class="option-check"></div><span class="option-label">Sportul</span></label>
     </div>
     <div style="margin-top:8px;">
-      <label class="option" onclick="selNone(this,'a9-none','a9',event)"><input type="radio" name="a9-none"><div class="option-radio"></div><span class="option-label">Niciuna semnificativ</span></label>
+      <label class="option" onclick="selNone(this,'a9-none','a9',event)"><input type="radio" name="a9-none"><div class="option-radio"></div><span class="option-label">Fara impact functional semnificativ</span></label>
     </div>
   </div>
 
@@ -916,7 +916,7 @@
       <label class="option" onclick="selCheck(this,'a10','a10-none',event)"><input type="checkbox" name="a10"><div class="option-check"></div><span class="option-label">Istoric personal de cancer</span></label>
     </div>
     <div style="margin-top:8px;">
-      <label class="option" onclick="selNone(this,'a10-none','a10',event)"><input type="radio" name="a10-none"><div class="option-radio"></div><span class="option-label">Niciuna dintre acestea</span></label>
+      <label class="option" onclick="selNone(this,'a10-none','a10',event)"><input type="radio" name="a10-none"><div class="option-radio"></div><span class="option-label">Fara semne de alarma</span></label>
     </div>
   </div>
 
@@ -930,7 +930,7 @@
       <label class="option" onclick="selCheck(this,'a11','a11-none',event)"><input type="checkbox" name="a11"><div class="option-check"></div><span class="option-label">Probleme noi cu controlul urinei sau scaunului</span></label>
     </div>
     <div style="margin-top:8px;">
-      <label class="option" onclick="selNone(this,'a11-none','a11',event)"><input type="radio" name="a11-none"><div class="option-radio"></div><span class="option-label">Niciuna</span></label>
+      <label class="option" onclick="selNone(this,'a11-none','a11',event)"><input type="radio" name="a11-none"><div class="option-radio"></div><span class="option-label">Fara evenimente recente relevante</span></label>
     </div>
   </div>
 
@@ -946,13 +946,13 @@
     <div class="question-number">Anamneză A12</div>
     <div class="question-text">Ce ai încercat până acum? <small style="font-weight:300;font-size:12px;">(poți bifa mai multe)</small></div>
     <div class="options">
-      <label class="option" onclick="selCheck(this,'a12','a12-none',event)"><input type="checkbox" name="a12"><div class="option-check"></div><span class="option-label">Antiinflamatoare / analgezice</span></label>
-      <label class="option" onclick="selCheck(this,'a12','a12-none',event)"><input type="checkbox" name="a12"><div class="option-check"></div><span class="option-label">Fizioterapie / kinetoterapie</span></label>
-      <label class="option" onclick="selCheck(this,'a12','a12-none',event)"><input type="checkbox" name="a12"><div class="option-check"></div><span class="option-label">Infiltrații</span></label>
-      <label class="option" onclick="selCheck(this,'a12','a12-none',event)"><input type="checkbox" name="a12"><div class="option-check"></div><span class="option-label">Repaus</span></label>
+      <label class="option" onclick="selCheck(this,'a12','a12-none',event);toggleA13(false)"><input type="checkbox" name="a12"><div class="option-check"></div><span class="option-label">Antiinflamatoare / analgezice</span></label>
+      <label class="option" onclick="selCheck(this,'a12','a12-none',event);toggleA13(false)"><input type="checkbox" name="a12"><div class="option-check"></div><span class="option-label">Fizioterapie / kinetoterapie</span></label>
+      <label class="option" onclick="selCheck(this,'a12','a12-none',event);toggleA13(false)"><input type="checkbox" name="a12"><div class="option-check"></div><span class="option-label">Infiltrații</span></label>
+      <label class="option" onclick="selCheck(this,'a12','a12-none',event);toggleA13(false)"><input type="checkbox" name="a12"><div class="option-check"></div><span class="option-label">Repaus</span></label>
     </div>
     <div style="margin-top:8px;">
-      <label class="option" onclick="selNone(this,'a12-none','a12',event)"><input type="radio" name="a12-none"><div class="option-radio"></div><span class="option-label">Nimic până acum</span></label>
+      <label class="option" onclick="selNone(this,'a12-none','a12',event);toggleA13(true)"><input type="radio" name="a12-none"><div class="option-radio"></div><span class="option-label">Fara tratament anterior</span></label>
     </div>
   </div>
 
@@ -987,7 +987,7 @@
       <label class="option" onclick="selCheck(this,'a14','a14-none',event)"><input type="checkbox" name="a14"><div class="option-check"></div><span class="option-label">Boală oncologică în trecut</span></label>
     </div>
     <div style="margin-top:8px;">
-      <label class="option" onclick="selNone(this,'a14-none','a14',event)"><input type="radio" name="a14-none"><div class="option-radio"></div><span class="option-label">Niciuna dintre acestea</span></label>
+      <label class="option" onclick="selNone(this,'a14-none','a14',event)"><input type="radio" name="a14-none"><div class="option-radio"></div><span class="option-label">Fara comorbiditati relevante</span></label>
     </div>
   </div>
 
@@ -1360,29 +1360,48 @@
       <div class="test-instructions">Rotație tibială — necesită ajutorul unei alte persoane</div>
     </div>
     <div class="test-body">
+
+      <!-- Poziția inițială -->
       <div class="test-images">
         <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.prod.website-files.com/69834dd53c9c7bcf1c2bf529/69a1a26c5395931471f570b2_Picture17.jpg" alt="Picioare întinse"></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.prod.website-files.com/69834dd53c9c7bcf1c2bf529/69a1a26c45ea521abee7e72f_Picture18.jpg" alt="30-45°"></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.prod.website-files.com/69834dd53c9c7bcf1c2bf529/69a1a26cdf5bc74c4dc1d412_Picture19.jpg" alt="Vedere tălpi"></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.prod.website-files.com/69834dd53c9c7bcf1c2bf529/69a1a26c17b2dfee4cb056f3_Picture20.jpg" alt="90°"></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.prod.website-files.com/69834dd53c9c7bcf1c2bf529/69a1a26c76112c1888f833b8_Picture21.jpg" alt="Tălpi 90°"></div>
       </div>
       <div class="instruction-steps">
-        Întinde-te pe burtă, pe pat, cu ambele picioare relaxate (imaginea 1).<br>
-        Roagă pe cineva să <strong>observe poziția tălpilor</strong> fără să le atingă sau rotească.
+        Intinde-te pe burta, pe pat, cu ambele picioare relaxate.<br>
+        Roaga pe cineva sa <strong>observe pozitia talpilor</strong>, fara sa le atinga sau roteasca.
       </div>
-      <div class="sub-question">Cu genunchii îndoiți mai puțin (30–45°): piciorul afectat este rotit mai mult spre exterior?</div>
-      <div class="options">
-        <label class="option" onclick="sel(this,'t9a')"><input type="radio" name="t9a"><div class="option-radio"></div><span class="option-label">Da</span></label>
-        <label class="option" onclick="sel(this,'t9a')"><input type="radio" name="t9a"><div class="option-radio"></div><span class="option-label">Nu</span></label>
-        <label class="option" onclick="sel(this,'t9a')"><input type="radio" name="t9a"><div class="option-radio"></div><span class="option-label">Nu sunt sigur</span></label>
+
+      <!-- Pasul 1 — 30-45° -->
+      <div style="margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.07);">
+        <div class="sub-question" style="font-size:13px;font-weight:700;color:var(--green);letter-spacing:0.05em;margin-bottom:14px;">Pasul 1 — Genunchi indoiti 30-45°</div>
+        <div class="test-images">
+          <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.prod.website-files.com/69834dd53c9c7bcf1c2bf529/69a1a26c45ea521abee7e72f_Picture18.jpg" alt="30-45°"></div>
+          <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.prod.website-files.com/69834dd53c9c7bcf1c2bf529/69a1a26cdf5bc74c4dc1d412_Picture19.jpg" alt="Vedere tălpi 30-45°"></div>
+        </div>
+        <div class="instruction-steps">Indoaie genunchii mai putin (30-45°), ca in imagini.</div>
+        <div class="sub-question">Cu genunchii indoiti mai putin (30-45°): piciorul afectat este rotit mai mult spre exterior?</div>
+        <div class="options">
+          <label class="option" onclick="sel(this,'t9a')"><input type="radio" name="t9a"><div class="option-radio"></div><span class="option-label">Da</span></label>
+          <label class="option" onclick="sel(this,'t9a')"><input type="radio" name="t9a"><div class="option-radio"></div><span class="option-label">Nu</span></label>
+          <label class="option" onclick="sel(this,'t9a')"><input type="radio" name="t9a"><div class="option-radio"></div><span class="option-label">Nu sunt sigur</span></label>
+        </div>
       </div>
-      <div class="sub-question" style="margin-top:24px">Cu genunchii îndoiți mai mult (90°): piciorul afectat stă diferit față de celălalt?</div>
-      <div class="options">
-        <label class="option" onclick="sel(this,'t9b')"><input type="radio" name="t9b"><div class="option-radio"></div><span class="option-label">Da</span></label>
-        <label class="option" onclick="sel(this,'t9b')"><input type="radio" name="t9b"><div class="option-radio"></div><span class="option-label">Nu</span></label>
-        <label class="option" onclick="sel(this,'t9b')"><input type="radio" name="t9b"><div class="option-radio"></div><span class="option-label">Nu sunt sigur</span></label>
+
+      <!-- Pasul 2 — 90° -->
+      <div style="margin-top:32px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.07);">
+        <div class="sub-question" style="font-size:13px;font-weight:700;color:var(--green);letter-spacing:0.05em;margin-bottom:14px;">Pasul 2 — Genunchi indoiti 90°</div>
+        <div class="test-images">
+          <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.prod.website-files.com/69834dd53c9c7bcf1c2bf529/69a1a26c17b2dfee4cb056f3_Picture20.jpg" alt="90°"></div>
+          <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.prod.website-files.com/69834dd53c9c7bcf1c2bf529/69a1a26c76112c1888f833b8_Picture21.jpg" alt="Tălpi 90°"></div>
+        </div>
+        <div class="instruction-steps">Indoaie genunchii mai mult (90°), ca in imagini.</div>
+        <div class="sub-question">Cu genunchii indoiti mai mult (90°): piciorul afectat sta diferit fata de celalalt?</div>
+        <div class="options">
+          <label class="option" onclick="sel(this,'t9b')"><input type="radio" name="t9b"><div class="option-radio"></div><span class="option-label">Da</span></label>
+          <label class="option" onclick="sel(this,'t9b')"><input type="radio" name="t9b"><div class="option-radio"></div><span class="option-label">Nu</span></label>
+          <label class="option" onclick="sel(this,'t9b')"><input type="radio" name="t9b"><div class="option-radio"></div><span class="option-label">Nu sunt sigur</span></label>
+        </div>
       </div>
+
     </div>
   </div>
 
@@ -1516,6 +1535,16 @@
     updateProgress();
   }
 
+  function toggleA13(hide) {
+    const card = document.getElementById('card-a13');
+    card.style.display = hide ? 'none' : '';
+    if (hide) {
+      card.querySelectorAll('input[name="a13"]').forEach(inp => inp.closest('.option')?.classList.remove('selected'));
+      answered.delete('a13');
+      updateProgress();
+    }
+  }
+
     const SECTION_A = [['a1'],['a2'],['a3'],['a4'],['a5'],['a6'],['a7','a7-none'],['a8'],['a9','a9-none'],['a10','a10-none'],['a11','a11-none'],['a12','a12-none'],['a13'],['a14','a14-none'],['a15'],['a16'],['a17'],['a18'],['a19'],['a20']];
     const SECTION_Q = [['q1'],['q2'],['q3'],['q4'],['q5'],['q6']];
     const SECTION_T = [['t1'],['t2'],['t3','t3-none'],['t4'],['t5'],['t6'],['t6b'],['t7'],['t8']];
@@ -1576,9 +1605,10 @@
       { key: 't6', cardId: 'card-t6' }, { key: 't6b', cardId: 'card-t6' },
       { key: 't7', cardId: 'card-t7' }, { key: 't8', cardId: 'card-t8' },
     ];
-    const missing = MANDATORY.filter(m =>
-      m.altKey ? (!answered.has(m.key) && !answered.has(m.altKey)) : !answered.has(m.key)
-    );
+    const missing = MANDATORY.filter(m => {
+      if (m.key === 'a13' && answered.has('a12-none')) return false;
+      return m.altKey ? (!answered.has(m.key) && !answered.has(m.altKey)) : !answered.has(m.key);
+    });
     if (missing.length > 0) {
       missing.forEach(m => document.getElementById(m.cardId)?.classList.add('missing'));
       document.getElementById(missing[0].cardId)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1665,6 +1695,7 @@
 
     let mdAnamneza = '';
     ANAMNEZA_Q.forEach((q, i) => {
+      if (q.key === 'a13' && answered.has('a12-none')) return;
       mdAnamneza += `**Q:** ${normRo(q.label)}  \n`;
       mdAnamneza += `**A:** ${normRo(q.multi ? multiAnsCheck(q.key, q.noneName) : ans(q.key))}  \n\n`;
     });
