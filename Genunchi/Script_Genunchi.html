@@ -1605,10 +1605,11 @@
 
     function normRo(str) {
       return str
-        .replace(/[ăâ]/g, 'a').replace(/î/g, 'i')
-        .replace(/[șş]/g, 's').replace(/[țţ]/g, 't')
-        .replace(/[ĂÂ]/g, 'A').replace(/Î/g, 'I')
-        .replace(/[ȘŞ]/g, 'S').replace(/[ȚŢ]/g, 'T');
+        .replace(/[ăĂ]/g, 'a')
+        .replace(/[âÂ]/g, 'a')
+        .replace(/[îÎ]/g, 'i')
+        .replace(/[șşȘŞ]/g, 's')
+        .replace(/[țţȚŢ]/g, 't');
     }
 
         function ans(n) {
@@ -1664,7 +1665,7 @@
 
     let mdAnamneza = '';
     ANAMNEZA_Q.forEach((q, i) => {
-      mdAnamneza += `**Q:** ${q.label}  \n`;
+      mdAnamneza += `**Q:** ${normRo(q.label)}  \n`;
       mdAnamneza += `**A:** ${normRo(q.multi ? multiAnsCheck(q.key, q.noneName) : ans(q.key))}  \n\n`;
     });
 
@@ -1679,7 +1680,7 @@
 
     let mdIntrebari = '';
     QUESTIONS.forEach((q, i) => {
-      mdIntrebari += `**Q:** ${q.label}  \n`;
+      mdIntrebari += `**Q:** ${normRo(q.label)}  \n`;
       mdIntrebari += `**A:** ${normRo(ans(q.key))}  \n\n`;
     });
 
@@ -1716,7 +1717,7 @@
 
     let mdTeste = '';
     TESTS.forEach(t => {
-      mdTeste += `**Q:** ${t.clinName}  \n`;
+      mdTeste += `**Q:** ${normRo(t.clinName)}  \n`;
       mdTeste += `**A:** ${normRo(t.multi ? clinMultiAns() : clinAns(t.key))}  \n\n`;
       if (t.key === 't6') {
         mdTeste += `**Q:** ACL Lever Test  \n`;
