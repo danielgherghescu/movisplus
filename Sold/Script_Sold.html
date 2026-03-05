@@ -1668,18 +1668,43 @@ function updateProgress() {
     ];
 
     const CLINICAL = {
-      t1: { 
-        'Roșu — Înainte (zona inghinală)': 'Durere inghinală',
-        'Galben — Lateral (pe os, zona proeminentă)': 'Durere laterală',
-        'Verde — Spate (fesier)': 'Durere fesieră',
-        'Albastru — Jos în spate, la baza coloanei': 'Durere lombosacrată'
+      t1: {
+        'Roșu — Înainte (zona inghinală)': 'Durere predominant inghinală (proiecție anterioară a șoldului)',
+        'Galben — Lateral (pe os, zona proeminentă)': 'Durere laterală de șold (regiune trohanteriană)',
+        'Verde — Spate (fesier)': 'Durere posterioară de șold (regiune fesieră)',
+        'Albastru — Jos în spate, la baza coloanei': 'Durere lombosacrată / posibil sacroiliacă'
       },
-      t2: { 'Nu simt durere și pot face mișcarea normal': 'Negativ', 'Simt durere în zona inghinală': 'Pozitiv durere', 'Nu simt durere, dar mișcarea este clar limitată comparativ cu celălalt șold': 'Pozitiv limitare', 'Simt atât durere inghinală, cât și limitare de mișcare': 'Pozitiv mixt' },
-      t3: { 'Nu simt durere și pot opune rezistență normal': 'Negativ', 'Simt durere în zona inghinală': 'Pozitiv durere', 'Nu simt durere, dar forța este clar mai mică decât pe partea cealaltă': 'Pozitiv slăbiciune', 'Simt atât durere inghinală, cât și slăbiciune': 'Pozitiv mixt' },
-      t4: { 'Nu simt nimic neobișnuit': 'Negativ', 'Simt durere în fața șoldului (inghinal)': 'Pozitiv inghinal', 'Simt durere în spatele șoldului': 'Pozitiv posterior', 'Simt durere în spatele șoldului și coboară pe coapsă': 'Pozitiv posterior iradiat' },
-      t5: { 'Da': 'Pozitiv', 'Nu': 'Negativ' },
-      t6: { 'Da, pot să-mi țin echilibrul fără probleme': 'Negativ', 'Nu pot să-mi țin echilibrul fără să-mi aplec trunchiul (imaginea 2)': 'Trendelenburg compensat', 'Nu pot deloc să-mi țin echilibrul pe un singur picior': 'Trendelenburg sever' },
-      t7: { 'Da, mă doare': 'Pozitiv', 'Nu, nu mă doare': 'Negativ' },
+      t2: {
+        'Nu simt durere și pot face mișcarea normal': 'Negativ (mobilitate normală)',
+        'Simt durere în zona inghinală': 'Durere la rotație externă',
+        'Nu simt durere, dar mișcarea este clar limitată comparativ cu celălalt șold': 'Limitare rotație externă',
+        'Simt atât durere inghinală, cât și limitare de mișcare': 'Durere și limitare rotație externă'
+      },
+      t3: {
+        'Nu simt durere și pot opune rezistență normal': 'Negativ',
+        'Simt durere în zona inghinală': 'Durere inghinală la FABER',
+        'Nu simt durere, dar forța este clar mai mică decât pe partea cealaltă': 'Slăbiciune la FABER',
+        'Simt atât durere inghinală, cât și slăbiciune': 'Durere și slăbiciune la FABER'
+      },
+      t4: {
+        'Nu simt nimic neobișnuit': 'Negativ',
+        'Simt durere în fața șoldului (inghinal)': 'Durere inghinală la adducție',
+        'Simt durere în spatele șoldului': 'Durere posterioară de șold',
+        'Simt durere în spatele șoldului și coboară pe coapsă': 'Durere posterioară cu iradiere pe coapsă'
+      },
+      t5: {
+        'Da': 'Durere la flexie cu rezistență (psoas)',
+        'Nu': 'Negativ'
+      },
+      t6: {
+        'Da, pot să-mi țin echilibrul fără probleme': 'Negativ',
+        'Nu pot să-mi țin echilibrul fără să-mi aplec trunchiul (imaginea 2)': 'Trendelenburg compensat',
+        'Nu pot deloc să-mi țin echilibrul pe un singur picior': 'Trendelenburg pozitiv sever'
+      },
+      t7: {
+        'Da, mă doare': 'Durere la testul Thomas',
+        'Nu, nu mă doare': 'Negativ'
+      }
     };
     function clinAns(key) { const raw = ans(key); return (CLINICAL[key] && CLINICAL[key][raw]) ? CLINICAL[key][raw] : raw; }
     function clinMultiAns() {
