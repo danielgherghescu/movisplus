@@ -1617,17 +1617,24 @@
     const SECTION_Q = [['q1'],['q2'],['q3'],['q4'],['q5'],['q6']];
     const SECTION_T = [['t1'],['t2'],['t3','t3-none'],['t4'],['t5'],['t6'],['t6b'],['t7'],['t8']];
     function countSec(groups) { return groups.filter(g => g.some(k => answered.has(k))).length; }
-    function updateProgress() {
-      const pA = Math.round(countSec(SECTION_A) / SECTION_A.length * 100);
-      const pQ = Math.round(countSec(SECTION_Q) / SECTION_Q.length * 100);
-      const pT = Math.round(countSec(SECTION_T) / SECTION_T.length * 100);
-      document.getElementById('progressFillA').style.width = pA + '%';
-      document.getElementById('progressFillQ').style.width = pQ + '%';
-      document.getElementById('progressFillT').style.width = pT + '%';
-      document.getElementById('progressPctA').textContent = pA + '%';
-      document.getElementById('progressPctQ').textContent = pQ + '%';
-      document.getElementById('progressPctT').textContent = pT + '%';
-    }
+function updateProgress() {
+
+  const groupsA = answered.has('a12-none')
+    ? SECTION_A.filter(g => !g.includes('a13'))
+    : SECTION_A;
+
+  const pA = Math.round(countSec(groupsA) / groupsA.length * 100);
+  const pQ = Math.round(countSec(SECTION_Q) / SECTION_Q.length * 100);
+  const pT = Math.round(countSec(SECTION_T) / SECTION_T.length * 100);
+
+  document.getElementById('progressFillA').style.width = pA + '%';
+  document.getElementById('progressFillQ').style.width = pQ + '%';
+  document.getElementById('progressFillT').style.width = pT + '%';
+
+  document.getElementById('progressPctA').textContent = pA + '%';
+  document.getElementById('progressPctQ').textContent = pQ + '%';
+  document.getElementById('progressPctT').textContent = pT + '%';
+}
 
   function zoom(wrap) {
     document.getElementById('lightboxImg').src = wrap.querySelector('img').src;
