@@ -1841,7 +1841,7 @@ function updateProgress() {
     console.log(mdAnamneza);
     console.log(mdIntrebari);
     console.log(mdTeste);
-    if (sessionId) url += 'session_id=' + encodeURIComponent(sessionId) + '&';
+    if (sessionId) url += 'session_id=' + encodeURIComponent(sessionId) + '?';
     url += 'region=genunchi';
     url += '&chestionar_anamneza=' + encodeURIComponent(mdAnamneza.trim());
     url += '&chestionar_intrebari=' + encodeURIComponent(mdIntrebari.trim());
