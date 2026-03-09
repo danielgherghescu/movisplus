@@ -1935,7 +1935,7 @@ function updateProgress() {
           const span = inp.closest('.option').querySelector('.option-label');
           if (span) {
             const label = exportAnswer(qId, span.textContent.trim());
-            selectedLabels.push(label);
+            selectedLabels.push(exportAnswer(qId, span.textContent.trim()));
           }
         }
       });
