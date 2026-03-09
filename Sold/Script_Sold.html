@@ -1709,9 +1709,14 @@ function updateProgress() {
     };
     function clinAns(key) { const raw = ans(key); return (CLINICAL[key] && CLINICAL[key][raw]) ? CLINICAL[key][raw] : raw; }
     function clinMultiAns() {
-      const raw = multiAns();
-      if (raw === '—') return '—';
-      return raw.split(', ').map(c => (CLINICAL.t1[c] || c)).join(', ');
+      const results = [];
+      document.querySelectorAll('input[name="t1"]').forEach(inp => {
+        if (inp.closest('.color-option.selected')) {
+          const label = inp.closest('.color-option').querySelector('.color-option-label')?.textContent.trim();
+          if (label) results.push(CLINICAL.t1[label] || label);
+        }
+      });
+      return results.length ? results.join(', ') : '—';
     }
 
     let mdTeste = '';
