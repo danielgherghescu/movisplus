@@ -1636,6 +1636,49 @@
       return '—';
     }
 
+    function ansMeta(n) {
+      const inputs = [...document.querySelectorAll(`input[name="${n}"]`)];
+      for (let i = 0; i < inputs.length; i++) {
+        const inp = inputs[i];
+        const parent = inp.closest('.option.selected, .color-option.selected');
+        if (parent) return { raw: ans(n), idx: i + 1 };
+      }
+      return { raw: '—', idx: 0 };
+    }
+
+    function multiAnsColor(name, maxSel) {
+      const selected = [];
+      document.querySelectorAll(`input[name="${name}"]`).forEach(inp => {
+        if (inp.closest('.color-option.selected, .option.selected')) {
+          const label = inp.closest('label')?.querySelector('.color-option-label, .option-label')?.textContent?.trim();
+          if (label) selected.push(label);
+        }
+      });
+      const none = document.querySelector(`input[name="${name}-none"]`);
+      if (none?.closest('.option.selected')) {
+        const lbl = none.closest('label')?.querySelector('.option-label')?.textContent?.trim();
+        if (lbl) return lbl;
+      }
+      return (maxSel ? selected.slice(0, maxSel) : selected).join(', ') || '—';
+    }
+
+    const CLINICAL = {
+      yesNo: { 'Da': 'Pozitiv', 'Nu': 'Negativ', 'Nu știu': 'Incert', 'Nu sunt sigur': 'Incert' },
+      colors: { 'Verde': 'Normal', 'Albastru': 'Usor modificat', 'Galben': 'Moderat', 'Roșu': 'Sever', 'Portocaliu': 'Accentuat', 'Mov': 'Specific' }
+    };
+
+    function clinFromRaw(key, raw) {
+      if (raw === '—') return raw;
+      if (CLINICAL.yesNo[raw]) return CLINICAL.yesNo[raw];
+      if (CLINICAL.colors[raw]) return CLINICAL.colors[raw];
+      if (/^(Verde|Albastru|Galben|Roșu|Portocaliu|Mov)/.test(raw)) {
+        const c = raw.match(/^(Verde|Albastru|Galben|Roșu|Portocaliu|Mov)/)[1];
+        return CLINICAL.colors[c] || c;
+      }
+      const short = normRo(raw).replace(/[^a-zA-Z0-9 -]/g, ' ').replace(/\s+/g, ' ').trim().split(' ').slice(0,4).join(' ');
+      return short || `${key}-1`;
+    }
+
 
     function multiAnsCheck(checkName, noneName) {
       const results = [];
@@ -1719,20 +1762,47 @@
 
     let mdTeste = '';
     TESTS.forEach(t => {
-      mdTeste += `**${t.label}:**  \n`;
       mdTeste += `**Q:** ${t.q}  \n`;
-      mdTeste += `A: ${ans(t.key)}  \n\n`;
+      const raw = t.multi ? multiAnsColor(t.key, t.maxSel || 2) : ansMeta(t.key).raw;
+      const mapped = raw.split(', ').map(v => clinFromRaw(t.key, v)).join(', ');
+      mdTeste += `**A:** ${normRo(mapped)}  \n\n`;
     });
 
-    mdTeste += `**T09 (opțional):** Tapotare epicondil medial — testul nervului ulnar  \n`;
-    mdTeste += `**Q:** Simți furnicături, amorțeală sau senzație de „curent electric" care poate coborî pe antebraț sau spre degete?  \n`;
-    mdTeste += `A: ${ans('t9')}  \n\n`;
+    if (answered.has('t9')) {
+      mdTeste += `**Q:** Test Tinel cot  \n`;
+      mdTeste += `**A:** ${normRo(clinFromRaw('t9', ans('t9')))}  \n\n`;
+    }
+    if (answered.has('t10a')) {
+      mdTeste += `**Q:** Test pronatie rezistata - pozitia 2  \n`;
+      mdTeste += `**A:** ${normRo(clinFromRaw('t10a', ans('t10a')))}  \n\n`;
+    }
+    if (answered.has('t10b')) {
+      mdTeste += `**Q:** Test pronatie rezistata - pozitia 3  \n`;
+      mdTeste += `**A:** ${normRo(clinFromRaw('t10b', ans('t10b')))}  \n`;
+    }
 
-    mdTeste += `**T10 (opțional):** Rezistență la rotație — necesită ajutorul unei alte persoane  \n`;
-    mdTeste += `**Q:** Poziția 2 — apare durere în zona marcată cu punctul roșu (partea internă a cotului / antebrațului)?  \n`;
-    mdTeste += `A: ${ans('t10a')}  \n`;
-    mdTeste += `**Q:** Poziția 3 — apare durere în zona marcată cu punctul roșu (partea externă a cotului / antebrațului)?  \n`;
-    mdTeste += `A: ${ans('t10b')}  \n`;
+
+    function normalizeMarkdownQA(md) {
+      return md.split('\n').map(line => {
+        if (line.startsWith('**Q:** ')) return `**Q:** ${normRo(line.slice(7))}`;
+        if (line.startsWith('**A:** ')) return `**A:** ${normRo(line.slice(7))}`;
+        if (line.startsWith('A: ')) return `**A:** ${normRo(line.slice(3))}`;
+        return line;
+      }).join('\n');
+    }
+
+    mdAnamneza = normalizeMarkdownQA(mdAnamneza);
+    mdIntrebari = normalizeMarkdownQA(mdIntrebari);
+    mdTeste = normalizeMarkdownQA(mdTeste);
+
+    function clickFirst(name) {
+      const first = document.querySelector(`input[name="${name}"]`);
+      first?.closest('label')?.click();
+    }
+    window.movisAutofill = function () {
+      ['q1','q2','q3','q4','q5','q6','q7','q8','q9'].forEach(clickFirst);
+      ['t1','t2','t3','t4','t5','t6','t7','t8','t9','t10a','t10b','t1a','t1b','t2a','t2b','t8a','t8b','t9a','t9b','t9c'].forEach(clickFirst);
+    };
 
 
     function normalizeMarkdownQA(md) {
