@@ -1490,18 +1490,32 @@
 
     function normRo(str) {
       return (str || '')
-        .replace(/\s+/g, ' ')
-        .replace(/ /g, ' ')
-        .replace(/[“”]/g, '"')
-        .replace(/[–—]/g, '-')
-        .trim()
-        .normalize('NFC');
+        .replace(/[ăĂ]/g, 'a')
+        .replace(/[âÂ]/g, 'a')
+        .replace(/[îÎ]/g, 'i')
+        .replace(/[șşȘŞ]/g, 's')
+        .replace(/[țţȚŢ]/g, 't');
     }
 
   function generateJSON() {
     // Validare câmpuri obligatorii
     document.querySelectorAll('.missing').forEach(el => el.classList.remove('missing'));
     const MANDATORY = [
+      { key: 'a1',  cardId: 'card-a1'  }, { key: 'a2',  cardId: 'card-a2'  },
+      { key: 'a3',  cardId: 'card-a3'  }, { key: 'a4',  cardId: 'card-a4'  },
+      { key: 'a5',  cardId: 'card-a5'  }, { key: 'a6',  cardId: 'card-a6'  },
+      { key: 'a7',  cardId: 'card-a7',  altKey: 'a7-none'  },
+      { key: 'a8',  cardId: 'card-a8'  },
+      { key: 'a9',  cardId: 'card-a9',  altKey: 'a9-none'  },
+      { key: 'a10', cardId: 'card-a10', altKey: 'a10-none' },
+      { key: 'a11', cardId: 'card-a11', altKey: 'a11-none' },
+      { key: 'a12', cardId: 'card-a12', altKey: 'a12-none' },
+      { key: 'a13', cardId: 'card-a13' },
+      { key: 'a14', cardId: 'card-a14', altKey: 'a14-none' },
+      { key: 'a15', cardId: 'card-a15' },
+      { key: 'a16', cardId: 'card-a16' }, { key: 'a17', cardId: 'card-a17' },
+      { key: 'a18', cardId: 'card-a18' }, { key: 'a19', cardId: 'card-a19' },
+      { key: 'a20', cardId: 'card-a20' },
       { key: 'q1', cardId: 'card-q1' }, { key: 'q2', cardId: 'card-q2' },
       { key: 'q3', cardId: 'card-q3' }, { key: 'q4', cardId: 'card-q4' },
       { key: 'q5', cardId: 'card-q5' }, { key: 'q6', cardId: 'card-q6' },
@@ -1513,9 +1527,10 @@
       { key: 't3a', cardId: 'card-t3' }, { key: 't3b', cardId: 'card-t3' },
       { key: 't4', cardId: 'card-t4' },
     ];
-    const missing = MANDATORY.filter(m =>
-      m.altKey ? (!answered.has(m.key) && !answered.has(m.altKey)) : !answered.has(m.key)
-    );
+    const missing = MANDATORY.filter(m => {
+      if (m.key === 'a13' && answered.has('a12-none')) return false;
+      return m.altKey ? (!answered.has(m.key) && !answered.has(m.altKey)) : !answered.has(m.key);
+    });
     if (missing.length > 0) {
       missing.forEach(m => document.getElementById(m.cardId)?.classList.add('missing'));
       document.getElementById(missing[0].cardId)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1558,7 +1573,58 @@
       return results.length ? results.join(', ') : '—';
     }
 
-    const QUESTIONS = [
+
+    function multiAnsCheck(checkName, noneName) {
+      const results = [];
+      document.querySelectorAll(`input[name="${checkName}"]`).forEach(inp => {
+        if (inp.closest('.option.selected')) {
+          const span = inp.closest('.option').querySelector('.option-label');
+          if (span) results.push(span.textContent.trim());
+        }
+      });
+      if (results.length) return results.join(', ');
+      const noneInp = document.querySelector(`input[name="${noneName}"]`);
+      if (noneInp?.closest('.option.selected'))
+        return noneInp.closest('.option').querySelector('.option-label')?.textContent.trim() || '—';
+      return '—';
+    }
+
+    const ANAMNEZA_Q = [
+      { key: 'a1',  label: 'Durata simptome' },
+      { key: 'a2',  label: 'Debut' },
+      { key: 'a3',  label: 'Evolutie' },
+      { key: 'a4',  label: 'Intensitate durere' },
+      { key: 'a5',  label: 'Tipul durerii' },
+      { key: 'a6',  label: 'Redoare matinala' },
+      { key: 'a7',  label: 'Senzatii asociate', multi: true, noneName: 'a7-none' },
+      { key: 'a8',  label: 'Impact functional' },
+      { key: 'a9',  label: 'Activitati afectate', multi: true, noneName: 'a9-none' },
+      { key: 'a10', label: 'Semne de alarma', multi: true, noneName: 'a10-none' },
+      { key: 'a11', label: 'Evenimente recente', multi: true, noneName: 'a11-none' },
+      { key: 'a12', label: 'Tratament anterior', multi: true, noneName: 'a12-none' },
+      { key: 'a13', label: 'Eficienta tratament' },
+      { key: 'a14', label: 'Comorbiditati', multi: true, noneName: 'a14-none' },
+      { key: 'a15', label: 'Chirurgie anterioara' },
+      { key: 'a16', label: 'Nivel activitate' },
+      { key: 'a17', label: 'Activitate profesionala' },
+      { key: 'a18', label: 'Fumat' },
+      { key: 'a19', label: 'IMC' },
+      { key: 'a20', label: 'Obiectiv pacient' },
+    ];
+
+    let mdAnamneza = '';
+    ANAMNEZA_Q.forEach(q => {
+      if (q.key === 'a13' && answered.has('a12-none')) return;
+      const questionText = document.querySelector(`#card-${q.key} .question-text`)?.childNodes[0]?.textContent?.trim() || q.label;
+      const rawAnswer = q.multi ? multiAnsCheck(q.key, q.noneName) : ans(q.key);
+      mdAnamneza += `**Q:** ${normRo(questionText)}  
+`;
+      mdAnamneza += `**A:** ${normRo(rawAnswer)}  
+
+`;
+    });
+
+    const QUESTIONS_Q = [
       { key: 'q1', label: 'Pe ce parte sunt mai intense simptomele?' },
       { key: 'q2', label: 'Ce te deranjează mai mult?' },
       { key: 'q3', label: 'Durerea coboară sub nivelul genunchiului?' },
@@ -1570,9 +1636,9 @@
     ];
 
     let mdIntrebari = '';
-    QUESTIONS.forEach((q, i) => {
-      mdIntrebari += `**Q${i + 1}:** ${q.label}  \n`;
-      mdIntrebari += `A: ${ans(q.key)}  \n\n`;
+    QUESTIONS_Q.forEach((q) => {
+      mdIntrebari += `**Q:** ${normRo(q.label)}  \n`;
+      mdIntrebari += `**A:** ${normRo(ans(q.key))}  \n\n`;
     });
 
     const ROM_TESTS = [
@@ -1604,11 +1670,26 @@
       mdTeste += `A: ${t.multi ? multiAns(t.key, t.altKey) : ans(t.key)}  \n\n`;
     });
 
+
+    function normalizeMarkdownQA(md) {
+      return md.split('\n').map(line => {
+        if (line.startsWith('**Q:** ')) return `**Q:** ${normRo(line.slice(7))}`;
+        if (line.startsWith('**A:** ')) return `**A:** ${normRo(line.slice(7))}`;
+        if (line.startsWith('A: ')) return `A: ${normRo(line.slice(3))}`;
+        return line;
+      }).join('\n');
+    }
+
+    mdAnamneza = normalizeMarkdownQA(mdAnamneza);
+    mdIntrebari = normalizeMarkdownQA(mdIntrebari);
+    mdTeste = normalizeMarkdownQA(mdTeste);
+
     const sessionId = new URLSearchParams(window.location.search).get('session_id');
 
     let url = 'https://app.medicai.io/upload/movisplus?';
     if (sessionId) url += 'session_id=' + encodeURIComponent(sessionId) + '&';
     url += 'region=coloana-lombara';
+    url += '&chestionar_anamneza=' + encodeURIComponent(mdAnamneza.trim());
     url += '&chestionar_intrebari=' + encodeURIComponent(mdIntrebari.trim());
     url += '&chestionar_mobilitate=' + encodeURIComponent(mdMobilitate.trim());
     url += '&chestionar_teste=' + encodeURIComponent(mdTeste.trim());
