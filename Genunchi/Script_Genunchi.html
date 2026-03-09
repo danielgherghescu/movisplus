@@ -1833,22 +1833,37 @@ function updateProgress() {
       return EXPORT_Q[qId] || label;
     }
 
-    function exportAnswerLabel(qId, value) {
-      if (!value || value === '—') return value;
-      const answerMap = EXPORT_A[qId];
-      if (!answerMap) return value;
-      return value
-        .split(', ')
-        .map(part => answerMap[part] || part)
-        .join(', ');
+    function exportAnswer(qId, label) {
+      return EXPORT_A[qId]?.[label] || label;
+    }
+
+    function exportMultiAnswer(qId, checkName, noneName) {
+      const selectedLabels = [];
+      document.querySelectorAll(`input[name="${checkName}"]`).forEach(inp => {
+        if (inp.closest('.option.selected')) {
+          const span = inp.closest('.option').querySelector('.option-label');
+          if (span) selectedLabels.push(span.textContent.trim());
+        }
+      });
+      if (selectedLabels.length) {
+        return selectedLabels
+          .map(label => exportAnswer(qId, label))
+          .join(', ');
+      }
+      const noneInp = document.querySelector(`input[name="${noneName}"]`);
+      if (noneInp?.closest('.option.selected')) {
+        const noneLabel = noneInp.closest('.option').querySelector('.option-label')?.textContent.trim() || '—';
+        return exportAnswer(qId, noneLabel);
+      }
+      return '—';
     }
 
     let mdAnamneza = '';
     ANAMNEZA_Q.forEach((q, i) => {
       if (q.key === 'a13' && answered.has('a12-none')) return;
       const questionText = exportQuestionLabel(q.key, q.label);
-      const answerRaw = q.multi ? multiAnsCheck(q.key, q.noneName) : ans(q.key);
-      const answerText = exportAnswerLabel(q.key, answerRaw);
+      const rawAnswer = q.multi ? exportMultiAnswer(q.key, q.key, q.noneName) : ans(q.key);
+      const answerText = q.multi ? rawAnswer : exportAnswer(q.key, rawAnswer);
       mdAnamneza += `**Q:** ${normRo(questionText)}  \n`;
       mdAnamneza += `**A:** ${normRo(answerText)}  \n\n`;
     });
