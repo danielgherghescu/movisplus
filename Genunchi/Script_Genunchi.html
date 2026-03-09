@@ -1771,11 +1771,86 @@ function updateProgress() {
         { key: 'a20', label: 'Obiectiv pacient' },
     ];
 
+    const EXPORT_Q = {
+      a1: 'Durata simpt.',
+      a2: 'Debut',
+      a3: 'Evolutie',
+      a4: 'Intens. durere',
+      a5: 'Tip durere',
+      a6: 'Redoare mat.',
+      a7: 'Senz. asociate',
+      a8: 'Impact funct.',
+      a9: 'Act. afectate',
+      a10: 'Semne alarma',
+      a11: 'Evenim. recente',
+      a12: 'Tr. anterior',
+      a13: 'Eficienta tr.',
+      a14: 'Comorbiditati',
+      a15: 'Chir. anterioara',
+      a16: 'Nivel activ.',
+      a17: 'Act. profesionala',
+      a18: 'Fumat',
+      a19: 'IMC',
+      a20: 'Obiectiv',
+    };
+
+    const EXPORT_A = {
+      a1: {
+        'Sub 6 săptămâni': '<6 sapt.',
+        '6-12 săptămâni': '6-12 sapt.',
+        'Peste 3 luni': '>3 luni',
+      },
+      a2: {
+        Brusc: 'Brusc',
+        Gradual: 'Gradual',
+      },
+      a3: {
+        'Se agravează': 'Agravare',
+        'Rămâne la fel': 'Stationar',
+        'Se ameliorează': 'Ameliorare',
+      },
+      a4: {
+        'Sub 4/10': '<4/10',
+        '4-6/10': '4-6/10',
+        'Peste 6/10': '>6/10',
+      },
+      a6: {
+        'Sub 30 minute': '<30 min',
+        'Peste 30 minute': '>30 min',
+      },
+      a8: {
+        'Mă limitez puțin': 'Limitare mica',
+        'Mă limitez moderat': 'Limitare mod.',
+        'Mă limitez sever': 'Limitare severa',
+      },
+      a18: {
+        Da: 'Da',
+        Nu: 'Nu',
+      },
+    };
+
+    function exportQuestionLabel(qId, label) {
+      return EXPORT_Q[qId] || label;
+    }
+
+    function exportAnswerLabel(qId, value) {
+      if (!value || value === '—') return value;
+      const answerMap = EXPORT_A[qId];
+      if (!answerMap) return value;
+      return value
+        .split(', ')
+        .map(part => answerMap[part] || part)
+        .join(', ');
+    }
+
     let mdAnamneza = '';
     ANAMNEZA_Q.forEach((q, i) => {
       if (q.key === 'a13' && answered.has('a12-none')) return;
-      mdAnamneza += `**Q:** ${normRo(q.label)}  \n`;
-      mdAnamneza += `**A:** ${normRo(q.multi ? multiAnsCheck(q.key, q.noneName) : ans(q.key))}  \n\n`;
+      const questionText = exportQuestionLabel(q.key, q.label);
+      const answerRaw = q.multi ? multiAnsCheck(q.key, q.noneName) : ans(q.key);
+      const answerText = exportAnswerLabel(q.key, answerRaw);
+      mdAnamneza += `**Q:** ${normRo(questionText)}  \n`;
+      mdAnamneza += `**A:** ${normRo(answerText)}  \n\n`;
     });
 
         const QUESTIONS = [
