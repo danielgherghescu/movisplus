@@ -1659,52 +1659,52 @@ function updateProgress() {
     });
 
     const TESTS = [
-      { key: 't1', label: 'T01 — Localizarea durerii', clinName: 'Localizare durere șold', q: 'Unde doare cel mai mult?', multi: true },
-      { key: 't2', label: 'T02 — Rotație externă', clinName: 'Rotație externă șold', q: 'Ce simți în timpul mișcării?' },
-      { key: 't3', label: 'T03 — Testul FABER', clinName: 'Test FABER', q: 'Ce simți în zona inghinală (marcată cu roșu)?' },
-      { key: 't4', label: 'T04 — Adducție cu rezistență', clinName: 'Adducție cu rezistență', q: 'Ce simți în timpul testului?' },
-      { key: 't5', label: 'T05 — Flexie cu rezistență', clinName: 'Flexie șold cu rezistență', q: 'Simți durere sau disconfort în zona inghinală?' },
-      { key: 't6', label: 'T06 — Sprijin unipodal', clinName: 'Sprijin unipodal', q: 'Ce se întâmplă când stai pe un singur picior?' },
-      { key: 't7', label: 'T07 — Testul Thomas', clinName: 'Test Thomas', q: 'Ce simți în punctul marcat cu roșu?' },
+      { key: 't1', label: 'T01 — Localizarea durerii', clinName: 'Zone dureroase sold', q: 'Unde doare cel mai mult?', multi: true },
+      { key: 't2', label: 'T02 — Rotație internă', clinName: 'Test rotatie interna', q: 'Ce simți în timpul mișcării?' },
+      { key: 't3', label: 'T03 — Testul FABER', clinName: 'FABER contra rezistentei', q: 'Ce simți în zona inghinală (marcată cu roșu)?' },
+      { key: 't4', label: 'T04 — Adducție cu rezistență', clinName: 'Piriformis test / FADIR', q: 'Ce simți în timpul testului?' },
+      { key: 't5', label: 'T05 — Flexie cu rezistență', clinName: 'Iliopsoas test', q: 'Simți durere sau disconfort în zona inghinală?' },
+      { key: 't6', label: 'T06 — Sprijin unipodal', clinName: 'Trendelenburg test', q: 'Ce se întâmplă când stai pe un singur picior?' },
+      { key: 't7', label: 'T07 — Testul Thomas', clinName: 'Ober test', q: 'Ce simți în punctul marcat cu roșu?' },
     ];
 
     const CLINICAL = {
       t1: {
-        'Roșu — Înainte (zona inghinală)': 'Durere predominant inghinală (proiecție anterioară a șoldului)',
-        'Galben — Lateral (pe os, zona proeminentă)': 'Durere laterală de șold (regiune trohanteriană)',
-        'Verde — Spate (fesier)': 'Durere posterioară de șold (regiune fesieră)',
-        'Albastru — Jos în spate, la baza coloanei': 'Durere lombosacrată / posibil sacroiliacă'
+        'Roșu — Înainte (zona inghinală)': 'inghinal',
+        'Galben — Lateral (pe os, zona proeminentă)': 'trohanter mare',
+        'Verde — Spate (fesier)': 'sold posterior',
+        'Albastru — Jos în spate, la baza coloanei': 'sacro-iliac'
       },
       t2: {
-        'Nu simt durere și pot face mișcarea normal': 'Negativ (mobilitate normală)',
-        'Simt durere în zona inghinală': 'Durere la rotație externă',
-        'Nu simt durere, dar mișcarea este clar limitată comparativ cu celălalt șold': 'Limitare rotație externă',
-        'Simt atât durere inghinală, cât și limitare de mișcare': 'Durere și limitare rotație externă'
+        'Nu simt durere și pot face mișcarea normal': 'rotatie interna negativ dureroasa',
+        'Simt durere în zona inghinală': 'rotatie interna pozitiv dureroasa',
+        'Nu simt durere, dar mișcarea este clar limitată comparativ cu celălalt șold': 'rotatie interna limitata mecanic nedureroasa',
+        'Simt atât durere inghinală, cât și limitare de mișcare': 'rotatie interna limitata mecanic si dureroasa'
       },
       t3: {
-        'Nu simt durere și pot opune rezistență normal': 'Negativ',
-        'Simt durere în zona inghinală': 'Durere inghinală la FABER',
-        'Nu simt durere, dar forța este clar mai mică decât pe partea cealaltă': 'Slăbiciune la FABER',
-        'Simt atât durere inghinală, cât și slăbiciune': 'Durere și slăbiciune la FABER'
+        'Nu simt durere și pot opune rezistență normal': 'FABER Negativ',
+        'Simt durere în zona inghinală': 'FABER dureros inghinal',
+        'Nu simt durere, dar forța este clar mai mică decât pe partea cealaltă': 'FABER negativ, forta scazuta',
+        'Simt atât durere inghinală, cât și slăbiciune': 'FABER pozitiv, forta scazuta'
       },
       t4: {
-        'Nu simt nimic neobișnuit': 'Negativ',
-        'Simt durere în fața șoldului (inghinal)': 'Durere inghinală la adducție',
-        'Simt durere în spatele șoldului': 'Durere posterioară de șold',
-        'Simt durere în spatele șoldului și coboară pe coapsă': 'Durere posterioară cu iradiere pe coapsă'
+        'Nu simt nimic neobișnuit': 'Piriformis - FADIR test negativ',
+        'Simt durere în fața șoldului (inghinal)': 'Piriformis - FADIR test negativ cu durere inghinala',
+        'Simt durere în spatele șoldului': 'Piriformis test pozitiv',
+        'Simt durere în spatele șoldului și coboară pe coapsă': 'Piriformis test intens pozitiv'
       },
       t5: {
-        'Da': 'Durere la flexie cu rezistență (psoas)',
-        'Nu': 'Negativ'
+        'Da': 'Iliopsoas test pozitiv',
+        'Nu': 'Iliopsoas test negativ'
       },
       t6: {
-        'Da, pot să-mi țin echilibrul fără probleme': 'Negativ',
-        'Nu pot să-mi țin echilibrul fără să-mi aplec trunchiul (imaginea 2)': 'Trendelenburg compensat',
-        'Nu pot deloc să-mi țin echilibrul pe un singur picior': 'Trendelenburg pozitiv sever'
+        'Da, pot să-mi țin echilibrul fără probleme': 'Trendelenburg negativ',
+        'Nu pot să-mi țin echilibrul fără să-mi aplec trunchiul (imaginea 2)': 'Trendelenburg pozitiv',
+        'Nu pot deloc să-mi țin echilibrul pe un singur picior': 'Trendelenburg intens pozitiv'
       },
       t7: {
-        'Da, mă doare': 'Durere la testul Thomas',
-        'Nu, nu mă doare': 'Negativ'
+        'Da, mă doare': 'Ober test pozitiv',
+        'Nu, nu mă doare': 'Ober test negativ'
       }
     };
     function clinAns(key) { const raw = ans(key); return (CLINICAL[key] && CLINICAL[key][raw]) ? CLINICAL[key][raw] : raw; }
