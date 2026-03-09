@@ -1842,7 +1842,10 @@ function updateProgress() {
       document.querySelectorAll(`input[name="${checkName}"]`).forEach(inp => {
         if (inp.closest('.option.selected')) {
           const span = inp.closest('.option').querySelector('.option-label');
-          if (span) selectedLabels.push(span.textContent.trim());
+          if (span) {
+            const label = exportAnswer(qId, span.textContent.trim());
+            selectedLabels.push(label);
+          }
         }
       });
       if (selectedLabels.length) {
@@ -1852,8 +1855,8 @@ function updateProgress() {
       }
       const noneInp = document.querySelector(`input[name="${noneName}"]`);
       if (noneInp?.closest('.option.selected')) {
-        const noneLabel = noneInp.closest('.option').querySelector('.option-label')?.textContent.trim() || '—';
-        return exportAnswer(qId, noneLabel);
+        const noneLabel = exportAnswer(qId, noneInp.closest('.option').querySelector('.option-label')?.textContent.trim() || '—');
+        return noneLabel;
       }
       return '—';
     }
