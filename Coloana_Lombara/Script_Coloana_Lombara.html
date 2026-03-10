@@ -1454,6 +1454,16 @@
     updateProgress();
   }
 
+  function toggleA13(hide) {
+    const card = document.getElementById('card-a13');
+    card.style.display = hide ? 'none' : '';
+    if (hide) {
+      card.querySelectorAll('input[name="a13"]').forEach(inp => inp.closest('.option')?.classList.remove('selected'));
+      answered.delete('a13');
+      updateProgress();
+    }
+  }
+
   function updateProgress() {
     function countSec(groups) { return groups.filter(g => g.some(k => answered.has(k))).length; }
 
@@ -1730,15 +1740,6 @@
     mdIntrebari = normalizeMarkdownQA(mdIntrebari);
     mdTeste = normalizeMarkdownQA(mdTeste);
 
-    function clickFirst(name) {
-      const first = document.querySelector(`input[name="${name}"]`);
-      first?.closest('label')?.click();
-    }
-    window.movisAutofill = function () {
-      ['q1','q2','q3','q4','q5','q6','q7','q8','q9'].forEach(clickFirst);
-      ['t1','t2','t3','t4','t5','t6','t7','t8','t9','t10a','t10b','t1a','t1b','t2a','t2b','t8a','t8b','t9a','t9b','t9c'].forEach(clickFirst);
-    };
-
     const sessionId = new URLSearchParams(window.location.search).get('session_id');
 
     let url = 'https://app.medicai.io/upload/movisplus?';
@@ -1750,6 +1751,36 @@
     url += '&chestionar_teste=' + encodeURIComponent(mdTeste.trim());
 
     window.top.location.href = url;
+  }
+
+  /* ─── AUTOFILL (doar când ?test=1) ─────────────────────────── */
+  if (new URLSearchParams(window.location.search).get('test') === '1') {
+    const btn = document.createElement('button');
+    btn.textContent = '⚡ Autofill';
+    Object.assign(btn.style, {
+      position: 'fixed', bottom: '24px', right: '24px', zIndex: '9999',
+      background: '#00e4a7', color: '#0f0f0f', fontWeight: '700',
+      fontSize: '14px', padding: '14px 24px', borderRadius: '8px',
+      border: 'none', cursor: 'pointer', boxShadow: '0 4px 16px rgba(0,0,0,0.25)',
+      fontFamily: 'inherit'
+    });
+    btn.onclick = function() {
+      function clickFirst(name) {
+        const el = document.querySelector(`input[name="${name}"]`);
+        if (el) el.closest('.option, .color-option')?.click();
+      }
+      function clickNone(name) {
+        const el = document.querySelector(`input[name="${name}-none"]`);
+        if (el) el.closest('.option')?.click();
+      }
+      ['a1','a2','a3','a4','a5','a6','a8','a13','a15','a16','a17','a18','a19','a20'].forEach(clickFirst);
+      ['a7','a9','a10','a11','a12','a14'].forEach(clickNone);
+      ['q1','q2','q3','q4','q5','q6','q7','q8'].forEach(clickFirst);
+      ['rom1','rom2','rom3','rom4'].forEach(clickFirst);
+      ['t1','t2'].forEach(clickNone);
+      ['t3a','t3b','t4'].forEach(clickFirst);
+    };
+    document.body.appendChild(btn);
   }
 </script>
 </body>
