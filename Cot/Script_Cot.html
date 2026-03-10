@@ -148,7 +148,7 @@
   .progress-track {
     flex: 1;
     height: 8px;
-    background: rgba(255,255,255,0.7);
+    background: rgba(255,255,255,0.1);
     border-radius: 4px;
     overflow: hidden;
   }
@@ -546,6 +546,12 @@
     .carousel .test-images { display: flex; overflow-x: auto; gap: 8px; }
     .carousel .test-img-wrap { display: block; width: auto; }
     .carousel .test-img-wrap.carousel-active img { width: auto; }
+    .carousel .test-images:has(.test-img-wrap:nth-child(3)) .test-img-wrap img {
+      height: 260px;
+    }
+    .carousel .test-images:has(.test-img-wrap:nth-child(4)) .test-img-wrap img {
+      height: 200px;
+    }
   }
 
 
@@ -755,7 +761,7 @@
 <!-- CONTENT -->
 <div class="container">
 
-  <!-- ─── ANAMNEZĂ GENERALĂ ─── -->
+<!-- ─── ANAMNEZĂ GENERALĂ ─── -->
   <div class="section-label">
     <div class="section-label-line"></div>
     <div class="section-label-text">Anamneză Generală</div>
@@ -765,7 +771,7 @@
   <!-- Sub I -->
   <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
     <div class="sub-section-label-line"></div>
-    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Despre Problema Actuală</span>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">I — Despre Problema Actuală</span>
     <div class="sub-section-label-line"></div>
   </div>
 
@@ -809,7 +815,7 @@
   <!-- Sub II -->
   <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
     <div class="sub-section-label-line"></div>
-    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Caracterul Durerii</span>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">II — Caracterul Durerii</span>
     <div class="sub-section-label-line"></div>
   </div>
 
@@ -866,7 +872,7 @@
   <!-- Sub III -->
   <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
     <div class="sub-section-label-line"></div>
-    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Impact Funcțional</span>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">III — Impact Funcțional</span>
     <div class="sub-section-label-line"></div>
   </div>
 
@@ -900,7 +906,7 @@
   <!-- Sub IV -->
   <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
     <div class="sub-section-label-line"></div>
-    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Semnale de Alarmă</span>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">IV — Semnale de Alarmă</span>
     <div class="sub-section-label-line"></div>
   </div>
 
@@ -936,7 +942,7 @@
   <!-- Sub V -->
   <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
     <div class="sub-section-label-line"></div>
-    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Tratament Anterior</span>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">V — Tratament Anterior</span>
     <div class="sub-section-label-line"></div>
   </div>
 
@@ -970,7 +976,7 @@
   <!-- Sub VI -->
   <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
     <div class="sub-section-label-line"></div>
-    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Context Medical</span>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">VI — Context Medical</span>
     <div class="sub-section-label-line"></div>
   </div>
 
@@ -1003,7 +1009,7 @@
   <!-- Sub VII -->
   <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
     <div class="sub-section-label-line"></div>
-    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Stil de Viață</span>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">VII — Stil de Viață</span>
     <div class="sub-section-label-line"></div>
   </div>
 
@@ -1057,7 +1063,7 @@
   <!-- Sub VIII -->
   <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
     <div class="sub-section-label-line"></div>
-    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Obiectivul Tău</span>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">VIII — Obiectivul Tău</span>
     <div class="sub-section-label-line"></div>
   </div>
 
@@ -1072,6 +1078,9 @@
       <label class="option" onclick="sel(this,'a20')"><input type="radio" name="a20"><div class="option-radio"></div><span class="option-label">Reducerea durerii, chiar dacă rămân unele limitări</span></label>
     </div>
   </div>
+
+
+
   <div class="section-label">
     <div class="section-label-line"></div>
     <div class="section-label-text">Întrebări Specifice</div>
@@ -1162,7 +1171,6 @@
 
   <div class="section-label">
     <div class="section-label-line"></div>
-    <span class="section-label-num">02</span>
     <div class="section-label-text">Teste Specifice</div>
     <div class="section-label-line"></div>
   </div>
@@ -1175,9 +1183,9 @@
     </div>
     <div class="test-body">
       <div class="test-images">
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image9.jpg" alt="Poziția 1 — start"><div class="img-label">Poziția 1 — start</div></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image2.jpg" alt="Poziția 2 — flexie"><div class="img-label">Poziția 2 — flexie</div></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image23.jpg" alt="Poziția 3 — extensie"><div class="img-label">Poziția 3 — extensie</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image9.jpg" alt="Poziția 1 — start"></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image2.jpg" alt="Poziția 2 — flexie"></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image23.jpg" alt="Poziția 3 — extensie"></div>
       </div>
       <div class="instruction-steps">
         Pornești din poziția relaxată cu cotul îndoit la 90°, ca în imaginea 1.<br>
@@ -1208,9 +1216,9 @@
     </div>
     <div class="test-body">
       <div class="test-images">
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image14.jpg" alt="Poziția 1 — neutral"><div class="img-label">Poziția 1 — neutral</div></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image4.jpg" alt="Poziția 2 — pronație"><div class="img-label">Poziția 2 — pronație</div></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image8.jpg" alt="Poziția 3 — supinație"><div class="img-label">Poziția 3 — supinație</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image14.jpg" alt="Poziția 1 — neutral"></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image4.jpg" alt="Poziția 2 — pronație"></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image8.jpg" alt="Poziția 3 — supinație"></div>
       </div>
       <div class="instruction-steps">
         Pornești din poziția 1: brațul pe lângă corp, cotul la 90°, palma ca și cum dai mâna (neutru).<br>
@@ -1242,8 +1250,8 @@
     </div>
     <div class="test-body">
       <div class="test-images">
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image1.jpg" alt="Față cot"><div class="img-label">Față cot</div></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image16.jpg" alt="Spate cot"><div class="img-label">Spate cot</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image1.jpg" alt="Față cot"></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image16.jpg" alt="Spate cot"></div>
       </div>
       <div class="instruction-steps">
         Privește imaginile. Apasă cu degetele pe fiecare dintre zonele marcate și gândește-te care reproduce cel mai bine durerea ta obișnuită.
@@ -1266,9 +1274,9 @@
     </div>
     <div class="test-body">
       <div class="test-images">
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image11.jpg" alt="Poziția 1 — start"><div class="img-label">Poziția 1 — start</div></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image13.jpg" alt="Poziția 2 — rotație"><div class="img-label">Poziția 2 — rotație</div></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image12.jpg" alt="Poziția 3 — rezistență"><div class="img-label">Poziția 3 — rezistență</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image11.jpg" alt="Poziția 1 — start"></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image13.jpg" alt="Poziția 2 — rotație"></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image12.jpg" alt="Poziția 3 — rezistență"></div>
       </div>
       <div class="instruction-steps">
         Stai așezat pe scaun și sprijină cotul afectat pe o suprafață stabilă, cu cotul îndoit (aprox. 60°) și palma spre tine (imaginea 1).<br>
@@ -1292,7 +1300,7 @@
     </div>
     <div class="test-body">
       <div class="test-images">
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image10.jpg" alt="Poziția testului"><div class="img-label">Poziția testului</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image10.jpg" alt="Poziția testului"></div>
       </div>
       <div class="instruction-steps">
         Stai așezat pe scaun, cu mâna afectată sprijinită pe marginea scaunului sau pe brațul scaunului, palma în jos și încheietura pumnului orientată în față, cotul ușor îndoit.<br>
@@ -1315,9 +1323,9 @@
     </div>
     <div class="test-body">
       <div class="test-images">
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image15.jpg" alt="Poziția 1 — start"><div class="img-label">Poziția 1 — start</div></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image17.jpg" alt="Poziția 2 — extensie"><div class="img-label">Poziția 2 — extensie</div></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image18.jpg" alt="Poziția 3 — flexie"><div class="img-label">Poziția 3 — flexie</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image15.jpg" alt="Poziția 1 — start"></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image17.jpg" alt="Poziția 2 — extensie"></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image18.jpg" alt="Poziția 3 — flexie"></div>
       </div>
       <div class="instruction-steps">
         Întinde-te pe pat sau pe o suprafață plană, pe spate, cu brațul afectat ridicat, cotul îndoit aproximativ 90° (imaginea 1).<br>
@@ -1342,9 +1350,9 @@
     </div>
     <div class="test-body">
       <div class="test-images">
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image19.jpg" alt="Poziția 1 — start"><div class="img-label">Poziția 1 — start</div></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image20.jpg" alt="Poziția 2 — ridicare"><div class="img-label">Poziția 2 — ridicare</div></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image22.jpg" alt="Poziția 3 — rezistență"><div class="img-label">Poziția 3 — rezistență</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image19.jpg" alt="Poziția 1 — start"></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image20.jpg" alt="Poziția 2 — ridicare"></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image22.jpg" alt="Poziția 3 — rezistență"></div>
       </div>
       <div class="instruction-steps">
         Stai așezat pe scaun și sprijină antebrațul afectat pe brațul scaunului sau pe o suprafață stabilă, cu palma orientată în jos (imaginea 1).<br>
@@ -1367,7 +1375,7 @@
     </div>
     <div class="test-body">
       <div class="test-images">
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image21.jpg" alt="Zona de palpare"><div class="img-label">Zona de palpare</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image21.jpg" alt="Zona de palpare"></div>
       </div>
       <div class="instruction-steps">
         Ține cotul afectat ușor îndoit, cu degetul mare orientat în sus.<br>
@@ -1390,8 +1398,8 @@
     </div>
     <div class="test-body">
       <div class="test-images">
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image24.jpg" alt="Zona de tapotare"><div class="img-label">Zona de tapotare</div></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image3.jpg" alt="Traiect simptome"><div class="img-label">Traiect simptome</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image24.jpg" alt="Zona de tapotare"></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image3.jpg" alt="Traiect simptome"></div>
       </div>
       <div class="instruction-steps">
         Ține cotul afectat ușor îndoit, cu palma orientată în sus.<br>
@@ -1414,9 +1422,9 @@
     </div>
     <div class="test-body">
       <div class="test-images">
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image5.jpg" alt="Poziția 1 — dat noroc"><div class="img-label">Poziția 1 — dat noroc</div></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image6.jpg" alt="Poziția 2 — rotație supinație"><div class="img-label">Poziția 2 — rotație supinație</div></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image7.jpg" alt="Poziția 3 — rotație pronație"><div class="img-label">Poziția 3 — rotație pronație</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image5.jpg" alt="Poziția 1 — dat noroc"></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image6.jpg" alt="Poziția 2 — rotație supinație"></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Cot/images/image7.jpg" alt="Poziția 3 — rotație pronație"></div>
       </div>
       <div class="instruction-steps">
         Stai așezat pe scaun. Întinde mâna afectată înainte și strânge mâna unui ajutor, ca într-un salut, palma orientată în jos (imaginea 1).<br>
@@ -1435,6 +1443,7 @@
       </div>
     </div>
   </div>
+
 
   <!-- SUBMIT -->
   <div class="submit-area">
@@ -1458,15 +1467,11 @@
 <!-- TOAST -->
 <div class="toast" id="toast">
   <div class="toast-icon" id="toastIcon">✓</div>
-  <span id="toastMsg">JSON generat cu succes!</span>
+  <span id="toastMsg">Răspunsuri trimise!</span>
 </div>
 
 <script>
   const answered = new Set();
-
-  const SECTION_A = [['a1'],['a2'],['a3'],['a4'],['a5'],['a6'],['a7','a7-none'],['a8'],['a9','a9-none'],['a10','a10-none'],['a11','a11-none'],['a12','a12-none'],['a13'],['a14','a14-none'],['a15'],['a16'],['a17'],['a18'],['a19'],['a20']];
-  const SECTION_Q = Array.from(document.querySelectorAll('[id^="card-q"]')).map(el => [el.id.replace('card-','')]);
-  const SECTION_T = Array.from(document.querySelectorAll('[id^="card-t"]')).map(el => [el.id.replace('card-','')]);
 
   function sel(el, name) {
     const container = el.closest('.options, .test-body, .question-card');
@@ -1490,19 +1495,30 @@
     el.closest('.test-card').classList.remove('missing');
   }
 
+  function selMulti(el, name, max, event) {
+    if (event) event.preventDefault();
+    el.classList.toggle('selected');
+    const container = el.closest('.color-options');
+    const sel = container.querySelectorAll('.color-option.selected');
+    if (sel.length > max) sel[0].classList.remove('selected');
+    if (container.querySelectorAll('.color-option.selected').length > 0) {
+      answered.add(name);
+      el.closest('.test-card').classList.add('answered');
+      el.closest('.test-card').classList.remove('missing');
+    } else answered.delete(name);
+    updateProgress();
+  }
+
   function selCheck(el, name, noneName, event) {
-    if (event) event.stopPropagation();
-    const input = el.querySelector('input[type="checkbox"]');
-    input.checked = !input.checked;
-    el.classList.toggle('selected', input.checked);
-
-    const noneEl = document.querySelector(`input[name="${noneName}"]`);
-    if (noneEl) { noneEl.checked = false; noneEl.closest('.option')?.classList.remove('selected'); }
+    if (event) event.preventDefault();
+    const card = el.closest('.question-card');
+    el.classList.toggle('selected');
+    card.querySelectorAll(`input[name="${noneName}"]`).forEach(inp =>
+      inp.closest('.option')?.classList.remove('selected'));
     answered.delete(noneName);
-
-    const card = el.closest('.question-card, .test-card');
-    const anyChecked = card.querySelectorAll(`input[name="${name}"]:checked`).length > 0;
-    if (anyChecked) {
+    const anySelected = [...card.querySelectorAll(`input[name="${name}"]`)]
+      .some(inp => inp.closest('.option.selected'));
+    if (anySelected) {
       answered.add(name);
       card.classList.add('answered'); card.classList.remove('missing');
     } else {
@@ -1513,40 +1529,43 @@
   }
 
   function selNone(el, name, checkName, event) {
-    if (event) event.stopPropagation();
-    const input = el.querySelector('input[type="radio"]');
-    input.checked = true;
-
-    const card = el.closest('.question-card, .test-card');
-    card.querySelectorAll(`input[name="${checkName}"]`).forEach(chk => {
-      chk.checked = false;
-      chk.closest('.option')?.classList.remove('selected');
-    });
+    if (event) event.preventDefault();
+    const card = el.closest('.question-card');
+    card.querySelectorAll(`input[name="${checkName}"]`).forEach(inp =>
+      inp.closest('.option')?.classList.remove('selected'));
     answered.delete(checkName);
-
-    card.querySelectorAll(`input[name="${name}"]`).forEach(r => r.closest('.option')?.classList.remove('selected'));
+    card.querySelectorAll(`input[name="${name}"]`).forEach(inp =>
+      inp.closest('.option')?.classList.remove('selected'));
     el.classList.add('selected');
-
     answered.add(name);
     card.classList.add('answered'); card.classList.remove('missing');
     updateProgress();
   }
 
+  function toggleA13(hide) {
+    const card = document.getElementById('card-a13');
+    card.style.display = hide ? 'none' : '';
+    if (hide) {
+      card.querySelectorAll('input[name="a13"]').forEach(inp => inp.closest('.option')?.classList.remove('selected'));
+      answered.delete('a13');
+      updateProgress();
+    }
+  }
+
+  const SECTION_A = [['a1'],['a2'],['a3'],['a4'],['a5'],['a6'],['a7','a7-none'],['a8'],['a9','a9-none'],['a10','a10-none'],['a11','a11-none'],['a12','a12-none'],['a13'],['a14','a14-none'],['a15'],['a16'],['a17'],['a18'],['a19'],['a20']];
+  const SECTION_Q = [['q1'],['q2'],['q3'],['q4'],['q5'],['q6'],['q7'],['q8']];
+  const SECTION_T = [['t1a'],['t1b'],['t2a'],['t2b'],['t3'],['t4'],['t5'],['t6'],['t7'],['t8']];
+
+  function countSec(groups) { return groups.filter(g => g.some(k => answered.has(k))).length; }
+
   function updateProgress() {
-    function countSec(groups) { return groups.filter(g => g.some(k => answered.has(k))).length; }
-
-    const groupsA = answered.has('a12-none')
-      ? SECTION_A.filter(g => !g.includes('a13'))
-      : SECTION_A;
-
-    const pA = Math.round((countSec(groupsA) / groupsA.length) * 100) || 0;
-    const pQ = Math.round((countSec(SECTION_Q) / Math.max(SECTION_Q.length, 1)) * 100) || 0;
-    const pT = Math.round((countSec(SECTION_T) / Math.max(SECTION_T.length, 1)) * 100) || 0;
-
+    const groupsA = answered.has('a12-none') ? SECTION_A.filter(g => !g.includes('a13')) : SECTION_A;
+    const pA = Math.round(countSec(groupsA) / groupsA.length * 100);
+    const pQ = Math.round(countSec(SECTION_Q) / SECTION_Q.length * 100);
+    const pT = Math.round(countSec(SECTION_T) / SECTION_T.length * 100);
     document.getElementById('progressFillA').style.width = pA + '%';
     document.getElementById('progressFillQ').style.width = pQ + '%';
     document.getElementById('progressFillT').style.width = pT + '%';
-
     document.getElementById('progressPctA').textContent = pA + '%';
     document.getElementById('progressPctQ').textContent = pQ + '%';
     document.getElementById('progressPctT').textContent = pT + '%';
@@ -1578,7 +1597,6 @@
     }
 
   function generateJSON() {
-    // Validare câmpuri obligatorii
     document.querySelectorAll('.missing').forEach(el => el.classList.remove('missing'));
     const MANDATORY = [
       { key: 'a1',  cardId: 'card-a1'  }, { key: 'a2',  cardId: 'card-a2'  },
@@ -1592,35 +1610,60 @@
       { key: 'a12', cardId: 'card-a12', altKey: 'a12-none' },
       { key: 'a13', cardId: 'card-a13' },
       { key: 'a14', cardId: 'card-a14', altKey: 'a14-none' },
-      { key: 'a15', cardId: 'card-a15' },
-      { key: 'a16', cardId: 'card-a16' }, { key: 'a17', cardId: 'card-a17' },
-      { key: 'a18', cardId: 'card-a18' }, { key: 'a19', cardId: 'card-a19' },
-      { key: 'a20', cardId: 'card-a20' },
+      { key: 'a15', cardId: 'card-a15' }, { key: 'a16', cardId: 'card-a16' },
+      { key: 'a17', cardId: 'card-a17' }, { key: 'a18', cardId: 'card-a18' },
+      { key: 'a19', cardId: 'card-a19' }, { key: 'a20', cardId: 'card-a20' },
       { key: 'q1', cardId: 'card-q1' }, { key: 'q2', cardId: 'card-q2' },
       { key: 'q3', cardId: 'card-q3' }, { key: 'q4', cardId: 'card-q4' },
       { key: 'q5', cardId: 'card-q5' }, { key: 'q6', cardId: 'card-q6' },
       { key: 'q7', cardId: 'card-q7' }, { key: 'q8', cardId: 'card-q8' },
       { key: 't1a', cardId: 'card-t1' }, { key: 't1b', cardId: 'card-t1' },
       { key: 't2a', cardId: 'card-t2' }, { key: 't2b', cardId: 'card-t2' },
-      { key: 't3', cardId: 'card-t3' },
-      { key: 't4', cardId: 'card-t4' }, { key: 't5', cardId: 'card-t5' },
-      { key: 't6', cardId: 'card-t6' }, { key: 't7', cardId: 'card-t7' },
-      { key: 't8', cardId: 'card-t8' },
+      { key: 't3', cardId: 'card-t3' }, { key: 't4', cardId: 'card-t4' },
+      { key: 't5', cardId: 'card-t5' }, { key: 't6', cardId: 'card-t6' },
+      { key: 't7', cardId: 'card-t7' }, { key: 't8', cardId: 'card-t8' },
     ];
     const missing = MANDATORY.filter(m => {
       if (m.key === 'a13' && answered.has('a12-none')) return false;
       return m.altKey ? (!answered.has(m.key) && !answered.has(m.altKey)) : !answered.has(m.key);
     });
-    // Deduplicate missing cards
-    const missingCards = [...new Map(missing.map(m => [m.cardId, m])).values()];
     if (missing.length > 0) {
-      missingCards.forEach(m => document.getElementById(m.cardId)?.classList.add('missing'));
-      document.getElementById(missingCards[0].cardId)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      missing.forEach(m => document.getElementById(m.cardId)?.classList.add('missing'));
+      document.getElementById(missing[0].cardId)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
       showToast(`${missing.length} ${missing.length === 1 ? 'întrebare' : 'întrebări'} fără răspuns`, true);
       return;
     }
 
     const COLORS = { green: 'Verde', yellow: 'Galben', red: 'Roșu', blue: 'Albastru' };
+
+    function multiAnsColor(name, max) {
+      const results = [];
+      document.querySelectorAll(`input[name="${name}"]`).forEach(inp => {
+        const optEl = inp.closest('.color-option.selected, .option.selected');
+        if (optEl) {
+          const swatch = optEl.querySelector('.color-swatch');
+          if (swatch) {
+            const cls = [...swatch.classList].find(c => c !== 'color-swatch');
+            results.push(COLORS[cls] || cls);
+          } else {
+            const label = optEl.querySelector('.option-label, .color-option-label');
+            if (label) results.push(label.textContent.trim());
+          }
+        }
+      });
+      const noneInp = document.querySelector(`input[name="${name}-none"]`);
+      if (noneInp?.closest('.option.selected') && !results.length) {
+        const label = noneInp.closest('.option').querySelector('.option-label');
+        if (label) results.push(label.textContent.trim());
+      }
+      return results.length ? results.join(', ') : '—';
+    }
+
+    function normRo(str) {
+      return str
+        .replace(/[ăĂ]/g, 'a').replace(/[âÂ]/g, 'a').replace(/[îÎ]/g, 'i')
+        .replace(/[șşȘŞ]/g, 's').replace(/[țţȚŢ]/g, 't');
+    }
 
     function ans(n) {
       const inputs = document.querySelectorAll(`input[name="${n}"]`);
@@ -1636,65 +1679,7 @@
       return '—';
     }
 
-    function ansMeta(n) {
-      const inputs = [...document.querySelectorAll(`input[name="${n}"]`)];
-      for (let i = 0; i < inputs.length; i++) {
-        const inp = inputs[i];
-        const parent = inp.closest('.option.selected, .color-option.selected');
-        if (parent) return { raw: ans(n), idx: i + 1 };
-      }
-      return { raw: '—', idx: 0 };
-    }
-
-    function multiAnsColor(name, maxSel) {
-      const selected = [];
-      document.querySelectorAll(`input[name="${name}"]`).forEach(inp => {
-        if (inp.closest('.color-option.selected, .option.selected')) {
-          const label = inp.closest('label')?.querySelector('.color-option-label, .option-label')?.textContent?.trim();
-          if (label) selected.push(label);
-        }
-      });
-      const none = document.querySelector(`input[name="${name}-none"]`);
-      if (none?.closest('.option.selected')) {
-        const lbl = none.closest('label')?.querySelector('.option-label')?.textContent?.trim();
-        if (lbl) return lbl;
-      }
-      return (maxSel ? selected.slice(0, maxSel) : selected).join(', ') || '—';
-    }
-
-    const CLINICAL = {
-      yesNo: { 'Da': 'Pozitiv', 'Nu': 'Negativ', 'Nu știu': 'Incert', 'Nu sunt sigur': 'Incert' },
-      colors: { 'Verde': 'Normal', 'Albastru': 'Usor modificat', 'Galben': 'Moderat', 'Roșu': 'Sever', 'Portocaliu': 'Accentuat', 'Mov': 'Specific' }
-    };
-
-    function clinFromRaw(key, raw) {
-      if (raw === '—') return raw;
-      if (CLINICAL.yesNo[raw]) return CLINICAL.yesNo[raw];
-      if (CLINICAL.colors[raw]) return CLINICAL.colors[raw];
-      if (/^(Verde|Albastru|Galben|Roșu|Portocaliu|Mov)/.test(raw)) {
-        const c = raw.match(/^(Verde|Albastru|Galben|Roșu|Portocaliu|Mov)/)[1];
-        return CLINICAL.colors[c] || c;
-      }
-      const short = normRo(raw).replace(/[^a-zA-Z0-9 -]/g, ' ').replace(/\s+/g, ' ').trim().split(' ').slice(0,4).join(' ');
-      return short || `${key}-1`;
-    }
-
-
-    function multiAnsCheck(checkName, noneName) {
-      const results = [];
-      document.querySelectorAll(`input[name="${checkName}"]`).forEach(inp => {
-        if (inp.closest('.option.selected')) {
-          const span = inp.closest('.option').querySelector('.option-label');
-          if (span) results.push(span.textContent.trim());
-        }
-      });
-      if (results.length) return results.join(', ');
-      const noneInp = document.querySelector(`input[name="${noneName}"]`);
-      if (noneInp?.closest('.option.selected'))
-        return noneInp.closest('.option').querySelector('.option-label')?.textContent.trim() || '—';
-      return '—';
-    }
-
+    // ── ANAMNEZA ──────────────────────────────────────────────────────────────
     const ANAMNEZA_Q = [
       { key: 'a1',  label: 'Durata simptome' },
       { key: 'a2',  label: 'Debut' },
@@ -1702,14 +1687,14 @@
       { key: 'a4',  label: 'Intensitate durere' },
       { key: 'a5',  label: 'Tipul durerii' },
       { key: 'a6',  label: 'Redoare matinala' },
-      { key: 'a7',  label: 'Senzatii asociate', multi: true, noneName: 'a7-none' },
+      { key: 'a7',  label: 'Senzatii asociate',   multi: true, noneName: 'a7-none' },
       { key: 'a8',  label: 'Impact functional' },
       { key: 'a9',  label: 'Activitati afectate', multi: true, noneName: 'a9-none' },
-      { key: 'a10', label: 'Semne de alarma', multi: true, noneName: 'a10-none' },
-      { key: 'a11', label: 'Evenimente recente', multi: true, noneName: 'a11-none' },
-      { key: 'a12', label: 'Tratament anterior', multi: true, noneName: 'a12-none' },
+      { key: 'a10', label: 'Semne de alarma',     multi: true, noneName: 'a10-none' },
+      { key: 'a11', label: 'Evenimente recente',  multi: true, noneName: 'a11-none' },
+      { key: 'a12', label: 'Tratament anterior',  multi: true, noneName: 'a12-none' },
       { key: 'a13', label: 'Eficienta tratament' },
-      { key: 'a14', label: 'Comorbiditati', multi: true, noneName: 'a14-none' },
+      { key: 'a14', label: 'Comorbiditati',       multi: true, noneName: 'a14-none' },
       { key: 'a15', label: 'Chirurgie anterioara' },
       { key: 'a16', label: 'Nivel activitate' },
       { key: 'a17', label: 'Activitate profesionala' },
@@ -1717,19 +1702,103 @@
       { key: 'a19', label: 'IMC' },
       { key: 'a20', label: 'Obiectiv pacient' },
     ];
+    const EXPORT_Q = {
+      a1:'Durata simpt.', a2:'Debut', a3:'Evolutie', a4:'Intens. durere',
+      a5:'Tip durere', a6:'Redoare mat.', a7:'Senz. asociate', a8:'Impact funct.',
+      a9:'Act. afectate', a10:'Semne alarma', a11:'Evenim. recente', a12:'Tr. anterior',
+      a13:'Eficienta tr.', a14:'Comorbiditati', a15:'Chir. anterioara', a16:'Nivel activ.',
+      a17:'Act. profesionala', a18:'Fumat', a19:'IMC', a20:'Obiectiv',
+    };
+
+    const EXPORT_A = {
+      a1: { 'Sub 2 săptămâni':'<2 sapt.', '2–6 săptămâni':'2–6 sapt.',
+            '6 săptămâni – 3 luni':'6 sapt.–3 luni', '3–12 luni':'3–12 luni', 'Peste 1 an':'>1 an' },
+      a2: { 'Brusc, după un eveniment clar (cădere, accident, mișcare bruscă)':'Brusc după traumatism',
+            'După efort repetitiv / suprasolicitare':'Suprasolicitare',
+            'Treptat, fără un motiv clar':'Debut progresiv',
+            'Am mai avut episoade similare în trecut':'Episoade recurente' },
+      a3: { 'Se ameliorează treptat':'Ameliorare treptată', 'Este stabilă':'Stabil',
+            'Se agravează lent':'Agravare lentă',
+            'Se agravează rapid în ultimele săptămâni':'Agravare rapidă' },
+      a4: { '0–2 (ușoară)':'0–2 ușoară', '3–5 (moderată)':'3–5 moderată',
+            '6–8 (mare)':'6–8 severă', '9–10 (foarte severă)':'9–10 foarte severă' },
+      a5: { 'Doar la mișcare / efort':'Doar la mișcare',
+            'Și la mișcare, și în repaus':'Mișcare + repaus',
+            'Constantă, inclusiv noaptea':'Durere constantă',
+            'Mă trezește frecvent din somn':'Durere nocturnă' },
+      a6: { 'Fara redoare matinala':'Fără redoare', 'Rigidă sub 30 minute':'Redoare <30 min',
+            'Rigidă peste 30–60 minute':'Redoare 30–60 min', 'Rigidă peste 1 oră':'Redoare >1h' },
+      a7: { 'Amorțeală':'Amorțeală', 'Furnicături':'Furnicături', 'Slăbiciune clară':'Slăbiciune',
+            'Fara amorteli, furnicaturi sau slabiciune':'Fără simptome neurologice' },
+      a8: { 'Pot face aproape toate activitățile normale':'Limitări minime',
+            'Evit anumite mișcări / activități':'Evit anumite activități',
+            'Mi-am redus semnificativ activitatea':'Activitate redusă',
+            'Nu pot face activități uzuale (mers, urcat scări, ridicat obiecte)':'Activități uzuale imposibile' },
+      a9: { 'Somnul':'Somnul', 'Mersul':'Mersul', 'Munca':'Munca', 'Sportul':'Sportul',
+            'Fara impact functional semnificativ':'Fără impact semnificativ' },
+      a10: { 'Scădere în greutate neintenționate':'Scădere în greutate', 'Febră inexplicabilă':'Febră',
+             'Transpirații nocturne persistente':'Transpirații nocturne',
+             'Istoric personal de cancer':'Istoric cancer',
+             'Fara semne de alarma':'Fără semne de alarmă' },
+      a11: { 'Traumatism major (accident, cădere serioasă)':'Traumatism major',
+             'Slăbiciune progresivă accentuată':'Slăbiciune progresivă',
+             'Probleme noi cu controlul urinei sau scaunului':'Tulburări sfincteriene',
+             'Fara evenimente recente relevante':'Fără evenimente recente' },
+      a12: { 'Antiinflamatoare / analgezice':'Antiinflamatoare',
+             'Fizioterapie / kinetoterapie':'Fizioterapie',
+             'Infiltrații':'Infiltrații', 'Repaus':'Repaus',
+             'Fara tratament anterior':'Fără tratament anterior' },
+      a13: { 'Clar eficient':'Eficient', 'Parțial eficient':'Parțial eficient',
+             'Fără efect':'Fără efect', 'Nu pot aprecia':'Nu poate aprecia' },
+      a14: { 'Boală reumatologică':'Boală reumatologică', 'Diabet':'Diabet',
+             'Osteoporoză':'Osteoporoză', 'Afecțiune neurologică':'Afecțiune neurologică',
+             'Boală oncologică în trecut':'Istoric oncologic',
+             'Fara comorbiditati relevante':'Fără comorbidități' },
+      a15: { 'Da':'Da', 'Nu':'Nu' },
+      a16: { 'Predominant sedentar':'Sedentar',
+             'Activ moderat (mers, activitate fizică ușoară)':'Activitate moderată',
+             'Activ regulat (sport 2–3 ori / săptămână)':'Sport regulat',
+             'Foarte activ / sport intensiv':'Foarte activ' },
+      a17: { 'Stau mai mult pe scaun':'Muncă sedentară', 'Stau mult în picioare':'Muncă în picioare',
+             'Ridic greutăți frecvent':'Ridic greutăți', 'Activitate mixtă':'Activitate mixtă' },
+      a18: { 'Nu':'Nefumător', 'Ocazional':'Fumător ocazional', 'Zilnic':'Fumător zilnic' },
+      a19: { 'Normoponderal':'Normoponderal', 'Ușor supraponderal':'Supraponderal',
+             'Obez':'Obez', 'Nu știu / prefer să nu răspund':'IMC necunoscut' },
+      a20: { 'Activități zilnice fără limitare':'Activități zilnice fără durere',
+             'Revenirea la sport':'Revenire la sport',
+             'Revenirea la muncă normal':'Revenire la muncă',
+             'Reducerea durerii, chiar dacă rămân unele limitări':'Reducerea durerii' },
+    };
+
+    function exportQuestionLabel(qId, label) { return EXPORT_Q[qId] || label; }
+    function exportAnswer(qId, label) { return EXPORT_A[qId]?.[label] || label; }
+    function exportMultiAnswer(qId, checkName, noneName) {
+      const selectedLabels = [];
+      document.querySelectorAll(`input[name="${checkName}"]`).forEach(inp => {
+        if (inp.closest('.option.selected')) {
+          const span = inp.closest('.option').querySelector('.option-label');
+          if (span) selectedLabels.push(exportAnswer(qId, span.textContent.trim()));
+        }
+      });
+      if (selectedLabels.length) return selectedLabels.join(', ');
+      const noneInp = document.querySelector(`input[name="${noneName}"]`);
+      if (noneInp?.closest('.option.selected')) {
+        return exportAnswer(qId, noneInp.closest('.option').querySelector('.option-label')?.textContent.trim() || '—');
+      }
+      return '—';
+    }
 
     let mdAnamneza = '';
     ANAMNEZA_Q.forEach(q => {
       if (q.key === 'a13' && answered.has('a12-none')) return;
-      const questionText = document.querySelector(`#card-${q.key} .question-text`)?.childNodes[0]?.textContent?.trim() || q.label;
-      const rawAnswer = q.multi ? multiAnsCheck(q.key, q.noneName) : ans(q.key);
-      mdAnamneza += `**Q:** ${normRo(questionText)}  
-`;
-      mdAnamneza += `**A:** ${normRo(rawAnswer)}  
-
-`;
+      const questionText = exportQuestionLabel(q.key, q.label);
+      const rawAnswer = q.multi ? exportMultiAnswer(q.key, q.key, q.noneName) : ans(q.key);
+      const answerText = q.multi ? rawAnswer : exportAnswer(q.key, rawAnswer);
+      mdAnamneza += `**Q:** ${normRo(questionText)}  \n`;
+      mdAnamneza += `**A:** ${normRo(answerText)}  \n\n`;
     });
 
+    // ── ÎNTREBĂRI SPECIFICE ──────────────────────────────────────────────────
     const QUESTIONS_Q = [
       { key: 'q1', label: 'Când te doare cotul cel mai mult?' },
       { key: 'q2', label: 'Te doare cotul noaptea?' },
@@ -1737,97 +1806,173 @@
       { key: 'q4', label: 'Ai amorțeli, furnicături sau senzație de curent pe braț sau în mână?' },
       { key: 'q5', label: 'Simți că articulația cotului este mai slabă în general, nu doar dureroasă?' },
       { key: 'q6', label: 'Ți-a sărit vreodată cotul din loc și a fost pus la loc într-o cameră de gardă?' },
-      { key: 'q7', label: 'Ai senzația că articulația cotului „iese" sau „alunecă" din loc la mișcări specifice sau chiar și banale?' },
-      { key: 'q8', label: 'Te consideri o persoană „foarte flexibilă" sau „hipermobilă"?' },
+      { key: 'q7', label: 'Ai senzația că articulația cotului iese sau alunecă din loc la mișcări specifice?' },
+      { key: 'q8', label: 'Te consideri o persoană foarte flexibilă sau hipermobilă?' },
     ];
 
     let mdIntrebari = '';
-    QUESTIONS_Q.forEach((q) => {
+    QUESTIONS_Q.forEach(q => {
       mdIntrebari += `**Q:** ${normRo(q.label)}  \n`;
       mdIntrebari += `**A:** ${normRo(ans(q.key))}  \n\n`;
     });
 
+    // ── TESTE ────────────────────────────────────────────────────────────────
+    const CLINICAL = {
+      t1a: { 'Verde':'Flexie 130 grade normal', 'Galben':'Flexie 110 grade deficit moderat',
+             'Roșu':'Flexie 90 grade deficit sever' },
+      t1b: { 'Verde':'Extensie 180 grade maxim', 'Albastru':'Extensie 150 grade redoare tipica',
+             'Galben':'Extensie 110 grade redoare moderata', 'Roșu':'Extensie 90 grade redoare severa' },
+      t2a: { 'Verde':'Pronatie completa', 'Albastru':'Pronatie partial limitata',
+             'Galben':'Pronatie sever limitata', 'Roșu':'Pronatie absenta' },
+      t2b: { 'Verde':'Supinatie completa', 'Albastru':'Supinatie partial limitata',
+             'Galben':'Supinatie sever limitata', 'Roșu':'Supinatie absenta' },
+      t3:  { 'Verde':'Fosa antecubitala', 'Albastru':'Olecran enteza tricipitala',
+             'Galben':'Cot medial', 'Roșu':'Cot lateral' },
+      t4:  { 'Da':'Milking maneuver pozitiv', 'Nu':'Milking maneuver negativ' },
+      t5:  { 'Da':'Instabilitate postero-laterala pozitiva', 'Nu':'Instabilitate postero-laterala negativa' },
+      t6:  { 'Mai ușoară / mai stabilă':'ROM gravitatie mai usoara',
+             'La fel':'ROM gravitatie identic', 'Mai dificilă / mai instabilă':'ROM gravitatie mai dificila' },
+      t7:  { 'Da':'Cozen pozitiv', 'Nu':'Cozen negativ' },
+      t8:  { 'Da':'Biceps hook test negativ tendon intact', 'Nu':'Biceps hook test pozitiv tendon rupt' },
+      t9:  { 'Da':'Tinel pozitiv ulnar', 'Nu':'Tinel negativ ulnar' },
+      t10a:{ 'Da':'Pronator tunnel pozitiv', 'Nu':'Pronator tunnel negativ' },
+      t10b:{ 'Da':'Supinator tunnel pozitiv', 'Nu':'Supinator tunnel negativ' },
+    };
+
     const TESTS = [
-      { key: 't1a', label: 'T01 — Flexie și extensie cot', q: 'Cât de mult poți îndoi cotul? (Poziția 2)' },
-      { key: 't1b', label: 'T01 — Flexie și extensie cot', q: 'Cât de mult poți îndrepta cotul? (Poziția 3)' },
-      { key: 't2a', label: 'T02 — Rotație antebraț', q: 'Cât de mult poți roti palma în jos? (Poziția 2)' },
-      { key: 't2b', label: 'T02 — Rotație antebraț', q: 'Cât de mult poți roti palma în sus? (Poziția 3)' },
-      { key: 't3', label: 'T03 — Localizarea durerii', q: 'Care culoare corespunde zonei care doare cel mai mult?' },
-      { key: 't4', label: 'T04 — Stress valgus', q: 'Apare durere și/sau senzație de instabilitate în zona marcată cu bulina galbenă?' },
-      { key: 't5', label: 'T05 — Testul de impingement', q: 'Apare durere și/sau senzație de instabilitate la nivelul cotului?' },
-      { key: 't6', label: 'T06 — Flexie/extensie în decubit', q: 'Comparativ cu mișcarea din poziție verticală, această mișcare ți se pare:' },
-      { key: 't7', label: 'T07 — Extensie rezistată', q: 'Apare durere la nivelul părții externe a cotului (zona marcată cu punctul roșu)?' },
-      { key: 't8', label: 'T08 — Palparea cordonului bicipital', q: 'Simți clar sub deget o structură fermă, ca o coardă, în zona din fața cotului?' },
+      { key: 't1a', clinName: 'Flexie cot' },
+      { key: 't1b', clinName: 'Extensie cot' },
+      { key: 't2a', clinName: 'Pronatie antebrat' },
+      { key: 't2b', clinName: 'Supinatie antebrat' },
+      { key: 't3',  clinName: 'Harta durere cot' },
+      { key: 't4',  clinName: 'Modified milking maneuver' },
+      { key: 't5',  clinName: 'Instabilitate rotatorie posterolaterala' },
+      { key: 't6',  clinName: 'ROM elbow gravity assisted' },
+      { key: 't7',  clinName: 'Test Cozen' },
+      { key: 't8',  clinName: 'Biceps hook test' },
     ];
 
     let mdTeste = '';
     TESTS.forEach(t => {
-      mdTeste += `**Q:** ${t.q}  \n`;
-      const raw = t.multi ? multiAnsColor(t.key, t.maxSel || 2) : ansMeta(t.key).raw;
-      const mapped = raw.split(', ').map(v => clinFromRaw(t.key, v)).join(', ');
+      mdTeste += `**Q:** ${normRo(t.clinName)}  \n`;
+      const raw = ans(t.key);
+      const mapped = raw.split(', ').map(v => {
+        const v2 = v.trim();
+        if (CLINICAL[t.key]?.[v2]) return CLINICAL[t.key][v2];
+        if (CLINICAL[t.key]) {
+          if (v2.startsWith('Da')) return CLINICAL[t.key]['Da'] || v2;
+          if (v2.startsWith('Nu')) return CLINICAL[t.key]['Nu'] || v2;
+        }
+        return v2;
+      }).join(', ');
       mdTeste += `**A:** ${normRo(mapped)}  \n\n`;
     });
 
+    // Optional tests
     if (answered.has('t9')) {
       mdTeste += `**Q:** Test Tinel cot  \n`;
-      mdTeste += `**A:** ${normRo(clinFromRaw('t9', ans('t9')))}  \n\n`;
+      mdTeste += `**A:** ${normRo(CLINICAL.t9[ans('t9')] || ans('t9'))}  \n\n`;
     }
-    if (answered.has('t10a')) {
-      mdTeste += `**Q:** Test pronatie rezistata - pozitia 2  \n`;
-      mdTeste += `**A:** ${normRo(clinFromRaw('t10a', ans('t10a')))}  \n\n`;
+    if (answered.has('t10a') || answered.has('t10b')) {
+      mdTeste += `**Q:** Pronator tunnel test  \n`;
+      mdTeste += `**A:** ${normRo(CLINICAL.t10a?.[ans('t10a')] || ans('t10a'))}  \n\n`;
+      mdTeste += `**Q:** Supinator tunnel test  \n`;
+      mdTeste += `**A:** ${normRo(CLINICAL.t10b?.[ans('t10b')] || ans('t10b'))}  \n\n`;
     }
-    if (answered.has('t10b')) {
-      mdTeste += `**Q:** Test pronatie rezistata - pozitia 3  \n`;
-      mdTeste += `**A:** ${normRo(clinFromRaw('t10b', ans('t10b')))}  \n`;
-    }
-
-
-    function normalizeMarkdownQA(md) {
-      return md.split('\n').map(line => {
-        if (line.startsWith('**Q:** ')) return `**Q:** ${normRo(line.slice(7))}`;
-        if (line.startsWith('**A:** ')) return `**A:** ${normRo(line.slice(7))}`;
-        if (line.startsWith('A: ')) return `**A:** ${normRo(line.slice(3))}`;
-        return line;
-      }).join('\n');
-    }
-
-    mdAnamneza = normalizeMarkdownQA(mdAnamneza);
-    mdIntrebari = normalizeMarkdownQA(mdIntrebari);
-    mdTeste = normalizeMarkdownQA(mdTeste);
-
-    function clickFirst(name) {
-      const first = document.querySelector(`input[name="${name}"]`);
-      first?.closest('label')?.click();
-    }
-    window.movisAutofill = function () {
-      ['q1','q2','q3','q4','q5','q6','q7','q8','q9'].forEach(clickFirst);
-      ['t1','t2','t3','t4','t5','t6','t7','t8','t9','t10a','t10b','t1a','t1b','t2a','t2b','t8a','t8b','t9a','t9b','t9c'].forEach(clickFirst);
-    };
-
-
-    function normalizeMarkdownQA(md) {
-      return md.split('\n').map(line => {
-        if (line.startsWith('**Q:** ')) return `**Q:** ${normRo(line.slice(7))}`;
-        if (line.startsWith('**A:** ')) return `**A:** ${normRo(line.slice(7))}`;
-        if (line.startsWith('A: ')) return `A: ${normRo(line.slice(3))}`;
-        return line;
-      }).join('\n');
-    }
-
-    mdAnamneza = normalizeMarkdownQA(mdAnamneza);
-    mdIntrebari = normalizeMarkdownQA(mdIntrebari);
-    mdTeste = normalizeMarkdownQA(mdTeste);
 
     const sessionId = new URLSearchParams(window.location.search).get('session_id');
-
     let url = 'https://app.medicai.io/upload/movisplus?';
     if (sessionId) url += 'session_id=' + encodeURIComponent(sessionId) + '&';
     url += 'region=cot';
     url += '&chestionar_anamneza=' + encodeURIComponent(mdAnamneza.trim());
     url += '&chestionar_intrebari=' + encodeURIComponent(mdIntrebari.trim());
     url += '&chestionar_teste=' + encodeURIComponent(mdTeste.trim());
-
     window.top.location.href = url;
+  }
+
+  /* ─── CAROUSEL + ZOOM INIT ──────────────────────────────────────────── */
+  (function initCarousels() {
+    const ZOOM_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>';
+
+    document.querySelectorAll('.test-images').forEach(track => {
+      const wraps = [...track.querySelectorAll('.test-img-wrap')];
+
+      // Zoom button on every image (bottom-right, SVG fullscreen icon)
+      wraps.forEach(wrap => {
+        const zb = document.createElement('div');
+        zb.className = 'zoom-btn';
+        zb.innerHTML = ZOOM_SVG;
+        wrap.appendChild(zb);
+      });
+
+      if (wraps.length <= 1) return; // single image — no carousel needed
+
+      let current = 0;
+
+      // Wrap track in carousel container
+      const carousel = document.createElement('div');
+      carousel.className = 'carousel';
+      track.parentNode.insertBefore(carousel, track);
+      carousel.appendChild(track);
+
+      // Show only first image
+      wraps.forEach((w, i) => w.classList.toggle('carousel-active', i === 0));
+
+      // "1 / N" counter badge
+      const counter = document.createElement('div');
+      counter.className = 'carousel-counter';
+      counter.textContent = '1 / ' + wraps.length;
+      carousel.appendChild(counter);
+
+      function goTo(idx) {
+        wraps[current].classList.remove('carousel-active');
+        current = ((idx % wraps.length) + wraps.length) % wraps.length;
+        wraps[current].classList.add('carousel-active');
+        counter.textContent = (current + 1) + ' / ' + wraps.length;
+      }
+
+      const prev = document.createElement('button');
+      prev.className = 'carousel-btn carousel-btn-prev';
+      prev.setAttribute('aria-label', 'Imaginea anterioară');
+      prev.innerHTML = '&#8249;';
+      prev.addEventListener('click', function(e) { e.stopPropagation(); goTo(current - 1); });
+      carousel.appendChild(prev);
+
+      const next = document.createElement('button');
+      next.className = 'carousel-btn carousel-btn-next';
+      next.setAttribute('aria-label', 'Imaginea următoare');
+      next.innerHTML = '&#8250;';
+      next.addEventListener('click', function(e) { e.stopPropagation(); goTo(current + 1); });
+      carousel.appendChild(next);
+    });
+  })();
+
+  /* ─── AUTOFILL (doar când ?test=1) ─────────────────────────── */
+  if (new URLSearchParams(window.location.search).get('test') === '1') {
+    const btn = document.createElement('button');
+    btn.textContent = '⚡ Autofill';
+    Object.assign(btn.style, {
+      position: 'fixed', bottom: '24px', right: '24px', zIndex: '9999',
+      background: '#00e4a7', color: '#0f0f0f', fontWeight: '700',
+      fontSize: '14px', padding: '14px 24px', borderRadius: '8px',
+      border: 'none', cursor: 'pointer', boxShadow: '0 4px 16px rgba(0,0,0,0.25)',
+      fontFamily: 'inherit'
+    });
+    btn.onclick = function() {
+      function clickFirst(name) {
+        const el = document.querySelector(`input[name="${name}"]`);
+        if (el) el.closest('.option, .color-option')?.click();
+      }
+      function clickNone(name) {
+        const el = document.querySelector(`input[name="${name}-none"]`);
+        if (el) el.closest('.option')?.click();
+      }
+      ['a1','a2','a3','a4','a5','a6','a8','a13','a15','a16','a17','a18','a19','a20'].forEach(clickFirst);
+      ['a7','a9','a10','a11','a12','a14'].forEach(clickNone);
+      ['q1','q2','q3','q4','q5','q6','q7','q8'].forEach(clickFirst);
+      ['t1a','t1b','t2a','t2b','t3','t4','t5','t6','t7','t8'].forEach(clickFirst);
+    };
+    document.body.appendChild(btn);
   }
 </script>
 </body>
