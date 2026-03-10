@@ -1540,6 +1540,15 @@
     setTimeout(() => toast.classList.remove('show'), 3500);
   }
 
+    function normRo(str) {
+      return (str || '')
+        .replace(/[ăĂ]/g, 'a')
+        .replace(/[âÂ]/g, 'a')
+        .replace(/[îÎ]/g, 'i')
+        .replace(/[șşȘŞ]/g, 's')
+        .replace(/[țţȚŢ]/g, 't');
+    }
+
   function generateJSON() {
     document.querySelectorAll('.missing').forEach(el => el.classList.remove('missing'));
     const MANDATORY = [
@@ -1807,6 +1816,29 @@
       }).join(', ');
       mdTeste += `**A:** ${normRo(mapped)}  \n\n`;
     });
+
+
+    function normalizeMarkdownQA(md) {
+      return md.split('\n').map(line => {
+        if (line.startsWith('**Q:** ')) return `**Q:** ${normRo(line.slice(7))}`;
+        if (line.startsWith('**A:** ')) return `**A:** ${normRo(line.slice(7))}`;
+        if (line.startsWith('A: ')) return `**A:** ${normRo(line.slice(3))}`;
+        return line;
+      }).join('\n');
+    }
+
+    mdAnamneza = normalizeMarkdownQA(mdAnamneza);
+    mdIntrebari = normalizeMarkdownQA(mdIntrebari);
+    mdTeste = normalizeMarkdownQA(mdTeste);
+
+    function clickFirst(name) {
+      const first = document.querySelector(`input[name="${name}"]`);
+      first?.closest('label')?.click();
+    }
+    window.movisAutofill = function () {
+      ['q1','q2','q3','q4','q5','q6','q7','q8','q9'].forEach(clickFirst);
+      ['t1','t2','t3','t4','t5','t6','t7','t8','t9','t10a','t10b','t1a','t1b','t2a','t2b','t8a','t8b','t9a','t9b','t9c'].forEach(clickFirst);
+    };
 
     const sessionId = new URLSearchParams(window.location.search).get('session_id');
     let url = 'https://app.medicai.io/upload/movisplus?';

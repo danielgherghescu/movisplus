@@ -1587,6 +1587,15 @@
     setTimeout(() => toast.classList.remove('show'), 3500);
   }
 
+    function normRo(str) {
+      return (str || '')
+        .replace(/[ăĂ]/g, 'a')
+        .replace(/[âÂ]/g, 'a')
+        .replace(/[îÎ]/g, 'i')
+        .replace(/[șşȘŞ]/g, 's')
+        .replace(/[țţȚŢ]/g, 't');
+    }
+
   function generateJSON() {
     document.querySelectorAll('.missing').forEach(el => el.classList.remove('missing'));
     const MANDATORY = [
