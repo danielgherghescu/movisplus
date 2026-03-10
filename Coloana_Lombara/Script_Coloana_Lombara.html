@@ -1627,8 +1627,38 @@
     }
 
     const CLINICAL = {
-      yesNo: { 'Da': 'Pozitiv', 'Nu': 'Negativ', 'Nu știu': 'Incert', 'Nu sunt sigur': 'Incert' },
-      colors: { 'Verde': 'Normal', 'Albastru': 'Usor modificat', 'Galben': 'Moderat', 'Roșu': 'Sever', 'Portocaliu': 'Accentuat', 'Mov': 'Specific' }
+      t0a:{ 'Normal, la fel ca înainte de episod':'Flexie lombara normala',
+            'Simt că mă \u201eține\u201d în zona lombară':'Flexie lombara tensiune posterioara',
+            'Simt durere lombară':'Flexie lombara dureroasa local',
+            'Durerea coboară pe picior':'Flexie lombara iradiere radiculara' },
+      t0b:{ 'Fără durere':'Extensie lombara fara durere',
+            'Doare local în lombar':'Extensie lombara dureroasa local',
+            'Durerea coboară pe picior':'Extensie lombara iradiere radiculara' },
+      t0c:{ 'Normal, fără diferență între picioare':'Mers calcaie normal L4-L5 ok',
+            'Ușoară slăbiciune pe partea afectată':'Mers calcaie slabiciune usoara L4-L5',
+            'Degetul mare este clar mai slab pe partea afectată':'Mers calcaie slabiciune clara L5',
+            'Nu pot menține poziția pe partea afectată':'Drop foot L4-L5' },
+      t0d:{ 'Normal, fără diferență':'Mers varfuri normal S1 ok',
+            'Ușoară slăbiciune pe partea afectată':'Mers varfuri slabiciune usoara S1',
+            'Nu pot menține poziția din cauza slăbiciunii':'Mers varfuri imposibil slabiciune S1 severa',
+            'Nu pot din cauza durerii sau instabilității':'Mers varfuri imposibil durere sau instabilitate' },
+      t1: { 'Roșu':'Musculatura paravertebrala lombara', 'Mov':'Procese spinoase medial',
+            'Albastru':'Articulatie sacro-iliaca', 'Verde':'Sold posterior',
+            'Galben':'Mare trohanter',
+            'Nicio zonă nu este clar mai dureroasă la apăsare':'Fara zona clara la palpare' },
+      t2: { 'Verde':'Dermatom L1-L2 afectat', 'Galben':'Dermatom L3 afectat',
+            'Mov':'Dermatom L4 afectat', 'Albastru':'Dermatom L5 afectat',
+            'Roșu':'Dermatom S1 afectat',
+            'Nicio zonă \u2014 simt la fel peste tot':'Sensibilitate normala bilateral' },
+      t3a:{ 'Doar întindere în spatele coapsei (zona mov)':'Pseudo-Lasegue pozitiv tightness gastroc',
+            'Apar simptome pe traiectul colorat din imagine \u2014 durere':'Lasegue pozitiv picior afectat durere',
+            'Apar simptome pe traiectul colorat din imagine \u2014 amorțeală / furnicături':'Lasegue pozitiv picior afectat parestezii' },
+      t3b:{ 'Nu apar simptome':'Lasegue incrucișat negativ',
+            'Apar simptome în același picior (mai sănătos)':'Pseudo-Lasegue pozitiv picior sanatos',
+            'Ridicarea piciorului sănătos declanșează simptome în piciorul dureros':'Lasegue incrucișat pozitiv' },
+      t4: { 'Normal':'FABER negativ',
+            'Durere în zona inghinală':'FABER pozitiv durere inghinala',
+            'Mișcare limitată față de celălalt șold':'FABER pozitiv limitare ROM' },
     };
 
     function clinFromRaw(key, raw) {
@@ -1745,34 +1775,25 @@
     });
 
     const TESTS = [
-      { key: 't1', label: 'T01 — Testul de localizare a durerii', q: 'Care zone sunt dureroase la apăsare? (max. 2 zone)', multi: true, altKey: 't1-none' },
-      { key: 't2', label: 'T02 — Testul de sensibilitate', q: 'Care zone au sensibilitate diferită?', multi: true, altKey: 't2-none' },
-      { key: 't3a', label: 'T03 — Testul de elongație (SLR)', q: 'Ce se întâmplă când ridici piciorul dureros?' },
-      { key: 't3b', label: 'T03 — Testul de elongație (SLR)', q: 'Repetă testul și pentru celălalt picior. Ce se întâmplă?' },
-      { key: 't4', label: 'T04 — Testul inghinal (FABER)', q: 'Ce simți în timp ce faci această mișcare?' },
+      { key: 't1', label: 'T01 — Testul de localizare a durerii', q: 'Care zone sunt dureroase la apăsare? (max. 2 zone)', multi: true, altKey: 't1-none', clinName: 'Harta durere lombara' },
+      { key: 't2', label: 'T02 — Testul de sensibilitate', q: 'Care zone au sensibilitate diferită?', multi: true, altKey: 't2-none', clinName: 'Harta sensibilitate MI' },
+      { key: 't3a', label: 'T03 — Testul de elongație (SLR)', q: 'Ce se întâmplă când ridici piciorul dureros?', clinName: 'Lasegue picior afectat' },
+      { key: 't3b', label: 'T03 — Testul de elongație (SLR)', q: 'Repetă testul și pentru celălalt picior. Ce se întâmplă?', clinName: 'Lasegue picior sanatos' },
+      { key: 't4', label: 'T04 — Testul inghinal (FABER)', q: 'Ce simți în timp ce faci această mișcare?', clinName: 'Test FABER sold' },
     ];
 
     let mdTeste = '';
     TESTS.forEach(t => {
-      mdTeste += `**Q:** ${t.q}  \n`;
-      const raw = t.multi ? multiAnsColor(t.key, t.maxSel || 2) : ansMeta(t.key).raw;
-      const mapped = raw.split(', ').map(v => clinFromRaw(t.key, v)).join(', ');
+      mdTeste += `**Q:** ${normRo(t.clinName)}  \n`;
+      const raw = t.multi
+        ? multiAnsColor(t.key, t.maxSel || 2)
+        : ans(t.key);
+      const mapped = raw.split(', ').map(v => {
+        const v2 = v.trim();
+        return CLINICAL[t.key]?.[v2] || v2;
+      }).join(', ');
       mdTeste += `**A:** ${normRo(mapped)}  \n\n`;
     });
-
-
-    function normalizeMarkdownQA(md) {
-      return md.split('\n').map(line => {
-        if (line.startsWith('**Q:** ')) return `**Q:** ${normRo(line.slice(7))}`;
-        if (line.startsWith('**A:** ')) return `**A:** ${normRo(line.slice(7))}`;
-        if (line.startsWith('A: ')) return `**A:** ${normRo(line.slice(3))}`;
-        return line;
-      }).join('\n');
-    }
-
-    mdAnamneza = normalizeMarkdownQA(mdAnamneza);
-    mdIntrebari = normalizeMarkdownQA(mdIntrebari);
-    mdTeste = normalizeMarkdownQA(mdTeste);
 
     const sessionId = new URLSearchParams(window.location.search).get('session_id');
 
