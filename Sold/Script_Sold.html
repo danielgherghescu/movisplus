@@ -1394,15 +1394,24 @@ Cu mâna de pe aceeași parte (sau cu ajutorul altei persoane), <strong>apasă u
 
   function selMulti(el, name, max, event) {
     if (event) event.preventDefault();
-    el.classList.toggle('selected');
     const container = el.closest('.color-options');
-    const sel = container.querySelectorAll('.color-option.selected');
-    if (sel.length > max) sel[0].classList.remove('selected');
+    const alreadySelected = el.classList.contains('selected');
+    if (alreadySelected) {
+      el.classList.remove('selected');
+    } else {
+      const currentSel = [...container.querySelectorAll('.color-option.selected')];
+      if (currentSel.length >= max) {
+        currentSel[0].classList.remove('selected');
+      }
+      el.classList.add('selected');
+    }
     if (container.querySelectorAll('.color-option.selected').length > 0) {
       answered.add(name);
       el.closest('.test-card').classList.add('answered');
       el.closest('.test-card').classList.remove('missing');
-    } else answered.delete(name);
+    } else {
+      answered.delete(name);
+    }
     updateProgress();
   }
 
@@ -1951,6 +1960,7 @@ function updateProgress() {
       ['a1','a2','a3','a4','a5','a6','a8','a13','a15','a16','a17','a18','a19','a20'].forEach(clickFirst);
       ['a7','a9','a10','a11','a12','a14'].forEach(clickNone);
       ['q1','q2','q3','q4','q5','q6','q7'].forEach(clickFirst);
+      ['t1'].forEach(clickNone);
       ['t2','t3','t4','t5','t6','t7'].forEach(clickFirst);
       document.querySelector('#card-t1 .color-option')?.click();
     };
