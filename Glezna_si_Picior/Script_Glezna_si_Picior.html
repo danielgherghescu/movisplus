@@ -1449,7 +1449,7 @@
 
   const SECTION_A = [['a1'],['a2'],['a3'],['a4'],['a5'],['a6'],['a7','a7-none'],['a8'],['a9','a9-none'],['a10','a10-none'],['a11','a11-none'],['a12','a12-none'],['a13'],['a14','a14-none'],['a15'],['a16'],['a17'],['a18'],['a19'],['a20']];
   const SECTION_Q = Array.from(document.querySelectorAll('[id^="card-q"]')).map(el => [el.id.replace('card-','')]);
-  const SECTION_T = Array.from(document.querySelectorAll('[id^="card-t"]')).map(el => [el.id.replace('card-','')]);
+  const SECTION_T = [['t1','t1-none'],['t2','t2-none'],['t3','t3-none'],['t4','t4-none'],['t5'],['t6'],['t7'],['t8']];
 
   function sel(el, name) {
     const container = el.closest('.options, .test-body, .question-card');
