@@ -1986,5 +1986,17 @@
     document.body.appendChild(btn);
   }
 </script>
+<!-- Vertical Overflow code embed fix -->
+<script>
+function sendHeight() {
+  const height = document.documentElement.scrollHeight;
+  window.parent.postMessage({ iframeHeight: height }, '*');
+}
+window.addEventListener('load', sendHeight);
+window.addEventListener('resize', sendHeight);
+// Also observe DOM changes (for dynamic content like form steps)
+const observer = new MutationObserver(sendHeight);
+observer.observe(document.body, { childList: true, subtree: true });
+</script>
 </body>
 </html>
