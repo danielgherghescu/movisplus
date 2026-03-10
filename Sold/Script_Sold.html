@@ -1382,7 +1382,7 @@ Cu mâna de pe aceeași parte (sau cu ajutorul altei persoane), <strong>apasă u
   }
 
   function selColor(el, name) {
-    const container = el.closest('.test-body');
+    const container = el.closest('.color-options');
     container.querySelectorAll('.color-option').forEach(s => s.classList.remove('selected'));
     el.classList.add('selected');
     answered.add(name);
