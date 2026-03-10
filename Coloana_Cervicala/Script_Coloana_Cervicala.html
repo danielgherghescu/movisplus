@@ -148,7 +148,7 @@
   .progress-track {
     flex: 1;
     height: 8px;
-    background: rgba(255,255,255,0.7);
+    background: rgba(255,255,255,0.1);
     border-radius: 4px;
     overflow: hidden;
   }
@@ -351,6 +351,9 @@
   .color-swatch.yellow { background: #f59e0b; }
   .color-swatch.red    { background: #ef4444; }
   .color-swatch.blue   { background: #3b82f6; }
+  .color-swatch.purple { background: #a855f7; }
+  .color-swatch.white  { background: #f1f5f9; border: 1px solid #c1c1c1; }
+  .color-swatch.black  { background: #1a1a1a; }
 
   .color-option-label { font-size: 13px; color: var(--black); font-weight: 400; }
   .color-option.selected .color-option-label { font-weight: 500; }
@@ -546,6 +549,12 @@
     .carousel .test-images { display: flex; overflow-x: auto; gap: 8px; }
     .carousel .test-img-wrap { display: block; width: auto; }
     .carousel .test-img-wrap.carousel-active img { width: auto; }
+    .carousel .test-images:has(.test-img-wrap:nth-child(3)) .test-img-wrap img {
+      height: 260px;
+    }
+    .carousel .test-images:has(.test-img-wrap:nth-child(4)) .test-img-wrap img {
+      height: 200px;
+    }
   }
 
 
@@ -721,7 +730,7 @@
       <div class="hero-tag-text">Evaluare clinică ghidată</div>
     </div>
     <h1>Chestionar clinic ghidat pentru <span>coloana cervicală</span></h1>
-    <p class="hero-desc">Acest chestionar ne ajută să înțelegem ce probleme din RMN sunt relevante clinic pentru problema ta de coloană cervicală. Răspunde cât mai sincer.</p>
+    <p class="hero-desc">Acest chestionar ne ajută să înțelegem ce probleme din RMN sunt relevante clinic pentru durerea ta de gât. Răspunde cât mai sincer.</p>
   </div>
 </div>
 
@@ -755,7 +764,7 @@
 <!-- CONTENT -->
 <div class="container">
 
-  <!-- ─── ANAMNEZĂ GENERALĂ ─── -->
+<!-- ─── ANAMNEZĂ GENERALĂ ─── -->
   <div class="section-label">
     <div class="section-label-line"></div>
     <div class="section-label-text">Anamneză Generală</div>
@@ -765,7 +774,7 @@
   <!-- Sub I -->
   <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
     <div class="sub-section-label-line"></div>
-    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Despre Problema Actuală</span>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">I — Despre Problema Actuală</span>
     <div class="sub-section-label-line"></div>
   </div>
 
@@ -809,7 +818,7 @@
   <!-- Sub II -->
   <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
     <div class="sub-section-label-line"></div>
-    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Caracterul Durerii</span>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">II — Caracterul Durerii</span>
     <div class="sub-section-label-line"></div>
   </div>
 
@@ -866,7 +875,7 @@
   <!-- Sub III -->
   <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
     <div class="sub-section-label-line"></div>
-    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Impact Funcțional</span>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">III — Impact Funcțional</span>
     <div class="sub-section-label-line"></div>
   </div>
 
@@ -900,7 +909,7 @@
   <!-- Sub IV -->
   <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
     <div class="sub-section-label-line"></div>
-    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Semnale de Alarmă</span>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">IV — Semnale de Alarmă</span>
     <div class="sub-section-label-line"></div>
   </div>
 
@@ -936,7 +945,7 @@
   <!-- Sub V -->
   <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
     <div class="sub-section-label-line"></div>
-    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Tratament Anterior</span>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">V — Tratament Anterior</span>
     <div class="sub-section-label-line"></div>
   </div>
 
@@ -970,7 +979,7 @@
   <!-- Sub VI -->
   <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
     <div class="sub-section-label-line"></div>
-    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Context Medical</span>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">VI — Context Medical</span>
     <div class="sub-section-label-line"></div>
   </div>
 
@@ -1003,7 +1012,7 @@
   <!-- Sub VII -->
   <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
     <div class="sub-section-label-line"></div>
-    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Stil de Viață</span>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">VII — Stil de Viață</span>
     <div class="sub-section-label-line"></div>
   </div>
 
@@ -1057,7 +1066,7 @@
   <!-- Sub VIII -->
   <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
     <div class="sub-section-label-line"></div>
-    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Obiectivul Tău</span>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">VIII — Obiectivul Tău</span>
     <div class="sub-section-label-line"></div>
   </div>
 
@@ -1072,6 +1081,9 @@
       <label class="option" onclick="sel(this,'a20')"><input type="radio" name="a20"><div class="option-radio"></div><span class="option-label">Reducerea durerii, chiar dacă rămân unele limitări</span></label>
     </div>
   </div>
+
+
+
   <div class="section-label">
     <div class="section-label-line"></div>
     <div class="section-label-text">Întrebări Specifice</div>
@@ -1134,7 +1146,6 @@
 
   <div class="section-label">
     <div class="section-label-line"></div>
-    <span class="section-label-num">02</span>
     <div class="section-label-text">Teste Specifice</div>
     <div class="section-label-line"></div>
   </div>
@@ -1146,9 +1157,7 @@
       <div class="test-instructions">Flexie cervicală — bărbia spre piept</div>
     </div>
     <div class="test-body">
-      <div class="instruction-steps">
-        Du bărbia spre piept. Încearcă să o atingi.
-      </div>
+      <div class="instruction-steps">Du bărbia spre piept. Încearcă să o atingi.</div>
       <div class="test-question">Ce simți în timp ce faci mișcarea?</div>
       <div class="options">
         <label class="option" onclick="sel(this,'t1')"><input type="radio" name="t1"><div class="option-radio"></div><span class="option-label">Ating pieptul fără durere</span></label>
@@ -1166,9 +1175,7 @@
       <div class="test-instructions">Extensie cervicală — privește spre tavan</div>
     </div>
     <div class="test-body">
-      <div class="instruction-steps">
-        Privește în sus spre tavan, cât poți.
-      </div>
+      <div class="instruction-steps">Privește în sus spre tavan, cât poți.</div>
       <div class="test-question">Ce simți în timp ce faci mișcarea?</div>
       <div class="options">
         <label class="option" onclick="sel(this,'t2')"><input type="radio" name="t2"><div class="option-radio"></div><span class="option-label">Pot privi complet, fără durere</span></label>
@@ -1186,9 +1193,7 @@
       <div class="test-instructions">Rotație cervicală — privește peste umăr</div>
     </div>
     <div class="test-body">
-      <div class="instruction-steps">
-        Privește alternativ peste umărul stâng și drept, pe rând, cât poți de mult.
-      </div>
+      <div class="instruction-steps">Privește alternativ peste umărul stâng și drept, pe rând, cât poți de mult.</div>
       <div class="test-question">Ce simți în timp ce faci mișcarea?</div>
       <div class="options">
         <label class="option" onclick="sel(this,'t3')"><input type="radio" name="t3"><div class="option-radio"></div><span class="option-label">Pot privi complet și la fel pe ambele părți</span></label>
@@ -1207,9 +1212,7 @@
       <div class="test-instructions">Înclinare laterală — urechea spre umăr</div>
     </div>
     <div class="test-body">
-      <div class="instruction-steps">
-        Apropie urechea de fiecare umăr (fără să ridici umărul), pe rând, cât poți de mult.
-      </div>
+      <div class="instruction-steps">Apropie urechea de fiecare umăr (fără să ridici umărul), pe rând, cât poți de mult.</div>
       <div class="test-question">Ce simți în timp ce faci mișcarea?</div>
       <div class="options">
         <label class="option" onclick="sel(this,'t4')"><input type="radio" name="t4"><div class="option-radio"></div><span class="option-label">Ajung aproape de umăr fără durere, pe ambele părți</span></label>
@@ -1231,7 +1234,7 @@
       <div class="instruction-steps">
         Stai în picioare cu tălpile apropiate.<br>
         Închide ochii timp de aproximativ 20–30 secunde.<br>
-        ⚠️ Fă testul doar dacă ai pe cineva lângă tine sau te poți sprijini de un perete. Dacă te simți instabil, nu continua testul.
+        ⚠️ Fă testul doar dacă ai pe cineva lângă tine sau te poți sprijini de un perete.
       </div>
       <div class="test-question">Ce se întâmplă când închizi ochii?</div>
       <div class="options">
@@ -1269,13 +1272,11 @@
       <div class="test-instructions">Testul Lhermitte — flexie cu atenție la coloană</div>
     </div>
     <div class="test-body">
-      <div class="instruction-steps">
-        Apleacă capul în față, bărbia spre piept și privește spre podea.
-      </div>
+      <div class="instruction-steps">Apleacă capul în față, bărbia spre piept și privește spre podea.</div>
       <div class="test-question">Ce se întâmplă în timpul mișcării?</div>
       <div class="options">
         <label class="option" onclick="sel(this,'t7')"><input type="radio" name="t7"><div class="option-radio"></div><span class="option-label">Nu apare nimic</span></label>
-        <label class="option" onclick="sel(this,'t7')"><input type="radio" name="t7"><div class="option-radio"></div><span class="option-label">Apare o senzație de „curent" pe coloană sau în brațe</span></label>
+        <label class="option" onclick="sel(this,'t7')"><input type="radio" name="t7"><div class="option-radio"></div><span class="option-label">Apare o senzație de „curent” pe coloană sau în brațe</span></label>
       </div>
     </div>
   </div>
@@ -1288,16 +1289,13 @@
     </div>
     <div class="test-body">
       <div class="test-images">
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Cervicala/images/image1.jpg" alt="Braț — zone de sensibilitate"><div class="img-label">Braț — zone de sensibilitate</div></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Cervicala/images/image3.jpg" alt="Mână — zone de sensibilitate"><div class="img-label">Mână — zone de sensibilitate</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Cervicala/images/image1.jpg" alt="Braț — zone de sensibilitate"></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Cervicala/images/image3.jpg" alt="Mână — zone de sensibilitate"></div>
       </div>
       <div class="instruction-steps">
         Privește imaginile cu zonele colorate.<br>
-        Folosește mâna sănătoasă (sau un ajutor) și:<br>
-        — Atinge ușor fiecare zonă<br>
-        — Ciupește aceeași zonă<br>
-        Compară mereu cu partea opusă.<br>
-        Bifează toate culorile unde senzația este diferită față de partea sănătoasă (mai slabă, mai intensă sau modificată).
+        Atinge și ciupește fiecare zonă, comparând cu partea opusă.<br>
+        Bifează toate culorile unde senzația este diferită față de partea sănătoasă.
       </div>
       <div class="test-question">Braț — care zone sunt diferite față de partea sănătoasă? (poți bifa mai multe)</div>
       <div class="color-options">
@@ -1335,10 +1333,10 @@
     </div>
     <div class="test-body">
       <div class="test-images">
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Cervicala/images/image2.jpg" alt="Poziția testului"><div class="img-label">Poziția testului</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Cervicala/images/image2.jpg" alt="Poziția testului"></div>
       </div>
       <div class="instruction-steps">
-        Ține o greutate în mână (o ganteră, o sticlă cu apă sau un obiect mai greu din casă).<br>
+        Ține o greutate în mână (o ganteră, o sticlă cu apă sau un obiect mai greu).<br>
         Îndoaie cotul și ridică obiectul spre tine, ca în imagine.<br>
         Compară cu brațul celălalt.
       </div>
@@ -1359,14 +1357,13 @@
     </div>
     <div class="test-body">
       <div class="test-images">
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Cervicala/images/image5.jpg" alt="Poziția 1 — STOP"><div class="img-label">Poziția 1 — STOP</div></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Cervicala/images/image4.jpg" alt="Poziția 2 — rezistență"><div class="img-label">Poziția 2 — rezistență</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Cervicala/images/image5.jpg" alt="Poziția 1 — STOP"></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Cervicala/images/image4.jpg" alt="Poziția 2 — rezistență"></div>
       </div>
       <div class="instruction-steps">
-        1️⃣ Pune mâna afectată în poziția „STOP", cu palma orientată înainte și încheietura ridicată, ca în imaginea 1.<br>
-        2️⃣ Cu mâna sănătoasă (sau cu ajutorul unei alte persoane), apasă pe palma mâinii afectate, încercând să o împingi în jos, ca în imaginea 2.<br>
-        3️⃣ În același timp, încearcă să menții poziția și să opui rezistență.<br>
-        Compară cu partea sănătoasă.
+        1️⃣ Pune mâna afectată în poziția „STOP”, cu palma orientată înainte și încheietura ridicată.<br>
+        2️⃣ Cu mâna sănătoasă, apasă pe palma mâinii afectate, împingând-o în jos.<br>
+        3️⃣ Încearcă să menții poziția și să opui rezistență. Compară cu partea sănătoasă.
       </div>
       <div class="test-question">Cum este forța pe partea afectată?</div>
       <div class="options">
@@ -1385,13 +1382,12 @@
     </div>
     <div class="test-body">
       <div class="test-images">
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Cervicala/images/image7.jpg" alt="Poziția testului"><div class="img-label">Poziția testului</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Cervicala/images/image7.jpg" alt="Poziția testului"></div>
       </div>
       <div class="instruction-steps">
-        1️⃣ Îndoaie cotul la aproximativ 90°, cu brațul pe lângă corp, ca în imagine.<br>
-        2️⃣ Cu mâna sănătoasă (sau cu ajutorul unei alte persoane), apasă în jos pe antebrațul afectat.<br>
-        3️⃣ În același timp, încearcă să menții poziția și să opui rezistență.<br>
-        Compară cu partea sănătoasă.
+        1️⃣ Îndoaie cotul la aproximativ 90°, cu brațul pe lângă corp.<br>
+        2️⃣ Cu mâna sănătoasă, apasă în jos pe antebrațul afectat.<br>
+        3️⃣ Încearcă să menții poziția. Compară cu partea sănătoasă.
       </div>
       <div class="test-question">Cum este forța pe partea afectată?</div>
       <div class="options">
@@ -1410,11 +1406,11 @@
     </div>
     <div class="test-body">
       <div class="test-images">
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Cervicala/images/image6.jpg" alt="Poziția testului"><div class="img-label">Poziția testului</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Cervicala/images/image6.jpg" alt="Poziția testului"></div>
       </div>
       <div class="instruction-steps">
-        Ține în mână un obiect moale sau o minge (sau orice obiect pe care îl poți strânge).<br>
-        Strânge cât de puternic poți, ca în imagine.<br>
+        Ține în mână un obiect moale sau o minge.<br>
+        Strânge cât de puternic poți.<br>
         Compară cu cealaltă mână.
       </div>
       <div class="test-question">Cum este forța de strângere pe partea afectată?</div>
@@ -1448,15 +1444,11 @@
 <!-- TOAST -->
 <div class="toast" id="toast">
   <div class="toast-icon" id="toastIcon">✓</div>
-  <span id="toastMsg">JSON generat cu succes!</span>
+  <span id="toastMsg">Răspunsuri trimise!</span>
 </div>
 
 <script>
   const answered = new Set();
-
-  const SECTION_A = [['a1'],['a2'],['a3'],['a4'],['a5'],['a6'],['a7','a7-none'],['a8'],['a9','a9-none'],['a10','a10-none'],['a11','a11-none'],['a12','a12-none'],['a13'],['a14','a14-none'],['a15'],['a16'],['a17'],['a18'],['a19'],['a20']];
-  const SECTION_Q = Array.from(document.querySelectorAll('[id^="card-q"]')).map(el => [el.id.replace('card-','')]);
-  const SECTION_T = Array.from(document.querySelectorAll('[id^="card-t"]')).map(el => [el.id.replace('card-','')]);
 
   function sel(el, name) {
     const container = el.closest('.options, .test-body, .question-card');
@@ -1480,19 +1472,30 @@
     el.closest('.test-card').classList.remove('missing');
   }
 
+  function selMulti(el, name, max, event) {
+    if (event) event.preventDefault();
+    el.classList.toggle('selected');
+    const container = el.closest('.color-options');
+    const sel = container.querySelectorAll('.color-option.selected');
+    if (sel.length > max) sel[0].classList.remove('selected');
+    if (container.querySelectorAll('.color-option.selected').length > 0) {
+      answered.add(name);
+      el.closest('.test-card').classList.add('answered');
+      el.closest('.test-card').classList.remove('missing');
+    } else answered.delete(name);
+    updateProgress();
+  }
+
   function selCheck(el, name, noneName, event) {
-    if (event) event.stopPropagation();
-    const input = el.querySelector('input[type="checkbox"]');
-    input.checked = !input.checked;
-    el.classList.toggle('selected', input.checked);
-
-    const noneEl = document.querySelector(`input[name="${noneName}"]`);
-    if (noneEl) { noneEl.checked = false; noneEl.closest('.option')?.classList.remove('selected'); }
+    if (event) event.preventDefault();
+    const card = el.closest('.question-card');
+    el.classList.toggle('selected');
+    card.querySelectorAll(`input[name="${noneName}"]`).forEach(inp =>
+      inp.closest('.option')?.classList.remove('selected'));
     answered.delete(noneName);
-
-    const card = el.closest('.question-card, .test-card');
-    const anyChecked = card.querySelectorAll(`input[name="${name}"]:checked`).length > 0;
-    if (anyChecked) {
+    const anySelected = [...card.querySelectorAll(`input[name="${name}"]`)]
+      .some(inp => inp.closest('.option.selected'));
+    if (anySelected) {
       answered.add(name);
       card.classList.add('answered'); card.classList.remove('missing');
     } else {
@@ -1503,40 +1506,43 @@
   }
 
   function selNone(el, name, checkName, event) {
-    if (event) event.stopPropagation();
-    const input = el.querySelector('input[type="radio"]');
-    input.checked = true;
-
-    const card = el.closest('.question-card, .test-card');
-    card.querySelectorAll(`input[name="${checkName}"]`).forEach(chk => {
-      chk.checked = false;
-      chk.closest('.option')?.classList.remove('selected');
-    });
+    if (event) event.preventDefault();
+    const card = el.closest('.question-card');
+    card.querySelectorAll(`input[name="${checkName}"]`).forEach(inp =>
+      inp.closest('.option')?.classList.remove('selected'));
     answered.delete(checkName);
-
-    card.querySelectorAll(`input[name="${name}"]`).forEach(r => r.closest('.option')?.classList.remove('selected'));
+    card.querySelectorAll(`input[name="${name}"]`).forEach(inp =>
+      inp.closest('.option')?.classList.remove('selected'));
     el.classList.add('selected');
-
     answered.add(name);
     card.classList.add('answered'); card.classList.remove('missing');
     updateProgress();
   }
 
+  function toggleA13(hide) {
+    const card = document.getElementById('card-a13');
+    card.style.display = hide ? 'none' : '';
+    if (hide) {
+      card.querySelectorAll('input[name="a13"]').forEach(inp => inp.closest('.option')?.classList.remove('selected'));
+      answered.delete('a13');
+      updateProgress();
+    }
+  }
+
+  const SECTION_A = [['a1'],['a2'],['a3'],['a4'],['a5'],['a6'],['a7','a7-none'],['a8'],['a9','a9-none'],['a10','a10-none'],['a11','a11-none'],['a12','a12-none'],['a13'],['a14','a14-none'],['a15'],['a16'],['a17'],['a18'],['a19'],['a20']];
+  const SECTION_Q = [['q1'],['q2'],['q3'],['q4'],['q5']];
+  const SECTION_T = [['t1'],['t2'],['t3'],['t4'],['t5'],['t6'],['t7'],['t8a','t8a-none'],['t8b','t8b-none'],['t9'],['t10'],['t11'],['t12']];
+
+  function countSec(groups) { return groups.filter(g => g.some(k => answered.has(k))).length; }
+
   function updateProgress() {
-    function countSec(groups) { return groups.filter(g => g.some(k => answered.has(k))).length; }
-
-    const groupsA = answered.has('a12-none')
-      ? SECTION_A.filter(g => !g.includes('a13'))
-      : SECTION_A;
-
-    const pA = Math.round((countSec(groupsA) / groupsA.length) * 100) || 0;
-    const pQ = Math.round((countSec(SECTION_Q) / Math.max(SECTION_Q.length, 1)) * 100) || 0;
-    const pT = Math.round((countSec(SECTION_T) / Math.max(SECTION_T.length, 1)) * 100) || 0;
-
+    const groupsA = answered.has('a12-none') ? SECTION_A.filter(g => !g.includes('a13')) : SECTION_A;
+    const pA = Math.round(countSec(groupsA) / groupsA.length * 100);
+    const pQ = Math.round(countSec(SECTION_Q) / SECTION_Q.length * 100);
+    const pT = Math.round(countSec(SECTION_T) / SECTION_T.length * 100);
     document.getElementById('progressFillA').style.width = pA + '%';
     document.getElementById('progressFillQ').style.width = pQ + '%';
     document.getElementById('progressFillT').style.width = pT + '%';
-
     document.getElementById('progressPctA').textContent = pA + '%';
     document.getElementById('progressPctQ').textContent = pQ + '%';
     document.getElementById('progressPctT').textContent = pT + '%';
@@ -1558,17 +1564,7 @@
     setTimeout(() => toast.classList.remove('show'), 3500);
   }
 
-    function normRo(str) {
-      return (str || '')
-        .replace(/[ăĂ]/g, 'a')
-        .replace(/[âÂ]/g, 'a')
-        .replace(/[îÎ]/g, 'i')
-        .replace(/[șşȘŞ]/g, 's')
-        .replace(/[țţȚŢ]/g, 't');
-    }
-
   function generateJSON() {
-    // Validare câmpuri obligatorii
     document.querySelectorAll('.missing').forEach(el => el.classList.remove('missing'));
     const MANDATORY = [
       { key: 'a1',  cardId: 'card-a1'  }, { key: 'a2',  cardId: 'card-a2'  },
@@ -1582,10 +1578,9 @@
       { key: 'a12', cardId: 'card-a12', altKey: 'a12-none' },
       { key: 'a13', cardId: 'card-a13' },
       { key: 'a14', cardId: 'card-a14', altKey: 'a14-none' },
-      { key: 'a15', cardId: 'card-a15' },
-      { key: 'a16', cardId: 'card-a16' }, { key: 'a17', cardId: 'card-a17' },
-      { key: 'a18', cardId: 'card-a18' }, { key: 'a19', cardId: 'card-a19' },
-      { key: 'a20', cardId: 'card-a20' },
+      { key: 'a15', cardId: 'card-a15' }, { key: 'a16', cardId: 'card-a16' },
+      { key: 'a17', cardId: 'card-a17' }, { key: 'a18', cardId: 'card-a18' },
+      { key: 'a19', cardId: 'card-a19' }, { key: 'a20', cardId: 'card-a20' },
       { key: 'q1', cardId: 'card-q1' }, { key: 'q2', cardId: 'card-q2' },
       { key: 'q3', cardId: 'card-q3' }, { key: 'q4', cardId: 'card-q4' },
       { key: 'q5', cardId: 'card-q5' },
@@ -1595,7 +1590,7 @@
       { key: 't7', cardId: 'card-t7' },
       { key: 't8a', cardId: 'card-t8', altKey: 't8a-none' },
       { key: 't8b', cardId: 'card-t8', altKey: 't8b-none' },
-      { key: 't9', cardId: 'card-t9' }, { key: 't10', cardId: 'card-t10' },
+      { key: 't9',  cardId: 'card-t9'  }, { key: 't10', cardId: 'card-t10' },
       { key: 't11', cardId: 'card-t11' }, { key: 't12', cardId: 'card-t12' },
     ];
     const missing = MANDATORY.filter(m => {
@@ -1611,6 +1606,35 @@
 
     const COLORS = { green: 'Verde', yellow: 'Galben', red: 'Roșu', blue: 'Albastru', purple: 'Mov', white: 'Alb', black: 'Negru' };
 
+    function multiAnsColor(name, max) {
+      const results = [];
+      document.querySelectorAll(`input[name="${name}"]`).forEach(inp => {
+        const optEl = inp.closest('.color-option.selected, .option.selected');
+        if (optEl) {
+          const swatch = optEl.querySelector('.color-swatch');
+          if (swatch) {
+            const cls = [...swatch.classList].find(c => c !== 'color-swatch');
+            results.push(COLORS[cls] || cls);
+          } else {
+            const label = optEl.querySelector('.option-label, .color-option-label');
+            if (label) results.push(label.textContent.trim());
+          }
+        }
+      });
+      const noneInp = document.querySelector(`input[name="${name}-none"]`);
+      if (noneInp?.closest('.option.selected') && !results.length) {
+        const label = noneInp.closest('.option').querySelector('.option-label');
+        if (label) results.push(label.textContent.trim());
+      }
+      return results.length ? results.join(', ') : '—';
+    }
+
+    function normRo(str) {
+      return str
+        .replace(/[ăĂ]/g, 'a').replace(/[âÂ]/g, 'a').replace(/[îÎ]/g, 'i')
+        .replace(/[șşȘŞ]/g, 's').replace(/[țţȚŢ]/g, 't');
+    }
+
     function ans(n) {
       const inputs = document.querySelectorAll(`input[name="${n}"]`);
       for (const inp of inputs) {
@@ -1625,79 +1649,7 @@
       return '—';
     }
 
-    function ansMeta(n) {
-      const inputs = [...document.querySelectorAll(`input[name="${n}"]`)];
-      for (let i = 0; i < inputs.length; i++) {
-        const inp = inputs[i];
-        const parent = inp.closest('.option.selected, .color-option.selected');
-        if (parent) return { raw: ans(n), idx: i + 1 };
-      }
-      return { raw: '—', idx: 0 };
-    }
-
-    function multiAnsColor(name, maxSel) {
-      const selected = [];
-      document.querySelectorAll(`input[name="${name}"]`).forEach(inp => {
-        if (inp.closest('.color-option.selected, .option.selected')) {
-          const label = inp.closest('label')?.querySelector('.color-option-label, .option-label')?.textContent?.trim();
-          if (label) selected.push(label);
-        }
-      });
-      const none = document.querySelector(`input[name="${name}-none"]`);
-      if (none?.closest('.option.selected')) {
-        const lbl = none.closest('label')?.querySelector('.option-label')?.textContent?.trim();
-        if (lbl) return lbl;
-      }
-      return (maxSel ? selected.slice(0, maxSel) : selected).join(', ') || '—';
-    }
-
-    const CLINICAL = {
-      yesNo: { 'Da': 'Pozitiv', 'Nu': 'Negativ', 'Nu știu': 'Incert', 'Nu sunt sigur': 'Incert' },
-      colors: { 'Verde': 'Normal', 'Albastru': 'Usor modificat', 'Galben': 'Moderat', 'Roșu': 'Sever', 'Portocaliu': 'Accentuat', 'Mov': 'Specific' }
-    };
-
-    function clinFromRaw(key, raw) {
-      if (raw === '—') return raw;
-      if (CLINICAL.yesNo[raw]) return CLINICAL.yesNo[raw];
-      if (CLINICAL.colors[raw]) return CLINICAL.colors[raw];
-      if (/^(Verde|Albastru|Galben|Roșu|Portocaliu|Mov)/.test(raw)) {
-        const c = raw.match(/^(Verde|Albastru|Galben|Roșu|Portocaliu|Mov)/)[1];
-        return CLINICAL.colors[c] || c;
-      }
-      const short = normRo(raw).replace(/[^a-zA-Z0-9 -]/g, ' ').replace(/\s+/g, ' ').trim().split(' ').slice(0,4).join(' ');
-      return short || `${key}-1`;
-    }
-
-    function multiAns(name, noneKey) {
-      const results = [];
-      document.querySelectorAll(`input[name="${name}"]`).forEach(inp => {
-        if (inp.closest('.color-option.selected')) {
-          const swatch = inp.closest('.color-option').querySelector('.color-swatch');
-          const cls = [...swatch.classList].find(c => c !== 'color-swatch');
-          results.push(COLORS[cls] || cls);
-        }
-      });
-      const noneEl = document.querySelector(`input[name="${noneKey}"]`);
-      if (noneEl && noneEl.closest('.option.selected')) results.push('Nicio zonă — simt la fel peste tot');
-      return results.length ? results.join(', ') : '—';
-    }
-
-
-    function multiAnsCheck(checkName, noneName) {
-      const results = [];
-      document.querySelectorAll(`input[name="${checkName}"]`).forEach(inp => {
-        if (inp.closest('.option.selected')) {
-          const span = inp.closest('.option').querySelector('.option-label');
-          if (span) results.push(span.textContent.trim());
-        }
-      });
-      if (results.length) return results.join(', ');
-      const noneInp = document.querySelector(`input[name="${noneName}"]`);
-      if (noneInp?.closest('.option.selected'))
-        return noneInp.closest('.option').querySelector('.option-label')?.textContent.trim() || '—';
-      return '—';
-    }
-
+    // ── ANAMNEZA ────────────────────────────────────────────────
     const ANAMNEZA_Q = [
       { key: 'a1',  label: 'Durata simptome' },
       { key: 'a2',  label: 'Debut' },
@@ -1705,14 +1657,14 @@
       { key: 'a4',  label: 'Intensitate durere' },
       { key: 'a5',  label: 'Tipul durerii' },
       { key: 'a6',  label: 'Redoare matinala' },
-      { key: 'a7',  label: 'Senzatii asociate', multi: true, noneName: 'a7-none' },
+      { key: 'a7',  label: 'Senzatii asociate',   multi: true, noneName: 'a7-none' },
       { key: 'a8',  label: 'Impact functional' },
       { key: 'a9',  label: 'Activitati afectate', multi: true, noneName: 'a9-none' },
-      { key: 'a10', label: 'Semne de alarma', multi: true, noneName: 'a10-none' },
-      { key: 'a11', label: 'Evenimente recente', multi: true, noneName: 'a11-none' },
-      { key: 'a12', label: 'Tratament anterior', multi: true, noneName: 'a12-none' },
+      { key: 'a10', label: 'Semne de alarma',     multi: true, noneName: 'a10-none' },
+      { key: 'a11', label: 'Evenimente recente',  multi: true, noneName: 'a11-none' },
+      { key: 'a12', label: 'Tratament anterior',  multi: true, noneName: 'a12-none' },
       { key: 'a13', label: 'Eficienta tratament' },
-      { key: 'a14', label: 'Comorbiditati', multi: true, noneName: 'a14-none' },
+      { key: 'a14', label: 'Comorbiditati',       multi: true, noneName: 'a14-none' },
       { key: 'a15', label: 'Chirurgie anterioara' },
       { key: 'a16', label: 'Nivel activitate' },
       { key: 'a17', label: 'Activitate profesionala' },
@@ -1721,106 +1673,316 @@
       { key: 'a20', label: 'Obiectiv pacient' },
     ];
 
+    const EXPORT_Q = {
+      a1:'Durata simpt.', a2:'Debut', a3:'Evolutie', a4:'Intens. durere',
+      a5:'Tip durere', a6:'Redoare mat.', a7:'Senz. asociate', a8:'Impact funct.',
+      a9:'Act. afectate', a10:'Semne alarma', a11:'Evenim. recente', a12:'Tr. anterior',
+      a13:'Eficienta tr.', a14:'Comorbiditati', a15:'Chir. anterioara', a16:'Nivel activ.',
+      a17:'Act. profesionala', a18:'Fumat', a19:'IMC', a20:'Obiectiv',
+    };
+
+    const EXPORT_A = {
+      a1: { 'Sub 2 săptămâni':'<2 sapt.', '2–6 săptămâni':'2–6 sapt.',
+            '6 săptămâni – 3 luni':'6 sapt.–3 luni', '3–12 luni':'3–12 luni', 'Peste 1 an':'>1 an' },
+      a2: { 'Brusc, după un eveniment clar (cădere, accident, mișcare bruscă)':'Brusc după traumatism',
+            'După efort repetitiv / suprasolicitare':'Suprasolicitare',
+            'Treptat, fără un motiv clar':'Debut progresiv',
+            'Am mai avut episoade similare în trecut':'Episoade recurente' },
+      a3: { 'Se ameliorează treptat':'Ameliorare treptată', 'Este stabilă':'Stabil',
+            'Se agravează lent':'Agravare lentă',
+            'Se agravează rapid în ultimele săptămâni':'Agravare rapidă' },
+      a4: { '0–2 (ușoară)':'0–2 ușoară', '3–5 (moderată)':'3–5 moderată',
+            '6–8 (mare)':'6–8 severă', '9–10 (foarte severă)':'9–10 foarte severă' },
+      a5: { 'Doar la mișcare / efort':'Doar la mișcare',
+            'Și la mișcare, și în repaus':'Mișcare + repaus',
+            'Constantă, inclusiv noaptea':'Durere constantă',
+            'Mă trezește frecvent din somn':'Durere nocturnă' },
+      a6: { 'Fara redoare matinala':'Fără redoare', 'Rigidă sub 30 minute':'Redoare <30 min',
+            'Rigidă peste 30–60 minute':'Redoare 30–60 min', 'Rigidă peste 1 oră':'Redoare >1h' },
+      a7: { 'Amorțeală':'Amorțeală', 'Furnicături':'Furnicături', 'Slăbiciune clară':'Slăbiciune',
+            'Fara amorteli, furnicaturi sau slabiciune':'Fără simptome neurologice' },
+      a8: { 'Pot face aproape toate activitățile normale':'Limitări minime',
+            'Evit anumite mișcări / activități':'Evit anumite activități',
+            'Mi-am redus semnificativ activitatea':'Activitate redusă',
+            'Nu pot face activități uzuale (mers, urcat scări, ridicat obiecte)':'Activități uzuale imposibile' },
+      a9: { 'Somnul':'Somnul', 'Mersul':'Mersul', 'Munca':'Munca', 'Sportul':'Sportul',
+            'Fara impact functional semnificativ':'Fără impact semnificativ' },
+      a10: { 'Scădere în greutate neintenționate':'Scădere în greutate', 'Febră inexplicabilă':'Febră',
+             'Transpirații nocturne persistente':'Transpirații nocturne',
+             'Istoric personal de cancer':'Istoric cancer',
+             'Fara semne de alarma':'Fără semne de alarmă' },
+      a11: { 'Traumatism major (accident, cădere serioasă)':'Traumatism major',
+             'Slăbiciune progresivă accentuată':'Slăbiciune progresivă',
+             'Probleme noi cu controlul urinei sau scaunului':'Tulburări sfincteriene',
+             'Fara evenimente recente relevante':'Fără evenimente recente' },
+      a12: { 'Antiinflamatoare / analgezice':'Antiinflamatoare',
+             'Fizioterapie / kinetoterapie':'Fizioterapie',
+             'Infiltrații':'Infiltrații', 'Repaus':'Repaus',
+             'Fara tratament anterior':'Fără tratament anterior' },
+      a13: { 'Clar eficient':'Eficient', 'Parțial eficient':'Parțial eficient',
+             'Fără efect':'Fără efect', 'Nu pot aprecia':'Nu poate aprecia' },
+      a14: { 'Boală reumatologică':'Boală reumatologică', 'Diabet':'Diabet',
+             'Osteoporoză':'Osteoporoză', 'Afecțiune neurologică':'Afecțiune neurologică',
+             'Boală oncologică în trecut':'Istoric oncologic',
+             'Fara comorbiditati relevante':'Fără comorbiditați' },
+      a15: { 'Da':'Da', 'Nu':'Nu' },
+      a16: { 'Predominant sedentar':'Sedentar',
+             'Activ moderat (mers, activitate fizică ușoară)':'Activitate moderată',
+             'Activ regulat (sport 2–3 ori / săptămână)':'Sport regulat',
+             'Foarte activ / sport intensiv':'Foarte activ' },
+      a17: { 'Stau mai mult pe scaun':'Muncă sedentară', 'Stau mult în picioare':'Muncă în picioare',
+             'Ridic greutăți frecvent':'Ridic greutăți', 'Activitate mixtă':'Activitate mixtă' },
+      a18: { 'Nu':'Nefumător', 'Ocazional':'Fumător ocazional', 'Zilnic':'Fumător zilnic' },
+      a19: { 'Normoponderal':'Normoponderal', 'Ușor supraponderal':'Supraponderal',
+             'Obez':'Obez', 'Nu știu / prefer să nu răspund':'IMC necunoscut' },
+      a20: { 'Activități zilnice fără limitare':'Activități zilnice fără durere',
+             'Revenirea la sport':'Revenire la sport',
+             'Revenirea la muncă normal':'Revenire la muncă',
+             'Reducerea durerii, chiar dacă rămân unele limitări':'Reducerea durerii' },
+    };
+
+    function exportQuestionLabel(qId, label) { return EXPORT_Q[qId] || label; }
+    function exportAnswer(qId, label) { return EXPORT_A[qId]?.[label] || label; }
+    function exportMultiAnswer(qId, checkName, noneName) {
+      const selectedLabels = [];
+      document.querySelectorAll(`input[name="${checkName}"]`).forEach(inp => {
+        if (inp.closest('.option.selected')) {
+          const span = inp.closest('.option').querySelector('.option-label');
+          if (span) selectedLabels.push(exportAnswer(qId, span.textContent.trim()));
+        }
+      });
+      if (selectedLabels.length) return selectedLabels.join(', ');
+      const noneInp = document.querySelector(`input[name="${noneName}"]`);
+      if (noneInp?.closest('.option.selected')) {
+        return exportAnswer(qId, noneInp.closest('.option').querySelector('.option-label')?.textContent.trim() || '—');
+      }
+      return '—';
+    }
+
     let mdAnamneza = '';
     ANAMNEZA_Q.forEach(q => {
       if (q.key === 'a13' && answered.has('a12-none')) return;
-      const questionText = document.querySelector(`#card-${q.key} .question-text`)?.childNodes[0]?.textContent?.trim() || q.label;
-      const rawAnswer = q.multi ? multiAnsCheck(q.key, q.noneName) : ans(q.key);
-      mdAnamneza += `**Q:** ${normRo(questionText)}  
-`;
-      mdAnamneza += `**A:** ${normRo(rawAnswer)}  
-
-`;
+      const questionText = exportQuestionLabel(q.key, q.label);
+      const rawAnswer = q.multi ? exportMultiAnswer(q.key, q.key, q.noneName) : ans(q.key);
+      const answerText = q.multi ? rawAnswer : exportAnswer(q.key, rawAnswer);
+      mdAnamneza += `**Q:** ${normRo(questionText)}  \n`;
+      mdAnamneza += `**A:** ${normRo(answerText)}  \n\n`;
     });
 
+    // ── ÎNTREBĂRI SPECIFICE ────────────────────────────────────
     const QUESTIONS_Q = [
       { key: 'q1', label: 'Pe ce parte simți mai mult simptomele?' },
       { key: 'q2', label: 'Ce te deranjează mai mult?' },
       { key: 'q3', label: 'Durerea sau furnicăturile se accentuează când miști gâtul?' },
-      { key: 'q4', label: 'Ai observat că îți scapă obiecte din mână sau că îți este mai greu să faci mișcări fine (nasturi, scris, pix) sau slăbiciune în general pe partea cu simptome?' },
-      { key: 'q5', label: 'Ai observat tulburări de echilibru sau dificultăți de coordonare apărute odată cu problema din zona gâtului?' },
+      { key: 'q4', label: 'Ai observat că îți scapă obiecte din mână sau slăbiciune pe partea cu simptome?' },
+      { key: 'q5', label: 'Ai observat tulburări de echilibru sau dificultăți de coordonare?' },
     ];
 
     let mdIntrebari = '';
-    QUESTIONS_Q.forEach((q) => {
+    QUESTIONS_Q.forEach(q => {
       mdIntrebari += `**Q:** ${normRo(q.label)}  \n`;
       mdIntrebari += `**A:** ${normRo(ans(q.key))}  \n\n`;
     });
 
+    // ── TESTE ───────────────────────────────────────────────────────────────
+    const CLINICAL = {
+      t1: {
+        'Ating pieptul fără durere': 'Flexie completa fara durere',
+        'Ating pieptul, dar doare': 'Flexie completa cu durere',
+        'Nu pot atinge pieptul pentru că mă doare tare': 'Flexie limitata - durere',
+        'Nu pot atinge pieptul pentru că îmi simt gâtul rigid': 'Flexie limitata - rigiditate',
+      },
+      t2: {
+        'Pot privi complet, fără durere': 'Extensie completa fara durere',
+        'Pot privi complet, dar doare': 'Extensie completa cu durere',
+        'Nu pot privi complet în tavan pentru că mă doare tare': 'Extensie limitata - durere',
+        'Nu pot privi complet spre tavan pentru că îmi simt gâtul rigid': 'Extensie limitata - rigiditate',
+      },
+      t3: {
+        'Pot privi complet și la fel pe ambele părți': 'Rotatie simetrica fara durere',
+        'Pot privi, dar doare pe partea stângă': 'Rotatie dureroasa stanga',
+        'Pot privi, dar doare pe partea dreaptă': 'Rotatie dureroasa dreapta',
+        'Nu pot privi în lateral pentru că mă doare tare': 'Rotatie limitata - durere',
+        'Nu pot privi în lateral pentru că am gâtul rigid, dar nu mă doare tare': 'Rotatie limitata - rigiditate',
+      },
+      t4: {
+        'Ajung aproape de umăr fără durere, pe ambele părți': 'Inclinare simetrica fara durere',
+        'Ajung pe partea dreaptă, dar doare. Partea stângă e bine': 'Inclinare dureroasa dreapta',
+        'Ajung pe partea stângă, dar doare. Partea dreaptă e bine': 'Inclinare dureroasa stanga',
+        'Nu pot apropia suficient pe nicio parte pentru că doare': 'Inclinare limitata - durere',
+        'Nu pot apropia suficient pe nicio parte pentru că îmi simt gâtul rigid, dar nu doare tare': 'Inclinare limitata - rigiditate',
+      },
+      t5: {
+        'Îmi mențin echilibrul fără probleme': 'Romberg negativ',
+        'Mă clatin vizibil, dar pot să îmi mențin echilibrul': 'Romberg usor pozitiv',
+        'Trebuie să deschid ochii sau să mă sprijine cineva, altfel cad': 'Romberg pozitiv',
+      },
+      t6: {
+        'Nu se modifică nimic': 'Spurling negativ',
+        'Apare durere doar în gât': 'Spurling - durere cervicala',
+        'Durerea coboară în braț': 'Spurling pozitiv - iradiere brahiala',
+      },
+      t7: {
+        'Nu apare nimic': 'Lhermitte negativ',
+        'Apare o senzație de „curent” pe coloană sau în brațe': 'Lhermitte pozitiv',
+      },
+      t8a: {
+        'Verde': 'C5 brat lateral superior',
+        'Albastru': 'C6 brat lateral',
+        'Mov': 'C7 brat posterior',
+        'Galben': 'C8 brat medial',
+        'Nicio zonă — simt la fel peste tot': 'Fara deficit sensibilitate brat',
+      },
+      t8b: {
+        'Roșu': 'C6 deget 1-2',
+        'Alb': 'C7 deget 3',
+        'Negru': 'C8 deget 4-5',
+        'Nicio zonă — simt la fel peste tot': 'Fara deficit sensibilitate mana',
+      },
+      t9: {
+        'Forța este la fel pe ambele părți': 'Forta C5 normala',
+        'Simt că brațul afectat este ușor mai slab': 'Forta C5 usor redusa',
+        'Este clar mai slab / obosește rapid / nu pot ridica la fel': 'Forta C5 semnificativ redusa',
+      },
+      t10: {
+        'Rezist la fel de bine ca pe partea sănătoasă': 'Forta C6 normala',
+        'Rezist, dar simt că este mai slabă': 'Forta C6 usor redusa',
+        'Mâna cedează ușor / nu pot menține poziția': 'Forta C6 semnificativ redusa',
+      },
+      t11: {
+        'Rezist la fel de bine ca pe partea sănătoasă': 'Forta C7 normala',
+        'Rezist, dar simt că este mai slab': 'Forta C7 usor redusa',
+        'Brațul cedează ușor / nu pot menține poziția': 'Forta C7 semnificativ redusa',
+      },
+      t12: {
+        'Forța este la fel pe ambele părți': 'Forta C8 normala',
+        'Simt că este ușor mai slabă': 'Forta C8 usor redusa',
+        'Este clar mai slabă / obiectul îmi scapă': 'Forta C8 semnificativ redusa',
+      },
+    };
+
     const TESTS = [
-      { key: 't1', label: 'T01 — Flexie cervicală — bărbia spre piept', q: 'Ce simți în timp ce faci mișcarea?' },
-      { key: 't2', label: 'T02 — Extensie cervicală — privește spre tavan', q: 'Ce simți în timp ce faci mișcarea?' },
-      { key: 't3', label: 'T03 — Rotație cervicală — privește peste umăr', q: 'Ce simți în timp ce faci mișcarea?' },
-      { key: 't4', label: 'T04 — Înclinare laterală — urechea spre umăr', q: 'Ce simți în timp ce faci mișcarea?' },
-      { key: 't5', label: 'T05 — Testul de echilibru — ochii închiși', q: 'Ce se întâmplă când închizi ochii?' },
-      { key: 't6', label: 'T06 — Testul Spurling — extensie și rotație cu rezistență', q: 'Ce se întâmplă în timpul mișcării?' },
-      { key: 't7', label: 'T07 — Testul Lhermitte — flexie cu atenție la coloană', q: 'Ce se întâmplă în timpul mișcării?' },
-      { key: 't9', label: 'T09 — Test de forță — flexia cotului', q: 'Cum este forța pe partea afectată comparativ cu cea sănătoasă?' },
-      { key: 't10', label: 'T10 — Test de forță — extensia pumnului', q: 'Cum este forța pe partea afectată?' },
-      { key: 't11', label: 'T11 — Test de forță — flexia cotului la 90°', q: 'Cum este forța pe partea afectată?' },
-      { key: 't12', label: 'T12 — Test de forță — grip (strângere în pumn)', q: 'Cum este forța de strângere pe partea afectată?' },
+      { key: 't1',  clinName: 'Flexie cervicala' },
+      { key: 't2',  clinName: 'Extensie cervicala' },
+      { key: 't3',  clinName: 'Rotatie cervicala' },
+      { key: 't4',  clinName: 'Inclinare laterala cervicala' },
+      { key: 't5',  clinName: 'Romberg test' },
+      { key: 't6',  clinName: 'Spurling test' },
+      { key: 't7',  clinName: 'Lhermitte test' },
+      { key: 't8a', clinName: 'Harta sensibilitate brat', multi: true },
+      { key: 't8b', clinName: 'Harta sensibilitate mana', multi: true },
+      { key: 't9',  clinName: 'Test forta biceps C5' },
+      { key: 't10', clinName: 'Test dorsiflexie pumn C6' },
+      { key: 't11', clinName: 'Test forta triceps C7' },
+      { key: 't12', clinName: 'Test flexor middle finger C8' },
     ];
 
     let mdTeste = '';
     TESTS.forEach(t => {
-      mdTeste += `**Q:** ${t.q}  \n`;
-      const raw = t.multi ? multiAnsColor(t.key, t.maxSel || 2) : ansMeta(t.key).raw;
-      const mapped = raw.split(', ').map(v => clinFromRaw(t.key, v)).join(', ');
+      mdTeste += `**Q:** ${normRo(t.clinName)}  \n`;
+      const raw = t.multi ? multiAnsColor(t.key, 5) : ans(t.key);
+      const mapped = raw.split(', ').map(v => {
+        const v2 = v.trim();
+        if (CLINICAL[t.key]?.[v2]) return CLINICAL[t.key][v2];
+        if (CLINICAL[t.key]) {
+          if (v2.startsWith('Da')) return CLINICAL[t.key]['Da'] || v2;
+          if (v2.startsWith('Nu')) return CLINICAL[t.key]['Nu'] || v2;
+        }
+        return v2;
+      }).join(', ');
       mdTeste += `**A:** ${normRo(mapped)}  \n\n`;
     });
 
-    mdTeste += `**Q:** Braț — care zone sunt diferite față de partea sănătoasă? (poți bifa mai multe)  \n`;
-    mdTeste += `**A:** ${normRo(multiAnsColor('t8a', 2).split(', ').map(v => clinFromRaw('t8a', v)).join(', '))}  \n`;
-    mdTeste += `**Q:** Mână — care zone sunt diferite? (poți bifa mai multe)  \n`;
-    mdTeste += `**A:** ${normRo(multiAnsColor('t8b', 2).split(', ').map(v => clinFromRaw('t8b', v)).join(', '))}  \n`;
-
-
-    function normalizeMarkdownQA(md) {
-      return md.split('\n').map(line => {
-        if (line.startsWith('**Q:** ')) return `**Q:** ${normRo(line.slice(7))}`;
-        if (line.startsWith('**A:** ')) return `**A:** ${normRo(line.slice(7))}`;
-        if (line.startsWith('A: ')) return `**A:** ${normRo(line.slice(3))}`;
-        return line;
-      }).join('\n');
-    }
-
-    mdAnamneza = normalizeMarkdownQA(mdAnamneza);
-    mdIntrebari = normalizeMarkdownQA(mdIntrebari);
-    mdTeste = normalizeMarkdownQA(mdTeste);
-
-    function clickFirst(name) {
-      const first = document.querySelector(`input[name="${name}"]`);
-      first?.closest('label')?.click();
-    }
-    window.movisAutofill = function () {
-      ['q1','q2','q3','q4','q5','q6','q7','q8','q9'].forEach(clickFirst);
-      ['t1','t2','t3','t4','t5','t6','t7','t8','t9','t10a','t10b','t1a','t1b','t2a','t2b','t8a','t8b','t9a','t9b','t9c'].forEach(clickFirst);
-    };
-
-
-    function normalizeMarkdownQA(md) {
-      return md.split('\n').map(line => {
-        if (line.startsWith('**Q:** ')) return `**Q:** ${normRo(line.slice(7))}`;
-        if (line.startsWith('**A:** ')) return `**A:** ${normRo(line.slice(7))}`;
-        if (line.startsWith('A: ')) return `A: ${normRo(line.slice(3))}`;
-        return line;
-      }).join('\n');
-    }
-
-    mdAnamneza = normalizeMarkdownQA(mdAnamneza);
-    mdIntrebari = normalizeMarkdownQA(mdIntrebari);
-    mdTeste = normalizeMarkdownQA(mdTeste);
-
     const sessionId = new URLSearchParams(window.location.search).get('session_id');
-
     let url = 'https://app.medicai.io/upload/movisplus?';
     if (sessionId) url += 'session_id=' + encodeURIComponent(sessionId) + '&';
     url += 'region=coloana-cervicala';
     url += '&chestionar_anamneza=' + encodeURIComponent(mdAnamneza.trim());
     url += '&chestionar_intrebari=' + encodeURIComponent(mdIntrebari.trim());
     url += '&chestionar_teste=' + encodeURIComponent(mdTeste.trim());
-
     window.top.location.href = url;
+  }
+
+
+  /* ─── CAROUSEL + ZOOM INIT ──────────────────────────────────────────── */
+  (function initCarousels() {
+    const ZOOM_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>';
+
+    document.querySelectorAll('.test-images').forEach(track => {
+      const wraps = [...track.querySelectorAll('.test-img-wrap')];
+
+      wraps.forEach(wrap => {
+        const zb = document.createElement('div');
+        zb.className = 'zoom-btn';
+        zb.innerHTML = ZOOM_SVG;
+        wrap.appendChild(zb);
+      });
+
+      if (wraps.length <= 1) return;
+
+      let current = 0;
+
+      const carousel = document.createElement('div');
+      carousel.className = 'carousel';
+      track.parentNode.insertBefore(carousel, track);
+      carousel.appendChild(track);
+
+      wraps.forEach((w, i) => w.classList.toggle('carousel-active', i === 0));
+
+      const counter = document.createElement('div');
+      counter.className = 'carousel-counter';
+      counter.textContent = '1 / ' + wraps.length;
+      carousel.appendChild(counter);
+
+      function goTo(idx) {
+        wraps[current].classList.remove('carousel-active');
+        current = ((idx % wraps.length) + wraps.length) % wraps.length;
+        wraps[current].classList.add('carousel-active');
+        counter.textContent = (current + 1) + ' / ' + wraps.length;
+      }
+
+      const prev = document.createElement('button');
+      prev.className = 'carousel-btn carousel-btn-prev';
+      prev.setAttribute('aria-label', 'Imaginea anterioară');
+      prev.innerHTML = '&#8249;';
+      prev.addEventListener('click', function(e) { e.stopPropagation(); goTo(current - 1); });
+      carousel.appendChild(prev);
+
+      const next = document.createElement('button');
+      next.className = 'carousel-btn carousel-btn-next';
+      next.setAttribute('aria-label', 'Imaginea următoare');
+      next.innerHTML = '&#8250;';
+      next.addEventListener('click', function(e) { e.stopPropagation(); goTo(current + 1); });
+      carousel.appendChild(next);
+    });
+  })();
+
+  /* ─── AUTOFILL (doar când ?test=1) ─────────────────────────── */
+  if (new URLSearchParams(window.location.search).get('test') === '1') {
+    const btn = document.createElement('button');
+    btn.textContent = '⚡ Autofill';
+    Object.assign(btn.style, {
+      position: 'fixed', bottom: '24px', right: '24px', zIndex: '9999',
+      background: '#00e4a7', color: '#0f0f0f', fontWeight: '700',
+      fontSize: '14px', padding: '14px 24px', borderRadius: '8px',
+      border: 'none', cursor: 'pointer', boxShadow: '0 4px 16px rgba(0,0,0,0.25)',
+      fontFamily: 'inherit'
+    });
+    btn.onclick = function() {
+      function clickFirst(name) {
+        const el = document.querySelector(`input[name="${name}"]`);
+        if (el) el.closest('.option, .color-option')?.click();
+      }
+      function clickNone(name) {
+        const el = document.querySelector(`input[name="${name}-none"]`);
+        if (el) el.closest('.option')?.click();
+      }
+      ['a1','a2','a3','a4','a5','a6','a8','a13','a15','a16','a17','a18','a19','a20'].forEach(clickFirst);
+      ['a7','a9','a10','a11','a12','a14'].forEach(clickNone);
+      ['q1','q2','q3','q4','q5'].forEach(clickFirst);
+      ['t1','t2','t3','t4','t5','t6','t7','t8a','t8b','t9','t10','t11','t12'].forEach(clickFirst);
+    };
+    document.body.appendChild(btn);
   }
 </script>
 </body>
