@@ -1583,6 +1583,63 @@
     document.getElementById('lightbox').classList.add('open');
   }
   function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
+  (function initCarousels() {
+    const ZOOM_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>';
+
+    document.querySelectorAll('.test-images').forEach(track => {
+      const wraps = [...track.querySelectorAll('.test-img-wrap')];
+
+      // Zoom button on every image (bottom-right, SVG fullscreen icon)
+      wraps.forEach(wrap => {
+        const zb = document.createElement('div');
+        zb.className = 'zoom-btn';
+        zb.innerHTML = ZOOM_SVG;
+        wrap.appendChild(zb);
+      });
+
+      if (wraps.length <= 1) return; // single image — no carousel needed
+
+      let current = 0;
+
+      // Wrap track in carousel container
+      const carousel = document.createElement('div');
+      carousel.className = 'carousel';
+      track.parentNode.insertBefore(carousel, track);
+      carousel.appendChild(track);
+
+      // Show only first image
+      wraps.forEach((w, i) => w.classList.toggle('carousel-active', i === 0));
+
+      // "1 / N" counter badge
+      const counter = document.createElement('div');
+      counter.className = 'carousel-counter';
+      counter.textContent = '1 / ' + wraps.length;
+      carousel.appendChild(counter);
+
+      function goTo(idx) {
+        wraps[current].classList.remove('carousel-active');
+        current = ((idx % wraps.length) + wraps.length) % wraps.length;
+        wraps[current].classList.add('carousel-active');
+        counter.textContent = (current + 1) + ' / ' + wraps.length;
+      }
+
+      const prev = document.createElement('button');
+      prev.className = 'carousel-btn carousel-btn-prev';
+      prev.setAttribute('aria-label', 'Imaginea anterioară');
+      prev.innerHTML = '&#8249;';
+      prev.addEventListener('click', function(e) { e.stopPropagation(); goTo(current - 1); });
+      carousel.appendChild(prev);
+
+      const next = document.createElement('button');
+      next.className = 'carousel-btn carousel-btn-next';
+      next.setAttribute('aria-label', 'Imaginea următoare');
+      next.innerHTML = '&#8250;';
+      next.addEventListener('click', function(e) { e.stopPropagation(); goTo(current + 1); });
+      carousel.appendChild(next);
+    });
+  })();
+
+
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
   function showToast(msg, isError) {
