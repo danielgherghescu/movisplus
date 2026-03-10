@@ -1492,15 +1492,25 @@
   function selColorMulti(el, name, noneKey, max, event) {
     if (event) event.preventDefault();
     const card = el.closest('.test-card');
+    // Deselecteaza "Nicio zona"
     const noneEl = card.querySelector(`input[name="${noneKey}"]`);
     if (noneEl) {
       noneEl.closest('.option')?.classList.remove('selected');
       answered.delete(noneKey);
     }
-    el.classList.toggle('selected');
     const container = el.closest('.color-options');
-    const sel = container.querySelectorAll('.color-option.selected');
-    if (sel.length > max) sel[0].classList.remove('selected');
+    const alreadySelected = el.classList.contains('selected');
+    if (alreadySelected) {
+      // Deselecteaza
+      el.classList.remove('selected');
+    } else {
+      // Selecteaza — daca suntem la max, scoate cel mai vechi (primul ramas selectat != el)
+      const currentSel = [...container.querySelectorAll('.color-option.selected')];
+      if (currentSel.length >= max) {
+        currentSel[0].classList.remove('selected');
+      }
+      el.classList.add('selected');
+    }
     if (container.querySelectorAll('.color-option.selected').length > 0) {
       answered.add(name);
       card.classList.add('answered');
