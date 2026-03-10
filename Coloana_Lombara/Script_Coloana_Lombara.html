@@ -148,7 +148,7 @@
   .progress-track {
     flex: 1;
     height: 8px;
-    background: rgba(255,255,255,0.7);
+    background: rgba(255,255,255,0.1);
     border-radius: 4px;
     overflow: hidden;
   }
@@ -546,6 +546,8 @@
     .carousel .test-images { display: flex; overflow-x: auto; gap: 8px; }
     .carousel .test-img-wrap { display: block; width: auto; }
     .carousel .test-img-wrap.carousel-active img { width: auto; }
+    .carousel .test-images:has(.test-img-wrap:nth-child(3)) .test-img-wrap img { height: 260px; }
+    .carousel .test-images:has(.test-img-wrap:nth-child(4)) .test-img-wrap img { height: 200px; }
   }
 
 
@@ -765,7 +767,7 @@
   <!-- Sub I -->
   <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
     <div class="sub-section-label-line"></div>
-    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Despre Problema Actuală</span>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">I — Despre Problema Actuală</span>
     <div class="sub-section-label-line"></div>
   </div>
 
@@ -809,7 +811,7 @@
   <!-- Sub II -->
   <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
     <div class="sub-section-label-line"></div>
-    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Caracterul Durerii</span>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">II — Caracterul Durerii</span>
     <div class="sub-section-label-line"></div>
   </div>
 
@@ -866,7 +868,7 @@
   <!-- Sub III -->
   <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
     <div class="sub-section-label-line"></div>
-    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Impact Funcțional</span>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">III — Impact Funcțional</span>
     <div class="sub-section-label-line"></div>
   </div>
 
@@ -900,7 +902,7 @@
   <!-- Sub IV -->
   <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
     <div class="sub-section-label-line"></div>
-    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Semnale de Alarmă</span>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">IV — Semnale de Alarmă</span>
     <div class="sub-section-label-line"></div>
   </div>
 
@@ -936,7 +938,7 @@
   <!-- Sub V -->
   <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
     <div class="sub-section-label-line"></div>
-    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Tratament Anterior</span>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">V — Tratament Anterior</span>
     <div class="sub-section-label-line"></div>
   </div>
 
@@ -970,7 +972,7 @@
   <!-- Sub VI -->
   <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
     <div class="sub-section-label-line"></div>
-    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Context Medical</span>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">VI — Context Medical</span>
     <div class="sub-section-label-line"></div>
   </div>
 
@@ -1003,7 +1005,7 @@
   <!-- Sub VII -->
   <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
     <div class="sub-section-label-line"></div>
-    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Stil de Viață</span>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">VII — Stil de Viață</span>
     <div class="sub-section-label-line"></div>
   </div>
 
@@ -1057,7 +1059,7 @@
   <!-- Sub VIII -->
   <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
     <div class="sub-section-label-line"></div>
-    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Obiectivul Tău</span>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">VIII — Obiectivul Tău</span>
     <div class="sub-section-label-line"></div>
   </div>
 
@@ -1242,7 +1244,7 @@
     </div>
     <div class="test-body">
       <div class="test-images">
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Lombara/images/image1.jpg" alt="Zone de durere lombară"><div class="img-label">Zone de durere lombară</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Lombara/images/image1.jpg" alt="Zone de durere lombară"></div>
       </div>
       <div class="instruction-steps">
         Privește imaginea.<br>
@@ -1274,7 +1276,7 @@
     </div>
     <div class="test-body">
       <div class="test-images">
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Lombara/images/image3.jpg" alt="Zone de sensibilitate"><div class="img-label">Zone de sensibilitate</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Lombara/images/image3.jpg" alt="Zone de sensibilitate"></div>
       </div>
       <div class="instruction-steps">
         Privește imaginea.<br>
@@ -1309,8 +1311,8 @@
     </div>
     <div class="test-body">
       <div class="test-images">
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Lombara/images/image2.jpg" alt="Poziția 1 — picior afectat"><div class="img-label">Poziția 1 — picior afectat</div></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Lombara/images/image5.jpg" alt="Poziția 2 — picior sănătos"><div class="img-label">Poziția 2 — picior sănătos</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Lombara/images/image2.jpg" alt="Poziția 1 — picior afectat"></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Lombara/images/image5.jpg" alt="Poziția 2 — picior sănătos"></div>
       </div>
       <div class="instruction-steps">
         Stai întins pe spate și ridică piciorul dureros (sau roagă pe cineva să ți-l ridice), fără să îndoi genunchiul sau încercând să ții genunchiul cât mai drept.<br>
@@ -1339,8 +1341,8 @@
     </div>
     <div class="test-body">
       <div class="test-images">
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Lombara/images/image4.jpg" alt="Poziția 1 — start"><div class="img-label">Poziția 1 — start</div></div>
-        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Lombara/images/image6.jpg" alt="Poziția 2 — rotație"><div class="img-label">Poziția 2 — rotație</div></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Lombara/images/image4.jpg" alt="Poziția 1 — start"></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Lombara/images/image6.jpg" alt="Poziția 2 — rotație"></div>
       </div>
       <div class="instruction-steps">
         Stai așezat ca în imaginea 1.<br>
