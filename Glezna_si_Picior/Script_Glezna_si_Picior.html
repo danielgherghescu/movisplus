@@ -1691,8 +1691,32 @@
     }
 
     const CLINICAL = {
-      yesNo: { 'Da': 'Pozitiv', 'Nu': 'Negativ', 'Nu știu': 'Incert', 'Nu sunt sigur': 'Incert' },
-      colors: { 'Verde': 'Normal', 'Albastru': 'Usor modificat', 'Galben': 'Moderat', 'Roșu': 'Sever', 'Portocaliu': 'Accentuat', 'Mov': 'Specific' }
+      t1: { 'Verde':'Glezna mediala', 'Albastru':'Glezna anterioara tibio-talar',
+            'Roșu':'Glezna laterala', 'Portocaliu':'Mediopicior Lisfranc Chopart',
+            'Mov':'MTTS-F haluce', 'Negru':'Metatarsalgii transfer 2-5',
+            'Nicio zonă din această imagine':'Fara durere anterioara' },
+      t2: { 'Albastru':'Tendon Ahilean', 'Galben':'Calcaneu posterior Haglund',
+            'Roșu':'Glezna laterala', 'Verde':'Glezna mediala',
+            'Nicio zonă din această imagine':'Fara durere posterioara' },
+      t3: { 'Mov':'Traiect tibial posterior', 'Verde':'Glezna anterioara tibio-talar',
+            'Roșu':'Origine fascie plantara', 'Galben':'Fascie plantara',
+            'Albastru':'Haluce valgus rigidus artroza',
+            'Nicio zonă din această imagine':'Fara durere mediala' },
+      t4: { 'Roșu':'Maleola peroniera', 'Galben':'Traiect tendoane peronieri',
+            'Verde':'Glezna anterioara tibio-talara', 'Albastru':'Sinus tarsi ATFL',
+            'Mov':'MTTS-F raza 5 bunionette',
+            'Nicio zonă din această imagine':'Fara durere laterala' },
+      t5: { 'Da':'Morton squeeze test pozitiv', 'Nu':'Morton squeeze test negativ' },
+      t6: { 'Da':'Impingement peronier pozitiv', 'Nu':'Impingement peronier negativ' },
+      t7: { 'Da':'Impingement medial pozitiv', 'Nu':'Impingement medial negativ' },
+      t8: { 'Da, fără probleme (mă ridic ușor, stau stabil, fără durere)':'Triceps sural integru',
+            'Da, dar apare durere (în spatele gleznei / tendon / talpă / interior)':'Ridicare varfuri dureroasa',
+            'Da, dar piciorul nu este stabil (simt că \u201efuge\u201d stânga-dreapta sau că nu am forță)':'Ridicare varfuri instabila',
+            'Cu dificultate (mă ridic greu sau nu pot menține poziția)':'Slabiciune triceps sural',
+            'Nu pot să mă ridic pe vârfuri':'Ruptura sau pareza triceps sural' },
+      t9a:{ 'Da':'Contractura gastrocnemieni prezenta', 'Nu':'Contractura gastrocnemieni absenta' },
+      t9b:{ 'Da':'Tensiune plantara Silfverskiold prezenta', 'Nu':'Tensiune plantara Silfverskiold absenta' },
+      t9c:{ 'Da':'Silfverskiold pozitiv contractura izolata gastrocnemieni', 'Nu':'Silfverskiold negativ' },
     };
 
     function clinFromRaw(key, raw) {
@@ -1789,56 +1813,34 @@
     });
 
     const TESTS = [
-      { key: 't1', label: 'T01 — Localizarea durerii — față și lateral gleznă', q: 'Alege zona/zonele dureroase din această imagine (max. 2)', multi: true, noneKey: 't1-none' },
-      { key: 't2', label: 'T02 — Localizarea durerii — spate gleznă / călcâi', q: 'Alege zona/zonele dureroase din această imagine (max. 2)', multi: true, noneKey: 't2-none' },
-      { key: 't3', label: 'T03 — Localizarea durerii — medial (interior) gleznă', q: 'Alege zona/zonele dureroase din această imagine (max. 2)', multi: true, noneKey: 't3-none' },
-      { key: 't4', label: 'T04 — Localizarea durerii — față picior și degete', q: 'Alege zona/zonele dureroase din această imagine (max. 2)', multi: true, noneKey: 't4-none' },
-      { key: 't5', label: 'T05 — Compresia transversală — testul Morton', q: 'Simți o durere între degete sau o senzație de „curent", arsură sau furnicături?' },
-      { key: 't6', label: 'T06 — Talar tilt extern — testul stabilității ligamentare laterale', q: 'Simți durere în zona marcată cu punct galben?' },
-      { key: 't7', label: 'T07 — Talar tilt intern — testul stabilității ligamentare mediale', q: 'Simți durere în zona marcată cu punct galben?' },
-      { key: 't8', label: 'T08 — Ridicare pe vârfuri — testul tendonului lui Ahile', q: 'Poți să te ridici pe vârfuri pe piciorul afectat?' },
+      { key: 't1', label: 'T01 — Localizarea durerii — față și lateral gleznă', q: 'Alege zona/zonele dureroase din această imagine (max. 2)', multi: true, noneKey: 't1-none', clinName: 'Harta durere glezna anterior' },
+      { key: 't2', label: 'T02 — Localizarea durerii — spate gleznă / călcâi', q: 'Alege zona/zonele dureroase din această imagine (max. 2)', multi: true, noneKey: 't2-none', clinName: 'Harta durere glezna posterior' },
+      { key: 't3', label: 'T03 — Localizarea durerii — medial (interior) gleznă', q: 'Alege zona/zonele dureroase din această imagine (max. 2)', multi: true, noneKey: 't3-none', clinName: 'Harta durere glezna mediala' },
+      { key: 't4', label: 'T04 — Localizarea durerii — față picior și degete', q: 'Alege zona/zonele dureroase din această imagine (max. 2)', multi: true, noneKey: 't4-none', clinName: 'Harta durere glezna laterala' },
+      { key: 't5', label: 'T05 — Compresia transversală — testul Morton', q: 'Simți o durere între degete sau o senzație de „curent", arsură sau furnicături?', clinName: 'Morton squeeze test' },
+      { key: 't6', label: 'T06 — Talar tilt extern — testul stabilității ligamentare laterale', q: 'Simți durere în zona marcată cu punct galben?', clinName: 'Impingement peronier' },
+      { key: 't7', label: 'T07 — Talar tilt intern — testul stabilității ligamentare mediale', q: 'Simți durere în zona marcată cu punct galben?', clinName: 'Impingement medial' },
+      { key: 't8', label: 'T08 — Ridicare pe vârfuri — testul tendonului lui Ahile', q: 'Poți să te ridici pe vârfuri pe piciorul afectat?', clinName: 'Ridicare varfuri monopodal' },
     ];
 
     let mdTeste = '';
     TESTS.forEach(t => {
-      mdTeste += `**Q:** ${t.q}  \n`;
-      const raw = t.multi ? multiAnsColor(t.key, t.maxSel || 2) : ansMeta(t.key).raw;
-      const mapped = raw.split(', ').map(v => clinFromRaw(t.key, v)).join(', ');
+      mdTeste += `**Q:** ${normRo(t.clinName)}  \n`;
+      const raw = t.multi
+        ? multiAnsColor(t.key, t.maxSel || 2)
+        : ans(t.key);
+      const mapped = raw.split(', ').map(v => {
+        const v2 = v.trim();
+        return CLINICAL[t.key]?.[v2] || v2;
+      }).join(', ');
       mdTeste += `**A:** ${normRo(mapped)}  \n\n`;
     });
-    mdTeste += `**Q:** Pasul 1 — Genunchiul întins: Simti ca te tine sau o tensiune?  \n`;
-    mdTeste += `**A:** ${normRo(clinFromRaw('t9a', ans('t9a')))}  \n`;
-    mdTeste += `**Q:** Pasul 2 — Genunchiul indoit: Simti ca te tine sau o tensiune in talpa?  \n`;
-    mdTeste += `**A:** ${normRo(clinFromRaw('t9b', ans('t9b')))}  \n`;
-    mdTeste += `**Q:** Comparare pozitii: dorsiflexie mai mare cu genunchiul indoit?  \n`;
-    mdTeste += `**A:** ${normRo(clinFromRaw('t9c', ans('t9c')))}  \n`;
-
-
-    function normalizeMarkdownQA(md) {
-      return md.split('\n').map(line => {
-        if (line.startsWith('**Q:** ')) return `**Q:** ${normRo(line.slice(7))}`;
-        if (line.startsWith('**A:** ')) return `**A:** ${normRo(line.slice(7))}`;
-        if (line.startsWith('A: ')) return `**A:** ${normRo(line.slice(3))}`;
-        return line;
-      }).join('\n');
-    }
-
-    mdAnamneza = normalizeMarkdownQA(mdAnamneza);
-    mdIntrebari = normalizeMarkdownQA(mdIntrebari);
-    mdTeste = normalizeMarkdownQA(mdTeste);
-
-    function normalizeMarkdownQA(md) {
-      return md.split('\n').map(line => {
-        if (line.startsWith('**Q:** ')) return `**Q:** ${normRo(line.slice(7))}`;
-        if (line.startsWith('**A:** ')) return `**A:** ${normRo(line.slice(7))}`;
-        if (line.startsWith('A: ')) return `A: ${normRo(line.slice(3))}`;
-        return line;
-      }).join('\n');
-    }
-
-    mdAnamneza = normalizeMarkdownQA(mdAnamneza);
-    mdIntrebari = normalizeMarkdownQA(mdIntrebari);
-    mdTeste = normalizeMarkdownQA(mdTeste);
+    mdTeste += `**Q:** Silfverskiold genunchi intins  \n`;
+    mdTeste += `**A:** ${normRo(CLINICAL.t9a?.[ans('t9a')] || ans('t9a'))}  \n\n`;
+    mdTeste += `**Q:** Silfverskiold genunchi indoit  \n`;
+    mdTeste += `**A:** ${normRo(CLINICAL.t9b?.[ans('t9b')] || ans('t9b'))}  \n\n`;
+    mdTeste += `**Q:** Silfverskiold comparatie  \n`;
+    mdTeste += `**A:** ${normRo(CLINICAL.t9c?.[ans('t9c')] || ans('t9c'))}  \n\n`;
 
     const sessionId = new URLSearchParams(window.location.search).get('session_id');
 

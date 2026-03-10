@@ -1704,8 +1704,39 @@
     }
 
     const CLINICAL = {
-      yesNo: { 'Da': 'Pozitiv', 'Nu': 'Negativ', 'Nu știu': 'Incert', 'Nu sunt sigur': 'Incert' },
-      colors: { 'Verde': 'Normal', 'Albastru': 'Usor modificat', 'Galben': 'Moderat', 'Roșu': 'Sever', 'Portocaliu': 'Accentuat', 'Mov': 'Specific' }
+      t1: { 'Albastru (zona albastră)':'Police volar',
+            'Mov (zona mov)':'Zona MTC-F volar',
+            'Galben (zona galbenă)':'Tunel carpian volar',
+            'Roșu (zonă roșie la nivelul unui deget sau punct roșu)':'Tubercul scafoid',
+            'Verde (punct verde)':'Pisiform',
+            'Nicio zonă din această imagine':'Fara durere volar' },
+      t2: { 'Albastru':'Police dorsal', 'Mov':'Carp dorsal',
+            'Galben':'Stiloida ulnara', 'Roșu':'Stiloida radiala',
+            'Portocaliu':'Zona MTC-F dorsal',
+            'Nicio zonă din această imagine':'Fara durere dorsal' },
+      t3: { 'Zona roșie':'Teritoriu median afectat',
+            'Zona galbenă':'Teritoriu ulnar afectat',
+            'În ambele zone':'Teritoriu median si ulnar afectat',
+            'Nu am amorțeli sau furnicături':'Sensibilitate volar normala' },
+      t4: { 'Zona albastră':'Teritoriu radial superficial afectat',
+            'Zona galbenă':'Teritoriu ulnar dorsal afectat',
+            'În ambele zone':'Teritoriu ulnar si radial superficial afectat',
+            'Nu am amorțeli sau furnicături':'Sensibilitate dorsal normala' },
+      t5: { 'Da, toate se îndreaptă spre același punct':'Tenodeza normala fara rotatie',
+            'Nu, un deget pare rotit diferit față de celelalte':'Tenodeza anormala rotatie deget',
+            'Nu, un deget rămâne în urmă și nu se închide complet':'Tenodeza anormala deget in extensie',
+            'Nu pot închide complet pumnul din cauza rigidității sau durerii':'Pumn rigid sau dureros' },
+      t6: { 'Da':'Wartenberg pozitiv', 'Nu':'Wartenberg negativ' },
+      t7: { 'Da':'Durkin pozitiv', 'Nu':'Durkin negativ' },
+      t8: { 'Da':'Finkelstein pozitiv', 'Nu':'Finkelstein negativ' },
+      t9a:{ 'Palma afectată nu se duce pe spate la fel de mult ca cealaltă':'Extensie pumn limitata',
+            'Apar amorțeli sau furnicături în mâna afectată':'Reverse Phalen pozitiv',
+            'Ambele mâini se mișcă la fel, fără simptome':'Reverse Phalen negativ' },
+      t9b:{ 'Palma afectată nu se duce în jos la fel de mult ca cealaltă':'Flexie pumn limitata',
+            'Apar amorțeli sau furnicături în mâna afectată':'Phalen pozitiv',
+            'Ambele mâini se mișcă la fel, fără simptome':'Phalen negativ' },
+      t10a:{ 'Da':'Impingement radial prezent', 'Nu':'Impingement radial absent' },
+      t10b:{ 'Da':'TFCC dureros', 'Nu':'TFCC nedureros' },
     };
 
     function clinFromRaw(key, raw) {
@@ -1806,54 +1837,32 @@
     });
 
     const TESTS = [
-      { key: 't1', q: 'Alege zona/zonele dureroase (max. 2)', multi: true, maxSel: 2 },
-      { key: 't2', q: 'Alege zona/zonele dureroase (max. 2)', multi: true, maxSel: 2 },
-      { key: 't3', q: 'Unde simți amorțelile sau furnicăturile?' },
-      { key: 't4', q: 'Unde simți amorțelile sau furnicăturile?' },
-      { key: 't5', q: 'Ce observi la mâna afectată?' },
-      { key: 't6', q: 'La mâna afectată, degetul mic rămâne depărtat de celelalte degete?' },
-      { key: 't7', q: 'În timpul apăsării apar amorțeli, furnicături sau senzație de curent în zona marcată?' },
-      { key: 't8', q: 'În poziția finală, apare durere în zona marcată cu roșu?' },
-      { key: 't9a', q: 'Partea 1 — ce se întâmplă la mâna afectată?' },
-      { key: 't9b', q: 'Partea 2 — ce se întâmplă la mâna afectată?' },
-      { key: 't10a', q: 'Poziția 1 — apare durere în punctul marcat cu roșu?' },
-      { key: 't10b', q: 'Poziția 2 — apare durere în punctul marcat cu roșu?' },
+      { key: 't1', q: 'Alege zona/zonele dureroase (max. 2)', multi: true, maxSel: 2, clinName: 'Harta durere mana volar' },
+      { key: 't2', q: 'Alege zona/zonele dureroase (max. 2)', multi: true, maxSel: 2, clinName: 'Harta durere mana dorsal' },
+      { key: 't3', q: 'Unde simți amorțelile sau furnicăturile?', clinName: 'Harta senzitiva volar' },
+      { key: 't4', q: 'Unde simți amorțelile sau furnicăturile?', clinName: 'Harta senzitiva dorsal' },
+      { key: 't5', q: 'Ce observi la mâna afectată?', clinName: 'Test tenodeza' },
+      { key: 't6', q: 'La mâna afectată, degetul mic rămâne depărtat de celelalte degete?', clinName: 'Test Wartenberg' },
+      { key: 't7', q: 'În timpul apăsării apar amorțeli, furnicături sau senzație de curent în zona marcată?', clinName: 'Test Durkin' },
+      { key: 't8', q: 'În poziția finală, apare durere în zona marcată cu roșu?', clinName: 'Test Finkelstein' },
+      { key: 't9a', q: 'Partea 1 — ce se întâmplă la mâna afectată?', clinName: 'Reverse Phalen extensie' },
+      { key: 't9b', q: 'Partea 2 — ce se întâmplă la mâna afectată?', clinName: 'Phalen flexie' },
+      { key: 't10a', q: 'Poziția 1 — apare durere în punctul marcat cu roșu?', clinName: 'Dart throwing radial' },
+      { key: 't10b', q: 'Poziția 2 — apare durere în punctul marcat cu roșu?', clinName: 'Dart throwing ulnar TFCC' },
     ];
 
     let mdTeste = '';
     TESTS.forEach(t => {
-      mdTeste += `**Q:** ${t.q}  \n`;
-      const raw = t.multi ? multiAnsColor(t.key, t.maxSel || 2) : ansMeta(t.key).raw;
-      const mapped = raw.split(', ').map(v => clinFromRaw(t.key, v)).join(', ');
+      mdTeste += `**Q:** ${normRo(t.clinName)}  \n`;
+      const raw = t.multi
+        ? multiAnsColor(t.key, t.maxSel || 2)
+        : ans(t.key);
+      const mapped = raw.split(', ').map(v => {
+        const v2 = v.trim();
+        return CLINICAL[t.key]?.[v2] || v2;
+      }).join(', ');
       mdTeste += `**A:** ${normRo(mapped)}  \n\n`;
     });
-
-
-    function normalizeMarkdownQA(md) {
-      return md.split('\n').map(line => {
-        if (line.startsWith('**Q:** ')) return `**Q:** ${normRo(line.slice(7))}`;
-        if (line.startsWith('**A:** ')) return `**A:** ${normRo(line.slice(7))}`;
-        if (line.startsWith('A: ')) return `**A:** ${normRo(line.slice(3))}`;
-        return line;
-      }).join('\n');
-    }
-
-    mdAnamneza = normalizeMarkdownQA(mdAnamneza);
-    mdIntrebari = normalizeMarkdownQA(mdIntrebari);
-    mdTeste = normalizeMarkdownQA(mdTeste);
-
-    function normalizeMarkdownQA(md) {
-      return md.split('\n').map(line => {
-        if (line.startsWith('**Q:** ')) return `**Q:** ${normRo(line.slice(7))}`;
-        if (line.startsWith('**A:** ')) return `**A:** ${normRo(line.slice(7))}`;
-        if (line.startsWith('A: ')) return `A: ${normRo(line.slice(3))}`;
-        return line;
-      }).join('\n');
-    }
-
-    mdAnamneza = normalizeMarkdownQA(mdAnamneza);
-    mdIntrebari = normalizeMarkdownQA(mdIntrebari);
-    mdTeste = normalizeMarkdownQA(mdTeste);
 
     const sessionId = new URLSearchParams(window.location.search).get('session_id');
 
