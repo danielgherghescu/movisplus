@@ -2065,19 +2065,30 @@
         if (longest) longest.closest('.option')?.click();
       }
       function clickAllColors(name) {
-        const card = document.querySelector(`[id="card-${name}"]`) || document.querySelector(`[id="card-${name.replace(/[ab]$/, '')}"]`);
+        const card = document.querySelector(`[id="card-${name}"]`) ||
+                     document.querySelector(`[id="card-${name.replace(/[ab]$/, '')}"]`);
         if (!card) return;
-        card.querySelectorAll('.color-option').forEach(opt => {
+        const opts = [...card.querySelectorAll('.color-option')].filter(opt => {
           const inp = opt.querySelector('input');
-          if (inp && inp.name === name && !opt.classList.contains('selected')) {
-            opt.click();
-          }
+          return inp && inp.name === name;
+        });
+        // Sortează după lungimea valorii CLINICAL, descrescător
+        opts.sort((a, b) => {
+          const labelA = a.querySelector('.color-option-label')?.textContent.trim() || '';
+          const labelB = b.querySelector('.color-option-label')?.textContent.trim() || '';
+          const lenA = (CLINICAL[name]?.[labelA] || labelA).length;
+          const lenB = (CLINICAL[name]?.[labelB] || labelB).length;
+          return lenB - lenA;
+        });
+        // Selectează primele 2 (cele cu valorile CLINICAL cele mai lungi)
+        opts.slice(0, 2).forEach(opt => {
+          if (!opt.classList.contains('selected')) opt.click();
         });
       }
       function clickAllChecks(name) {
         const inputs = document.querySelectorAll(`input[name="${name}"]`);
         inputs.forEach(inp => {
-          if (inp.type === 'checkbox' && !inp.closest('.option')?.classList.contains('none-option')) {
+          if (inp.type === 'checkbox' && inp.name !== name + '-none') {
             if (!inp.checked) inp.closest('.option')?.click();
           }
         });
