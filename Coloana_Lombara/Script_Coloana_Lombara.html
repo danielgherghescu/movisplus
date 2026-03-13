@@ -1623,6 +1623,41 @@
         .replace(/[țţȚŢ]/g, 't');
     }
 
+  const CLINICAL = {
+    t1:{ 'Normal, la fel ca înainte de episod':'Flexie lombara normala',
+          'Simt că mă \u201eține\u201d în zona lombară':'Flexie lombara tensiune',
+          'Simt durere lombară':'Flexie lombara dureroasa',
+          'Durerea coboară pe picior':'Flexie lombara iradiere' },
+    t2:{ 'Fără durere':'Extensie lombara normala',
+          'Doare local în lombar':'Extensie lombara dureroasa',
+          'Durerea coboară pe picior':'Extensie lombara iradiere' },
+    t3:{ 'Normal, fără diferență între picioare':'Mers calcaie normal L4-L5',
+          'Ușoară slăbiciune pe partea afectată':'Mers calcaie slabiciune usoara L4-L5',
+          'Degetul mare este clar mai slab pe partea afectată':'Mers calcaie slabiciune clara L5',
+          'Nu pot menține poziția pe partea afectată':'Drop foot L4-L5' },
+    t4:{ 'Normal, fără diferență':'Mers varfuri normal S1',
+          'Ușoară slăbiciune pe partea afectată':'Mers varfuri slabiciune usoara S1',
+          'Nu pot menține poziția din cauza slăbiciunii':'Mers varfuri imposibil S1',
+          'Nu pot din cauza durerii sau instabilității':'Mers varfuri imposibil durere' },
+    t5: { 'Roșu':'Musculatura paravertebrala lombara', 'Mov':'Linie mediana procese spinoase',
+          'Albastru':'Articulatie sacro-iliaca', 'Verde':'Sold posterior',
+          'Galben':'Regiune mare trohanter',
+          'Nicio zonă nu este clar mai dureroasă la apăsare':'Fara zona clara la palpare' },
+    t6: { 'Verde':'Dermatom L1-L2 afectat', 'Galben':'Dermatom L3 afectat',
+          'Mov':'Dermatom L4 afectat', 'Albastru':'Dermatom L5 afectat',
+          'Roșu':'Dermatom S1 afectat',
+          'Nicio zonă — simt la fel peste tot':'Sensibilitate normala bilateral' },
+    t7a:{ 'Doar întindere în spatele coapsei (zona mov)':'Pseudo-Lasegue pozitiv tightness',
+          'Apar simptome pe traiectul colorat din imagine — durere':'Lasegue pozitiv durere',
+          'Apar simptome pe traiectul colorat din imagine — amorțeală / furnicături':'Lasegue pozitiv parestezii' },
+    t7b:{ 'Nu apar simptome':'Lasegue incrucișat negativ',
+          'Apar simptome în același picior (mai sănătos)':'Pseudo-Lasegue pozitiv',
+          'Ridicarea piciorului sănătos declanșează simptome în piciorul dureros':'Lasegue incrucișat pozitiv' },
+    t8: { 'Normal':'Rotatie interna sold normala',
+          'Durere în zona inghinală':'Rotatie interna sold dureroasa',
+          'Mișcare limitată față de celălalt șold':'Rotatie interna sold limitata' },
+  };
+
   function generateJSON() {
     // Validare câmpuri obligatorii
     document.querySelectorAll('.missing').forEach(el => el.classList.remove('missing'));
@@ -1705,41 +1740,6 @@
       }
       return (maxSel ? selected.slice(0, maxSel) : selected).join(', ') || '—';
     }
-
-    const CLINICAL = {
-      t1:{ 'Normal, la fel ca înainte de episod':'Flexie lombara normala',
-            'Simt că mă \u201eține\u201d în zona lombară':'Flexie lombara tensiune',
-            'Simt durere lombară':'Flexie lombara dureroasa',
-            'Durerea coboară pe picior':'Flexie lombara iradiere' },
-      t2:{ 'Fără durere':'Extensie lombara normala',
-            'Doare local în lombar':'Extensie lombara dureroasa',
-            'Durerea coboară pe picior':'Extensie lombara iradiere' },
-      t3:{ 'Normal, fără diferență între picioare':'Mers calcaie normal L4-L5',
-            'Ușoară slăbiciune pe partea afectată':'Mers calcaie slabiciune usoara L4-L5',
-            'Degetul mare este clar mai slab pe partea afectată':'Mers calcaie slabiciune clara L5',
-            'Nu pot menține poziția pe partea afectată':'Drop foot L4-L5' },
-      t4:{ 'Normal, fără diferență':'Mers varfuri normal S1',
-            'Ușoară slăbiciune pe partea afectată':'Mers varfuri slabiciune usoara S1',
-            'Nu pot menține poziția din cauza slăbiciunii':'Mers varfuri imposibil S1',
-            'Nu pot din cauza durerii sau instabilității':'Mers varfuri imposibil durere' },
-      t5: { 'Roșu':'Musculatura paravertebrala lombara', 'Mov':'Linie mediana procese spinoase',
-            'Albastru':'Articulatie sacro-iliaca', 'Verde':'Sold posterior',
-            'Galben':'Regiune mare trohanter',
-            'Nicio zonă nu este clar mai dureroasă la apăsare':'Fara zona clara la palpare' },
-      t6: { 'Verde':'Dermatom L1-L2 afectat', 'Galben':'Dermatom L3 afectat',
-            'Mov':'Dermatom L4 afectat', 'Albastru':'Dermatom L5 afectat',
-            'Roșu':'Dermatom S1 afectat',
-            'Nicio zonă — simt la fel peste tot':'Sensibilitate normala bilateral' },
-      t7a:{ 'Doar întindere în spatele coapsei (zona mov)':'Pseudo-Lasegue pozitiv tightness',
-            'Apar simptome pe traiectul colorat din imagine — durere':'Lasegue pozitiv durere',
-            'Apar simptome pe traiectul colorat din imagine — amorțeală / furnicături':'Lasegue pozitiv parestezii' },
-      t7b:{ 'Nu apar simptome':'Lasegue incrucișat negativ',
-            'Apar simptome în același picior (mai sănătos)':'Pseudo-Lasegue pozitiv',
-            'Ridicarea piciorului sănătos declanșează simptome în piciorul dureros':'Lasegue incrucișat pozitiv' },
-      t8: { 'Normal':'Rotatie interna sold normala',
-            'Durere în zona inghinală':'Rotatie interna sold dureroasa',
-            'Mișcare limitată față de celălalt șold':'Rotatie interna sold limitata' },
-    };
 
     function clinFromRaw(key, raw) {
       if (raw === '—') return raw;
