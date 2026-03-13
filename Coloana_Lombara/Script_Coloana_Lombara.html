@@ -1175,72 +1175,85 @@
     </div>
   </div>
 
+  <!-- TEST T1 (formerly ROM1) -->
+  <div class="test-card" id="card-t1">
+    <div class="test-header">
+      <div class="test-badge">T<span class="badge-accent">01</span></div>
+      <div class="test-instructions">Aplecarea înainte — atingi vârfurile picioarelor</div>
+    </div>
+    <div class="test-body">
+      <div class="test-question">Apleacă-te înainte și încearcă să atingi vârfurile picioarelor.</div>
+      <div class="options">
+        <label class="option" onclick="sel(this,'t1')"><input type="radio" name="t1"><div class="option-radio"></div><span class="option-label">Este la fel ca înainte de episod</span></label>
+        <label class="option" onclick="sel(this,'t1')"><input type="radio" name="t1"><div class="option-radio"></div><span class="option-label">Simt că mă „ține" în zona lombară</span></label>
+        <label class="option" onclick="sel(this,'t1')"><input type="radio" name="t1"><div class="option-radio"></div><span class="option-label">Simt durere lombară</span></label>
+        <label class="option" onclick="sel(this,'t1')"><input type="radio" name="t1"><div class="option-radio"></div><span class="option-label">Durerea coboară pe picior</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST T2 (formerly ROM2) -->
+  <div class="test-card" id="card-t2">
+    <div class="test-header">
+      <div class="test-badge">T<span class="badge-accent">02</span></div>
+      <div class="test-instructions">Extensia lombară — îndreaptă spatele</div>
+    </div>
+    <div class="test-body">
+      <div class="test-question">Îndreaptă cât poți de mult spatele.</div>
+      <div class="options">
+        <label class="option" onclick="sel(this,'t2')"><input type="radio" name="t2"><div class="option-radio"></div><span class="option-label">Fără durere</span></label>
+        <label class="option" onclick="sel(this,'t2')"><input type="radio" name="t2"><div class="option-radio"></div><span class="option-label">Doare local în lombar</span></label>
+        <label class="option" onclick="sel(this,'t2')"><input type="radio" name="t2"><div class="option-radio"></div><span class="option-label">Durerea coboară pe picior</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST T3 (formerly ROM3) -->
+  <div class="test-card" id="card-t3">
+    <div class="test-header">
+      <div class="test-badge">T<span class="badge-accent">03</span></div>
+      <div class="test-instructions">Mers pe călcâie — evaluarea forței L4-L5</div>
+    </div>
+    <div class="test-body">
+      <div class="test-question">Mergi câțiva pași doar pe călcâie, ridicând cât poți de mult partea din față a piciorului și degetele în sus.</div>
+      <div class="options">
+        <label class="option" onclick="sel(this,'t3')"><input type="radio" name="t3"><div class="option-radio"></div><span class="option-label">Pot merge normal, fără diferență între picioare</span></label>
+        <label class="option" onclick="sel(this,'t3')"><input type="radio" name="t3"><div class="option-radio"></div><span class="option-label">Pot merge, dar simt o ușoară slăbiciune pe partea afectată</span></label>
+        <label class="option" onclick="sel(this,'t3')"><input type="radio" name="t3"><div class="option-radio"></div><span class="option-label">Pot merge, dar simt clar că degetul mare este mai slab pe partea afectată</span></label>
+        <label class="option" onclick="sel(this,'t3')"><input type="radio" name="t3"><div class="option-radio"></div><span class="option-label">Nu pot menține poziția pe partea afectată</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST T4 (formerly ROM4) -->
+  <div class="test-card" id="card-t4">
+    <div class="test-header">
+      <div class="test-badge">T<span class="badge-accent">04</span></div>
+      <div class="test-instructions">Mers pe vârfuri — evaluarea forței S1</div>
+    </div>
+    <div class="test-body">
+      <div class="test-question">Mergi câțiva pași doar pe vârfuri.</div>
+      <div class="options">
+        <label class="option" onclick="sel(this,'t4')"><input type="radio" name="t4"><div class="option-radio"></div><span class="option-label">Pot merge normal, fără diferență</span></label>
+        <label class="option" onclick="sel(this,'t4')"><input type="radio" name="t4"><div class="option-radio"></div><span class="option-label">Pot merge, dar simt slăbiciune pe partea afectată</span></label>
+        <label class="option" onclick="sel(this,'t4')"><input type="radio" name="t4"><div class="option-radio"></div><span class="option-label">Pot merge, dar degetul mare este mai slab pe partea afectată</span></label>
+        <label class="option" onclick="sel(this,'t4')"><input type="radio" name="t4"><div class="option-radio"></div><span class="option-label">Nu pot menține poziția din cauza slăbiciunii</span></label>
+        <label class="option" onclick="sel(this,'t4')"><input type="radio" name="t4"><div class="option-radio"></div><span class="option-label">Nu pot din cauza durerii sau instabilității în talpă / gleznă</span></label>
+      </div>
+    </div>
+  </div>
+
   <div class="section-label">
     <div class="section-label-line"></div>
     <span class="section-label-num">02</span>
-    <div class="section-label-text">Teste de Mobilitate</div>
-    <div class="section-label-line"></div>
-  </div>
-
-  <!-- ROM1 -->
-  <div class="question-card" id="card-rom1">
-    <div class="question-number">Aplecarea înainte — atingi vârfurile picioarelor?</div>
-    <div class="question-text">Apleacă-te înainte și încearcă să atingi vârfurile picioarelor.</div>
-    <div class="options">
-      <label class="option" onclick="sel(this,'rom1')"><input type="radio" name="rom1"><div class="option-radio"></div><span class="option-label">Este la fel ca înainte de episod</span></label>
-      <label class="option" onclick="sel(this,'rom1')"><input type="radio" name="rom1"><div class="option-radio"></div><span class="option-label">Simt că mă „ține" în zona lombară</span></label>
-      <label class="option" onclick="sel(this,'rom1')"><input type="radio" name="rom1"><div class="option-radio"></div><span class="option-label">Simt durere lombară</span></label>
-      <label class="option" onclick="sel(this,'rom1')"><input type="radio" name="rom1"><div class="option-radio"></div><span class="option-label">Durerea coboară pe picior</span></label>
-    </div>
-  </div>
-
-  <!-- ROM2 -->
-  <div class="question-card" id="card-rom2">
-    <div class="question-number">Extensia lombară — îndreaptă spatele</div>
-    <div class="question-text">Îndreaptă cât poți de mult spatele.</div>
-    <div class="options">
-      <label class="option" onclick="sel(this,'rom2')"><input type="radio" name="rom2"><div class="option-radio"></div><span class="option-label">Fără durere</span></label>
-      <label class="option" onclick="sel(this,'rom2')"><input type="radio" name="rom2"><div class="option-radio"></div><span class="option-label">Doare local în lombar</span></label>
-      <label class="option" onclick="sel(this,'rom2')"><input type="radio" name="rom2"><div class="option-radio"></div><span class="option-label">Durerea coboară pe picior</span></label>
-    </div>
-  </div>
-
-  <!-- ROM3 -->
-  <div class="question-card" id="card-rom3">
-    <div class="question-number">Mers pe călcâie — evaluarea forței L4-L5</div>
-    <div class="question-text">Mergi câțiva pași doar pe călcâie, ridicând cât poți de mult partea din față a piciorului și degetele în sus.</div>
-    <div class="options">
-      <label class="option" onclick="sel(this,'rom3')"><input type="radio" name="rom3"><div class="option-radio"></div><span class="option-label">Pot merge normal, fără diferență între picioare</span></label>
-      <label class="option" onclick="sel(this,'rom3')"><input type="radio" name="rom3"><div class="option-radio"></div><span class="option-label">Pot merge, dar simt o ușoară slăbiciune pe partea afectată</span></label>
-      <label class="option" onclick="sel(this,'rom3')"><input type="radio" name="rom3"><div class="option-radio"></div><span class="option-label">Pot merge, dar simt clar că degetul mare este mai slab pe partea afectată</span></label>
-      <label class="option" onclick="sel(this,'rom3')"><input type="radio" name="rom3"><div class="option-radio"></div><span class="option-label">Nu pot menține poziția pe partea afectată</span></label>
-    </div>
-  </div>
-
-  <!-- ROM4 -->
-  <div class="question-card" id="card-rom4">
-    <div class="question-number">Mers pe vârfuri — evaluarea forței S1</div>
-    <div class="question-text">Mergi câțiva pași doar pe vârfuri.</div>
-    <div class="options">
-      <label class="option" onclick="sel(this,'rom4')"><input type="radio" name="rom4"><div class="option-radio"></div><span class="option-label">Pot merge normal, fără diferență</span></label>
-      <label class="option" onclick="sel(this,'rom4')"><input type="radio" name="rom4"><div class="option-radio"></div><span class="option-label">Pot merge, dar simt slăbiciune pe partea afectată</span></label>
-      <label class="option" onclick="sel(this,'rom4')"><input type="radio" name="rom4"><div class="option-radio"></div><span class="option-label">Pot merge, dar degetul mare este mai slab pe partea afectată</span></label>
-      <label class="option" onclick="sel(this,'rom4')"><input type="radio" name="rom4"><div class="option-radio"></div><span class="option-label">Nu pot menține poziția din cauza slăbiciunii</span></label>
-      <label class="option" onclick="sel(this,'rom4')"><input type="radio" name="rom4"><div class="option-radio"></div><span class="option-label">Nu pot din cauza durerii sau instabilității în talpă / gleznă</span></label>
-    </div>
-  </div>
-
-  <div class="section-label">
-    <div class="section-label-line"></div>
-    <span class="section-label-num">03</span>
     <div class="section-label-text">Teste Specifice</div>
     <div class="section-label-line"></div>
   </div>
 
-  <!-- TEST T1 -->
-  <div class="test-card" id="card-t1">
+  <!-- TEST T5 (formerly T01) -->
+  <div class="test-card" id="card-t5">
     <div class="test-header">
-      <div class="test-badge">T<span class="badge-accent">01</span></div>
+      <div class="test-badge">T<span class="badge-accent">05</span></div>
       <div class="test-instructions">Testul de localizare a durerii — apasă zonele marcate</div>
     </div>
     <div class="test-body">
@@ -1254,25 +1267,25 @@
       </div>
       <div class="test-question">Care zone sunt dureroase la apăsare? (max. 2 zone)</div>
       <div class="color-options">
-        <label class="color-option" onclick="selColorMulti(this,'t1','t1-none',2,event)"><input type="checkbox" name="t1" style="display:none"><div class="color-swatch red"></div><span class="color-option-label">Roșu</span></label>
-        <label class="color-option" onclick="selColorMulti(this,'t1','t1-none',2,event)"><input type="checkbox" name="t1" style="display:none"><div class="color-swatch purple"></div><span class="color-option-label">Mov</span></label>
-        <label class="color-option" onclick="selColorMulti(this,'t1','t1-none',2,event)"><input type="checkbox" name="t1" style="display:none"><div class="color-swatch blue"></div><span class="color-option-label">Albastru</span></label>
-        <label class="color-option" onclick="selColorMulti(this,'t1','t1-none',2,event)"><input type="checkbox" name="t1" style="display:none"><div class="color-swatch green"></div><span class="color-option-label">Verde</span></label>
-        <label class="color-option" onclick="selColorMulti(this,'t1','t1-none',2,event)"><input type="checkbox" name="t1" style="display:none"><div class="color-swatch yellow"></div><span class="color-option-label">Galben</span></label>
+        <label class="color-option" onclick="selColorMulti(this,'t5','t5-none',2,event)"><input type="checkbox" name="t5" style="display:none"><div class="color-swatch red"></div><span class="color-option-label">Roșu</span></label>
+        <label class="color-option" onclick="selColorMulti(this,'t5','t5-none',2,event)"><input type="checkbox" name="t5" style="display:none"><div class="color-swatch purple"></div><span class="color-option-label">Mov</span></label>
+        <label class="color-option" onclick="selColorMulti(this,'t5','t5-none',2,event)"><input type="checkbox" name="t5" style="display:none"><div class="color-swatch blue"></div><span class="color-option-label">Albastru</span></label>
+        <label class="color-option" onclick="selColorMulti(this,'t5','t5-none',2,event)"><input type="checkbox" name="t5" style="display:none"><div class="color-swatch green"></div><span class="color-option-label">Verde</span></label>
+        <label class="color-option" onclick="selColorMulti(this,'t5','t5-none',2,event)"><input type="checkbox" name="t5" style="display:none"><div class="color-swatch yellow"></div><span class="color-option-label">Galben</span></label>
       </div>
       <div style="margin-top:10px">
-        <label class="option" onclick="selNoneColor(this,'t1-none','t1',event)" style="display:inline-flex;">
-          <input type="radio" name="t1-none"><div class="option-radio"></div>
+        <label class="option" onclick="selNoneColor(this,'t5-none','t5',event)" style="display:inline-flex;">
+          <input type="radio" name="t5-none"><div class="option-radio"></div>
           <span class="option-label">Nicio zonă nu este clar mai dureroasă la apăsare</span>
         </label>
       </div>
     </div>
   </div>
 
-  <!-- TEST T2 -->
-  <div class="test-card" id="card-t2">
+  <!-- TEST T6 (formerly T02) -->
+  <div class="test-card" id="card-t6">
     <div class="test-header">
-      <div class="test-badge">T<span class="badge-accent">02</span></div>
+      <div class="test-badge">T<span class="badge-accent">06</span></div>
       <div class="test-instructions">Testul de sensibilitate — compară picioarele</div>
     </div>
     <div class="test-body">
@@ -1289,25 +1302,25 @@
       </div>
       <div class="test-question">Care zone au sensibilitate diferită? (poți bifa mai multe)</div>
       <div class="color-options">
-        <label class="color-option" onclick="selColorMulti(this,'t2','t2-none',5,event)"><input type="checkbox" name="t2" style="display:none"><div class="color-swatch green"></div><span class="color-option-label">Verde</span></label>
-        <label class="color-option" onclick="selColorMulti(this,'t2','t2-none',5,event)"><input type="checkbox" name="t2" style="display:none"><div class="color-swatch yellow"></div><span class="color-option-label">Galben</span></label>
-        <label class="color-option" onclick="selColorMulti(this,'t2','t2-none',5,event)"><input type="checkbox" name="t2" style="display:none"><div class="color-swatch purple"></div><span class="color-option-label">Mov</span></label>
-        <label class="color-option" onclick="selColorMulti(this,'t2','t2-none',5,event)"><input type="checkbox" name="t2" style="display:none"><div class="color-swatch blue"></div><span class="color-option-label">Albastru</span></label>
-        <label class="color-option" onclick="selColorMulti(this,'t2','t2-none',5,event)"><input type="checkbox" name="t2" style="display:none"><div class="color-swatch red"></div><span class="color-option-label">Roșu</span></label>
+        <label class="color-option" onclick="selColorMulti(this,'t6','t6-none',5,event)"><input type="checkbox" name="t6" style="display:none"><div class="color-swatch green"></div><span class="color-option-label">Verde</span></label>
+        <label class="color-option" onclick="selColorMulti(this,'t6','t6-none',5,event)"><input type="checkbox" name="t6" style="display:none"><div class="color-swatch yellow"></div><span class="color-option-label">Galben</span></label>
+        <label class="color-option" onclick="selColorMulti(this,'t6','t6-none',5,event)"><input type="checkbox" name="t6" style="display:none"><div class="color-swatch purple"></div><span class="color-option-label">Mov</span></label>
+        <label class="color-option" onclick="selColorMulti(this,'t6','t6-none',5,event)"><input type="checkbox" name="t6" style="display:none"><div class="color-swatch blue"></div><span class="color-option-label">Albastru</span></label>
+        <label class="color-option" onclick="selColorMulti(this,'t6','t6-none',5,event)"><input type="checkbox" name="t6" style="display:none"><div class="color-swatch red"></div><span class="color-option-label">Roșu</span></label>
       </div>
       <div style="margin-top:10px">
-        <label class="option" onclick="selNoneColor(this,'t2-none','t2',event)" style="display:inline-flex;">
-          <input type="radio" name="t2-none"><div class="option-radio"></div>
+        <label class="option" onclick="selNoneColor(this,'t6-none','t6',event)" style="display:inline-flex;">
+          <input type="radio" name="t6-none"><div class="option-radio"></div>
           <span class="option-label">Nicio zonă — simt la fel peste tot</span>
         </label>
       </div>
     </div>
   </div>
 
-  <!-- TEST T3 -->
-  <div class="test-card" id="card-t3">
+  <!-- TEST T7 (formerly T03) -->
+  <div class="test-card" id="card-t7">
     <div class="test-header">
-      <div class="test-badge">T<span class="badge-accent">03</span></div>
+      <div class="test-badge">T<span class="badge-accent">07</span></div>
       <div class="test-instructions">Testul de elongație (SLR) — ridică piciorul întins</div>
     </div>
     <div class="test-body">
@@ -1321,23 +1334,23 @@
       </div>
       <div class="sub-question">Ce se întâmplă când ridici piciorul dureros?</div>
       <div class="options">
-        <label class="option" onclick="sel(this,'t3a')"><input type="radio" name="t3a"><div class="option-radio"></div><span class="option-label">Doar întindere în spatele coapsei (zona mov)</span></label>
-        <label class="option" onclick="sel(this,'t3a')"><input type="radio" name="t3a"><div class="option-radio"></div><span class="option-label">Apar simptome pe traiectul colorat din imagine — durere</span></label>
-        <label class="option" onclick="sel(this,'t3a')"><input type="radio" name="t3a"><div class="option-radio"></div><span class="option-label">Apar simptome pe traiectul colorat din imagine — amorțeală / furnicături</span></label>
+        <label class="option" onclick="sel(this,'t7a')"><input type="radio" name="t7a"><div class="option-radio"></div><span class="option-label">Doar întindere în spatele coapsei (zona mov)</span></label>
+        <label class="option" onclick="sel(this,'t7a')"><input type="radio" name="t7a"><div class="option-radio"></div><span class="option-label">Apar simptome pe traiectul colorat din imagine — durere</span></label>
+        <label class="option" onclick="sel(this,'t7a')"><input type="radio" name="t7a"><div class="option-radio"></div><span class="option-label">Apar simptome pe traiectul colorat din imagine — amorțeală / furnicături</span></label>
       </div>
       <div class="sub-question" style="margin-top:24px">Repetă testul și pentru celălalt picior. Ce se întâmplă?</div>
       <div class="options">
-        <label class="option" onclick="sel(this,'t3b')"><input type="radio" name="t3b"><div class="option-radio"></div><span class="option-label">Nu apar simptome</span></label>
-        <label class="option" onclick="sel(this,'t3b')"><input type="radio" name="t3b"><div class="option-radio"></div><span class="option-label">Apar simptome în același picior (mai sănătos)</span></label>
-        <label class="option" onclick="sel(this,'t3b')"><input type="radio" name="t3b"><div class="option-radio"></div><span class="option-label">Ridicarea piciorului sănătos declanșează simptome în piciorul dureros</span></label>
+        <label class="option" onclick="sel(this,'t7b')"><input type="radio" name="t7b"><div class="option-radio"></div><span class="option-label">Nu apar simptome</span></label>
+        <label class="option" onclick="sel(this,'t7b')"><input type="radio" name="t7b"><div class="option-radio"></div><span class="option-label">Apar simptome în același picior (mai sănătos)</span></label>
+        <label class="option" onclick="sel(this,'t7b')"><input type="radio" name="t7b"><div class="option-radio"></div><span class="option-label">Ridicarea piciorului sănătos declanșează simptome în piciorul dureros</span></label>
       </div>
     </div>
   </div>
 
-  <!-- TEST T4 -->
-  <div class="test-card" id="card-t4">
+  <!-- TEST T8 (formerly T04) -->
+  <div class="test-card" id="card-t8">
     <div class="test-header">
-      <div class="test-badge">T<span class="badge-accent">04</span></div>
+      <div class="test-badge">T<span class="badge-accent">08</span></div>
       <div class="test-instructions">Testul inghinal (FABER) — rotație externă șold</div>
     </div>
     <div class="test-body">
@@ -1352,9 +1365,9 @@
       </div>
       <div class="test-question">Ce simți în timp ce faci această mișcare?</div>
       <div class="options">
-        <label class="option" onclick="sel(this,'t4')"><input type="radio" name="t4"><div class="option-radio"></div><span class="option-label">Normal</span></label>
-        <label class="option" onclick="sel(this,'t4')"><input type="radio" name="t4"><div class="option-radio"></div><span class="option-label">Durere în zona inghinală</span></label>
-        <label class="option" onclick="sel(this,'t4')"><input type="radio" name="t4"><div class="option-radio"></div><span class="option-label">Mișcare limitată față de celălalt șold</span></label>
+        <label class="option" onclick="sel(this,'t8')"><input type="radio" name="t8"><div class="option-radio"></div><span class="option-label">Normal</span></label>
+        <label class="option" onclick="sel(this,'t8')"><input type="radio" name="t8"><div class="option-radio"></div><span class="option-label">Durere în zona inghinală</span></label>
+        <label class="option" onclick="sel(this,'t8')"><input type="radio" name="t8"><div class="option-radio"></div><span class="option-label">Mișcare limitată față de celălalt șold</span></label>
       </div>
     </div>
   </div>
@@ -1389,7 +1402,7 @@
 
   const SECTION_A = [['a1'],['a2'],['a3'],['a4'],['a5'],['a6'],['a7','a7-none'],['a8'],['a9','a9-none'],['a10','a10-none'],['a11','a11-none'],['a12','a12-none'],['a13'],['a14','a14-none'],['a15'],['a16'],['a17'],['a18'],['a19'],['a20']];
   const SECTION_Q = Array.from(document.querySelectorAll('[id^="card-q"]')).map(el => [el.id.replace('card-','')]);
-  const SECTION_T = [['rom1'],['rom2'],['rom3'],['rom4'],['t1','t1-none'],['t2','t2-none'],['t3a'],['t3b'],['t4']];
+  const SECTION_T = [['t1'],['t2'],['t3'],['t4'],['t5','t5-none'],['t6','t6-none'],['t7a'],['t7b'],['t8']];
 
   function sel(el, name) {
     const container = el.closest('.options, .test-body, .question-card');
@@ -1634,12 +1647,12 @@
       { key: 'q3', cardId: 'card-q3' }, { key: 'q4', cardId: 'card-q4' },
       { key: 'q5', cardId: 'card-q5' }, { key: 'q6', cardId: 'card-q6' },
       { key: 'q7', cardId: 'card-q7' }, { key: 'q8', cardId: 'card-q8' },
-      { key: 'rom1', cardId: 'card-rom1' }, { key: 'rom2', cardId: 'card-rom2' },
-      { key: 'rom3', cardId: 'card-rom3' }, { key: 'rom4', cardId: 'card-rom4' },
-      { key: 't1', cardId: 'card-t1', altKey: 't1-none' },
-      { key: 't2', cardId: 'card-t2', altKey: 't2-none' },
-      { key: 't3a', cardId: 'card-t3' }, { key: 't3b', cardId: 'card-t3' },
-      { key: 't4', cardId: 'card-t4' },
+      { key: 't1', cardId: 'card-t1' }, { key: 't2', cardId: 'card-t2' },
+      { key: 't3', cardId: 'card-t3' }, { key: 't4', cardId: 'card-t4' },
+      { key: 't5', cardId: 'card-t5', altKey: 't5-none' },
+      { key: 't6', cardId: 'card-t6', altKey: 't6-none' },
+      { key: 't7a', cardId: 'card-t7' }, { key: 't7b', cardId: 'card-t7' },
+      { key: 't8', cardId: 'card-t8' },
     ];
     const missing = MANDATORY.filter(m => {
       if (m.key === 'a13' && answered.has('a12-none')) return false;
@@ -1695,36 +1708,36 @@
     }
 
     const CLINICAL = {
-      t0a:{ 'Normal, la fel ca înainte de episod':'Flexie lombara normala',
+      t1:{ 'Normal, la fel ca înainte de episod':'Flexie lombara normala',
             'Simt că mă \u201eține\u201d în zona lombară':'Flexie lombara tensiune posterioara',
             'Simt durere lombară':'Flexie lombara dureroasa local',
             'Durerea coboară pe picior':'Flexie lombara iradiere radiculara' },
-      t0b:{ 'Fără durere':'Extensie lombara fara durere',
+      t2:{ 'Fără durere':'Extensie lombara fara durere',
             'Doare local în lombar':'Extensie lombara dureroasa local',
             'Durerea coboară pe picior':'Extensie lombara iradiere radiculara' },
-      t0c:{ 'Normal, fără diferență între picioare':'Mers calcaie normal L4-L5 ok',
+      t3:{ 'Normal, fără diferență între picioare':'Mers calcaie normal L4-L5 ok',
             'Ușoară slăbiciune pe partea afectată':'Mers calcaie slabiciune usoara L4-L5',
             'Degetul mare este clar mai slab pe partea afectată':'Mers calcaie slabiciune clara L5',
             'Nu pot menține poziția pe partea afectată':'Drop foot L4-L5' },
-      t0d:{ 'Normal, fără diferență':'Mers varfuri normal S1 ok',
+      t4:{ 'Normal, fără diferență':'Mers varfuri normal S1 ok',
             'Ușoară slăbiciune pe partea afectată':'Mers varfuri slabiciune usoara S1',
             'Nu pot menține poziția din cauza slăbiciunii':'Mers varfuri imposibil slabiciune S1 severa',
             'Nu pot din cauza durerii sau instabilității':'Mers varfuri imposibil durere sau instabilitate' },
-      t1: { 'Roșu':'Musculatura paravertebrala lombara', 'Mov':'Procese spinoase medial',
+      t5: { 'Roșu':'Musculatura paravertebrala lombara', 'Mov':'Procese spinoase medial',
             'Albastru':'Articulatie sacro-iliaca', 'Verde':'Sold posterior',
             'Galben':'Mare trohanter',
             'Nicio zonă nu este clar mai dureroasă la apăsare':'Fara zona clara la palpare' },
-      t2: { 'Verde':'Dermatom L1-L2 afectat', 'Galben':'Dermatom L3 afectat',
+      t6: { 'Verde':'Dermatom L1-L2 afectat', 'Galben':'Dermatom L3 afectat',
             'Mov':'Dermatom L4 afectat', 'Albastru':'Dermatom L5 afectat',
             'Roșu':'Dermatom S1 afectat',
             'Nicio zonă \u2014 simt la fel peste tot':'Sensibilitate normala bilateral' },
-      t3a:{ 'Doar întindere în spatele coapsei (zona mov)':'Pseudo-Lasegue pozitiv tightness gastroc',
+      t7a:{ 'Doar întindere în spatele coapsei (zona mov)':'Pseudo-Lasegue pozitiv tightness gastroc',
             'Apar simptome pe traiectul colorat din imagine \u2014 durere':'Lasegue pozitiv picior afectat durere',
             'Apar simptome pe traiectul colorat din imagine \u2014 amorțeală / furnicături':'Lasegue pozitiv picior afectat parestezii' },
-      t3b:{ 'Nu apar simptome':'Lasegue incrucișat negativ',
+      t7b:{ 'Nu apar simptome':'Lasegue incrucișat negativ',
             'Apar simptome în același picior (mai sănătos)':'Pseudo-Lasegue pozitiv picior sanatos',
             'Ridicarea piciorului sănătos declanșează simptome în piciorul dureros':'Lasegue incrucișat pozitiv' },
-      t4: { 'Normal':'FABER negativ',
+      t8: { 'Normal':'FABER negativ',
             'Durere în zona inghinală':'FABER pozitiv durere inghinala',
             'Mișcare limitată față de celălalt șold':'FABER pozitiv limitare ROM' },
     };
@@ -1976,34 +1989,29 @@
       mdIntrebari += `**A:** ${normRo(ans(q.key))}  \n\n`;
     });
 
-    const ROM_TESTS = [
-      { key: 'rom1', label: 'ROM1 — Aplecarea înainte', q: 'Apleacă-te înainte și încearcă să atingi vârfurile picioarelor.' },
-      { key: 'rom2', label: 'ROM2 — Extensia lombară', q: 'Îndreaptă cât poți de mult spatele.' },
-      { key: 'rom3', label: 'ROM3 — Mers pe călcâie (L4-L5)', q: 'Mergi câțiva pași doar pe călcâie.' },
-      { key: 'rom4', label: 'ROM4 — Mers pe vârfuri (S1)', q: 'Mergi câțiva pași doar pe vârfuri.' },
-    ];
-
-    let mdMobilitate = '';
-    ROM_TESTS.forEach(r => {
-      mdMobilitate += `**${r.label}:**  \n`;
-      mdMobilitate += `**Q:** ${r.q}  \n`;
-      mdMobilitate += `**A:** ${ans(r.key)}  \n\n`;
-    });
-
     const TESTS = [
-      { key: 't1', label: 'T01 — Testul de localizare a durerii', q: 'Care zone sunt dureroase la apăsare? (max. 2 zone)', multi: true, altKey: 't1-none', clinName: 'Harta durere lombara' },
-      { key: 't2', label: 'T02 — Testul de sensibilitate', q: 'Care zone au sensibilitate diferită?', multi: true, altKey: 't2-none', clinName: 'Harta sensibilitate MI' },
-      { key: 't3a', label: 'T03 — Testul de elongație (SLR)', q: 'Ce se întâmplă când ridici piciorul dureros?', clinName: 'Lasegue picior afectat' },
-      { key: 't3b', label: 'T03 — Testul de elongație (SLR)', q: 'Repetă testul și pentru celălalt picior. Ce se întâmplă?', clinName: 'Lasegue picior sanatos' },
-      { key: 't4', label: 'T04 — Testul inghinal (FABER)', q: 'Ce simți în timp ce faci această mișcare?', clinName: 'Test FABER sold' },
+      { key: 't1', label: 'T01 — Aplecarea înainte', q: 'Apleacă-te înainte și încearcă să atingi vârfurile picioarelor.', clinName: 'Flexie lombara' },
+      { key: 't2', label: 'T02 — Extensia lombară', q: 'Îndreaptă cât poți de mult spatele.', clinName: 'Extensie lombara' },
+      { key: 't3', label: 'T03 — Mers pe călcâie (L4-L5)', q: 'Mergi câțiva pași doar pe călcâie.', clinName: 'Mers calcaie L4-L5' },
+      { key: 't4', label: 'T04 — Mers pe vârfuri (S1)', q: 'Mergi câțiva pași doar pe vârfuri.', clinName: 'Mers varfuri S1' },
+      { key: 't5', label: 'T05 — Testul de localizare a durerii', q: 'Care zone sunt dureroase la apăsare? (max. 2 zone)', multi: true, altKey: 't5-none', clinName: 'Harta durere lombara' },
+      { key: 't6', label: 'T06 — Testul de sensibilitate', q: 'Care zone au sensibilitate diferită?', multi: true, altKey: 't6-none', clinName: 'Harta sensibilitate MI' },
+      { key: 't7a', label: 'T07 — Testul de elongație (SLR)', q: 'Ce se întâmplă când ridici piciorul dureros?', clinName: 'Lasegue picior afectat' },
+      { key: 't7b', label: 'T07 — Testul de elongație (SLR)', q: 'Repetă testul și pentru celălalt picior. Ce se întâmplă?', clinName: 'Lasegue picior sanatos' },
+      { key: 't8', label: 'T08 — Testul inghinal (FABER)', q: 'Ce simți în timp ce faci această mișcare?', clinName: 'Test FABER sold' },
     ];
 
     let mdTeste = '';
     TESTS.forEach(t => {
       mdTeste += `**Q:** ${normRo(t.clinName)}  \n`;
-      const raw = t.multi
-        ? multiAnsColor(t.key, t.maxSel || 2)
-        : ans(t.key);
+      let raw;
+      if (t.key === 't1' || t.key === 't2' || t.key === 't3' || t.key === 't4') {
+        raw = ans(t.key);
+      } else if (t.multi) {
+        raw = multiAnsColor(t.key, t.maxSel || 2);
+      } else {
+        raw = ans(t.key);
+      }
       const mapped = raw.split(', ').map(v => {
         const v2 = v.trim();
         return CLINICAL[t.key]?.[v2] || v2;
@@ -2018,7 +2026,6 @@
     url += 'region=coloana-lombara';
     url += '&chestionar_anamneza=' + encodeURIComponent(mdAnamneza.trim());
     url += '&chestionar_intrebari=' + encodeURIComponent(mdIntrebari.trim());
-    url += '&chestionar_mobilitate=' + encodeURIComponent(mdMobilitate.trim());
     url += '&chestionar_teste=' + encodeURIComponent(mdTeste.trim());
 
     window.top.location.href = url;
@@ -2047,9 +2054,9 @@
       ['a1','a2','a3','a4','a5','a6','a8','a13','a15','a16','a17','a18','a19','a20'].forEach(clickFirst);
       ['a7','a9','a10','a11','a12','a14'].forEach(clickNone);
       ['q1','q2','q3','q4','q5','q6','q7','q8'].forEach(clickFirst);
-      ['rom1','rom2','rom3','rom4'].forEach(clickFirst);
-      ['t1','t2'].forEach(clickNone);
-      ['t3a','t3b','t4'].forEach(clickFirst);
+      ['t1','t2','t3','t4'].forEach(clickFirst);
+      ['t5','t6'].forEach(clickNone);
+      ['t7a','t7b','t8'].forEach(clickFirst);
     };
     document.body.appendChild(btn);
   }
