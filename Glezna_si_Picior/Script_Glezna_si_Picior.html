@@ -1676,6 +1676,35 @@
         .replace(/[țţȚŢ]/g, 't');
     }
 
+  const CLINICAL = {
+    t1: { 'Verde':'Glezna mediala', 'Albastru':'Glezna anterioara tibio-talar',
+          'Roșu':'Glezna laterala', 'Portocaliu':'Mediopicior Lisfranc Chopart',
+          'Mov':'MTTS-F haluce', 'Negru':'Metatarsalgii transfer 2-5',
+          'Nicio zonă din această imagine':'Fara durere anteriora' },
+    t2: { 'Albastru':'Tendon Ahilean', 'Galben':'Calcaneu posterior Haglund',
+          'Roșu':'Glezna laterala', 'Verde':'Glezna mediala',
+          'Nicio zonă din această imagine':'Fara durere posteriora' },
+    t3: { 'Mov':'Traiect tibial posterior', 'Verde':'Glezna anterioara tibio-talar',
+          'Roșu':'Origine fascie plantara', 'Galben':'Fascie plantara',
+          'Albastru':'Haluce valgus rigidus artroza',
+          'Nicio zonă din această imagine':'Fara durere mediala' },
+    t4: { 'Roșu':'Maleola peroniera', 'Galben':'Traiect tendoane peronieri',
+          'Verde':'Glezna anterioara tibio-talara', 'Albastru':'Sinus tarsi ATFL',
+          'Mov':'MTTS-F raza 5 bunionette',
+          'Nicio zonă din această imagine':'Fara durere laterala' },
+    t5: { 'Da':'Morton squeeze test pozitiv', 'Nu':'Morton squeeze test negativ' },
+    t6: { 'Da':'Impingement peronier pozitiv', 'Nu':'Impingement peronier negativ' },
+    t7: { 'Da':'Impingement medial pozitiv', 'Nu':'Impingement medial negativ' },
+    t8: { 'Da, fără probleme (mă ridic ușor, stau stabil, fără durere)':'Triceps sural integru',
+          'Da, dar apare durere (în spatele gleznei / tendon / talpă / interior)':'Ridicare varfuri dureroasa',
+          'Da, dar piciorul nu este stabil (simt că \u201efuge\u201d stânga-dreapta sau că nu am forță)':'Ridicare varfuri instabila',
+          'Cu dificultate (mă ridic greu sau nu pot menține poziția)':'Slabiciune triceps sural',
+          'Nu pot să mă ridic pe vârfuri':'Ruptura sau pareza triceps sural' },
+    t9a:{ 'Da':'Contractura gastrocnemieni prezenta', 'Nu':'Contractura gastrocnemieni absenta' },
+    t9b:{ 'Da':'Tensiune plantara Silfverskiold prezenta', 'Nu':'Tensiune plantara Silfverskiold absenta' },
+    t9c:{ 'Da':'Silfverskiold pozitiv contractura izolata gastrocnemieni', 'Nu':'Silfverskiold negativ' },
+  };
+
   function generateJSON() {
     document.querySelectorAll('.missing').forEach(el => el.classList.remove('missing'));
     const MANDATORY = [

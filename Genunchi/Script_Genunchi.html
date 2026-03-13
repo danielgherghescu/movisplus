@@ -1656,6 +1656,20 @@ function updateProgress() {
     setTimeout(() => toast.classList.remove('show'), 3500);
   }
 
+  const CLINICAL = {
+    t1:  { 'Verde': '~140° (flexie completă)', 'Galben': '~110° (flexie limitată)', 'Roșu': '~90° (flexie sever limitată)' },
+    t2:  { 'Verde': 'Fără lag', 'Albastru': 'Lag 15°', 'Galben': 'Lag 30-45°', 'Roșu': 'Redoare severă (genu flectum)' },
+    t3:  { 'Verde': 'Lateral', 'Galben': 'Anterior', 'Roșu': 'Medial', 'Albastru': 'Posterior', 'Fără zonă clară de durere': 'Fără zonă clară' },
+    t4:  { 'Roșu': 'Durere anterioară', 'Galben': 'Durere posterioară', 'Nu simt': 'Negativ' },
+    t5:  { 'Da': 'Pozitiv', 'Nu': 'Negativ' },
+    t6:  { 'Da': 'Pozitiv', 'Nu': 'Negativ', 'Nu sunt sigur': 'Incert' },
+    t6b: { 'Da': 'Pozitiv', 'Nu': 'Negativ' },
+    t7:  { 'Da': 'Pozitiv', 'Nu': 'Negativ' },
+    t8:  { 'Da': 'Pozitiv', 'Nu': 'Negativ' },
+    t9a: { 'Da': 'Pozitiv PLC', 'Nu': 'Negativ', 'Nu sunt sigur': 'Incert' },
+    t9b: { 'Da': 'Pozitiv PLC si PCL', 'Nu': 'Negativ', 'Nu sunt sigur': 'Incert' },
+  };
+
   function generateJSON() {
     // Validare câmpuri obligatorii
     document.querySelectorAll('.missing').forEach(el => el.classList.remove('missing'));
@@ -1987,19 +2001,6 @@ function updateProgress() {
       { key: 't8', label: 'T08 — Testul în „4"', clinName: 'Test Varus', q: 'Simți durere sau senzația că genunchiul „îți fuge" în zona marcată cu punct roșu?' },
     ];
 
-    const CLINICAL = {
-      t1:  { 'Verde': '~140° (flexie completă)', 'Galben': '~110° (flexie limitată)', 'Roșu': '~90° (flexie sever limitată)' },
-      t2:  { 'Verde': 'Fără lag', 'Albastru': 'Lag 15°', 'Galben': 'Lag 30-45°', 'Roșu': 'Redoare severă (genu flectum)' },
-      t3:  { 'Verde': 'Lateral', 'Galben': 'Anterior', 'Roșu': 'Medial', 'Albastru': 'Posterior', 'Fără zonă clară de durere': 'Fără zonă clară' },
-      t4:  { 'Roșu': 'Durere anterioară', 'Galben': 'Durere posterioară', 'Nu simt': 'Negativ' },
-      t5:  { 'Da': 'Pozitiv', 'Nu': 'Negativ' },
-      t6:  { 'Da': 'Pozitiv', 'Nu': 'Negativ', 'Nu sunt sigur': 'Incert' },
-      t6b: { 'Da': 'Pozitiv', 'Nu': 'Negativ' },
-      t7:  { 'Da': 'Pozitiv', 'Nu': 'Negativ' },
-      t8:  { 'Da': 'Pozitiv', 'Nu': 'Negativ' },
-      t9a: { 'Da': 'Pozitiv PLC', 'Nu': 'Negativ', 'Nu sunt sigur': 'Incert' },
-      t9b: { 'Da': 'Pozitiv PLC si PCL', 'Nu': 'Negativ', 'Nu sunt sigur': 'Incert' },
-    };
     function clinAns(key) { const raw = ans(key); return (CLINICAL[key] && CLINICAL[key][raw]) ? CLINICAL[key][raw] : raw; }
     function clinMultiAns() {
       const raw = multiAns();
@@ -2113,10 +2114,51 @@ function updateProgress() {
         const el = document.querySelector(`input[name="${name}-none"]`);
         if (el) el.closest('.option')?.click();
       }
-      ['a1','a2','a3','a4','a5','a6','a8','a13','a15','a16','a17','a18','a19','a20'].forEach(clickFirst);
-      ['a7','a9','a10','a11','a12','a14'].forEach(clickNone);
-      ['q1','q2','q3','q4','q5','q6'].forEach(clickFirst);
-      ['t1','t2','t4','t5','t6','t6b','t7','t8','t9a','t9b'].forEach(clickFirst);
+      function clickLongest(name) {
+        const inputs = document.querySelectorAll(`input[name="${name}"]`);
+        let longest = null, maxLen = -1;
+        inputs.forEach(inp => {
+          const label = inp.closest('.option')?.querySelector('.option-label');
+          if (label) {
+            const frontendText = label.textContent.trim();
+            const clinicalValue = CLINICAL[name]?.[frontendText] || frontendText;
+            const len = clinicalValue.length;
+            if (len > maxLen) { maxLen = len; longest = inp; }
+          }
+        });
+        if (longest) longest.closest('.option')?.click();
+      }
+      function clickAllColors(name) {
+        const card = document.querySelector(`[id="card-${name}"]`) ||
+                     document.querySelector(`[id="card-${name.replace(/[ab]$/, '')}"]`);
+        if (!card) return;
+        const opts = [...card.querySelectorAll('.color-option')].filter(opt => {
+          const inp = opt.querySelector('input');
+          return inp && inp.name === name;
+        });
+        opts.sort((a, b) => {
+          const labelA = a.querySelector('.color-option-label')?.textContent.trim() || '';
+          const labelB = b.querySelector('.color-option-label')?.textContent.trim() || '';
+          const lenA = (CLINICAL[name]?.[labelA] || labelA).length;
+          const lenB = (CLINICAL[name]?.[labelB] || labelB).length;
+          return lenB - lenA;
+        });
+        opts.slice(0, 2).forEach(opt => {
+          if (!opt.classList.contains('selected')) opt.click();
+        });
+      }
+      function clickAllChecks(name) {
+        const inputs = document.querySelectorAll(`input[name="${name}"]`);
+        inputs.forEach(inp => {
+          if (inp.type === 'checkbox' && inp.name !== name + '-none') {
+            if (!inp.checked) inp.closest('.option')?.click();
+          }
+        });
+      }
+      ['a1','a2','a3','a4','a5','a6','a8','a13','a15','a16','a17','a18','a19','a20'].forEach(clickLongest);
+      ['a7','a9','a10','a11','a12','a14'].forEach(clickAllChecks);
+      ['q1','q2','q3','q4','q5','q6'].forEach(clickLongest);
+      ['t1','t2','t3','t4','t5','t6','t6b','t7','t8','t9a','t9b'].forEach(clickLongest);
       // t3 foloseste selColor3 — click direct pe primul checkbox
       const t3first = document.querySelector('input[name="t3"]');
       if (t3first) t3first.closest('.color-option')?.click();

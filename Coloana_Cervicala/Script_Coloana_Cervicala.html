@@ -1572,6 +1572,82 @@
     setTimeout(() => toast.classList.remove('show'), 3500);
   }
 
+  const CLINICAL = {
+    t1: {
+      'Ating pieptul fără durere': 'Flexie completa fara durere',
+      'Ating pieptul, dar doare': 'Flexie completa cu durere',
+      'Nu pot atinge pieptul pentru că mă doare tare': 'Flexie limitata - durere',
+      'Nu pot atinge pieptul pentru că îmi simt gâtul rigid': 'Flexie limitata - rigiditate',
+    },
+    t2: {
+      'Pot privi complet, fără durere': 'Extensie completa fara durere',
+      'Pot privi complet, dar doare': 'Extensie completa cu durere',
+      'Nu pot privi complet în tavan pentru că mă doare tare': 'Extensie limitata - durere',
+      'Nu pot privi complet spre tavan pentru că îmi simt gâtul rigid': 'Extensie limitata - rigiditate',
+    },
+    t3: {
+      'Pot privi complet și la fel pe ambele părți': 'Rotatie simetrica fara durere',
+      'Pot privi, dar doare pe partea stângă': 'Rotatie dureroasa stanga',
+      'Pot privi, dar doare pe partea dreaptă': 'Rotatie dureroasa dreapta',
+      'Nu pot privi în lateral pentru că mă doare tare': 'Rotatie limitata - durere',
+      'Nu pot privi în lateral pentru că am gâtul rigid, dar nu mă doare tare': 'Rotatie limitata - rigiditate',
+    },
+    t4: {
+      'Ajung aproape de umăr fără durere, pe ambele părți': 'Inclinare simetrica fara durere',
+      'Ajung pe partea dreaptă, dar doare. Partea stângă e bine': 'Inclinare dureroasa dreapta',
+      'Ajung pe partea stângă, dar doare. Partea dreaptă e bine': 'Inclinare dureroasa stanga',
+      'Nu pot apropia suficient pe nicio parte pentru că doare': 'Inclinare limitata - durere',
+      'Nu pot apropia suficient pe nicio parte pentru că îmi simt gâtul rigid, dar nu doare tare': 'Inclinare limitata - rigiditate',
+    },
+    t5: {
+      'Îmi mențin echilibrul fără probleme': 'Romberg negativ',
+      'Mă clatin vizibil, dar pot să îmi mențin echilibrul': 'Romberg usor pozitiv',
+      'Trebuie să deschid ochii sau să mă sprijine cineva, altfel cad': 'Romberg pozitiv',
+    },
+    t6: {
+      'Nu se modifică nimic': 'Spurling negativ',
+      'Apare durere doar în gât': 'Spurling - durere cervicala',
+      'Durerea coboară în braț': 'Spurling pozitiv - iradiere brahiala',
+    },
+    t7: {
+      'Nu apare nimic': 'Lhermitte negativ',
+      'Apare o senzație de „curent" pe coloană sau în brațe': 'Lhermitte pozitiv',
+    },
+    t8a: {
+      'Verde': 'Dermatom C4',
+      'Albastru': 'Dermatom T1-T2',
+      'Mov': 'Dermatom T2-T3',
+      'Galben': 'Dermatom C5-C6',
+      'Nicio zonă — simt la fel peste tot': 'Fara deficit sensibilitate',
+    },
+    t8b: {
+      'Roșu': 'Dermatom C6',
+      'Alb': 'Dermatom C7',
+      'Negru': 'Dermatom C8',
+      'Nicio zonă — simt la fel peste tot': 'Fara deficit sensibilitate',
+    },
+    t9: {
+      'Forța este la fel pe ambele părți': 'Biceps C5 OK',
+      'Simt că brațul afectat este ușor mai slab': 'Biceps C5 usor-moderat afectat',
+      'Este clar mai slab / obosește rapid / nu pot ridica la fel': 'Biceps C5 moderat-sever afectat',
+    },
+    t10: {
+      'Rezist la fel de bine ca pe partea sănătoasă': 'Dorsiflexie pumn C6 OK',
+      'Rezist, dar simt că este mai slabă': 'Dorsiflexie pumn C6 usor-moderat afectata',
+      'Mâna cedează ușor / nu pot menține poziția': 'Dorsiflexie pumn C6 moderat-sever afectata',
+    },
+    t11: {
+      'Rezist la fel de bine ca pe partea sănătoasă': 'Triceps C7 OK',
+      'Rezist, dar simt că este mai slab': 'Triceps C7 usor-moderat afectat',
+      'Brațul cedează ușor / nu pot menține poziția': 'Triceps C7 moderat-sever afectat',
+    },
+    t12: {
+      'Forța este la fel pe ambele părți': 'Flexor middle finger C8 OK',
+      'Simt că este ușor mai slabă': 'Flexor middle finger C8 usor-moderat afectat',
+      'Este clar mai slabă / obiectul îmi scapă': 'Flexor middle finger C8 moderat-sever afectat',
+    },
+  };
+
   function generateJSON() {
     document.querySelectorAll('.missing').forEach(el => el.classList.remove('missing'));
     const MANDATORY = [
@@ -1793,82 +1869,6 @@
     });
 
     // ── TESTE ───────────────────────────────────────────────────────────────
-    const CLINICAL = {
-      t1: {
-        'Ating pieptul fără durere': 'Flexie completa fara durere',
-        'Ating pieptul, dar doare': 'Flexie completa cu durere',
-        'Nu pot atinge pieptul pentru că mă doare tare': 'Flexie limitata - durere',
-        'Nu pot atinge pieptul pentru că îmi simt gâtul rigid': 'Flexie limitata - rigiditate',
-      },
-      t2: {
-        'Pot privi complet, fără durere': 'Extensie completa fara durere',
-        'Pot privi complet, dar doare': 'Extensie completa cu durere',
-        'Nu pot privi complet în tavan pentru că mă doare tare': 'Extensie limitata - durere',
-        'Nu pot privi complet spre tavan pentru că îmi simt gâtul rigid': 'Extensie limitata - rigiditate',
-      },
-      t3: {
-        'Pot privi complet și la fel pe ambele părți': 'Rotatie simetrica fara durere',
-        'Pot privi, dar doare pe partea stângă': 'Rotatie dureroasa stanga',
-        'Pot privi, dar doare pe partea dreaptă': 'Rotatie dureroasa dreapta',
-        'Nu pot privi în lateral pentru că mă doare tare': 'Rotatie limitata - durere',
-        'Nu pot privi în lateral pentru că am gâtul rigid, dar nu mă doare tare': 'Rotatie limitata - rigiditate',
-      },
-      t4: {
-        'Ajung aproape de umăr fără durere, pe ambele părți': 'Inclinare simetrica fara durere',
-        'Ajung pe partea dreaptă, dar doare. Partea stângă e bine': 'Inclinare dureroasa dreapta',
-        'Ajung pe partea stângă, dar doare. Partea dreaptă e bine': 'Inclinare dureroasa stanga',
-        'Nu pot apropia suficient pe nicio parte pentru că doare': 'Inclinare limitata - durere',
-        'Nu pot apropia suficient pe nicio parte pentru că îmi simt gâtul rigid, dar nu doare tare': 'Inclinare limitata - rigiditate',
-      },
-      t5: {
-        'Îmi mențin echilibrul fără probleme': 'Romberg negativ',
-        'Mă clatin vizibil, dar pot să îmi mențin echilibrul': 'Romberg usor pozitiv',
-        'Trebuie să deschid ochii sau să mă sprijine cineva, altfel cad': 'Romberg pozitiv',
-      },
-      t6: {
-        'Nu se modifică nimic': 'Spurling negativ',
-        'Apare durere doar în gât': 'Spurling - durere cervicala',
-        'Durerea coboară în braț': 'Spurling pozitiv - iradiere brahiala',
-      },
-      t7: {
-        'Nu apare nimic': 'Lhermitte negativ',
-        'Apare o senzație de „curent” pe coloană sau în brațe': 'Lhermitte pozitiv',
-      },
-      t8a: {
-        'Verde': 'Dermatom C4',
-        'Albastru': 'Dermatom T1-T2',
-        'Mov': 'Dermatom T2-T3',
-        'Galben': 'Dermatom C5-C6',
-        'Nicio zonă — simt la fel peste tot': 'Fara deficit sensibilitate',
-      },
-      t8b: {
-        'Roșu': 'Dermatom C6',
-        'Alb': 'Dermatom C7',
-        'Negru': 'Dermatom C8',
-        'Nicio zonă — simt la fel peste tot': 'Fara deficit sensibilitate',
-      },
-      t9: {
-        'Forța este la fel pe ambele părți': 'Biceps C5 OK',
-        'Simt că brațul afectat este ușor mai slab': 'Biceps C5 usor-moderat afectat',
-        'Este clar mai slab / obosește rapid / nu pot ridica la fel': 'Biceps C5 moderat-sever afectat',
-      },
-      t10: {
-        'Rezist la fel de bine ca pe partea sănătoasă': 'Dorsiflexie pumn C6 OK',
-        'Rezist, dar simt că este mai slabă': 'Dorsiflexie pumn C6 usor-moderat afectata',
-        'Mâna cedează ușor / nu pot menține poziția': 'Dorsiflexie pumn C6 moderat-sever afectata',
-      },
-      t11: {
-        'Rezist la fel de bine ca pe partea sănătoasă': 'Triceps C7 OK',
-        'Rezist, dar simt că este mai slab': 'Triceps C7 usor-moderat afectat',
-        'Brațul cedează ușor / nu pot menține poziția': 'Triceps C7 moderat-sever afectat',
-      },
-      t12: {
-        'Forța este la fel pe ambele părți': 'Flexor middle finger C8 OK',
-        'Simt că este ușor mai slabă': 'Flexor middle finger C8 usor-moderat afectat',
-        'Este clar mai slabă / obiectul îmi scapă': 'Flexor middle finger C8 moderat-sever afectat',
-      },
-    };
-
     const TESTS = [
       { key: 't1',  clinName: 'Flexie cervicala' },
       { key: 't2',  clinName: 'Extensie cervicala' },
@@ -1985,10 +1985,51 @@
         const el = document.querySelector(`input[name="${name}-none"]`);
         if (el) el.closest('.option')?.click();
       }
-      ['a1','a2','a3','a4','a5','a6','a8','a13','a15','a16','a17','a18','a19','a20'].forEach(clickFirst);
-      ['a7','a9','a10','a11','a12','a14'].forEach(clickNone);
-      ['q1','q2','q3','q4','q5'].forEach(clickFirst);
-      ['t1','t2','t3','t4','t5','t6','t7','t8a','t8b','t9','t10','t11','t12'].forEach(clickFirst);
+      function clickLongest(name) {
+        const inputs = document.querySelectorAll(`input[name="${name}"]`);
+        let longest = null, maxLen = -1;
+        inputs.forEach(inp => {
+          const label = inp.closest('.option')?.querySelector('.option-label');
+          if (label) {
+            const frontendText = label.textContent.trim();
+            const clinicalValue = CLINICAL[name]?.[frontendText] || frontendText;
+            const len = clinicalValue.length;
+            if (len > maxLen) { maxLen = len; longest = inp; }
+          }
+        });
+        if (longest) longest.closest('.option')?.click();
+      }
+      function clickAllColors(name) {
+        const card = document.querySelector(`[id="card-${name}"]`) ||
+                     document.querySelector(`[id="card-${name.replace(/[ab]$/, '')}"]`);
+        if (!card) return;
+        const opts = [...card.querySelectorAll('.color-option')].filter(opt => {
+          const inp = opt.querySelector('input');
+          return inp && inp.name === name;
+        });
+        opts.sort((a, b) => {
+          const labelA = a.querySelector('.color-option-label')?.textContent.trim() || '';
+          const labelB = b.querySelector('.color-option-label')?.textContent.trim() || '';
+          const lenA = (CLINICAL[name]?.[labelA] || labelA).length;
+          const lenB = (CLINICAL[name]?.[labelB] || labelB).length;
+          return lenB - lenA;
+        });
+        opts.slice(0, 2).forEach(opt => {
+          if (!opt.classList.contains('selected')) opt.click();
+        });
+      }
+      function clickAllChecks(name) {
+        const inputs = document.querySelectorAll(`input[name="${name}"]`);
+        inputs.forEach(inp => {
+          if (inp.type === 'checkbox' && inp.name !== name + '-none') {
+            if (!inp.checked) inp.closest('.option')?.click();
+          }
+        });
+      }
+      ['a1','a2','a3','a4','a5','a6','a8','a13','a15','a16','a17','a18','a19','a20'].forEach(clickLongest);
+      ['a7','a9','a10','a11','a12','a14'].forEach(clickAllChecks);
+      ['q1','q2','q3','q4','q5'].forEach(clickLongest);
+      ['t1','t2','t3','t4','t5','t6','t7','t8a','t8b','t9','t10','t11','t12'].forEach(clickLongest);
     };
     document.body.appendChild(btn);
   }
