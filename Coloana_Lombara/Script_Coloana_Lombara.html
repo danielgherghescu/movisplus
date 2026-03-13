@@ -2056,7 +2056,9 @@
         inputs.forEach(inp => {
           const label = inp.closest('.option')?.querySelector('.option-label');
           if (label) {
-            const len = label.textContent.trim().length;
+            const frontendText = label.textContent.trim();
+            const clinicalValue = CLINICAL[name]?.[frontendText] || frontendText;
+            const len = clinicalValue.length;
             if (len > maxLen) { maxLen = len; longest = inp; }
           }
         });
