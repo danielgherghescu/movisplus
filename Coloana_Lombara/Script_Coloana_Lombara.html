@@ -2050,12 +2050,41 @@
         const el = document.querySelector(`input[name="${name}-none"]`);
         if (el) el.closest('.option')?.click();
       }
-      ['a1','a2','a3','a4','a5','a6','a8','a13','a15','a16','a17','a18','a19','a20'].forEach(clickFirst);
-      ['a7','a9','a10','a11','a12','a14'].forEach(clickNone);
-      ['q1','q2','q3','q4','q5','q6','q7','q8'].forEach(clickFirst);
-      ['t1','t2','t3','t4'].forEach(clickFirst);
-      ['t5','t6'].forEach(clickNone);
-      ['t7a','t7b','t8'].forEach(clickFirst);
+      function clickLongest(name) {
+        const inputs = document.querySelectorAll(`input[name="${name}"]`);
+        let longest = null, maxLen = -1;
+        inputs.forEach(inp => {
+          const label = inp.closest('.option')?.querySelector('.option-label');
+          if (label) {
+            const len = label.textContent.trim().length;
+            if (len > maxLen) { maxLen = len; longest = inp; }
+          }
+        });
+        if (longest) longest.closest('.option')?.click();
+      }
+      function clickAllColors(name) {
+        const card = document.querySelector(`[id="card-${name}"]`) || document.querySelector(`[id="card-${name.replace(/[ab]$/, '')}"]`);
+        if (!card) return;
+        card.querySelectorAll('.color-option').forEach(opt => {
+          const inp = opt.querySelector('input');
+          if (inp && inp.name === name && !opt.classList.contains('selected')) {
+            opt.click();
+          }
+        });
+      }
+      function clickAllChecks(name) {
+        const inputs = document.querySelectorAll(`input[name="${name}"]`);
+        inputs.forEach(inp => {
+          if (inp.type === 'checkbox' && !inp.closest('.option')?.classList.contains('none-option')) {
+            if (!inp.checked) inp.closest('.option')?.click();
+          }
+        });
+      }
+      ['a1','a2','a3','a4','a5','a6','a8','a13','a15','a16','a17','a18','a19','a20'].forEach(clickLongest);
+      ['a7','a9','a10','a11','a12','a14'].forEach(clickAllChecks);
+      ['q1','q2','q3','q4','q5','q6','q7','q8'].forEach(clickLongest);
+      ['t1','t2','t3','t4','t7a','t7b','t8'].forEach(clickLongest);
+      ['t5','t6'].forEach(clickAllColors);
     };
     document.body.appendChild(btn);
   }
