@@ -1792,34 +1792,6 @@
       return (maxSel ? selected.slice(0, maxSel) : selected).join(', ') || '—';
     }
 
-    const CLINICAL = {
-      t1: { 'Verde':'Glezna mediala', 'Albastru':'Glezna anterioara tibio-talar',
-            'Roșu':'Glezna laterala', 'Portocaliu':'Mediopicior Lisfranc Chopart',
-            'Mov':'MTTS-F haluce', 'Negru':'Metatarsalgii transfer 2-5',
-            'Nicio zonă din această imagine':'Fara durere anterioara' },
-      t2: { 'Albastru':'Tendon Ahilean', 'Galben':'Calcaneu posterior Haglund',
-            'Roșu':'Glezna laterala', 'Verde':'Glezna mediala',
-            'Nicio zonă din această imagine':'Fara durere posterioara' },
-      t3: { 'Mov':'Traiect tibial posterior', 'Verde':'Glezna anterioara tibio-talar',
-            'Roșu':'Origine fascie plantara', 'Galben':'Fascie plantara',
-            'Albastru':'Haluce valgus rigidus artroza',
-            'Nicio zonă din această imagine':'Fara durere mediala' },
-      t4: { 'Roșu':'Maleola peroniera', 'Galben':'Traiect tendoane peronieri',
-            'Verde':'Glezna anterioara tibio-talara', 'Albastru':'Sinus tarsi ATFL',
-            'Mov':'MTTS-F raza 5 bunionette',
-            'Nicio zonă din această imagine':'Fara durere laterala' },
-      t5: { 'Da':'Morton squeeze test pozitiv', 'Nu':'Morton squeeze test negativ' },
-      t6: { 'Da':'Impingement peronier pozitiv', 'Nu':'Impingement peronier negativ' },
-      t7: { 'Da':'Impingement medial pozitiv', 'Nu':'Impingement medial negativ' },
-      t8: { 'Da, fără probleme (mă ridic ușor, stau stabil, fără durere)':'Triceps sural integru',
-            'Da, dar apare durere (în spatele gleznei / tendon / talpă / interior)':'Ridicare varfuri dureroasa',
-            'Da, dar piciorul nu este stabil (simt că \u201efuge\u201d stânga-dreapta sau că nu am forță)':'Ridicare varfuri instabila',
-            'Cu dificultate (mă ridic greu sau nu pot menține poziția)':'Slabiciune triceps sural',
-            'Nu pot să mă ridic pe vârfuri':'Ruptura sau pareza triceps sural' },
-      t9a:{ 'Da':'Contractura gastrocnemieni prezenta', 'Nu':'Contractura gastrocnemieni absenta' },
-      t9b:{ 'Da':'Tensiune plantara Silfverskiold prezenta', 'Nu':'Tensiune plantara Silfverskiold absenta' },
-      t9c:{ 'Da':'Silfverskiold pozitiv contractura izolata gastrocnemieni', 'Nu':'Silfverskiold negativ' },
-    };
 
     function clinFromRaw(key, raw) {
       if (raw === '—') return raw;
@@ -2124,11 +2096,52 @@
         const el = document.querySelector(`input[name="${name}-none"]`);
         if (el) el.closest('.option')?.click();
       }
-      ['a1','a2','a3','a4','a5','a6','a8','a13','a15','a16','a17','a18','a19','a20'].forEach(clickFirst);
-      ['a7','a9','a10','a11','a12','a14'].forEach(clickNone);
-      ['q1','q2','q3','q4','q5','q6','q7'].forEach(clickFirst);
-      ['t1','t2','t3','t4'].forEach(clickNone);
-      ['t5','t6','t7','t8','t9a','t9b','t9c'].forEach(clickFirst);
+      function clickLongest(name) {
+        const inputs = document.querySelectorAll(`input[name="${name}"]`);
+        let longest = null, maxLen = -1;
+        inputs.forEach(inp => {
+          const label = inp.closest('.option')?.querySelector('.option-label');
+          if (label) {
+            const frontendText = label.textContent.trim();
+            const clinicalValue = CLINICAL[name]?.[frontendText] || frontendText;
+            const len = clinicalValue.length;
+            if (len > maxLen) { maxLen = len; longest = inp; }
+          }
+        });
+        if (longest) longest.closest('.option')?.click();
+      }
+      function clickAllColors(name) {
+        const card = document.querySelector(`[id="card-${name}"]`) ||
+                     document.querySelector(`[id="card-${name.replace(/[ab]$/, '')}"]`);
+        if (!card) return;
+        const opts = [...card.querySelectorAll('.color-option')].filter(opt => {
+          const inp = opt.querySelector('input');
+          return inp && inp.name === name;
+        });
+        opts.sort((a, b) => {
+          const labelA = a.querySelector('.color-option-label')?.textContent.trim() || '';
+          const labelB = b.querySelector('.color-option-label')?.textContent.trim() || '';
+          const lenA = (CLINICAL[name]?.[labelA] || labelA).length;
+          const lenB = (CLINICAL[name]?.[labelB] || labelB).length;
+          return lenB - lenA;
+        });
+        opts.slice(0, 2).forEach(opt => {
+          if (!opt.classList.contains('selected')) opt.click();
+        });
+      }
+      function clickAllChecks(name) {
+        const inputs = document.querySelectorAll(`input[name="${name}"]`);
+        inputs.forEach(inp => {
+          if (inp.type === 'checkbox' && inp.name !== name + '-none') {
+            if (!inp.checked) inp.closest('.option')?.click();
+          }
+        });
+      }
+      ['a1','a2','a3','a4','a5','a6','a8','a13','a15','a16','a17','a18','a19','a20'].forEach(clickLongest);
+      ['a7','a9','a10','a11','a12','a14'].forEach(clickAllChecks);
+      ['q1','q2','q3','q4','q5','q6','q7'].forEach(clickLongest);
+      ['t1','t2','t3','t4'].forEach(clickAllColors);
+      ['t5','t6','t7','t8','t9a','t9b','t9c'].forEach(clickLongest);
     };
     document.body.appendChild(btn);
   }
