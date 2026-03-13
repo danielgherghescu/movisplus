@@ -1158,7 +1158,7 @@
       <div class="test-instructions">Flexie cervicală — bărbia spre piept</div>
     </div>
     <div class="test-body">
-      <div class="instruction-steps">Du bărbia spre piept. Încearcă să o atingi.</div>
+      <div class="instruction-steps">Du bărbia spre piept (ideal să-l atingi).</div>
       <div class="test-question">Ce simți în timp ce faci mișcarea?</div>
       <div class="options">
         <label class="option" onclick="sel(this,'t1')"><input type="radio" name="t1"><div class="option-radio"></div><span class="option-label">Ating pieptul fără durere</span></label>
@@ -1176,7 +1176,7 @@
       <div class="test-instructions">Extensie cervicală — privește spre tavan</div>
     </div>
     <div class="test-body">
-      <div class="instruction-steps">Privește în sus spre tavan, cât poți.</div>
+      <div class="instruction-steps">Privește în sus spre tavan.</div>
       <div class="test-question">Ce simți în timp ce faci mișcarea?</div>
       <div class="options">
         <label class="option" onclick="sel(this,'t2')"><input type="radio" name="t2"><div class="option-radio"></div><span class="option-label">Pot privi complet, fără durere</span></label>
@@ -1194,7 +1194,7 @@
       <div class="test-instructions">Rotație cervicală — privește peste umăr</div>
     </div>
     <div class="test-body">
-      <div class="instruction-steps">Privește alternativ peste umărul stâng și drept, pe rând, cât poți de mult.</div>
+      <div class="instruction-steps">Privește alternativ peste umărul stâng și drept.</div>
       <div class="test-question">Ce simți în timp ce faci mișcarea?</div>
       <div class="options">
         <label class="option" onclick="sel(this,'t3')"><input type="radio" name="t3"><div class="option-radio"></div><span class="option-label">Pot privi complet și la fel pe ambele părți</span></label>
@@ -1213,7 +1213,7 @@
       <div class="test-instructions">Înclinare laterală — urechea spre umăr</div>
     </div>
     <div class="test-body">
-      <div class="instruction-steps">Apropie urechea de fiecare umăr (fără să ridici umărul), pe rând, cât poți de mult.</div>
+      <div class="instruction-steps">Apropie urechea de fiecare umăr (fără să ridici umărul), pe rând.</div>
       <div class="test-question">Ce simți în timp ce faci mișcarea?</div>
       <div class="options">
         <label class="option" onclick="sel(this,'t4')"><input type="radio" name="t4"><div class="option-radio"></div><span class="option-label">Ajung aproape de umăr fără durere, pe ambele părți</span></label>
@@ -1235,7 +1235,7 @@
       <div class="instruction-steps">
         Stai în picioare cu tălpile apropiate.<br>
         Închide ochii timp de aproximativ 20–30 secunde.<br>
-        ⚠️ Fă testul doar dacă ai pe cineva lângă tine sau te poți sprijini de un perete.
+        ⚠️ Fă testul doar dacă ai pe cineva lângă tine sau te poți sprijini de un perete. Dacă te simți instabil, nu continua testul.
       </div>
       <div class="test-question">Ce se întâmplă când închizi ochii?</div>
       <div class="options">
@@ -1255,7 +1255,6 @@
     <div class="test-body">
       <div class="instruction-steps">
         Înclină capul ușor în spate, privind spre tavan, și rotește-l spre partea dureroasă, apoi spre cealaltă.<br>
-        Poți apăsa ușor pe creștetul capului cu mâna proprie sau a unui ajutor.
       </div>
       <div class="test-question">Ce se întâmplă în timpul mișcării?</div>
       <div class="options">
@@ -1295,10 +1294,12 @@
       </div>
       <div class="instruction-steps">
         Privește imaginile cu zonele colorate.<br>
-        Atinge și ciupește fiecare zonă, comparând cu partea opusă.<br>
-        Bifează toate culorile unde senzația este diferită față de partea sănătoasă.
+        Folosește mâna sănătoasă (sau un ajutor) și <strong>atinge ușor fiecare zonă</strong>, apoi <strong>ciupește aceeași zonă</strong><br>
+        Compară mereu cu partea opusă.<br>
+        Bifează toate culorile unde senzația este diferită față de partea sănătoasă (mai slabă, mai intensă sau modificată).<br>
+        (Poți bifa mai multe zone.)
       </div>
-      <div class="test-question">Braț — care zone sunt diferite față de partea sănătoasă? (poți bifa mai multe)</div>
+      <div class="test-question">Braț — care zone sunt diferite față de partea sănătoasă?</div>
       <div class="color-options">
         <label class="color-option" onclick="selMulti(this,'t8a',4,event)"><input type="checkbox" name="t8a" style="display:none"><div class="color-swatch green"></div><span class="color-option-label">Verde</span></label>
         <label class="color-option" onclick="selMulti(this,'t8a',4,event)"><input type="checkbox" name="t8a" style="display:none"><div class="color-swatch blue"></div><span class="color-option-label">Albastru</span></label>
@@ -1311,7 +1312,7 @@
           <span class="option-label">Nicio zonă — simt la fel peste tot</span>
         </label>
       </div>
-      <div class="test-question">Mână — care zone sunt diferite? (poți bifa mai multe)</div>
+      <div class="test-question" style="margin-top:10px;">Mână — care zone sunt diferite?</div>
       <div class="color-options">
         <label class="color-option" onclick="selMulti(this,'t8b',3,event)"><input type="checkbox" name="t8b" style="display:none"><div class="color-swatch red"></div><span class="color-option-label">Roșu</span></label>
         <label class="color-option" onclick="selMulti(this,'t8b',3,event)"><input type="checkbox" name="t8b" style="display:none"><div class="color-swatch white"></div><span class="color-option-label">Alb</span></label>
@@ -1330,14 +1331,15 @@
   <div class="test-card" id="card-t9">
     <div class="test-header">
       <div class="test-badge">T<span class="badge-accent">09</span></div>
-      <div class="test-instructions">Test de forță — flexia cotului</div>
+      <div class="test-instructions">Test de forță musculară</div>
     </div>
     <div class="test-body">
       <div class="test-images">
         <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Cervicala/images/image2.jpg" alt="Poziția testului"></div>
       </div>
       <div class="instruction-steps">
-        Ține o greutate în mână (o ganteră, o sticlă cu apă sau un obiect mai greu).<br>
+        Privește imaginea.<br>
+        Ține o greutate în mână (o ganteră, o sticlă cu apă sau un obiect mai greu din casă).<br>
         Îndoaie cotul și ridică obiectul spre tine, ca în imagine.<br>
         Compară cu brațul celălalt.
       </div>
@@ -1362,9 +1364,11 @@
         <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Cervicala/images/image4.jpg" alt="Poziția 2 — rezistență"></div>
       </div>
       <div class="instruction-steps">
-        1️⃣ Pune mâna afectată în poziția „STOP”, cu palma orientată înainte și încheietura ridicată.<br>
-        2️⃣ Cu mâna sănătoasă, apasă pe palma mâinii afectate, împingând-o în jos.<br>
-        3️⃣ Încearcă să menții poziția și să opui rezistență. Compară cu partea sănătoasă.
+        Privește imaginile.<br>
+        1️⃣ Pune mâna afectată în poziția „STOP”, cu palma orientată înainte și încheietura ridicată ca în imaginea 1.<br>
+        2️⃣ Cu mâna sănătoasă (sau cu ajutorul unei alte persoane), apasă pe palma mâinii afectate, încercând să o împingi în jos, ca în imaginea 2.<br>
+        3️⃣ Încearcă să menții poziția și să opui rezistență. <br>
+        Compară cu partea sănătoasă.
       </div>
       <div class="test-question">Cum este forța pe partea afectată?</div>
       <div class="options">
@@ -1386,9 +1390,11 @@
         <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Cervicala/images/image7.jpg" alt="Poziția testului"></div>
       </div>
       <div class="instruction-steps">
-        1️⃣ Îndoaie cotul la aproximativ 90°, cu brațul pe lângă corp.<br>
-        2️⃣ Cu mâna sănătoasă, apasă în jos pe antebrațul afectat.<br>
-        3️⃣ Încearcă să menții poziția. Compară cu partea sănătoasă.
+        Privește imaginea.<br>
+        1️⃣ Îndoaie cotul la aproximativ 90°, cu brațul pe lângă corp, ca în imagine.<br>
+        2️⃣ Cu mâna sănătoasă (sau cu ajutorul unei alte persoane), apasă în jos pe antebrațul afectat.<br>
+        3️⃣ În același timp, încearcă să menții poziția și să opui rezistență. <br>
+        Compară cu partea sănătoasă.
       </div>
       <div class="test-question">Cum este forța pe partea afectată?</div>
       <div class="options">
@@ -1410,8 +1416,9 @@
         <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Cervicala/images/image6.jpg" alt="Poziția testului"></div>
       </div>
       <div class="instruction-steps">
-        Ține în mână un obiect moale sau o minge.<br>
-        Strânge cât de puternic poți.<br>
+        Privește imaginea.<br>
+        Ține în mână un obiect moale sau o minge (sau orice obiect pe care îl poți strânge).<br>
+        Strânge cât de puternic poți, ca în imagine.<br>
         Compară cu cealaltă mână.
       </div>
       <div class="test-question">Cum este forța de strângere pe partea afectată?</div>
