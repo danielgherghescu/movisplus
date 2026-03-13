@@ -1597,6 +1597,28 @@
         .replace(/[țţȚŢ]/g, 't');
     }
 
+  const CLINICAL = {
+    t1a: { 'Verde':'Flexie 130 grade normal', 'Galben':'Flexie 110 grade deficit moderat',
+           'Roșu':'Flexie 90 grade deficit sever' },
+    t1b: { 'Verde':'Extensie 180 grade maxim', 'Albastru':'Extensie 150 grade redoare tipica',
+           'Galben':'Extensie 110 grade redoare moderata', 'Roșu':'Extensie 90 grade redoare severa' },
+    t2a: { 'Verde':'Pronatie completa', 'Albastru':'Pronatie partial limitata',
+           'Galben':'Pronatie sever limitata', 'Roșu':'Pronatie absenta' },
+    t2b: { 'Verde':'Supinatie completa', 'Albastru':'Supinatie partial limitata',
+           'Galben':'Supinatie sever limitata', 'Roșu':'Supinatie absenta' },
+    t3:  { 'Verde':'Fosa antecubitala', 'Albastru':'Olecran enteza tricipitala',
+           'Galben':'Cot medial', 'Roșu':'Cot lateral' },
+    t4:  { 'Da':'Milking maneuver pozitiv', 'Nu':'Milking maneuver negativ' },
+    t5:  { 'Da':'Instabilitate postero-laterala pozitiva', 'Nu':'Instabilitate postero-laterala negativa' },
+    t6:  { 'Mai ușoară / mai stabilă':'ROM gravitatie mai usoara',
+           'La fel':'ROM gravitatie identic', 'Mai dificilă / mai instabilă':'ROM gravitatie mai dificila' },
+    t7:  { 'Da':'Cozen pozitiv', 'Nu':'Cozen negativ' },
+    t8:  { 'Da':'Biceps hook test negativ tendon intact', 'Nu':'Biceps hook test pozitiv tendon rupt' },
+    t9:  { 'Da':'Tinel pozitiv ulnar', 'Nu':'Tinel negativ ulnar' },
+    t10a:{ 'Da':'Pronator tunnel pozitiv', 'Nu':'Pronator tunnel negativ' },
+    t10b:{ 'Da':'Supinator tunnel pozitiv', 'Nu':'Supinator tunnel negativ' },
+  };
+
   function generateJSON() {
     document.querySelectorAll('.missing').forEach(el => el.classList.remove('missing'));
     const MANDATORY = [
@@ -1818,28 +1840,6 @@
     });
 
     // ── TESTE ────────────────────────────────────────────────────────────────
-    const CLINICAL = {
-      t1a: { 'Verde':'Flexie 130 grade normal', 'Galben':'Flexie 110 grade deficit moderat',
-             'Roșu':'Flexie 90 grade deficit sever' },
-      t1b: { 'Verde':'Extensie 180 grade maxim', 'Albastru':'Extensie 150 grade redoare tipica',
-             'Galben':'Extensie 110 grade redoare moderata', 'Roșu':'Extensie 90 grade redoare severa' },
-      t2a: { 'Verde':'Pronatie completa', 'Albastru':'Pronatie partial limitata',
-             'Galben':'Pronatie sever limitata', 'Roșu':'Pronatie absenta' },
-      t2b: { 'Verde':'Supinatie completa', 'Albastru':'Supinatie partial limitata',
-             'Galben':'Supinatie sever limitata', 'Roșu':'Supinatie absenta' },
-      t3:  { 'Verde':'Fosa antecubitala', 'Albastru':'Olecran enteza tricipitala',
-             'Galben':'Cot medial', 'Roșu':'Cot lateral' },
-      t4:  { 'Da':'Milking maneuver pozitiv', 'Nu':'Milking maneuver negativ' },
-      t5:  { 'Da':'Instabilitate postero-laterala pozitiva', 'Nu':'Instabilitate postero-laterala negativa' },
-      t6:  { 'Mai ușoară / mai stabilă':'ROM gravitatie mai usoara',
-             'La fel':'ROM gravitatie identic', 'Mai dificilă / mai instabilă':'ROM gravitatie mai dificila' },
-      t7:  { 'Da':'Cozen pozitiv', 'Nu':'Cozen negativ' },
-      t8:  { 'Da':'Biceps hook test negativ tendon intact', 'Nu':'Biceps hook test pozitiv tendon rupt' },
-      t9:  { 'Da':'Tinel pozitiv ulnar', 'Nu':'Tinel negativ ulnar' },
-      t10a:{ 'Da':'Pronator tunnel pozitiv', 'Nu':'Pronator tunnel negativ' },
-      t10b:{ 'Da':'Supinator tunnel pozitiv', 'Nu':'Supinator tunnel negativ' },
-    };
-
     const TESTS = [
       { key: 't1a', clinName: 'Flexie cot' },
       { key: 't1b', clinName: 'Extensie cot' },
@@ -1968,10 +1968,51 @@
         const el = document.querySelector(`input[name="${name}-none"]`);
         if (el) el.closest('.option')?.click();
       }
-      ['a1','a2','a3','a4','a5','a6','a8','a13','a15','a16','a17','a18','a19','a20'].forEach(clickFirst);
-      ['a7','a9','a10','a11','a12','a14'].forEach(clickNone);
-      ['q1','q2','q3','q4','q5','q6','q7','q8'].forEach(clickFirst);
-      ['t1a','t1b','t2a','t2b','t3','t4','t5','t6','t7','t8','t9','t10a','t10b'].forEach(clickFirst);
+      function clickLongest(name) {
+        const inputs = document.querySelectorAll(`input[name="${name}"]`);
+        let longest = null, maxLen = -1;
+        inputs.forEach(inp => {
+          const label = inp.closest('.option')?.querySelector('.option-label');
+          if (label) {
+            const frontendText = label.textContent.trim();
+            const clinicalValue = CLINICAL[name]?.[frontendText] || frontendText;
+            const len = clinicalValue.length;
+            if (len > maxLen) { maxLen = len; longest = inp; }
+          }
+        });
+        if (longest) longest.closest('.option')?.click();
+      }
+      function clickAllColors(name) {
+        const card = document.querySelector(`[id="card-${name}"]`) ||
+                     document.querySelector(`[id="card-${name.replace(/[ab]$/, '')}"]`);
+        if (!card) return;
+        const opts = [...card.querySelectorAll('.color-option')].filter(opt => {
+          const inp = opt.querySelector('input');
+          return inp && inp.name === name;
+        });
+        opts.sort((a, b) => {
+          const labelA = a.querySelector('.color-option-label')?.textContent.trim() || '';
+          const labelB = b.querySelector('.color-option-label')?.textContent.trim() || '';
+          const lenA = (CLINICAL[name]?.[labelA] || labelA).length;
+          const lenB = (CLINICAL[name]?.[labelB] || labelB).length;
+          return lenB - lenA;
+        });
+        opts.slice(0, 2).forEach(opt => {
+          if (!opt.classList.contains('selected')) opt.click();
+        });
+      }
+      function clickAllChecks(name) {
+        const inputs = document.querySelectorAll(`input[name="${name}"]`);
+        inputs.forEach(inp => {
+          if (inp.type === 'checkbox' && inp.name !== name + '-none') {
+            if (!inp.checked) inp.closest('.option')?.click();
+          }
+        });
+      }
+      ['a1','a2','a3','a4','a5','a6','a8','a13','a15','a16','a17','a18','a19','a20'].forEach(clickLongest);
+      ['a7','a9','a10','a11','a12','a14'].forEach(clickAllChecks);
+      ['q1','q2','q3','q4','q5','q6','q7','q8'].forEach(clickLongest);
+      ['t1a','t1b','t2a','t2b','t3','t4','t5','t6','t7','t8','t9','t10a','t10b'].forEach(clickLongest);
     };
     document.body.appendChild(btn);
   }

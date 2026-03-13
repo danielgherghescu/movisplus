@@ -1687,7 +1687,43 @@
         .replace(/[țţȚŢ]/g, 't');
     }
 
-  function generateJSON() {
+  const CLINICAL = {
+    t1: { 'Albastru (zona albastră)':'Police volar',
+          'Mov (zona mov)':'Zona MTC-F volar',
+          'Galben (zona galbenă)':'Tunel carpian volar',
+          'Roșu (zonă roșie la nivelul unui deget sau punct roșu)':'Tubercul scafoid',
+          'Verde (punct verde)':'Pisiform',
+          'Nicio zonă din această imagine':'Fara durere volar' },
+    t2: { 'Albastru':'Police dorsal', 'Mov':'Carp dorsal',
+          'Galben':'Stiloida ulnara', 'Roșu':'Stiloida radiala',
+          'Portocaliu':'Zona MTC-F dorsal',
+          'Nicio zonă din această imagine':'Fara durere dorsal' },
+    t3: { 'Zona roșie':'Teritoriu median afectat',
+          'Zona galbenă':'Teritoriu ulnar afectat',
+          'În ambele zone':'Teritoriu median si ulnar afectat',
+          'Nu am amorțeli sau furnicături':'Sensibilitate volar normala' },
+    t4: { 'Zona albastră':'Teritoriu radial superficial afectat',
+          'Zona galbenă':'Teritoriu ulnar dorsal afectat',
+          'În ambele zone':'Teritoriu ulnar si radial superficial afectat',
+          'Nu am amorțeli sau furnicături':'Sensibilitate dorsal normala' },
+    t5: { 'Da, toate se îndreaptă spre același punct':'Tenodeza normala fara rotatie',
+          'Nu, un deget pare rotit diferit față de celelalte':'Tenodeza anormala rotatie deget',
+          'Nu, un deget rămâne în urmă și nu se închide complet':'Tenodeza anormala deget in extensie',
+          'Nu pot închide complet pumnul din cauza rigidității sau durerii':'Pumn rigid sau dureros' },
+    t6: { 'Da':'Wartenberg pozitiv', 'Nu':'Wartenberg negativ' },
+    t7: { 'Da':'Durkin pozitiv', 'Nu':'Durkin negativ' },
+    t8: { 'Da':'Finkelstein pozitiv', 'Nu':'Finkelstein negativ' },
+    t9a:{ 'Palma afectată nu se duce pe spate la fel de mult ca cealaltă':'Extensie pumn limitata',
+          'Apar amorțeli sau furnicături în mâna afectată':'Reverse Phalen pozitiv',
+          'Ambele mâini se mișcă la fel, fără simptome':'Reverse Phalen negativ' },
+    t9b:{ 'Palma afectată nu se duce în jos la fel de mult ca cealaltă':'Flexie pumn limitata',
+          'Apar amorțeli sau furnicături în mâna afectată':'Phalen pozitiv',
+          'Ambele mâini se mișcă la fel, fără simptome':'Phalen negativ' },
+    t10a:{ 'Da':'Impingement radial prezent', 'Nu':'Impingement radial absent' },
+    t10b:{ 'Da':'TFCC dureros', 'Nu':'TFCC nedureros' },
+    };
+
+    function generateJSON() {
     document.querySelectorAll('.missing').forEach(el => el.classList.remove('missing'));
     const MANDATORY = [
       { key: 'a1',  cardId: 'card-a1'  }, { key: 'a2',  cardId: 'card-a2'  },
@@ -1771,41 +1807,7 @@
       return (maxSel ? selected.slice(0, maxSel) : selected).join(', ') || '—';
     }
 
-    const CLINICAL = {
-      t1: { 'Albastru (zona albastră)':'Police volar',
-            'Mov (zona mov)':'Zona MTC-F volar',
-            'Galben (zona galbenă)':'Tunel carpian volar',
-            'Roșu (zonă roșie la nivelul unui deget sau punct roșu)':'Tubercul scafoid',
-            'Verde (punct verde)':'Pisiform',
-            'Nicio zonă din această imagine':'Fara durere volar' },
-      t2: { 'Albastru':'Police dorsal', 'Mov':'Carp dorsal',
-            'Galben':'Stiloida ulnara', 'Roșu':'Stiloida radiala',
-            'Portocaliu':'Zona MTC-F dorsal',
-            'Nicio zonă din această imagine':'Fara durere dorsal' },
-      t3: { 'Zona roșie':'Teritoriu median afectat',
-            'Zona galbenă':'Teritoriu ulnar afectat',
-            'În ambele zone':'Teritoriu median si ulnar afectat',
-            'Nu am amorțeli sau furnicături':'Sensibilitate volar normala' },
-      t4: { 'Zona albastră':'Teritoriu radial superficial afectat',
-            'Zona galbenă':'Teritoriu ulnar dorsal afectat',
-            'În ambele zone':'Teritoriu ulnar si radial superficial afectat',
-            'Nu am amorțeli sau furnicături':'Sensibilitate dorsal normala' },
-      t5: { 'Da, toate se îndreaptă spre același punct':'Tenodeza normala fara rotatie',
-            'Nu, un deget pare rotit diferit față de celelalte':'Tenodeza anormala rotatie deget',
-            'Nu, un deget rămâne în urmă și nu se închide complet':'Tenodeza anormala deget in extensie',
-            'Nu pot închide complet pumnul din cauza rigidității sau durerii':'Pumn rigid sau dureros' },
-      t6: { 'Da':'Wartenberg pozitiv', 'Nu':'Wartenberg negativ' },
-      t7: { 'Da':'Durkin pozitiv', 'Nu':'Durkin negativ' },
-      t8: { 'Da':'Finkelstein pozitiv', 'Nu':'Finkelstein negativ' },
-      t9a:{ 'Palma afectată nu se duce pe spate la fel de mult ca cealaltă':'Extensie pumn limitata',
-            'Apar amorțeli sau furnicături în mâna afectată':'Reverse Phalen pozitiv',
-            'Ambele mâini se mișcă la fel, fără simptome':'Reverse Phalen negativ' },
-      t9b:{ 'Palma afectată nu se duce în jos la fel de mult ca cealaltă':'Flexie pumn limitata',
-            'Apar amorțeli sau furnicături în mâna afectată':'Phalen pozitiv',
-            'Ambele mâini se mișcă la fel, fără simptome':'Phalen negativ' },
-      t10a:{ 'Da':'Impingement radial prezent', 'Nu':'Impingement radial absent' },
-      t10b:{ 'Da':'TFCC dureros', 'Nu':'TFCC nedureros' },
-    };
+
 
     function clinFromRaw(key, raw) {
       if (raw === '—') return raw;
@@ -2112,11 +2114,52 @@
         const el = document.querySelector(`input[name="${name}-none"]`);
         if (el) el.closest('.option')?.click();
       }
-      ['a1','a2','a3','a4','a5','a6','a8','a13','a15','a16','a17','a18','a19','a20'].forEach(clickFirst);
-      ['a7','a9','a10','a11','a12','a14'].forEach(clickNone);
-      ['q1','q2','q3','q4','q5','q6','q7'].forEach(clickFirst);
-      ['t1','t2'].forEach(clickNone);
-      ['t3','t4','t5','t6','t7','t8','t9a','t9b','t10a','t10b'].forEach(clickFirst);
+      function clickLongest(name) {
+        const inputs = document.querySelectorAll(`input[name="${name}"]`);
+        let longest = null, maxLen = -1;
+        inputs.forEach(inp => {
+          const label = inp.closest('.option')?.querySelector('.option-label');
+          if (label) {
+            const frontendText = label.textContent.trim();
+            const clinicalValue = CLINICAL[name]?.[frontendText] || frontendText;
+            const len = clinicalValue.length;
+            if (len > maxLen) { maxLen = len; longest = inp; }
+          }
+        });
+        if (longest) longest.closest('.option')?.click();
+      }
+      function clickAllColors(name) {
+        const card = document.querySelector(`[id="card-${name}"]`) ||
+                     document.querySelector(`[id="card-${name.replace(/[ab]$/, '')}"]`);
+        if (!card) return;
+        const opts = [...card.querySelectorAll('.color-option')].filter(opt => {
+          const inp = opt.querySelector('input');
+          return inp && inp.name === name;
+        });
+        opts.sort((a, b) => {
+          const labelA = a.querySelector('.color-option-label')?.textContent.trim() || '';
+          const labelB = b.querySelector('.color-option-label')?.textContent.trim() || '';
+          const lenA = (CLINICAL[name]?.[labelA] || labelA).length;
+          const lenB = (CLINICAL[name]?.[labelB] || labelB).length;
+          return lenB - lenA;
+        });
+        opts.slice(0, 2).forEach(opt => {
+          if (!opt.classList.contains('selected')) opt.click();
+        });
+      }
+      function clickAllChecks(name) {
+        const inputs = document.querySelectorAll(`input[name="${name}"]`);
+        inputs.forEach(inp => {
+          if (inp.type === 'checkbox' && inp.name !== name + '-none') {
+            if (!inp.checked) inp.closest('.option')?.click();
+          }
+        });
+      }
+      ['a1','a2','a3','a4','a5','a6','a8','a13','a15','a16','a17','a18','a19','a20'].forEach(clickLongest);
+      ['a7','a9','a10','a11','a12','a14'].forEach(clickAllChecks);
+      ['q1','q2','q3','q4','q5','q6','q7'].forEach(clickLongest);
+      ['t1','t2'].forEach(clickAllColors);
+      ['t3','t4','t5','t6','t7','t8','t9a','t9b','t10a','t10b'].forEach(clickLongest);
     };
     document.body.appendChild(btn);
   }
