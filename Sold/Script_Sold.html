@@ -1531,41 +1531,41 @@ function updateProgress() {
 
   const CLINICAL = {
     t1: {
-      'Roșu — Înainte (zona inghinală)': 'inghinal',
-      'Galben — Lateral (pe os, zona proeminentă)': 'trohanter mare',
-      'Verde — Spate (fesier)': 'sold posterior',
-      'Albastru — Jos în spate, la baza coloanei': 'sacro-iliac'
+      'Roșu — Înainte (zona inghinală)': 'Inghinal',
+      'Galben — Lateral (pe os, zona proeminentă)': 'Trohanter mare',
+      'Verde — Spate (fesier)': 'Sold posterior',
+      'Albastru — Jos în spate, la baza coloanei': 'Sacro-iliac'
     },
     t2: {
-      'Nu simt durere și pot face mișcarea normal': 'rotatie interna negativ dureroasa',
-      'Simt durere în zona inghinală': 'rotatie interna pozitiv dureroasa',
-      'Nu simt durere, dar mișcarea este clar limitată comparativ cu celălalt șold': 'rotatie interna limitata mecanic nedureroasa',
-      'Simt atât durere inghinală, cât și limitare de mișcare': 'rotatie interna limitata mecanic si dureroasa'
+      'Nu simt durere și pot face mișcarea normal': 'Negativ dureroasa',
+      'Simt durere în zona inghinală': 'Pozitiv dureroasa',
+      'Nu simt durere, dar mișcarea este clar limitată comparativ cu celălalt șold': 'Limitata mecanic nedureroasa',
+      'Simt atât durere inghinală, cât și limitare de mișcare': 'Limitata mecanic si dureroasa'
     },
     t3: {
-      'Nu simt durere și pot opune rezistență normal': 'FABER Negativ',
-      'Simt durere în zona inghinală': 'FABER dureros inghinal',
-      'Nu simt durere, dar forța este clar mai mică decât pe partea cealaltă': 'FABER negativ, forta scazuta',
-      'Simt atât durere inghinală, cât și slăbiciune': 'FABER pozitiv, forta scazuta'
+      'Nu simt durere și pot opune rezistență normal': 'Negativ',
+      'Simt durere în zona inghinală': 'Dureros inghinal',
+      'Nu simt durere, dar forța este clar mai mică decât pe partea cealaltă': 'Negativ, forta scazuta',
+      'Simt atât durere inghinală, cât și slăbiciune': 'Pozitiv, forta scazuta'
     },
     t4: {
-      'Nu simt nimic neobișnuit': 'Piriformis - FADIR test negativ',
-      'Simt durere în fața șoldului (inghinal)': 'Piriformis - FADIR test negativ cu durere inghinala',
-      'Simt durere în spatele șoldului': 'Piriformis test pozitiv',
-      'Simt durere în spatele șoldului și coboară pe coapsă': 'Piriformis test intens pozitiv'
+      'Nu simt nimic neobișnuit': 'Piriformis-FADIR negativ',
+      'Simt durere în fața șoldului (inghinal)': 'Piriformis-FADIR  negativ cu durere inghinala',
+      'Simt durere în spatele șoldului': 'Piriformis pozitiv',
+      'Simt durere în spatele șoldului și coboară pe coapsă': 'Piriformis intens pozitiv'
     },
     t5: {
-      'Da': 'Iliopsoas test pozitiv',
-      'Nu': 'Iliopsoas test negativ'
+      'Da': 'Pozitiv',
+      'Nu': 'Negativ'
     },
     t6: {
-      'Da, pot să-mi țin echilibrul fără probleme': 'Trendelenburg negativ',
-      'Nu pot să-mi țin echilibrul fără să-mi aplec trunchiul (imaginea 2)': 'Trendelenburg pozitiv',
-      'Nu pot deloc să-mi țin echilibrul pe un singur picior': 'Trendelenburg intens pozitiv'
+      'Da, pot să-mi țin echilibrul fără probleme': 'Negativ',
+      'Nu pot să-mi țin echilibrul fără să-mi aplec trunchiul (imaginea 2)': 'Pozitiv',
+      'Nu pot deloc să-mi țin echilibrul pe un singur picior': 'Intens pozitiv'
     },
     t7: {
-      'Da, mă doare': 'Ober test pozitiv',
-      'Nu, nu mă doare': 'Ober test negativ'
+      'Da, mă doare': 'Pozitiv',
+      'Nu, nu mă doare': 'Negativ'
     }
   };
 
@@ -1635,94 +1635,94 @@ function updateProgress() {
 
     const EXPORT_A = {
       a1: {
-        'Sub 2 săptămâni': 'sub 2 sapt.',
+        'Sub 2 săptămâni': 'Sub 2 sapt.',
         '2–6 săptămâni': '2–6 sapt.',
         '6 săptămâni – 3 luni': '6 sapt.–3 luni',
         '3–12 luni': '3–12 luni',
-        'Peste 1 an': '>1 an',
+        'Peste 1 an': 'Peste 1 an',
       },
       a2: {
-        'Brusc, după un eveniment clar (cădere, accident, mișcare bruscă)': 'Brusc după traumatism',
+        'Brusc, după un eveniment clar (cădere, accident, mișcare bruscă)': 'Brusc dupa trauma',
         'După efort repetitiv / suprasolicitare': 'Suprasolicitare',
         'Treptat, fără un motiv clar': 'Debut progresiv',
         'Am mai avut episoade similare în trecut': 'Episoade recurente',
       },
       a3: {
-        'Se ameliorează treptat': 'Ameliorare treptată',
+        'Se ameliorează treptat': 'Ameliorare treptata',
         'Este stabilă': 'Stabil',
-        'Se agravează lent': 'Agravare lentă',
+        'Se agravează lent': 'Agravare lenta',
         'Se agravează rapid în ultimele săptămâni': 'Agravare rapidă',
       },
       a4: {
-        '0–2 (ușoară)': '0–2 ușoară',
-        '3–5 (moderată)': '3–5 moderată',
-        '6–8 (mare)': '6–8 severă',
-        '9–10 (foarte severă)': '9–10 foarte severă',
+        '0–2 (ușoară)': '0–2',
+        '3–5 (moderată)': '3–5',
+        '6–8 (mare)': '6–8',
+        '9–10 (foarte severă)': '9–10',
       },
       a5: {
-        'Doar la mișcare / efort': 'Doar la mișcare',
-        'Și la mișcare, și în repaus': 'Mișcare + repaus',
-        'Constantă, inclusiv noaptea': 'Durere constantă',
-        'Mă trezește frecvent din somn': 'Durere nocturnă',
+        'Doar la mișcare / efort': 'La miscare',
+        'Și la mișcare, și în repaus': 'Miscare si repaus',
+        'Constantă, inclusiv noaptea': 'Constanta',
+        'Mă trezește frecvent din somn': 'Nocturna',
       },
       a6: {
-        'Fara redoare matinala': 'Fără redoare',
-        'Rigidă sub 30 minute': 'Redoare sub 30 min',
-        'Rigidă peste 30–60 minute': 'Redoare 30–60 min',
-        'Rigidă peste 1 oră': 'Redoare >1h',
+        'Fara redoare matinala': 'Fara redoare',
+        'Rigidă sub 30 minute': 'Sub 30 min',
+        'Rigidă peste 30–60 minute': '30–60 min',
+        'Rigidă peste 1 oră': 'Peste 1h',
       },
       a7: {
-        'Amorțeală': 'Amorțeală',
-        'Furnicături': 'Furnicături',
-        'Slăbiciune clară': 'Slăbiciune',
-        'Fara amorteli, furnicaturi sau slabiciune': 'Fără simptome neurologice',
+        'Amorțeală': 'Amorteala',
+        'Furnicături': 'Furnicaturi',
+        'Slăbiciune clară': 'Slabiciune',
+        'Fara amorteli, furnicaturi sau slabiciune': 'Fara simptome neurologice',
       },
       a8: {
         'Pot face aproape toate activitățile normale': 'Limitări minime',
-        'Evit anumite mișcări / activități': 'Evit anumite activități',
-        'Mi-am redus semnificativ activitatea': 'Activitate redusă',
-        'Nu pot face activități uzuale (mers, urcat scări, ridicat obiecte)': 'Activități uzuale imposibile',
+        'Evit anumite mișcări / activități': 'Evit anumite activitati',
+        'Mi-am redus semnificativ activitatea': 'Activitate redusa',
+        'Nu pot face activități uzuale (mers, urcat scări, ridicat obiecte)': 'Activitati uzuale imposibile',
       },
       a9: {
         Somnul: 'Somnul',
         Mersul: 'Mersul',
         Munca: 'Munca',
         Sportul: 'Sportul',
-        'Fara impact functional semnificativ': 'Fără impact semnificativ',
+        'Fara impact functional semnificativ': 'Fara impact semnificativ',
       },
       a10: {
-        'Scădere în greutate neintenționate': 'Scădere în greutate',
-        'Febră inexplicabilă': 'Febră',
-        'Transpirații nocturne persistente': 'Transpirații nocturne',
+        'Scădere în greutate neintenționate': 'Scadere in greutate',
+        'Febră inexplicabilă': 'Febra',
+        'Transpirații nocturne persistente': 'Transpiratii nocturne',
         'Istoric personal de cancer': 'Istoric cancer',
-        'Fara semne de alarma': 'Fără semne de alarmă',
+        'Fara semne de alarma': 'Fara semne de alarma',
       },
       a11: {
         'Traumatism major (accident, cădere serioasă)': 'Traumatism major',
-        'Slăbiciune progresivă accentuată': 'Slăbiciune progresivă',
-        'Probleme noi cu controlul urinei sau scaunului': 'Tulburări sfincteriene',
-        'Fara evenimente recente relevante': 'Fără evenimente recente',
+        'Slăbiciune progresivă accentuată': 'Slabiciune progresiva',
+        'Probleme noi cu controlul urinei sau scaunului': 'Tulburari sfincteriene',
+        'Fara evenimente recente relevante': 'Fara evenimente recente',
       },
       a12: {
         'Antiinflamatoare / analgezice': 'Antiinflamatoare',
         'Fizioterapie / kinetoterapie': 'Fizioterapie',
-        Infiltrații: 'Infiltrații',
+        Infiltrații: 'Infiltratii',
         Repaus: 'Repaus',
-        'Fara tratament anterior': 'Fără tratament anterior',
+        'Fara tratament anterior': 'Fara tratament anterior',
       },
       a13: {
-        'Clar eficient': 'Eficient',
-        'Parțial eficient': 'Parțial eficient',
-        'Fără efect': 'Fără efect',
+        'Clar eficient': 'Eff',
+        'Parțial eficient': 'Partial eff.',
+        'Fără efect': 'Fara efect',
         'Nu pot aprecia': 'Nu poate aprecia',
       },
       a14: {
-        'Boală reumatologică': 'Boală reumatologică',
+        'Boală reumatologică': 'Reumato',
         Diabet: 'Diabet',
-        Osteoporoză: 'Osteoporoză',
-        'Afecțiune neurologică': 'Afecțiune neurologică',
-        'Boală oncologică în trecut': 'Istoric oncologic',
-        'Fara comorbiditati relevante': 'Fără comorbidități',
+        Osteoporoză: 'Osteoporoza',
+        'Afecțiune neurologică': 'Neuro',
+        'Boală oncologică în trecut': 'Onco',
+        'Fara comorbiditati relevante': 'Fara',
       },
       a15: {
         Da: 'Da',
@@ -1730,31 +1730,31 @@ function updateProgress() {
       },
       a16: {
         'Predominant sedentar': 'Sedentar',
-        'Activ moderat (mers, activitate fizică ușoară)': 'Activitate moderată',
+        'Activ moderat (mers, activitate fizică ușoară)': 'Activitate moderata',
         'Activ regulat (sport 2–3 ori / săptămână)': 'Sport regulat',
         'Foarte activ / sport intensiv': 'Foarte activ',
       },
       a17: {
-        'Stau mai mult pe scaun': 'Muncă sedentară',
-        'Stau mult în picioare': 'Muncă în picioare',
-        'Ridic greutăți frecvent': 'Ridic greutăți',
-        'Activitate mixtă': 'Activitate mixtă',
+        'Stau mai mult pe scaun': 'Munca sedentara',
+        'Stau mult în picioare': 'Munca in picioare',
+        'Ridic greutăți frecvent': 'Ridic greutati',
+        'Activitate mixtă': 'Activitate mixta',
       },
       a18: {
-        Nu: 'Nefumător',
-        Ocazional: 'Fumător ocazional',
-        Zilnic: 'Fumător zilnic',
+        Nu: 'Nu',
+        Ocazional: 'Ocazional',
+        Zilnic: 'Zilnic',
       },
       a19: {
-        Normoponderal: 'Normoponderal',
-        'Ușor supraponderal': 'Supraponderal',
-        Obez: 'Obez',
-        'Nu știu / prefer să nu răspund': 'IMC necunoscut',
+        Normoponderal: 'Sub 25',
+        'Ușor supraponderal': '25-29',
+        Obez: 'Peste 30',
+        'Nu știu / prefer să nu răspund': 'Necunoscut',
       },
       a20: {
-        'Activități zilnice fără limitare': 'Activități zilnice fără durere',
+        'Activități zilnice fără limitare': 'Activități zilnice fara durere',
         'Revenirea la sport': 'Revenire la sport',
-        'Revenirea la muncă normal': 'Revenire la muncă',
+        'Revenirea la muncă normal': 'Revenire la munca',
         'Reducerea durerii, chiar dacă rămân unele limitări': 'Reducerea durerii',
       },
     };
@@ -1779,12 +1779,12 @@ function updateProgress() {
     }
 
     function normRo(str) {
-      return str
-        .replace(/[ăĂ]/g, 'a')
-        .replace(/[âÂ]/g, 'a')
-        .replace(/[îÎ]/g, 'i')
-        .replace(/[șşȘŞ]/g, 's')
-        .replace(/[țţȚŢ]/g, 't');
+      return str;
+   //    .replace(/[ăĂ]/g, 'a')
+   //    .replace(/[âÂ]/g, 'a')
+   //    .replace(/[îÎ]/g, 'i')
+   //    .replace(/[șşȘŞ]/g, 's')
+   //    .replace(/[țţȚŢ]/g, 't');
     }
 
         function ans(n) {
@@ -1819,23 +1819,23 @@ function updateProgress() {
       { key: 'a1',  label: 'Durata simptome' },
       { key: 'a2',  label: 'Debut' },
       { key: 'a3',  label: 'Evolutie' },
-      { key: 'a4',  label: 'Intensitate durere' },
-      { key: 'a5',  label: 'Tipul durerii' },
-      { key: 'a6',  label: 'Redoare matinala' },
-      { key: 'a7',  label: 'Senzatii asociate', multi: true, noneName: 'a7-none' },
-      { key: 'a8',  label: 'Impact functional' },
-      { key: 'a9',  label: 'Activitati afectate', multi: true, noneName: 'a9-none' },
-      { key: 'a10', label: 'Semne de alarma', multi: true, noneName: 'a10-none' },
-      { key: 'a11', label: 'Evenimente recente', multi: true, noneName: 'a11-none' },
-      { key: 'a12', label: 'Tratament anterior', multi: true, noneName: 'a12-none' },
-      { key: 'a13', label: 'Eficienta tratament' },
+      { key: 'a4',  label: 'Intens. durere' },
+      { key: 'a5',  label: 'Tip durere' },
+      { key: 'a6',  label: 'Redoare mat.' },
+      { key: 'a7',  label: 'Senz. asociate', multi: true, noneName: 'a7-none' },
+      { key: 'a8',  label: 'Impact funct.' },
+      { key: 'a9',  label: 'Act. afectate', multi: true, noneName: 'a9-none' },
+      { key: 'a10', label: 'Semne alarma', multi: true, noneName: 'a10-none' },
+      { key: 'a11', label: 'Evenim. recente', multi: true, noneName: 'a11-none' },
+      { key: 'a12', label: 'Tr. anterior', multi: true, noneName: 'a12-none' },
+      { key: 'a13', label: 'Eficienta tr.' },
       { key: 'a14', label: 'Comorbiditati', multi: true, noneName: 'a14-none' },
-      { key: 'a15', label: 'Chirurgie anterioara' },
-      { key: 'a16', label: 'Nivel activitate' },
-      { key: 'a17', label: 'Activitate profesionala' },
+      { key: 'a15', label: 'Chir. anterioara' },
+      { key: 'a16', label: 'Nivel activ.' },
+      { key: 'a17', label: 'Act. profesionala' },
       { key: 'a18', label: 'Fumat' },
       { key: 'a19', label: 'IMC' },
-      { key: 'a20', label: 'Obiectiv pacient' },
+      { key: 'a20', label: 'Obiectiv' },
     ];
 
     let mdAnamneza = '';
