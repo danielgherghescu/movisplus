@@ -1862,6 +1862,7 @@ const Teste_Q = [
       mdTeste += `**A:** ${mapped}  \n\n`;
     });
 
+    /*
     function clickFirst(name) {
       const first = document.querySelector(`input[name="${name}"]`);
       first?.closest('label')?.click();
@@ -1870,7 +1871,8 @@ const Teste_Q = [
       ['q1','q2','q3','q4','q5','q6','q7','q8','q9'].forEach(clickFirst);
       ['t1','t2','t3','t4','t5','t6','t7','t8','t9'].forEach(clickFirst);
     };
-
+    */
+    
     const sessionId = new URLSearchParams(window.location.search).get('session_id');
     let url = 'https://app.medicai.io/upload/movisplus?';
     if (sessionId) url += 'session_id=' + encodeURIComponent(sessionId) + '&';
@@ -1938,7 +1940,7 @@ const Teste_Q = [
     });
   })();
 
-  /* ─── AUTOFILL (doar când ?test=1) ─────────────────────────── */
+  /* ─── AUTOFILL (doar când ?test=1) ─────────────────────────── 
   if (new URLSearchParams(window.location.search).get('test') === '1') {
     const btn = document.createElement('button');
     btn.textContent = '⚡ Autofill';
@@ -2006,6 +2008,7 @@ const Teste_Q = [
     };
     document.body.appendChild(btn);
   }
+  */
 </script>
 <!-- Vertical Overflow code embed fix -->
 <script>
