@@ -1529,6 +1529,46 @@ function updateProgress() {
     setTimeout(() => toast.classList.remove('show'), 3500);
   }
 
+  const CLINICAL = {
+    t1: {
+      'Roșu — Înainte (zona inghinală)': 'inghinal',
+      'Galben — Lateral (pe os, zona proeminentă)': 'trohanter mare',
+      'Verde — Spate (fesier)': 'sold posterior',
+      'Albastru — Jos în spate, la baza coloanei': 'sacro-iliac'
+    },
+    t2: {
+      'Nu simt durere și pot face mișcarea normal': 'rotatie interna negativ dureroasa',
+      'Simt durere în zona inghinală': 'rotatie interna pozitiv dureroasa',
+      'Nu simt durere, dar mișcarea este clar limitată comparativ cu celălalt șold': 'rotatie interna limitata mecanic nedureroasa',
+      'Simt atât durere inghinală, cât și limitare de mișcare': 'rotatie interna limitata mecanic si dureroasa'
+    },
+    t3: {
+      'Nu simt durere și pot opune rezistență normal': 'FABER Negativ',
+      'Simt durere în zona inghinală': 'FABER dureros inghinal',
+      'Nu simt durere, dar forța este clar mai mică decât pe partea cealaltă': 'FABER negativ, forta scazuta',
+      'Simt atât durere inghinală, cât și slăbiciune': 'FABER pozitiv, forta scazuta'
+    },
+    t4: {
+      'Nu simt nimic neobișnuit': 'Piriformis - FADIR test negativ',
+      'Simt durere în fața șoldului (inghinal)': 'Piriformis - FADIR test negativ cu durere inghinala',
+      'Simt durere în spatele șoldului': 'Piriformis test pozitiv',
+      'Simt durere în spatele șoldului și coboară pe coapsă': 'Piriformis test intens pozitiv'
+    },
+    t5: {
+      'Da': 'Iliopsoas test pozitiv',
+      'Nu': 'Iliopsoas test negativ'
+    },
+    t6: {
+      'Da, pot să-mi țin echilibrul fără probleme': 'Trendelenburg negativ',
+      'Nu pot să-mi țin echilibrul fără să-mi aplec trunchiul (imaginea 2)': 'Trendelenburg pozitiv',
+      'Nu pot deloc să-mi țin echilibrul pe un singur picior': 'Trendelenburg intens pozitiv'
+    },
+    t7: {
+      'Da, mă doare': 'Ober test pozitiv',
+      'Nu, nu mă doare': 'Ober test negativ'
+    }
+  };
+
   function generateJSON() {
     // Validare câmpuri obligatorii
     document.querySelectorAll('.missing').forEach(el => el.classList.remove('missing'));
@@ -1776,26 +1816,26 @@ function updateProgress() {
     }
 
     const ANAMNEZA_Q = [
-      { key: 'a1',  label: 'De cât timp ai simptomele?' },
-      { key: 'a2',  label: 'Cum au apărut simptomele?' },
-      { key: 'a3',  label: 'Evoluția în timp' },
-      { key: 'a4',  label: 'Cât de intensă este durerea, în medie?' },
-      { key: 'a5',  label: 'Durerea este:' },
-      { key: 'a6',  label: 'Dimineața, zona afectată este:' },
-      { key: 'a7',  label: 'Ai senzații de:', multi: true, noneName: 'a7-none' },
-      { key: 'a8',  label: 'Din cauza problemei actuale:' },
-      { key: 'a9',  label: 'Problema îți afectează:', multi: true, noneName: 'a9-none' },
-      { key: 'a10', label: 'În ultimele luni ai avut:', multi: true, noneName: 'a10-none' },
-      { key: 'a11', label: 'Ai avut recent:', multi: true, noneName: 'a11-none' },
-      { key: 'a12', label: 'Ce ai încercat până acum?', multi: true, noneName: 'a12-none' },
-      { key: 'a13', label: 'Tratamentul a fost:' },
-      { key: 'a14', label: 'Ai fost diagnosticat cu:', multi: true, noneName: 'a14-none' },
-      { key: 'a15', label: 'Intervenții chirurgicale în zona investigată?' },
-      { key: 'a16', label: 'Nivelul de activitate:' },
-      { key: 'a17', label: 'Activitatea la locul de muncă:' },
-      { key: 'a18', label: 'Fumezi?' },
-      { key: 'a19', label: 'Greutatea corporală:' },
-      { key: 'a20', label: 'Ce ți-ai dori cel mai mult să poți face fără durere?' },
+      { key: 'a1',  label: 'Durata simptome' },
+      { key: 'a2',  label: 'Debut' },
+      { key: 'a3',  label: 'Evolutie' },
+      { key: 'a4',  label: 'Intensitate durere' },
+      { key: 'a5',  label: 'Tipul durerii' },
+      { key: 'a6',  label: 'Redoare matinala' },
+      { key: 'a7',  label: 'Senzatii asociate', multi: true, noneName: 'a7-none' },
+      { key: 'a8',  label: 'Impact functional' },
+      { key: 'a9',  label: 'Activitati afectate', multi: true, noneName: 'a9-none' },
+      { key: 'a10', label: 'Semne de alarma', multi: true, noneName: 'a10-none' },
+      { key: 'a11', label: 'Evenimente recente', multi: true, noneName: 'a11-none' },
+      { key: 'a12', label: 'Tratament anterior', multi: true, noneName: 'a12-none' },
+      { key: 'a13', label: 'Eficienta tratament' },
+      { key: 'a14', label: 'Comorbiditati', multi: true, noneName: 'a14-none' },
+      { key: 'a15', label: 'Chirurgie anterioara' },
+      { key: 'a16', label: 'Nivel activitate' },
+      { key: 'a17', label: 'Activitate profesionala' },
+      { key: 'a18', label: 'Fumat' },
+      { key: 'a19', label: 'IMC' },
+      { key: 'a20', label: 'Obiectiv pacient' },
     ];
 
     let mdAnamneza = '';
@@ -1831,45 +1871,6 @@ function updateProgress() {
       { key: 't7', label: 'T07 — Testul Thomas', clinName: 'Ober test', q: 'Ce simți în punctul marcat cu roșu?' },
     ];
 
-    const CLINICAL = {
-      t1: {
-        'Roșu — Înainte (zona inghinală)': 'inghinal',
-        'Galben — Lateral (pe os, zona proeminentă)': 'trohanter mare',
-        'Verde — Spate (fesier)': 'sold posterior',
-        'Albastru — Jos în spate, la baza coloanei': 'sacro-iliac'
-      },
-      t2: {
-        'Nu simt durere și pot face mișcarea normal': 'rotatie interna negativ dureroasa',
-        'Simt durere în zona inghinală': 'rotatie interna pozitiv dureroasa',
-        'Nu simt durere, dar mișcarea este clar limitată comparativ cu celălalt șold': 'rotatie interna limitata mecanic nedureroasa',
-        'Simt atât durere inghinală, cât și limitare de mișcare': 'rotatie interna limitata mecanic si dureroasa'
-      },
-      t3: {
-        'Nu simt durere și pot opune rezistență normal': 'FABER Negativ',
-        'Simt durere în zona inghinală': 'FABER dureros inghinal',
-        'Nu simt durere, dar forța este clar mai mică decât pe partea cealaltă': 'FABER negativ, forta scazuta',
-        'Simt atât durere inghinală, cât și slăbiciune': 'FABER pozitiv, forta scazuta'
-      },
-      t4: {
-        'Nu simt nimic neobișnuit': 'Piriformis - FADIR test negativ',
-        'Simt durere în fața șoldului (inghinal)': 'Piriformis - FADIR test negativ cu durere inghinala',
-        'Simt durere în spatele șoldului': 'Piriformis test pozitiv',
-        'Simt durere în spatele șoldului și coboară pe coapsă': 'Piriformis test intens pozitiv'
-      },
-      t5: {
-        'Da': 'Iliopsoas test pozitiv',
-        'Nu': 'Iliopsoas test negativ'
-      },
-      t6: {
-        'Da, pot să-mi țin echilibrul fără probleme': 'Trendelenburg negativ',
-        'Nu pot să-mi țin echilibrul fără să-mi aplec trunchiul (imaginea 2)': 'Trendelenburg pozitiv',
-        'Nu pot deloc să-mi țin echilibrul pe un singur picior': 'Trendelenburg intens pozitiv'
-      },
-      t7: {
-        'Da, mă doare': 'Ober test pozitiv',
-        'Nu, nu mă doare': 'Ober test negativ'
-      }
-    };
     function clinAns(key) { const raw = ans(key); return (CLINICAL[key] && CLINICAL[key][raw]) ? CLINICAL[key][raw] : raw; }
     function clinMultiAns() {
       const results = [];
