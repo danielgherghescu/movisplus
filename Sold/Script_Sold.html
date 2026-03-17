@@ -1529,7 +1529,7 @@ function updateProgress() {
     setTimeout(() => toast.classList.remove('show'), 3500);
   }
 
-  const CLINICAL = {
+  const Teste_R = {
     t1: {
       'Roșu — Înainte (zona inghinală)': 'Inghinal',
       'Galben — Lateral (pe os, zona proeminentă)': 'Trohanter mare',
@@ -1610,30 +1610,7 @@ function updateProgress() {
 
     const COLORS = { green: 'Verde', yellow: 'Galben', red: 'Roșu', blue: 'Albastru' };
 
-    const EXPORT_Q = {
-      a1: 'Durata simpt.',
-      a2: 'Debut',
-      a3: 'Evolutie',
-      a4: 'Intens. durere',
-      a5: 'Tip durere',
-      a6: 'Redoare mat.',
-      a7: 'Senz. asociate',
-      a8: 'Impact funct.',
-      a9: 'Act. afectate',
-      a10: 'Semne alarma',
-      a11: 'Evenim. recente',
-      a12: 'Tr. anterior',
-      a13: 'Eficienta tr.',
-      a14: 'Comorbiditati',
-      a15: 'Chir. anterioara',
-      a16: 'Nivel activ.',
-      a17: 'Act. profesionala',
-      a18: 'Fumat',
-      a19: 'IMC',
-      a20: 'Obiectiv',
-    };
-
-    const EXPORT_A = {
+    const Anamneza_R = {
       a1: {
         'Sub 2 săptămâni': 'Sub 2 sapt.',
         '2–6 săptămâni': '2–6 sapt.',
@@ -1760,7 +1737,7 @@ function updateProgress() {
     };
 
     function exportAnswer(qId, label) {
-      return EXPORT_A[qId]?.[label] || label;
+      return Anamneza_R[qId]?.[label] || label;
     }
 
     function multiAnsCheck(qId, checkName, noneName) {
@@ -1776,15 +1753,6 @@ function updateProgress() {
       if (noneInp?.closest('.option.selected'))
         return exportAnswer(qId, noneInp.closest('.option').querySelector('.option-label')?.textContent.trim() || '—');
       return '—';
-    }
-
-    function normRo(str) {
-      return str;
-   //    .replace(/[ăĂ]/g, 'a')
-   //    .replace(/[âÂ]/g, 'a')
-   //    .replace(/[îÎ]/g, 'i')
-   //    .replace(/[șşȘŞ]/g, 's')
-   //    .replace(/[țţȚŢ]/g, 't');
     }
 
         function ans(n) {
@@ -1815,7 +1783,7 @@ function updateProgress() {
       return results.length ? results.join(', ') : '—';
     }
 
-    const ANAMNEZA_Q = [
+    const Anamneza_Q = [
       { key: 'a1',  label: 'Durata simptome' },
       { key: 'a2',  label: 'Debut' },
       { key: 'a3',  label: 'Evolutie' },
@@ -1839,29 +1807,65 @@ function updateProgress() {
     ];
 
     let mdAnamneza = '';
-    ANAMNEZA_Q.forEach((q, i) => {
+    Anamneza_Q.forEach((q, i) => {
       if (q.key === 'a13' && answered.has('a12-none')) return;
-      mdAnamneza += `**Q:** ${normRo(q.label)}  \n`;
-      mdAnamneza += `**A:** ${normRo(q.multi ? multiAnsCheck(q.key, q.key, q.noneName) : exportAnswer(q.key, ans(q.key)))}  \n\n`;
+      mdAnamneza += `**Q:** ${q.label}  \n`;
+      mdAnamneza += `**A:** ${q.multi ? multiAnsCheck(q.key, q.key, q.noneName) : exportAnswer(q.key, ans(q.key))}  \n\n`;
     });
 
-        const QUESTIONS = [
-      { key: 'q1', label: 'Când te doare șoldul cel mai mult?' },
-      { key: 'q2', label: 'Te doare șoldul noaptea?' },
-      { key: 'q3', label: 'Ce este mai deranjant pentru tine?' },
-      { key: 'q4', label: 'Ai amorțeli, furnicături sau senzație de curent în zona șoldului sau pe coapsă?' },
-      { key: 'q5', label: 'Simți că articulația șoldului este mai rigidă (senzație că șoldul pentru care ai făcut RMN e mai blocat)?' },
-      { key: 'q6', label: 'Dacă stai confortabil pe un scaun / fotoliu sau la marginea patului, poți duce genunchiul la piept?' },
-      { key: 'q7', label: 'Te consideri o persoană „foarte flexibilă" sau „hipermobilă" (îndoi ușor degetele, coatele, genunchii)?' },
+    const Intrebari_Q = [
+      { key: 'q1', label: 'Cand doare soldul' },
+      { key: 'q2', label: 'Durere nocturna' },
+      { key: 'q3', label: 'Simptom dominant' },
+      { key: 'q4', label: 'Simptome neurologice' },
+      { key: 'q5', label: 'Rigiditate sold' },
+      { key: 'q6', label: 'Flexie sold activa' },
+      { key: 'q7', label: 'Hipermobilitate' },
     ];
 
+    const Intrebari_R = {
+      q1: {
+        'Mă doare aproape tot timpul, chiar și când nu îl mișc': 'Durere constanta',
+        'Mă doare doar când îl folosesc sau îl mișc': 'Durere mecanica',
+      },
+      q2: {
+        'Da, mă trezește din somn': 'Durere nocturna prezenta',
+        'Nu, noaptea nu mă deranjează': 'Fara durere nocturna',
+      },
+      q3: {
+        'Durerea': 'Durere',
+        'Lipsa de forță / mișcare': 'Deficit forta / mobilitate',
+        'Ambele în mod similar': 'Durere si deficit',
+      },
+      q4: {
+        'Da': 'Simptome neurologice prezente',
+        'Nu': 'Fara simptome neurologice',
+      },
+      q5: {
+        'Da': 'Rigiditate prezenta',
+        'Nu': 'Fara rigiditate',
+      },
+      q6: {
+        'Da': 'Flexie sold normala',
+        'Nu': 'Flexie sold limitata dureros',
+        'Nu pot, dar nu pentru că doare, ci pentru că mă ține burta': 'Flexie sold limitata mecanic',
+      },
+      q7: {
+        'Da': 'Hipermobilitate da',
+        'Nu': 'Hipermobilitate nu',
+        'Nu știu': 'Hipermobilitate necunoscut',
+      },
+    };
+
     let mdIntrebari = '';
-    QUESTIONS.forEach((q, i) => {
-      mdIntrebari += `**Q:** ${normRo(q.label)}  \n`;
-      mdIntrebari += `**A:** ${normRo(ans(q.key))}  \n\n`;
+    Intrebari_Q.forEach((q, i) => {
+      const rawAns = ans(q.key);
+      const clinA = (Intrebari_R[q.key] && Intrebari_R[q.key][rawAns]) ? Intrebari_R[q.key][rawAns] : rawAns;
+      mdIntrebari += `**Q:** ${q.label}  \n`;
+      mdIntrebari += `**A:** ${clinA}  \n\n`;
     });
 
-    const TESTS = [
+    const Teste_Q = [
       { key: 't1', label: 'T01 — Localizarea durerii', clinName: 'Zone dureroase sold', q: 'Unde doare cel mai mult?', multi: true },
       { key: 't2', label: 'T02 — Rotație internă', clinName: 'Test rotatie interna', q: 'Ce simți în timpul mișcării?' },
       { key: 't3', label: 'T03 — Testul FABER', clinName: 'FABER contra rezistentei', q: 'Ce simți în zona inghinală (marcată cu roșu)?' },
@@ -1871,22 +1875,22 @@ function updateProgress() {
       { key: 't7', label: 'T07 — Testul Thomas', clinName: 'Ober test', q: 'Ce simți în punctul marcat cu roșu?' },
     ];
 
-    function clinAns(key) { const raw = ans(key); return (CLINICAL[key] && CLINICAL[key][raw]) ? CLINICAL[key][raw] : raw; }
+    function clinAns(key) { const raw = ans(key); return (Teste_R[key] && Teste_R[key][raw]) ? Teste_R[key][raw] : raw; }
     function clinMultiAns() {
       const results = [];
       document.querySelectorAll('input[name="t1"]').forEach(inp => {
         if (inp.closest('.color-option.selected')) {
           const label = inp.closest('.color-option').querySelector('.color-option-label')?.textContent.trim();
-          if (label) results.push(CLINICAL.t1[label] || label);
+          if (label) results.push(Teste_R.t1[label] || label);
         }
       });
       return results.length ? results.join(', ') : '—';
     }
 
     let mdTeste = '';
-    TESTS.forEach(t => {
-      mdTeste += `**Q:** ${normRo(t.clinName)}  \n`;
-      mdTeste += `**A:** ${normRo(t.multi ? clinMultiAns() : clinAns(t.key))}  \n\n`;
+    Teste_Q.forEach(t => {
+      mdTeste += `**Q:** ${t.clinName}  \n`;
+      mdTeste += `**A:** ${t.multi ? clinMultiAns() : clinAns(t.key)}  \n\n`;
     });
 
     const sessionId = new URLSearchParams(window.location.search).get('session_id');
@@ -1961,75 +1965,6 @@ function updateProgress() {
     });
   })();
 
-  /* ─── AUTOFILL (doar când ?test=1) ─────────────────────────── */
-  if (new URLSearchParams(window.location.search).get('test') === '1') {
-    const btn = document.createElement('button');
-    btn.textContent = '⚡ Autofill';
-    Object.assign(btn.style, {
-      position: 'fixed', bottom: '24px', right: '24px', zIndex: '9999',
-      background: '#00e4a7', color: '#0f0f0f', fontWeight: '700',
-      fontSize: '14px', padding: '14px 24px', borderRadius: '8px',
-      border: 'none', cursor: 'pointer', boxShadow: '0 4px 16px rgba(0,0,0,0.25)',
-      fontFamily: 'inherit'
-    });
-    btn.onclick = function() {
-      function clickFirst(name) {
-        const el = document.querySelector(`input[name="${name}"]`);
-        if (el) el.closest('.option, .color-option')?.click();
-      }
-      function clickNone(name) {
-        const el = document.querySelector(`input[name="${name}-none"]`);
-        if (el) el.closest('.option')?.click();
-      }
-      function clickLongest(name) {
-        const inputs = document.querySelectorAll(`input[name="${name}"]`);
-        let longest = null, maxLen = -1;
-        inputs.forEach(inp => {
-          const label = inp.closest('.option')?.querySelector('.option-label');
-          if (label) {
-            const frontendText = label.textContent.trim();
-            const clinicalValue = CLINICAL[name]?.[frontendText] || frontendText;
-            const len = clinicalValue.length;
-            if (len > maxLen) { maxLen = len; longest = inp; }
-          }
-        });
-        if (longest) longest.closest('.option')?.click();
-      }
-      function clickAllColors(name) {
-        const card = document.querySelector(`[id="card-${name}"]`) ||
-                     document.querySelector(`[id="card-${name.replace(/[ab]$/, '')}"]`);
-        if (!card) return;
-        const opts = [...card.querySelectorAll('.color-option')].filter(opt => {
-          const inp = opt.querySelector('input');
-          return inp && inp.name === name;
-        });
-        opts.sort((a, b) => {
-          const labelA = a.querySelector('.color-option-label')?.textContent.trim() || '';
-          const labelB = b.querySelector('.color-option-label')?.textContent.trim() || '';
-          const lenA = (CLINICAL[name]?.[labelA] || labelA).length;
-          const lenB = (CLINICAL[name]?.[labelB] || labelB).length;
-          return lenB - lenA;
-        });
-        opts.slice(0, 2).forEach(opt => {
-          if (!opt.classList.contains('selected')) opt.click();
-        });
-      }
-      function clickAllChecks(name) {
-        const inputs = document.querySelectorAll(`input[name="${name}"]`);
-        inputs.forEach(inp => {
-          if (inp.type === 'checkbox' && inp.name !== name + '-none') {
-            if (!inp.checked) inp.closest('.option')?.click();
-          }
-        });
-      }
-      ['a1','a2','a3','a4','a5','a6','a8','a13','a15','a16','a17','a18','a19','a20'].forEach(clickLongest);
-      ['a7','a9','a10','a11','a12','a14'].forEach(clickAllChecks);
-      ['q1','q2','q3','q4','q5','q6','q7'].forEach(clickLongest);
-      ['t1'].forEach(clickAllColors);
-      ['t2','t3','t4','t5','t6','t7'].forEach(clickLongest);
-    };
-    document.body.appendChild(btn);
-  }
 </script>
 <!-- Vertical Overflow code embed fix -->
 <script>
