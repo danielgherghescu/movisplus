@@ -1541,14 +1541,89 @@
     setTimeout(() => toast.classList.remove('show'), 3500);
   }
 
-    function normRo(str) {
-      return (str || '')
-        .replace(/[ăĂ]/g, 'a')
-        .replace(/[âÂ]/g, 'a')
-        .replace(/[îÎ]/g, 'i')
-        .replace(/[șşȘŞ]/g, 's')
-        .replace(/[țţȚŢ]/g, 't');
-    }
+  const Anamneza_Q = [
+    { key: 'a1',  label: 'Durata simptome' },
+    { key: 'a2',  label: 'Debut' },
+    { key: 'a3',  label: 'Evolutie' },
+    { key: 'a4',  label: 'Intensitate durere' },
+    { key: 'a5',  label: 'Tipul durerii' },
+    { key: 'a6',  label: 'Redoare matinala' },
+    { key: 'a7',  label: 'Senzatii asociate', multi: true, noneName: 'a7-none' },
+    { key: 'a8',  label: 'Impact functional' },
+    { key: 'a9',  label: 'Activitati afectate', multi: true, noneName: 'a9-none' },
+    { key: 'a10', label: 'Semne de alarma', multi: true, noneName: 'a10-none' },
+    { key: 'a11', label: 'Evenimente recente', multi: true, noneName: 'a11-none' },
+    { key: 'a12', label: 'Tratament anterior', multi: true, noneName: 'a12-none' },
+    { key: 'a13', label: 'Eficienta tratament' },
+    { key: 'a14', label: 'Comorbiditati', multi: true, noneName: 'a14-none' },
+    { key: 'a15', label: 'Chirurgie anterioara' },
+    { key: 'a16', label: 'Nivel activitate' },
+    { key: 'a17', label: 'Activitate profesionala' },
+    { key: 'a18', label: 'Fumat' },
+    { key: 'a19', label: 'IMC' },
+    { key: 'a20', label: 'Obiectiv pacient' },
+  ];
+
+  const Anamneza_R = {
+    a1: { 'Sub 2 saptamani':'sub 2 sapt.', '2–6 saptamani':'2–6 sapt.', '6 saptamani – 3 luni':'6 sapt.–3 luni', '3–12 luni':'3–12 luni', 'Peste 1 an':'>1 an' },
+    a2: { 'Brusc, dupa un eveniment clar (cadere, accident, miscare brusca)':'Brusc dupa traumatism', 'Dupa efort repetitiv / suprasolicitare':'Suprasolicitare', 'Treptat, fara un motiv clar':'Debut progresiv', 'Am mai avut episoade similare in trecut':'Episoade recurente' },
+    a3: { 'Se amelioreza treptat':'Ameliorare treptata', 'Este stabila':'Stabil', 'Se agraveaza lent':'Agravare lenta', 'Se agraveaza rapid in ultimele saptamani':'Agravare rapida' },
+    a4: { '0–2 (usoara)':'0–2 usoara', '3–5 (moderata)':'3–5 moderata', '6–8 (mare)':'6–8 severa', '9–10 (foarte severa)':'9–10 foarte severa' },
+    a5: { 'Doar la miscare / efort':'Doar la miscare', 'Si la miscare, si in repaus':'Miscare + repaus', 'Constanta, inclusiv noaptea':'Durere constanta', 'Ma trezeste frecvent din somn':'Durere nocturna' },
+    a6: { 'Fara redoare matinala':'Fara redoare', 'Rigida sub 30 minute':'Redoare sub 30 min', 'Rigida peste 30–60 minute':'Redoare 30–60 min', 'Rigida peste 1 ora':'Redoare >1h' },
+    a7: { 'Amorteala':'Amorteala', 'Furnicaturi':'Furnicaturi', 'Slabiciune clara':'Slabiciune', 'Fara amorteli, furnicaturi sau slabiciune':'Fara simptome neurologice' },
+    a8: { 'Pot face aproape toate activitatile normale':'Limitari minime', 'Evit anumite miscari / activitati':'Evit anumite activitati', 'Mi-am redus semnificativ activitatea':'Activitate redusa', 'Nu pot face activitati uzuale (mers, urcat scari, ridicat obiecte)':'Activitati uzuale imposibile' },
+    a9: { 'Somnul':'Somnul', 'Mersul':'Mersul', 'Munca':'Munca', 'Sportul':'Sportul', 'Fara impact functional semnificativ':'Fara impact semnificativ' },
+    a10: { 'Scadere in greutate neintentionate':'Scadere in greutate', 'Febra inexplicabila':'Febra', 'Transpiratii nocturne persistente':'Transpiratii nocturne', 'Istoric personal de cancer':'Istoric cancer', 'Fara semne de alarma':'Fara semne de alarma' },
+    a11: { 'Traumatism major (accident, cadere serioasa)':'Traumatism major', 'Slabiciune progresiva accentuata':'Slabiciune progresiva', 'Probleme noi cu controlul urinei sau scaunului':'Tulburari sfincteriene', 'Fara evenimente recente relevante':'Fara evenimente recente' },
+    a12: { 'Antiinflamatoare / analgezice':'Antiinflamatoare', 'Fizioterapie / kinetoterapie':'Fizioterapie', 'Infiltratii':'Infiltratii', 'Repaus':'Repaus', 'Fara tratament anterior':'Fara tratament anterior' },
+    a13: { 'Clar eficient':'Eficient', 'Partial eficient':'Partial eficient', 'Fara efect':'Fara efect', 'Nu pot aprecia':'Nu poate aprecia' },
+    a14: { 'Boala reumatologa':'Boala reumatologa', 'Diabet':'Diabet', 'Osteoporoza':'Osteoporoza', 'Afectiune neurologica':'Afectiune neurologica', 'Boala oncologica in trecut':'Istoric oncologic', 'Fara comorbiditati relevante':'Fara comorbiditati' },
+    a15: { 'Da':'Da', 'Nu':'Nu' },
+    a16: { 'Predominant sedentar':'Sedentar', 'Activ moderat (mers, activitate fizica usoara)':'Activitate moderata', 'Activ regulat (sport 2–3 ori / saptamana)':'Sport regulat', 'Foarte activ / sport intensiv':'Foarte activ' },
+    a17: { 'Stau mai mult pe scaun':'Munca sedentara', 'Stau mult in picioare':'Munca in picioare', 'Ridic greutati frecvent':'Ridic greutati', 'Activitate mixta':'Activitate mixta' },
+    a18: { 'Nu':'Nefumator', 'Ocazional':'Fumator ocazional', 'Zilnic':'Fumator zilnic' },
+    a19: { 'Normoponderal':'Normoponderal', 'Ussor supraponderal':'Supraponderal', 'Obez':'Obez', 'Nu stiu / prefer sa nu raspund':'IMC necunoscut' },
+    a20: { 'Activitati zilnice fara limitare':'Activitati zilnice fara durere', 'Revenirea la sport':'Revenire la sport', 'Revenirea la munca normal':'Revenire la munca', 'Reducerea durerii, chiar daca raman unele limitari':'Reducerea durerii' },
+  };
+
+  const Intrebari_Q = [
+    { key: 'q1', label: 'Cand te doare umarul cel mai mult?' },
+    { key: 'q2', label: 'Te doare umarul noaptea?' },
+    { key: 'q3', label: 'Ce este mai deranjant pentru tine?' },
+    { key: 'q4', label: 'Ai amorteali, furnicaturi sau senzatie de curent pe brat sau in mana?' },
+    { key: 'q5', label: 'Simti ca bratarular este mai slab in general, nu doar dureros?' },
+    { key: 'q6', label: 'Ai frecvent dureri de gat, gat intepenit sau contractura puternica in zona gatului / umarului?' },
+    { key: 'q7', label: 'Ti-a sarit vreodata umarul din loc si a fost pus la loc intr-o camera de garda?' },
+    { key: 'q8', label: 'Ai senzatia ca umarul iese sau aluneca din loc la miscari specifice sau chiar si banale?' },
+    { key: 'q9', label: 'Te consideri o persoana foarte flexibila sau hipermobila?' },
+  ];
+
+  const Intrebari_R = {};
+
+  const Teste_Q = [
+    { key: 't1', clinName: 'Flexie umar' },
+    { key: 't2', clinName: 'Abductie umar' },
+    { key: 't3', clinName: 'Rotatie interna umar' },
+    { key: 't4', clinName: 'Rotatie externa umar' },
+    { key: 't5', clinName: 'Test Jobe' },
+    { key: 't6', clinName: 'Test Cross-arm' },
+    { key: 't7', clinName: 'Belly press test' },
+    { key: 't8', clinName: 'Apprehension test' },
+    { key: 't9', clinName: 'Test OBrien' },
+  ];
+
+  const Teste_R = {
+    t1: { 'Verde':'Flexie peste 90 grade', 'Albastru':'Flexie aprox 90 grade', 'Galben':'Flexie aprox 45 grade', 'Rosu':'Flexie sever limitata sub 30 grade' },
+    t2: { 'Verde':'Abductie peste 90 grade', 'Albastru':'Abductie aprox 90 grade', 'Galben':'Abductie aprox 45 grade', 'Rosu':'Abductie sever limitata pseudoparalizie' },
+    t3: { 'Verde':'Rotatie interna T7', 'Albastru':'Rotatie interna L1', 'Galben':'Rotatie interna L4-L5', 'Rosu':'Rotatie interna sacru' },
+    t4: { 'Verde':'Rotatie externa 80 grade normala', 'Galben':'Rotatie externa 30-60 grade limitata', 'Rosu':'Rotatie externa 0-30 grade sever limitata' },
+    t5: { 'Da':'Jobe pozitiv', 'Nu':'Jobe negativ' },
+    t6: { 'Da':'Cross-arm pozitiv', 'Nu':'Cross-arm negativ' },
+    t7: { 'Da':'Belly press pozitiv', 'Nu':'Belly press negativ' },
+    t8: { 'Da':'Apprehension pozitiv', 'Nu':'Apprehension negativ' },
+    t9: { 'Da':'OBrien pozitiv', 'Nu':'OBrien negativ' },
+  };
 
   function generateJSON() {
     document.querySelectorAll('.missing').forEach(el => el.classList.remove('missing'));
@@ -1614,12 +1689,6 @@
       return results.length ? results.join(', ') : '—';
     }
 
-    function normRo(str) {
-      return str
-        .replace(/[ăĂ]/g, 'a').replace(/[âÂ]/g, 'a').replace(/[îÎ]/g, 'i')
-        .replace(/[șşȘŞ]/g, 's').replace(/[țţȚŢ]/g, 't');
-    }
-
     function ans(n) {
       const inputs = document.querySelectorAll(`input[name="${n}"]`);
       for (const inp of inputs) {
@@ -1634,203 +1703,50 @@
       return '—';
     }
 
-    // ── ANAMNEZA ──────────────────────────────────────────────────────────────
-    const ANAMNEZA_Q = [
-      { key: 'a1',  label: 'Durata simptome' },
-      { key: 'a2',  label: 'Debut' },
-      { key: 'a3',  label: 'Evolutie' },
-      { key: 'a4',  label: 'Intensitate durere' },
-      { key: 'a5',  label: 'Tipul durerii' },
-      { key: 'a6',  label: 'Redoare matinala' },
-      { key: 'a7',  label: 'Senzatii asociate',   multi: true, noneName: 'a7-none' },
-      { key: 'a8',  label: 'Impact functional' },
-      { key: 'a9',  label: 'Activitati afectate', multi: true, noneName: 'a9-none' },
-      { key: 'a10', label: 'Semne de alarma',     multi: true, noneName: 'a10-none' },
-      { key: 'a11', label: 'Evenimente recente',  multi: true, noneName: 'a11-none' },
-      { key: 'a12', label: 'Tratament anterior',  multi: true, noneName: 'a12-none' },
-      { key: 'a13', label: 'Eficienta tratament' },
-      { key: 'a14', label: 'Comorbiditati',       multi: true, noneName: 'a14-none' },
-      { key: 'a15', label: 'Chirurgie anterioara' },
-      { key: 'a16', label: 'Nivel activitate' },
-      { key: 'a17', label: 'Activitate profesionala' },
-      { key: 'a18', label: 'Fumat' },
-      { key: 'a19', label: 'IMC' },
-      { key: 'a20', label: 'Obiectiv pacient' },
-    ];
-
-    const EXPORT_Q = {
-      a1:'Durata simpt.', a2:'Debut', a3:'Evolutie', a4:'Intens. durere',
-      a5:'Tip durere', a6:'Redoare mat.', a7:'Senz. asociate', a8:'Impact funct.',
-      a9:'Act. afectate', a10:'Semne alarma', a11:'Evenim. recente', a12:'Tr. anterior',
-      a13:'Eficienta tr.', a14:'Comorbiditati', a15:'Chir. anterioara', a16:'Nivel activ.',
-      a17:'Act. profesionala', a18:'Fumat', a19:'IMC', a20:'Obiectiv',
-    };
-
-    const EXPORT_A = {
-      a1: { 'Sub 2 săptămâni':'sub 2 sapt.', '2–6 săptămâni':'2–6 sapt.',
-            '6 săptămâni – 3 luni':'6 sapt.–3 luni', '3–12 luni':'3–12 luni', 'Peste 1 an':'>1 an' },
-      a2: { 'Brusc, după un eveniment clar (cădere, accident, mișcare bruscă)':'Brusc după traumatism',
-            'După efort repetitiv / suprasolicitare':'Suprasolicitare',
-            'Treptat, fără un motiv clar':'Debut progresiv',
-            'Am mai avut episoade similare în trecut':'Episoade recurente' },
-      a3: { 'Se ameliorează treptat':'Ameliorare treptată', 'Este stabilă':'Stabil',
-            'Se agravează lent':'Agravare lentă',
-            'Se agravează rapid în ultimele săptămâni':'Agravare rapidă' },
-      a4: { '0–2 (ușoară)':'0–2 ușoară', '3–5 (moderată)':'3–5 moderată',
-            '6–8 (mare)':'6–8 severă', '9–10 (foarte severă)':'9–10 foarte severă' },
-      a5: { 'Doar la mișcare / efort':'Doar la mișcare',
-            'Și la mișcare, și în repaus':'Mișcare + repaus',
-            'Constantă, inclusiv noaptea':'Durere constantă',
-            'Mă trezește frecvent din somn':'Durere nocturnă' },
-      a6: { 'Fara redoare matinala':'Fără redoare', 'Rigidă sub 30 minute':'Redoare sub 30 min',
-            'Rigidă peste 30–60 minute':'Redoare 30–60 min', 'Rigidă peste 1 oră':'Redoare >1h' },
-      a7: { 'Amorțeală':'Amorțeală', 'Furnicături':'Furnicături', 'Slăbiciune clară':'Slăbiciune',
-            'Fara amorteli, furnicaturi sau slabiciune':'Fără simptome neurologice' },
-      a8: { 'Pot face aproape toate activitățile normale':'Limitări minime',
-            'Evit anumite mișcări / activități':'Evit anumite activități',
-            'Mi-am redus semnificativ activitatea':'Activitate redusă',
-            'Nu pot face activități uzuale (mers, urcat scări, ridicat obiecte)':'Activități uzuale imposibile' },
-      a9: { 'Somnul':'Somnul', 'Mersul':'Mersul', 'Munca':'Munca', 'Sportul':'Sportul',
-            'Fara impact functional semnificativ':'Fără impact semnificativ' },
-      a10: { 'Scădere în greutate neintenționate':'Scădere în greutate', 'Febră inexplicabilă':'Febră',
-             'Transpirații nocturne persistente':'Transpirații nocturne',
-             'Istoric personal de cancer':'Istoric cancer',
-             'Fara semne de alarma':'Fără semne de alarmă' },
-      a11: { 'Traumatism major (accident, cădere serioasă)':'Traumatism major',
-             'Slăbiciune progresivă accentuată':'Slăbiciune progresivă',
-             'Probleme noi cu controlul urinei sau scaunului':'Tulburări sfincteriene',
-             'Fara evenimente recente relevante':'Fără evenimente recente' },
-      a12: { 'Antiinflamatoare / analgezice':'Antiinflamatoare',
-             'Fizioterapie / kinetoterapie':'Fizioterapie',
-             'Infiltrații':'Infiltrații', 'Repaus':'Repaus',
-             'Fara tratament anterior':'Fără tratament anterior' },
-      a13: { 'Clar eficient':'Eficient', 'Parțial eficient':'Parțial eficient',
-             'Fără efect':'Fără efect', 'Nu pot aprecia':'Nu poate aprecia' },
-      a14: { 'Boală reumatologică':'Boală reumatologică', 'Diabet':'Diabet',
-             'Osteoporoză':'Osteoporoză', 'Afecțiune neurologică':'Afecțiune neurologică',
-             'Boală oncologică în trecut':'Istoric oncologic',
-             'Fara comorbiditati relevante':'Fără comorbidități' },
-      a15: { 'Da':'Da', 'Nu':'Nu' },
-      a16: { 'Predominant sedentar':'Sedentar',
-             'Activ moderat (mers, activitate fizică ușoară)':'Activitate moderată',
-             'Activ regulat (sport 2–3 ori / săptămână)':'Sport regulat',
-             'Foarte activ / sport intensiv':'Foarte activ' },
-      a17: { 'Stau mai mult pe scaun':'Muncă sedentară', 'Stau mult în picioare':'Muncă în picioare',
-             'Ridic greutăți frecvent':'Ridic greutăți', 'Activitate mixtă':'Activitate mixtă' },
-      a18: { 'Nu':'Nefumător', 'Ocazional':'Fumător ocazional', 'Zilnic':'Fumător zilnic' },
-      a19: { 'Normoponderal':'Normoponderal', 'Ușor supraponderal':'Supraponderal',
-             'Obez':'Obez', 'Nu știu / prefer să nu răspund':'IMC necunoscut' },
-      a20: { 'Activități zilnice fără limitare':'Activități zilnice fără durere',
-             'Revenirea la sport':'Revenire la sport',
-             'Revenirea la muncă normal':'Revenire la muncă',
-             'Reducerea durerii, chiar dacă rămân unele limitări':'Reducerea durerii' },
-    };
-
-    function exportQuestionLabel(qId, label) { return EXPORT_Q[qId] || label; }
-    function exportAnswer(qId, label) { return EXPORT_A[qId]?.[label] || label; }
-    function exportMultiAnswer(qId, checkName, noneName) {
-      const selectedLabels = [];
-      document.querySelectorAll(`input[name="${checkName}"]`).forEach(inp => {
-        if (inp.closest('.option.selected')) {
-          const span = inp.closest('.option').querySelector('.option-label');
-          if (span) selectedLabels.push(exportAnswer(qId, span.textContent.trim()));
-        }
-      });
-      if (selectedLabels.length) return selectedLabels.join(', ');
-      const noneInp = document.querySelector(`input[name="${noneName}"]`);
-      if (noneInp?.closest('.option.selected')) {
-        return exportAnswer(qId, noneInp.closest('.option').querySelector('.option-label')?.textContent.trim() || '—');
-      }
-      return '—';
-    }
-
     let mdAnamneza = '';
-    ANAMNEZA_Q.forEach(q => {
+    Anamneza_Q.forEach(q => {
       if (q.key === 'a13' && answered.has('a12-none')) return;
-      const questionText = exportQuestionLabel(q.key, q.label);
-      const rawAnswer = q.multi ? exportMultiAnswer(q.key, q.key, q.noneName) : ans(q.key);
-      const answerText = q.multi ? rawAnswer : exportAnswer(q.key, rawAnswer);
-      mdAnamneza += `**Q:** ${normRo(questionText)}  \n`;
-      mdAnamneza += `**A:** ${normRo(answerText)}  \n\n`;
+      const rawAnswer = q.multi ? (() => {
+        const results = [];
+        document.querySelectorAll(`input[name="${q.key}"]`).forEach(inp => {
+          if (inp.closest('.option.selected')) {
+            const span = inp.closest('.option').querySelector('.option-label');
+            if (span) results.push(span.textContent.trim());
+          }
+        });
+        if (results.length) return results.join(', ');
+        const noneInp = document.querySelector(`input[name="${q.noneName}"]`);
+        if (noneInp?.closest('.option.selected')) {
+          return noneInp.closest('.option').querySelector('.option-label')?.textContent.trim() || '—';
+        }
+        return '—';
+      })() : ans(q.key);
+      const answerText = q.multi ? rawAnswer : (Anamneza_R[q.key]?.[rawAnswer] || rawAnswer);
+      mdAnamneza += `**Q:** ${q.label}  \n`;
+      mdAnamneza += `**A:** ${answerText}  \n\n`;
     });
-
-    // ── ÎNTREBĂRI SPECIFICE ──────────────────────────────────────────────────
-    const QUESTIONS_Q = [
-      { key: 'q1', label: 'Când te doare umărul cel mai mult?' },
-      { key: 'q2', label: 'Te doare umărul noaptea?' },
-      { key: 'q3', label: 'Ce este mai deranjant pentru tine?' },
-      { key: 'q4', label: 'Ai amorțeli, furnicături sau senzație de curent pe braț sau în mână?' },
-      { key: 'q5', label: 'Simți că brațul este mai slab în general, nu doar dureros?' },
-      { key: 'q6', label: 'Ai frecvent dureri de gât, gât înțepenit sau contractură puternică în zona gâtului / umărului?' },
-      { key: 'q7', label: 'Ți-a sărit vreodată umărul din loc și a fost pus la loc într-o cameră de gardă?' },
-      { key: 'q8', label: 'Ai senzația că umărul iese sau alunecă din loc la mișcări specifice sau chiar și banale?' },
-      { key: 'q9', label: 'Te consideri o persoană foarte flexibilă sau hipermobilă?' },
-    ];
 
     let mdIntrebari = '';
-    QUESTIONS_Q.forEach(q => {
-      mdIntrebari += `**Q:** ${normRo(q.label)}  \n`;
-      mdIntrebari += `**A:** ${normRo(ans(q.key))}  \n\n`;
+    Intrebari_Q.forEach(q => {
+      mdIntrebari += `**Q:** ${q.label}  \n`;
+      mdIntrebari += `**A:** ${ans(q.key)}  \n\n`;
     });
 
-    // ── TESTE ────────────────────────────────────────────────────────────────
-    const CLINICAL = {
-      t1: { 'Verde':'Flexie peste 90 grade', 'Albastru':'Flexie aprox 90 grade',
-            'Galben':'Flexie aprox 45 grade', 'Roșu':'Flexie sever limitata sub 30 grade' },
-      t2: { 'Verde':'Abductie peste 90 grade', 'Albastru':'Abductie aprox 90 grade',
-            'Galben':'Abductie aprox 45 grade', 'Roșu':'Abductie sever limitata pseudoparalizie' },
-      t3: { 'Verde':'Rotatie interna T7', 'Albastru':'Rotatie interna L1',
-            'Galben':'Rotatie interna L4-L5', 'Roșu':'Rotatie interna sacru' },
-      t4: { 'Verde':'Rotatie externa 80 grade normala', 'Galben':'Rotatie externa 30-60 grade limitata',
-            'Roșu':'Rotatie externa 0-30 grade sever limitata' },
-      t5: { 'Da':'Jobe pozitiv', 'Nu':'Jobe negativ' },
-      t6: { 'Da':'Cross-arm pozitiv', 'Nu':'Cross-arm negativ' },
-      t7: { 'Da':'Belly press pozitiv', 'Nu':'Belly press negativ' },
-      t8: { 'Da':'Apprehension pozitiv', 'Nu':'Apprehension negativ' },
-      t9: { 'Da':'OBrien pozitiv', 'Nu':'OBrien negativ' },
-    };
-
-    const TESTS = [
-      { key: 't1', clinName: 'Flexie umar' },
-      { key: 't2', clinName: 'Abductie umar' },
-      { key: 't3', clinName: 'Rotatie interna umar' },
-      { key: 't4', clinName: 'Rotatie externa umar' },
-      { key: 't5', clinName: 'Test Jobe' },
-      { key: 't6', clinName: 'Test Cross-arm' },
-      { key: 't7', clinName: 'Belly press test' },
-      { key: 't8', clinName: 'Apprehension test' },
-      { key: 't9', clinName: 'Test OBrien' },
-    ];
-
     let mdTeste = '';
-    TESTS.forEach(t => {
-      mdTeste += `**Q:** ${normRo(t.clinName)}  \n`;
+    Teste_Q.forEach(t => {
+      mdTeste += `**Q:** ${t.clinName}  \n`;
       const raw = ans(t.key);
       const mapped = raw.split(', ').map(v => {
         const v2 = v.trim();
-        if (CLINICAL[t.key]?.[v2]) return CLINICAL[t.key][v2];
-        if (CLINICAL[t.key]) {
-          if (v2.startsWith('Da')) return CLINICAL[t.key]['Da'] || v2;
-          if (v2.startsWith('Nu')) return CLINICAL[t.key]['Nu'] || v2;
+        if (Teste_R[t.key]?.[v2]) return Teste_R[t.key][v2];
+        if (Teste_R[t.key]) {
+          if (v2.startsWith('Da')) return Teste_R[t.key]['Da'] || v2;
+          if (v2.startsWith('Nu')) return Teste_R[t.key]['Nu'] || v2;
         }
         return v2;
       }).join(', ');
-      mdTeste += `**A:** ${normRo(mapped)}  \n\n`;
+      mdTeste += `**A:** ${mapped}  \n\n`;
     });
-
-
-    function normalizeMarkdownQA(md) {
-      return md.split('\n').map(line => {
-        if (line.startsWith('**Q:** ')) return `**Q:** ${normRo(line.slice(7))}`;
-        if (line.startsWith('**A:** ')) return `**A:** ${normRo(line.slice(7))}`;
-        if (line.startsWith('A: ')) return `**A:** ${normRo(line.slice(3))}`;
-        return line;
-      }).join('\n');
-    }
-
-    mdAnamneza = normalizeMarkdownQA(mdAnamneza);
-    mdIntrebari = normalizeMarkdownQA(mdIntrebari);
-    mdTeste = normalizeMarkdownQA(mdTeste);
 
     function clickFirst(name) {
       const first = document.querySelector(`input[name="${name}"]`);
