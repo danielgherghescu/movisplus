@@ -1307,7 +1307,7 @@
         <label class="color-option" onclick="selMulti(this,'t8a',4,event)"><input type="checkbox" name="t8a" style="display:none"><div class="color-swatch yellow"></div><span class="color-option-label">Galben</span></label>
       </div>
       <div style="margin-top:10px">
-        <label class="option" onclick="sel(this,'t8a-none')" style="display:inline-flex;">
+        <label class="option" onclick="selNoneMulti(this,'t8a-none','t8a',event)" style="display:inline-flex;">
           <input type="radio" name="t8a-none"><div class="option-radio"></div>
           <span class="option-label">Nicio zonă — simt la fel peste tot</span>
         </label>
@@ -1319,7 +1319,7 @@
         <label class="color-option" onclick="selMulti(this,'t8b',3,event)"><input type="checkbox" name="t8b" style="display:none"><div class="color-swatch black"></div><span class="color-option-label">Negru</span></label>
       </div>
       <div style="margin-top:10px">
-        <label class="option" onclick="sel(this,'t8b-none')" style="display:inline-flex;">
+        <label class="option" onclick="selNoneMulti(this,'t8b-none','t8b',event)" style="display:inline-flex;">
           <input type="radio" name="t8b-none"><div class="option-radio"></div>
           <span class="option-label">Nicio zonă — simt la fel peste tot</span>
         </label>
@@ -1486,11 +1486,37 @@
     const container = el.closest('.color-options');
     const sel = container.querySelectorAll('.color-option.selected');
     if (sel.length > max) sel[0].classList.remove('selected');
+    // Deselectează butonul "Nicio zonă" corespunzător acestui grup
+    const wrapper = container.nextElementSibling;
+    if (wrapper) {
+      const noneBtn = wrapper.querySelector('.option');
+      if (noneBtn) {
+        noneBtn.classList.remove('selected');
+        const noneInput = noneBtn.querySelector('input[type="radio"]');
+        if (noneInput) answered.delete(noneInput.name);
+      }
+    }
     if (container.querySelectorAll('.color-option.selected').length > 0) {
       answered.add(name);
       el.closest('.test-card').classList.add('answered');
       el.closest('.test-card').classList.remove('missing');
     } else answered.delete(name);
+    updateProgress();
+  }
+
+  function selNoneMulti(el, noneKey, colorName, event) {
+    if (event) event.preventDefault();
+    // Deselectează doar culorile din același grup (containerul parinte al none-ului)
+    const wrapper = el.closest('div');
+    const colorOptions = wrapper.previousElementSibling;
+    if (colorOptions && colorOptions.classList.contains('color-options')) {
+      colorOptions.querySelectorAll('.color-option').forEach(o => o.classList.remove('selected'));
+    }
+    answered.delete(colorName);
+    el.classList.add('selected');
+    answered.add(noneKey);
+    const card = el.closest('.test-card');
+    if (card) { card.classList.add('answered'); card.classList.remove('missing'); }
     updateProgress();
   }
 
@@ -2029,7 +2055,8 @@
       ['a1','a2','a3','a4','a5','a6','a8','a13','a15','a16','a17','a18','a19','a20'].forEach(clickLongest);
       ['a7','a9','a10','a11','a12','a14'].forEach(clickAllChecks);
       ['q1','q2','q3','q4','q5'].forEach(clickLongest);
-      ['t1','t2','t3','t4','t5','t6','t7','t8a','t8b','t9','t10','t11','t12'].forEach(clickLongest);
+      ['t1','t2','t3','t4','t5','t6','t7','t9','t10','t11','t12'].forEach(clickLongest);
+      ['t8a','t8b'].forEach(clickAllColors);
     };
     document.body.appendChild(btn);
   }
