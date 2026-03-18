@@ -1615,48 +1615,279 @@
     setTimeout(() => toast.classList.remove('show'), 3500);
   }
 
-    function normRo(str) {
-      return (str || '')
-        .replace(/[ăĂ]/g, 'a')
-        .replace(/[âÂ]/g, 'a')
-        .replace(/[îÎ]/g, 'i')
-        .replace(/[șşȘŞ]/g, 's')
-        .replace(/[țţȚŢ]/g, 't');
-    }
+  const Anamneza_Q = [
+    { key: 'a1',  label: 'Durata simptome' },
+    { key: 'a2',  label: 'Debut' },
+    { key: 'a3',  label: 'Evolutie' },
+    { key: 'a4',  label: 'Intens. durere' },
+    { key: 'a5',  label: 'Tip durere' },
+    { key: 'a6',  label: 'Redoare mat.' },
+    { key: 'a7',  label: 'Senz. asociate', multi: true, noneName: 'a7-none' },
+    { key: 'a8',  label: 'Impact funct.' },
+    { key: 'a9',  label: 'Act. afectate', multi: true, noneName: 'a9-none' },
+    { key: 'a10', label: 'Semne alarma', multi: true, noneName: 'a10-none' },
+    { key: 'a11', label: 'Evenim. recente', multi: true, noneName: 'a11-none' },
+    { key: 'a12', label: 'Tr. anterior', multi: true, noneName: 'a12-none' },
+    { key: 'a13', label: 'Eficienta tr.' },
+    { key: 'a14', label: 'Comorbiditati', multi: true, noneName: 'a14-none' },
+    { key: 'a15', label: 'Chir. anterioara' },
+    { key: 'a16', label: 'Nivel activ.' },
+    { key: 'a17', label: 'Act. profesionala' },
+    { key: 'a18', label: 'Fumat' },
+    { key: 'a19', label: 'IMC' },
+    { key: 'a20', label: 'Obiectiv' },
+  ];
 
-  const CLINICAL = {
-    t1:{ 'Normal, la fel ca înainte de episod':'Flexie lombara normala',
-          'Simt că mă \u201eține\u201d în zona lombară':'Flexie lombara tensiune',
-          'Simt durere lombară':'Flexie lombara dureroasa',
-          'Durerea coboară pe picior':'Flexie lombara iradiere' },
-    t2:{ 'Fără durere':'Extensie lombara normala',
-          'Doare local în lombar':'Extensie lombara dureroasa',
-          'Durerea coboară pe picior':'Extensie lombara iradiere' },
-    t3:{ 'Normal, fără diferență între picioare':'Mers calcaie normal L4-L5',
-          'Ușoară slăbiciune pe partea afectată':'Mers calcaie slabiciune usoara L4-L5',
-          'Degetul mare este clar mai slab pe partea afectată':'Mers calcaie slabiciune clara L5',
-          'Nu pot menține poziția pe partea afectată':'Drop foot L4-L5' },
-    t4:{ 'Normal, fără diferență':'Mers varfuri normal S1',
-          'Ușoară slăbiciune pe partea afectată':'Mers varfuri slabiciune usoara S1',
-          'Nu pot menține poziția din cauza slăbiciunii':'Mers varfuri imposibil S1',
-          'Nu pot din cauza durerii sau instabilității':'Mers varfuri imposibil durere' },
-    t5: { 'Roșu':'Musculatura paravertebrala lombara', 'Mov':'Linie mediana procese spinoase',
-          'Albastru':'Articulatie sacro-iliaca', 'Verde':'Sold posterior',
-          'Galben':'Regiune mare trohanter',
-          'Nicio zonă nu este clar mai dureroasă la apăsare':'Fara zona clara la palpare' },
-    t6: { 'Verde':'Dermatom L1-L2 afectat', 'Galben':'Dermatom L3 afectat',
-          'Mov':'Dermatom L4 afectat', 'Albastru':'Dermatom L5 afectat',
-          'Roșu':'Dermatom S1 afectat',
-          'Nicio zonă — simt la fel peste tot':'Sensibilitate normala bilateral' },
-    t7a:{ 'Doar întindere în spatele coapsei (zona mov)':'Pseudo-Lasegue pozitiv tightness',
-          'Apar simptome pe traiectul colorat din imagine — durere':'Lasegue pozitiv durere',
-          'Apar simptome pe traiectul colorat din imagine — amorțeală / furnicături':'Lasegue pozitiv parestezii' },
-    t7b:{ 'Nu apar simptome':'Lasegue incrucișat negativ',
-          'Apar simptome în același picior (mai sănătos)':'Pseudo-Lasegue pozitiv',
-          'Ridicarea piciorului sănătos declanșează simptome în piciorul dureros':'Lasegue incrucișat pozitiv' },
-    t8: { 'Normal':'Rotatie interna sold normala',
-          'Durere în zona inghinală':'Rotatie interna sold dureroasa',
-          'Mișcare limitată față de celălalt șold':'Rotatie interna sold limitata' },
+  const Anamneza_R = {
+    a1: {
+      'Sub 2 săptămâni': 'Sub 2 sapt.',
+      '2–6 săptămâni': '2–6 sapt.',
+      '6 săptămâni – 3 luni': '6 sapt.–3 luni',
+      '3–12 luni': '3–12 luni',
+      'Peste 1 an': 'Peste 1 an',
+    },
+    a2: {
+      'Brusc, după un eveniment clar (cădere, accident, mișcare bruscă)': 'Brusc dupa trauma',
+      'După efort repetitiv / suprasolicitare': 'Suprasolicitare',
+      'Treptat, fără un motiv clar': 'Debut progresiv',
+      'Am mai avut episoade similare în trecut': 'Episoade recurente',
+    },
+    a3: {
+      'Se ameliorează treptat': 'Ameliorare treptata',
+      'Este stabilă': 'Stabil',
+      'Se agravează lent': 'Agravare lenta',
+      'Se agravează rapid în ultimele săptămâni': 'Agravare rapidă',
+    },
+    a4: {
+      '0–2 (ușoară)': '0–2',
+      '3–5 (moderată)': '3–5',
+      '6–8 (mare)': '6–8',
+      '9–10 (foarte severă)': '9–10',
+    },
+    a5: {
+      'Doar la mișcare / efort': 'La miscare',
+      'Și la mișcare, și în repaus': 'Miscare si repaus',
+      'Constantă, inclusiv noaptea': 'Constanta',
+      'Mă trezește frecvent din somn': 'Nocturna',
+    },
+    a6: {
+      'Fara redoare matinala': 'Fara redoare',
+      'Rigidă sub 30 minute': 'Sub 30 min',
+      'Rigidă peste 30–60 minute': '30–60 min',
+      'Rigidă peste 1 oră': 'Peste 1h',
+    },
+    a7: {
+      'Amorțeală': 'Amorteala',
+      'Furnicături': 'Furnicaturi',
+      'Slăbiciune clară': 'Slabiciune',
+      'Fara amorteli, furnicaturi sau slabiciune': 'Fara simptome neurologice',
+    },
+    a8: {
+      'Pot face aproape toate activitățile normale': 'Limitări minime',
+      'Evit anumite mișcări / activități': 'Evit anumite activitati',
+      'Mi-am redus semnificativ activitatea': 'Activitate redusa',
+      'Nu pot face activități uzuale (mers, urcat scări, ridicat obiecte)': 'Activitati uzuale imposibile',
+    },
+    a9: {
+      Somnul: 'Somnul',
+      Mersul: 'Mersul',
+      Munca: 'Munca',
+      Sportul: 'Sportul',
+      'Fara impact functional semnificativ': 'Fara impact semnificativ',
+    },
+    a10: {
+      'Scădere în greutate neintenționate': 'Scadere in greutate',
+      'Febră inexplicabilă': 'Febra',
+      'Transpirații nocturne persistente': 'Transpiratii nocturne',
+      'Istoric personal de cancer': 'Istoric cancer',
+      'Fara semne de alarma': 'Fara semne de alarma',
+    },
+    a11: {
+      'Traumatism major (accident, cădere serioasă)': 'Traumatism major',
+      'Slăbiciune progresivă accentuată': 'Slabiciune progresiva',
+      'Probleme noi cu controlul urinei sau scaunului': 'Tulburari sfincteriene',
+      'Fara evenimente recente relevante': 'Fara evenimente recente',
+    },
+    a12: {
+      'Antiinflamatoare / analgezice': 'Antiinflamatoare',
+      'Fizioterapie / kinetoterapie': 'Fizioterapie',
+      Infiltrații: 'Infiltratii',
+      Repaus: 'Repaus',
+      'Fara tratament anterior': 'Fara tratament anterior',
+    },
+    a13: {
+      'Clar eficient': 'Eff',
+      'Parțial eficient': 'Partial eff.',
+      'Fără efect': 'Fara efect',
+      'Nu pot aprecia': 'Nu poate aprecia',
+    },
+    a14: {
+      'Boală reumatologică': 'Reumato',
+      Diabet: 'Diabet',
+      Osteoporoză: 'Osteoporoza',
+      'Afecțiune neurologică': 'Neuro',
+      'Boală oncologică în trecut': 'Onco',
+      'Fara comorbiditati relevante': 'Fara',
+    },
+    a15: {
+      Da: 'Da',
+      Nu: 'Nu',
+    },
+    a16: {
+      'Predominant sedentar': 'Sedentar',
+      'Activ moderat (mers, activitate fizică ușoară)': 'Activitate moderata',
+      'Activ regulat (sport 2–3 ori / săptămână)': 'Sport regulat',
+      'Foarte activ / sport intensiv': 'Foarte activ',
+    },
+    a17: {
+      'Stau mai mult pe scaun': 'Munca sedentara',
+      'Stau mult în picioare': 'Munca in picioare',
+      'Ridic greutăți frecvent': 'Ridic greutati',
+      'Activitate mixtă': 'Activitate mixta',
+    },
+    a18: {
+      Nu: 'Nu',
+      Ocazional: 'Ocazional',
+      Zilnic: 'Zilnic',
+    },
+    a19: {
+      Normoponderal: 'Sub 25',
+      'Ușor supraponderal': '25-29',
+      Obez: 'Peste 30',
+      'Nu știu / prefer să nu răspund': 'Necunoscut',
+    },
+    a20: {
+      'Activități zilnice fără limitare': 'Activități zilnice fara durere',
+      'Revenirea la sport': 'Revenire la sport',
+      'Revenirea la muncă normal': 'Revenire la munca',
+      'Reducerea durerii, chiar dacă rămân unele limitări': 'Reducerea durerii',
+    },
+  };
+
+  const Intrebari_Q = [
+    { key: 'q1', label: 'Parte afectata' },
+    { key: 'q2', label: 'Simptom dominant' },
+    { key: 'q3', label: 'Iradiere sub genunchi' },
+    { key: 'q4', label: 'Toleranta la mers' },
+    { key: 'q5', label: 'Ameliorare flexie' },
+    { key: 'q6', label: 'Semne alarma cauda' },
+    { key: 'q7', label: 'Comportament matinal' },
+    { key: 'q8', label: 'Comportament sedentar' },
+  ];
+  const Intrebari_R = {
+    q1: {
+      'Dreapta': 'Dreapta',
+      'Stânga': 'Stanga',
+      'Ambele la fel': 'Bilateral',
+      'Doar în zona lombară, fără iradiere pe picior': 'Lombar fara iradiere',
+    },
+    q2: {
+      'Durerea locală în zona lombară': 'Durere locala',
+      'Durerea care coboară pe picior': 'Iradiere radiculara',
+      'Amorțeala / furnicăturile pe picior': 'Parestezii radiculare',
+      'Slăbiciunea în picior': 'Deficit motor',
+      'Niciuna': 'Fara simptome dominante',
+    },
+    q3: {
+      'Nu': 'Nu',
+      'Da, pe partea dreaptă': 'Dreapta',
+      'Da, pe partea stângă': 'Stanga',
+      'Da, pe ambele părți': 'Bilateral',
+    },
+    q4: {
+      'Pot merge fără limitare': 'Fara limitare',
+      'După un timp simt durere / greutate în picioare': 'Claudicatie moderata',
+      'Trebuie să mă opresc frecvent din cauza durerii sau slăbiciunii': 'Claudicatie severa',
+    },
+    q5: {
+      'Nu se schimbă nimic': 'Fara ameliorare',
+      'Durerea se ameliorează clar': 'Ameliorare durere',
+      'Slăbiciunea din picioare se ameliorează': 'Ameliorare deficit motor',
+    },
+    q6: {
+      'Amorțeală în zona dintre picioare (zona „șeii\")': 'Anestezie in sa',
+      'Pierdere involuntară de urină sau scaun (brusc mai grav față de problemele tale digestive sau urinare cronice, dacă acestea există)': 'Incontinenta',
+      'Dificultate bruscă de a porni jetul urinar (brusc mai grav față de problemele tale urinare cronice, dacă acestea există)': 'Retentie urinara',
+      'Slăbiciune progresivă accentuată într-un picior': 'Deficit motor progresiv',
+      'Niciuna dintre acestea': 'Fara semne alarma',
+    },
+    q7: {
+      'Mă simt rigid, dar se ameliorează după ce mă mișc, în 30-60 minute': 'Redoare matinala inflamatorie',
+      'Durerea este mai intensă la primii pași și când îndrept coloana': 'Pattern degenerativ',
+      'Nu observ diferențe': 'Fara pattern clar',
+    },
+    q8: {
+      'Nu influențează': 'Fara influenta',
+      'Agravează durerea lombară': 'Agraveaza durere locala',
+      'Agravează durerea pe picior': 'Agraveaza iradiere',
+    },
+  };
+  const Teste_Q = [
+    { key: 't1',  clinName: 'Flexie lombara' },
+    { key: 't2',  clinName: 'Extensie lombara' },
+    { key: 't3',  clinName: 'Mers pe calcaie' },
+    { key: 't4',  clinName: 'Mers pe varfuri' },
+    { key: 't5',  clinName: 'Harta durere lombara', multi: true },
+    { key: 't6',  clinName: 'Harta sensibilitate MI', multi: true },
+    { key: 't7a', clinName: 'Lasegue si Pseudo-Lasegue' },
+    { key: 't7b', clinName: 'Lasegue incrucișat' },
+    { key: 't8',  clinName: 'Test Rotatie interna sold' },
+  ];
+  const Teste_R = {
+    t1: {
+      'Normal, la fel ca înainte de episod': 'Normala',
+      'Simt că mă \u201eține\u201d în zona lombară': 'Tensiune posterioara',
+      'Simt durere lombară': 'Dureroasa local',
+      'Durerea coboară pe picior': 'Iradiere radiculara',
+    },
+    t2: {
+      'Fără durere': 'Normala',
+      'Doare local în lombar': 'Dureroasa local',
+      'Durerea coboară pe picior': 'Iradiere radiculara',
+    },
+    t3: {
+      'Normal, fără diferență între picioare': 'Normal',
+      'Ușoară slăbiciune pe partea afectată': 'Slabiciune usoara',
+      'Degetul mare este clar mai slab pe partea afectată': 'Slabiciune clara L5',
+      'Nu pot menține poziția pe partea afectată': 'Drop foot',
+    },
+    t4: {
+      'Normal, fără diferență': 'Normal',
+      'Ușoară slăbiciune pe partea afectată': 'Slabiciune usoara',
+      'Nu pot menține poziția din cauza slăbiciunii': 'Imposibil - slabiciune',
+      'Nu pot din cauza durerii sau instabilității': 'Imposibil - durere',
+    },
+    t5: {
+      'Roșu': 'Paravertebral lombar',
+      'Mov': 'Linie mediana procese spinoase',
+      'Albastru': 'Sacro-iliac',
+      'Verde': 'Sold posterior',
+      'Galben': 'Mare trohanter',
+      'Nicio zonă nu este clar mai dureroasă la apăsare': 'Fara zona clara',
+    },
+    t6: {
+      'Verde': 'Dermatom L1-L2',
+      'Galben': 'Dermatom L3',
+      'Mov': 'Dermatom L4',
+      'Albastru': 'Dermatom L5',
+      'Roșu': 'Dermatom S1',
+      'Nicio zonă — simt la fel peste tot': 'Sensibilitate normala',
+    },
+    t7a: {
+      'Doar întindere în spatele coapsei (zona mov)': 'Pseudo-Lasegue pozitiv',
+      'Apar simptome pe traiectul colorat din imagine — durere': 'Pozitiv durere',
+      'Apar simptome pe traiectul colorat din imagine — amorțeală / furnicături': 'Pozitiv parestezii',
+    },
+    t7b: {
+      'Nu apar simptome': 'Negativ',
+      'Apar simptome în același picior (mai sănătos)': 'Pseudo-Lasegue pozitiv',
+      'Ridicarea piciorului sănătos declanșează simptome în piciorul dureros': 'Lasegue incrucișat pozitiv',
+    },
+    t8: {
+      'Normal': 'Normal',
+      'Durere în zona inghinală': 'Dureros inghinal',
+      'Mișcare limitată față de celălalt șold': 'Limitata mecanic',
+    },
   };
 
   function generateJSON() {
@@ -1702,7 +1933,26 @@
 
     const COLORS = { green: 'Verde', yellow: 'Galben', red: 'Roșu', blue: 'Albastru', purple: 'Mov' };
 
-    function ans(n) {
+    function exportAnswer(qId, label) {
+      return Anamneza_R[qId]?.[label] || label;
+    }
+
+    function multiAnsCheck(qId, checkName, noneName) {
+      const results = [];
+      document.querySelectorAll(`input[name="${checkName}"]`).forEach(inp => {
+        if (inp.closest('.option.selected')) {
+          const span = inp.closest('.option').querySelector('.option-label');
+          if (span) results.push(exportAnswer(qId, span.textContent.trim()));
+        }
+      });
+      if (results.length) return results.join(', ');
+      const noneInp = document.querySelector(`input[name="${noneName}"]`);
+      if (noneInp?.closest('.option.selected'))
+        return exportAnswer(qId, noneInp.closest('.option').querySelector('.option-label')?.textContent.trim() || '—');
+      return '—';
+    }
+
+        function ans(n) {
       const inputs = document.querySelectorAll(`input[name="${n}"]`);
       for (const inp of inputs) {
         const parent = inp.closest('.option.selected, .color-option.selected');
@@ -1716,304 +1966,42 @@
       return '—';
     }
 
-    function ansMeta(n) {
-      const inputs = [...document.querySelectorAll(`input[name="${n}"]`)];
-      for (let i = 0; i < inputs.length; i++) {
-        const inp = inputs[i];
-        const parent = inp.closest('.option.selected, .color-option.selected');
-        if (parent) return { raw: ans(n), idx: i + 1 };
-      }
-      return { raw: '—', idx: 0 };
-    }
+    let mdAnamneza = '';
+    Anamneza_Q.forEach((q, i) => {
+      if (q.key === 'a13' && answered.has('a12-none')) return;
+      mdAnamneza += `Q: ${q.label}\n`;
+      mdAnamneza += `A: ${q.multi ? multiAnsCheck(q.key, q.key, q.noneName) : exportAnswer(q.key, ans(q.key))}\n`;
+    });
 
-    function multiAnsColor(name, maxSel) {
-      const selected = [];
-      document.querySelectorAll(`input[name="${name}"]`).forEach(inp => {
-        if (inp.closest('.color-option.selected, .option.selected')) {
-          const label = inp.closest('label')?.querySelector('.color-option-label, .option-label')?.textContent?.trim();
-          if (label) selected.push(label);
-        }
-      });
-      const none = document.querySelector(`input[name="${name}-none"]`);
-      if (none?.closest('.option.selected')) {
-        const lbl = none.closest('label')?.querySelector('.option-label')?.textContent?.trim();
-        if (lbl) return lbl;
-      }
-      return (maxSel ? selected.slice(0, maxSel) : selected).join(', ') || '—';
-    }
+    let mdIntrebari = '';
+    Intrebari_Q.forEach((q, i) => {
+      const rawAns = ans(q.key);
+      const clinA = (Intrebari_R[q.key] && Intrebari_R[q.key][rawAns]) ? Intrebari_R[q.key][rawAns] : rawAns;
+      mdIntrebari += `Q: ${q.label}\n`;
+      mdIntrebari += `A: ${clinA}\n`;
+    });
 
-    function clinFromRaw(key, raw) {
-      if (raw === '—') return raw;
-      if (CLINICAL.yesNo[raw]) return CLINICAL.yesNo[raw];
-      if (CLINICAL.colors[raw]) return CLINICAL.colors[raw];
-      if (/^(Verde|Albastru|Galben|Roșu|Portocaliu|Mov)/.test(raw)) {
-        const c = raw.match(/^(Verde|Albastru|Galben|Roșu|Portocaliu|Mov)/)[1];
-        return CLINICAL.colors[c] || c;
-      }
-      const short = normRo(raw).replace(/[^a-zA-Z0-9 -]/g, ' ').replace(/\s+/g, ' ').trim().split(' ').slice(0,4).join(' ');
-      return short || `${key}-1`;
-    }
-
-    function multiAns(name, noneKey) {
+    function clinAns(key) { const raw = ans(key); return (Teste_R[key] && Teste_R[key][raw]) ? Teste_R[key][raw] : raw; }
+    function clinMultiAns(key) {
       const results = [];
-      document.querySelectorAll(`input[name="${name}"]`).forEach(inp => {
+      document.querySelectorAll(`input[name="${key}"]`).forEach(inp => {
         if (inp.closest('.color-option.selected')) {
-          const swatch = inp.closest('.color-option').querySelector('.color-swatch');
-          const cls = [...swatch.classList].find(c => c !== 'color-swatch');
-          results.push(COLORS[cls] || cls);
+          const label = inp.closest('.color-option').querySelector('.color-option-label')?.textContent.trim();
+          if (label) results.push(Teste_R[key]?.[label] || label);
         }
       });
-      if (noneKey) {
-        const noneInput = document.querySelector(`input[name="${noneKey}"]`);
-        if (noneInput && noneInput.closest('.option.selected')) {
-          const span = noneInput.closest('.option').querySelector('.option-label');
-          results.push(span ? span.textContent.trim() : 'Nicio zonă');
-        }
+      const noneInput = document.querySelector(`input[name="${key}-none"]`);
+      if (noneInput && noneInput.closest('.option.selected')) {
+        const span = noneInput.closest('.option').querySelector('.option-label');
+        if (span) results.push(Teste_R[key]?.[span.textContent.trim()] || span.textContent.trim());
       }
       return results.length ? results.join(', ') : '—';
     }
 
-
-    function multiAnsCheck(checkName, noneName) {
-      const results = [];
-      document.querySelectorAll(`input[name="${checkName}"]`).forEach(inp => {
-        if (inp.closest('.option.selected')) {
-          const span = inp.closest('.option').querySelector('.option-label');
-          if (span) results.push(span.textContent.trim());
-        }
-      });
-      if (results.length) return results.join(', ');
-      const noneInp = document.querySelector(`input[name="${noneName}"]`);
-      if (noneInp?.closest('.option.selected'))
-        return noneInp.closest('.option').querySelector('.option-label')?.textContent.trim() || '—';
-      return '—';
-    }
-
-    const ANAMNEZA_Q = [
-      { key: 'a1',  label: 'Durata simptome' },
-      { key: 'a2',  label: 'Debut' },
-      { key: 'a3',  label: 'Evolutie' },
-      { key: 'a4',  label: 'Intensitate durere' },
-      { key: 'a5',  label: 'Tipul durerii' },
-      { key: 'a6',  label: 'Redoare matinala' },
-      { key: 'a7',  label: 'Senzatii asociate', multi: true, noneName: 'a7-none' },
-      { key: 'a8',  label: 'Impact functional' },
-      { key: 'a9',  label: 'Activitati afectate', multi: true, noneName: 'a9-none' },
-      { key: 'a10', label: 'Semne de alarma', multi: true, noneName: 'a10-none' },
-      { key: 'a11', label: 'Evenimente recente', multi: true, noneName: 'a11-none' },
-      { key: 'a12', label: 'Tratament anterior', multi: true, noneName: 'a12-none' },
-      { key: 'a13', label: 'Eficienta tratament' },
-      { key: 'a14', label: 'Comorbiditati', multi: true, noneName: 'a14-none' },
-      { key: 'a15', label: 'Chirurgie anterioara' },
-      { key: 'a16', label: 'Nivel activitate' },
-      { key: 'a17', label: 'Activitate profesionala' },
-      { key: 'a18', label: 'Fumat' },
-      { key: 'a19', label: 'IMC' },
-      { key: 'a20', label: 'Obiectiv pacient' },
-    ];
-    const EXPORT_Q = {
-      a1: 'Durata simpt.',
-      a2: 'Debut',
-      a3: 'Evolutie',
-      a4: 'Intens. durere',
-      a5: 'Tip durere',
-      a6: 'Redoare mat.',
-      a7: 'Senz. asociate',
-      a8: 'Impact funct.',
-      a9: 'Act. afectate',
-      a10: 'Semne alarma',
-      a11: 'Evenim. recente',
-      a12: 'Tr. anterior',
-      a13: 'Eficienta tr.',
-      a14: 'Comorbiditati',
-      a15: 'Chir. anterioara',
-      a16: 'Nivel activ.',
-      a17: 'Act. profesionala',
-      a18: 'Fumat',
-      a19: 'IMC',
-      a20: 'Obiectiv',
-    };
-
-    const EXPORT_A = {
-      a1: {
-        'Sub 2 săptămâni': 'sub 2 sapt.',
-        '2–6 săptămâni': '2–6 sapt.',
-        '6 săptămâni – 3 luni': '6 sapt.–3 luni',
-        '3–12 luni': '3–12 luni',
-        'Peste 1 an': '>1 an',
-      },
-      a2: {
-        'Brusc, după un eveniment clar (cădere, accident, mișcare bruscă)': 'Brusc după traumatism',
-        'După efort repetitiv / suprasolicitare': 'Suprasolicitare',
-        'Treptat, fără un motiv clar': 'Debut progresiv',
-        'Am mai avut episoade similare în trecut': 'Episoade recurente',
-      },
-      a3: {
-        'Se ameliorează treptat': 'Ameliorare treptată',
-        'Este stabilă': 'Stabil',
-        'Se agravează lent': 'Agravare lentă',
-        'Se agravează rapid în ultimele săptămâni': 'Agravare rapidă',
-      },
-      a4: {
-        '0–2 (ușoară)': '0–2 ușoară',
-        '3–5 (moderată)': '3–5 moderată',
-        '6–8 (mare)': '6–8 severă',
-        '9–10 (foarte severă)': '9–10 foarte severă',
-      },
-      a5: {
-        'Doar la mișcare / efort': 'Doar la mișcare',
-        'Și la mișcare, și în repaus': 'Mișcare + repaus',
-        'Constantă, inclusiv noaptea': 'Durere constantă',
-        'Mă trezește frecvent din somn': 'Durere nocturnă',
-      },
-      a6: {
-        'Fara redoare matinala': 'Fără redoare',
-        'Rigidă sub 30 minute': 'Redoare sub 30 min',
-        'Rigidă peste 30–60 minute': 'Redoare 30–60 min',
-        'Rigidă peste 1 oră': 'Redoare >1h',
-      },
-      a7: {
-        'Amorțeală': 'Amorțeală',
-        'Furnicături': 'Furnicături',
-        'Slăbiciune clară': 'Slăbiciune',
-        'Fara amorteli, furnicaturi sau slabiciune': 'Fără simptome neurologice',
-      },
-      a8: {
-        'Pot face aproape toate activitățile normale': 'Limitări minime',
-        'Evit anumite mișcări / activități': 'Evit anumite activități',
-        'Mi-am redus semnificativ activitatea': 'Activitate redusă',
-        'Nu pot face activități uzuale (mers, urcat scări, ridicat obiecte)': 'Activități uzuale imposibile',
-      },
-      a9: {
-        'Somnul': 'Somnul',
-        'Mersul': 'Mersul',
-        'Munca': 'Munca',
-        'Sportul': 'Sportul',
-        'Fara impact functional semnificativ': 'Fără impact semnificativ',
-      },
-      a10: {
-        'Scădere în greutate neintenționate': 'Scădere în greutate',
-        'Febră inexplicabilă': 'Febră',
-        'Transpirații nocturne persistente': 'Transpirații nocturne',
-        'Istoric personal de cancer': 'Istoric cancer',
-        'Fara semne de alarma': 'Fără semne de alarmă',
-      },
-      a11: {
-        'Traumatism major (accident, cădere serioasă)': 'Traumatism major',
-        'Slăbiciune progresivă accentuată': 'Slăbiciune progresivă',
-        'Probleme noi cu controlul urinei sau scaunului': 'Tulburări sfincteriene',
-        'Fara evenimente recente relevante': 'Fără evenimente recente',
-      },
-      a12: {
-        'Antiinflamatoare / analgezice': 'Antiinflamatoare',
-        'Fizioterapie / kinetoterapie': 'Fizioterapie',
-        'Infiltrații': 'Infiltrații',
-        'Repaus': 'Repaus',
-        'Fara tratament anterior': 'Fără tratament anterior',
-      },
-      a13: {
-        'Clar eficient': 'Eficient',
-        'Parțial eficient': 'Parțial eficient',
-        'Fără efect': 'Fără efect',
-        'Nu pot aprecia': 'Nu poate aprecia',
-      },
-      a14: {
-        'Boală reumatologică': 'Boală reumatologică',
-        'Diabet': 'Diabet',
-        'Osteoporoză': 'Osteoporoză',
-        'Afecțiune neurologică': 'Afecțiune neurologică',
-        'Boală oncologică în trecut': 'Istoric oncologic',
-        'Fara comorbiditati relevante': 'Fără comorbidități',
-      },
-      a15: {
-        'Da': 'Da',
-        'Nu': 'Nu',
-      },
-      a16: {
-        'Predominant sedentar': 'Sedentar',
-        'Activ moderat (mers, activitate fizică ușoară)': 'Activitate moderată',
-        'Activ regulat (sport 2–3 ori / săptămână)': 'Sport regulat',
-        'Foarte activ / sport intensiv': 'Foarte activ',
-      },
-      a17: {
-        'Stau mai mult pe scaun': 'Muncă sedentară',
-        'Stau mult în picioare': 'Muncă în picioare',
-        'Ridic greutăți frecvent': 'Ridic greutăți',
-        'Activitate mixtă': 'Activitate mixtă',
-      },
-      a18: {
-        'Nu': 'Nefumător',
-        'Ocazional': 'Fumător ocazional',
-        'Zilnic': 'Fumător zilnic',
-      },
-      a19: {
-        'Normoponderal': 'Normoponderal',
-        'Ușor supraponderal': 'Supraponderal',
-        'Obez': 'Obez',
-        'Nu știu / prefer să nu răspund': 'IMC necunoscut',
-      },
-      a20: {
-        'Activități zilnice fără limitare': 'Activități zilnice fără durere',
-        'Revenirea la sport': 'Revenire la sport',
-        'Revenirea la muncă normal': 'Revenire la muncă',
-        'Reducerea durerii, chiar dacă rămân unele limitări': 'Reducerea durerii',
-      },
-    };
-
-    let mdAnamneza = '';
-    ANAMNEZA_Q.forEach(q => {
-      if (q.key === 'a13' && answered.has('a12-none')) return;
-      const questionText = document.querySelector(`#card-${q.key} .question-text`)?.childNodes[0]?.textContent?.trim() || q.label;
-      const rawAnswer = q.multi ? multiAnsCheck(q.key, q.noneName) : ans(q.key);
-      mdAnamneza += `Q: ${normRo(questionText)}\n`;
-      mdAnamneza += `A: ${normRo(rawAnswer)}\n`;
-    });
-
-    const QUESTIONS_Q = [
-      { key: 'q1', label: 'Pe ce parte sunt mai intense simptomele?' },
-      { key: 'q2', label: 'Ce te deranjează mai mult?' },
-      { key: 'q3', label: 'Durerea coboară sub nivelul genunchiului?' },
-      { key: 'q4', label: 'Când mergi o perioadă mai lungă:' },
-      { key: 'q5', label: 'Când mă așez pe un scaun sau mă aplec ușor înainte:' },
-      { key: 'q6', label: 'Ai observat oricare dintre următoarele apărute recent?' },
-      { key: 'q7', label: 'Dimineața, după ce te ridici din pat, cum te simți în zona lombară?' },
-      { key: 'q8', label: 'Statul prelungit pe scaun:' },
-    ];
-
-    let mdIntrebari = '';
-    QUESTIONS_Q.forEach((q) => {
-      mdIntrebari += `Q: ${normRo(q.label)}\n`;
-      mdIntrebari += `A: ${normRo(ans(q.key))}\n`;
-    });
-
-    const TESTS = [
-      { key: 't1', label: 'T01 — Aplecarea înainte', q: 'Apleacă-te înainte și încearcă să atingi vârfurile picioarelor.', clinName: 'Flexie lombara' },
-      { key: 't2', label: 'T02 — Extensia lombară', q: 'Îndreaptă cât poți de mult spatele.', clinName: 'Extensie lombara' },
-      { key: 't3', label: 'T03 — Mers pe călcâie (L4-L5)', q: 'Mergi câțiva pași doar pe călcâie.', clinName: 'Mers calcaie L4-L5' },
-      { key: 't4', label: 'T04 — Mers pe vârfuri (S1)', q: 'Mergi câțiva pași doar pe vârfuri.', clinName: 'Mers varfuri S1' },
-      { key: 't5', label: 'T05 — Testul de localizare a durerii', q: 'Care zone sunt dureroase la apăsare? (max. 2 zone)', multi: true, altKey: 't5-none', clinName: 'Localizare durere lombara' },
-      { key: 't6', label: 'T06 — Testul de sensibilitate', q: 'Care zone au sensibilitate diferită?', multi: true, altKey: 't6-none', clinName: 'Harta sensibilitate mb inferioare' },
-      { key: 't7a', label: 'T07 — Testul de elongație (SLR)', q: 'Ce se întâmplă când ridici piciorul dureros?', clinName: 'Lasegue si Pseudo-Lasegue' },
-      { key: 't7b', label: 'T07 — Testul de elongație (SLR)', q: 'Repetă testul și pentru celălalt picior. Ce se întâmplă?', clinName: 'Lasegue incrucișat' },
-      { key: 't8', label: 'T08 — Testul inghinal (FABER)', q: 'Ce simți în timp ce faci această mișcare?', clinName: 'Test Rotatie interna sold' },
-    ];
-
     let mdTeste = '';
-    TESTS.forEach(t => {
-      mdTeste += `Q: ${normRo(t.clinName)}\n`;
-      let raw;
-      if (t.key === 't1' || t.key === 't2' || t.key === 't3' || t.key === 't4') {
-        raw = ans(t.key);
-      } else if (t.multi) {
-        raw = multiAnsColor(t.key, t.maxSel || 2);
-      } else {
-        raw = ans(t.key);
-      }
-      const mapped = raw.split(', ').map(v => {
-        const v2 = v.trim();
-        return CLINICAL[t.key]?.[v2] || v2;
-      }).join(', ');
-      mdTeste += `A: ${normRo(mapped)}\n`;
+    Teste_Q.forEach(t => {
+      mdTeste += `Q: ${t.clinName}\n`;
+      mdTeste += `A: ${t.multi ? clinMultiAns(t.key) : clinAns(t.key)}\n`;
     });
 
     const sessionId = new URLSearchParams(window.location.search).get('session_id');
@@ -2055,7 +2043,7 @@
           const label = inp.closest('.option')?.querySelector('.option-label');
           if (label) {
             const frontendText = label.textContent.trim();
-            const clinicalValue = CLINICAL[name]?.[frontendText] || frontendText;
+            const clinicalValue = Teste_R[name]?.[frontendText] || frontendText;
             const len = clinicalValue.length;
             if (len > maxLen) { maxLen = len; longest = inp; }
           }
@@ -2070,15 +2058,15 @@
           const inp = opt.querySelector('input');
           return inp && inp.name === name;
         });
-        // Sortează după lungimea valorii CLINICAL, descrescător
+        // Sortează după lungimea valorii Teste_R, descrescător
         opts.sort((a, b) => {
           const labelA = a.querySelector('.color-option-label')?.textContent.trim() || '';
           const labelB = b.querySelector('.color-option-label')?.textContent.trim() || '';
-          const lenA = (CLINICAL[name]?.[labelA] || labelA).length;
-          const lenB = (CLINICAL[name]?.[labelB] || labelB).length;
+          const lenA = (Teste_R[name]?.[labelA] || labelA).length;
+          const lenB = (Teste_R[name]?.[labelB] || labelB).length;
           return lenB - lenA;
         });
-        // Selectează primele 2 (cele cu valorile CLINICAL cele mai lungi)
+        // Selectează primele 2 (cele cu valorile Teste_R cele mai lungi)
         opts.slice(0, 2).forEach(opt => {
           if (!opt.classList.contains('selected')) opt.click();
         });
