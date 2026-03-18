@@ -1836,19 +1836,19 @@ const Teste_Q = [
         return '—';
       })() : ans(q.key);
       const answerText = q.multi ? rawAnswer : (Anamneza_R[q.key]?.[rawAnswer] || rawAnswer);
-      mdAnamneza += `**Q:** ${q.label}  \n`;
-      mdAnamneza += `**A:** ${answerText}  \n\n`;
+      mdAnamneza += `Q: ${q.label}\n`;
+      mdAnamneza += `A: ${answerText}\n`;
     });
 
     let mdIntrebari = '';
     Intrebari_Q.forEach(q => {
-      mdIntrebari += `**Q:** ${q.label}  \n`;
-      mdIntrebari += `**A:** ${ans(q.key)}  \n\n`;
+      mdIntrebari += `Q: ${q.label}\n`;
+      mdIntrebari += `A: ${ans(q.key)}\n`;
     });
 
     let mdTeste = '';
     Teste_Q.forEach(t => {
-      mdTeste += `**Q:** ${t.clinName}  \n`;
+      mdTeste += `Q: ${t.clinName}\n`;
       const raw = ans(t.key);
       const mapped = raw.split(', ').map(v => {
         const v2 = v.trim();
@@ -1859,7 +1859,7 @@ const Teste_Q = [
         }
         return v2;
       }).join(', ');
-      mdTeste += `**A:** ${mapped}  \n\n`;
+      mdTeste += `A: ${mapped}\n`;
     });
 
     /*
