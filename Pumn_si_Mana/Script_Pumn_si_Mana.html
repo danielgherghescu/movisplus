@@ -2031,11 +2031,8 @@
       if (q.key === 'a13' && answered.has('a12-none')) return;
       const questionText = document.querySelector(`#card-${q.key} .question-text`)?.childNodes[0]?.textContent?.trim() || q.label;
       const rawAnswer = q.multi ? multiAnsCheck(q.key, q.noneName) : ans(q.key);
-      mdAnamneza += `**Q:** ${normRo(questionText)}  
-`;
-      mdAnamneza += `**A:** ${normRo(rawAnswer)}  
-
-`;
+      mdAnamneza += `Q: ${normRo(questionText)}\n`;
+      mdAnamneza += `A: ${normRo(rawAnswer)}\n`;
     });
 
     const QUESTIONS_Q = [
@@ -2050,8 +2047,8 @@
 
     let mdIntrebari = '';
     QUESTIONS_Q.forEach((q) => {
-      mdIntrebari += `**Q:** ${normRo(q.label)}  \n`;
-      mdIntrebari += `**A:** ${normRo(ans(q.key))}  \n\n`;
+      mdIntrebari += `Q: ${normRo(q.label)}\n`;
+      mdIntrebari += `A: ${normRo(ans(q.key))}\n`;
     });
 
     const TESTS = [
@@ -2071,7 +2068,7 @@
 
     let mdTeste = '';
     TESTS.forEach(t => {
-      mdTeste += `**Q:** ${normRo(t.clinName)}  \n`;
+      mdTeste += `Q: ${normRo(t.clinName)}\n`;
       const raw = t.multi
         ? multiAnsColor(t.key, t.maxSel || 2)
         : ans(t.key);
@@ -2079,7 +2076,7 @@
         const v2 = v.trim();
         return CLINICAL[t.key]?.[v2] || v2;
       }).join(', ');
-      mdTeste += `**A:** ${normRo(mapped)}  \n\n`;
+      mdTeste += `A: ${normRo(mapped)}\n`;
     });
 
     const sessionId = new URLSearchParams(window.location.search).get('session_id');
