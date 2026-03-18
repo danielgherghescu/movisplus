@@ -1863,16 +1863,16 @@ function updateProgress() {
     let mdAnamneza = '';
     Anamneza_Q.forEach((q, i) => {
       if (q.key === 'a13' && answered.has('a12-none')) return;
-      mdAnamneza += `**Q:** ${q.label}`;
-      mdAnamneza += `**A:** ${q.multi ? multiAnsCheck(q.key, q.key, q.noneName) : exportAnswer(q.key, ans(q.key))}`;
+      mdAnamneza += `Q: ${q.label}\n`;
+      mdAnamneza += `A: ${q.multi ? multiAnsCheck(q.key, q.key, q.noneName) : exportAnswer(q.key, ans(q.key))}\n`;
     });
 
     let mdIntrebari = '';
     Intrebari_Q.forEach((q, i) => {
       const rawAns = ans(q.key);
       const clinA = (Intrebari_R[q.key] && Intrebari_R[q.key][rawAns]) ? Intrebari_R[q.key][rawAns] : rawAns;
-      mdIntrebari += `**Q:** ${q.label}`;
-      mdIntrebari += `**A:** ${clinA}`;
+      mdIntrebari += `Q: ${q.label}\n`;
+      mdIntrebari += `A: ${clinA}\n`;
     });
 
     function clinAns(key) { const raw = ans(key); return (Teste_R[key] && Teste_R[key][raw]) ? Teste_R[key][raw] : raw; }
@@ -1889,8 +1889,8 @@ function updateProgress() {
 
     let mdTeste = '';
     Teste_Q.forEach(t => {
-      mdTeste += `**Q:** ${t.clinName}`;
-      mdTeste += `**A:** ${t.multi ? clinMultiAns() : clinAns(t.key)}`;
+      mdTeste += `Q: ${t.clinName}\n`;
+      mdTeste += `A: ${t.multi ? clinMultiAns() : clinAns(t.key)}\n`;
     });
 
     const sessionId = new URLSearchParams(window.location.search).get('session_id');
