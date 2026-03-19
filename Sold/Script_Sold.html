@@ -577,7 +577,7 @@
   .lightbox-nav {
     position: absolute;
     top: 50%; transform: translateY(-50%);
-    background: rgba(255,255,255,0.15);
+    background: rgba(0,0,0,0.55);
     color: var(--white);
     border: none; cursor: pointer;
     font-size: 28px; line-height: 1;
@@ -586,10 +586,21 @@
     transition: background 0.15s;
     display: none;
   }
-  .lightbox-nav:hover { background: rgba(255,255,255,0.3); }
+  .lightbox-nav:hover { background: rgba(0,0,0,0.78); }
   .lightbox-nav.visible { display: block; }
   .lightbox-nav-prev { left: 16px; }
   .lightbox-nav-next { right: 16px; }
+  .lightbox-counter {
+    position: absolute;
+    top: 16px; left: 50%; transform: translateX(-50%);
+    background: rgba(0,0,0,0.55);
+    color: var(--white);
+    font-size: 13px; font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 100px;
+    display: none;
+  }
+  .lightbox-counter.visible { display: block; }
 
   /* ─── SUBMIT AREA ─────────────────────────────────────────── */
   .submit-area {
@@ -1375,6 +1386,7 @@ Cu mâna de pe aceeași parte (sau cu ajutorul altei persoane), <strong>apasă u
   <span class="lightbox-close">✕</span>
   <button class="lightbox-nav lightbox-nav-prev" id="lightboxPrev">&#8249;</button>
   <img id="lightboxImg" src="" alt="">
+  <div id="lightboxCounter" class="lightbox-counter"></div>
   <button class="lightbox-nav lightbox-nav-next" id="lightboxNext">&#8250;</button>
 </div>
 
@@ -1546,6 +1558,9 @@ function updateProgress() {
     const hasPrev = _lbImgs.length > 1;
     document.getElementById('lightboxPrev').classList.toggle('visible', hasPrev);
     document.getElementById('lightboxNext').classList.toggle('visible', hasPrev);
+    const counter = document.getElementById('lightboxCounter');
+    counter.textContent = (_lbIdx + 1) + ' / ' + _lbImgs.length;
+    counter.classList.toggle('visible', hasPrev);
   }
   function _lbGo(dir) {
     _lbIdx = ((_lbIdx + dir) % _lbImgs.length + _lbImgs.length) % _lbImgs.length;
