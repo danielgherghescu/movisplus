@@ -1844,9 +1844,11 @@ const Teste_Q = [
     });
 
     let mdIntrebari = '';
-    Intrebari_Q.forEach(q => {
+    Intrebari_Q.forEach((q, i) => {
+      const rawAns = ans(q.key);
+      const clinA = (Intrebari_R[q.key] && Intrebari_R[q.key][rawAns]) ? Intrebari_R[q.key][rawAns] : rawAns;
       mdIntrebari += `Q: ${q.label}\n`;
-      mdIntrebari += `A: ${ans(q.key)}\n`;
+      mdIntrebari += `A: ${clinA}\n`;
     });
 
     let mdTeste = '';
