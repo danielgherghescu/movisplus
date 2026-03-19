@@ -1817,27 +1817,30 @@ const Teste_Q = [
       return '—';
     }
 
-    let mdAnamneza = '';
-    Anamneza_Q.forEach(q => {
-      if (q.key === 'a13' && answered.has('a12-none')) return;
-      const rawAnswer = q.multi ? (() => {
-        const results = [];
-        document.querySelectorAll(`input[name="${q.key}"]`).forEach(inp => {
-          if (inp.closest('.option.selected')) {
-            const span = inp.closest('.option').querySelector('.option-label');
-            if (span) results.push(span.textContent.trim());
-          }
-        });
-        if (results.length) return results.join(', ');
-        const noneInp = document.querySelector(`input[name="${q.noneName}"]`);
-        if (noneInp?.closest('.option.selected')) {
-          return noneInp.closest('.option').querySelector('.option-label')?.textContent.trim() || '—';
+    function exportAnswer(qId, label) {
+      return Anamneza_R[qId]?.[label] || label;
+    }
+
+    function multiAnsCheck(qId, checkName, noneName) {
+      const results = [];
+      document.querySelectorAll(`input[name="${checkName}"]`).forEach(inp => {
+        if (inp.closest('.option.selected')) {
+          const span = inp.closest('.option').querySelector('.option-label');
+          if (span) results.push(exportAnswer(qId, span.textContent.trim()));
         }
-        return '—';
-      })() : ans(q.key);
-      const answerText = q.multi ? rawAnswer : (Anamneza_R[q.key]?.[rawAnswer] || rawAnswer);
+      });
+      if (results.length) return results.join(', ');
+      const noneInp = document.querySelector(`input[name="${noneName}"]`);
+      if (noneInp?.closest('.option.selected'))
+        return exportAnswer(qId, noneInp.closest('.option').querySelector('.option-label')?.textContent.trim() || '—');
+      return '—';
+    }
+
+    let mdAnamneza = '';
+    Anamneza_Q.forEach((q, i) => {
+      if (q.key === 'a13' && answered.has('a12-none')) return;
       mdAnamneza += `Q: ${q.label}\n`;
-      mdAnamneza += `A: ${answerText}\n`;
+      mdAnamneza += `A: ${q.multi ? multiAnsCheck(q.key, q.key, q.noneName) : exportAnswer(q.key, ans(q.key))}\n`;
     });
 
     let mdIntrebari = '';
