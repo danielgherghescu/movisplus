@@ -583,6 +583,33 @@
     transition: color 0.15s;
   }
   .lightbox-close:hover { color: var(--white); }
+  .lightbox-nav {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    background: rgba(0,0,0,0.55);
+    color: var(--white);
+    border: none; cursor: pointer;
+    font-size: 28px; line-height: 1;
+    padding: 12px 16px;
+    border-radius: 6px;
+    transition: background 0.15s;
+    display: none;
+  }
+  .lightbox-nav:hover { background: rgba(0,0,0,0.78); }
+  .lightbox-nav.visible { display: block; }
+  .lightbox-nav-prev { left: 16px; }
+  .lightbox-nav-next { right: 16px; }
+  .lightbox-counter {
+    position: absolute;
+    top: 16px; left: 50%; transform: translateX(-50%);
+    background: rgba(0,0,0,0.55);
+    color: var(--white);
+    font-size: 13px; font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 100px;
+    display: none;
+  }
+  .lightbox-counter.visible { display: block; }
 
   /* ─── SUBMIT AREA ─────────────────────────────────────────── */
   .submit-area {
@@ -1446,7 +1473,10 @@
 <!-- LIGHTBOX -->
 <div class="lightbox" id="lightbox" onclick="closeLightbox()">
   <span class="lightbox-close">✕</span>
+  <button class="lightbox-nav lightbox-nav-prev" id="lightboxPrev">&#8249;</button>
   <img id="lightboxImg" src="" alt="">
+  <div id="lightboxCounter" class="lightbox-counter"></div>
+  <button class="lightbox-nav lightbox-nav-next" id="lightboxNext">&#8250;</button>
 </div>
 
 <!-- TOAST -->
@@ -1582,12 +1612,45 @@
     document.getElementById('progressPctT').textContent = pT + '%';
   }
 
+  let _lbImgs = [], _lbIdx = 0;
   function zoom(wrap) {
-    document.getElementById('lightboxImg').src = wrap.querySelector('img').src;
+    const card = wrap.closest('.test-card, .question-card') || wrap.parentNode;
+    const allWraps = [...card.querySelectorAll('.test-img-wrap, .img-wrap')];
+    _lbImgs = allWraps.map(w => w.querySelector('img')?.src).filter(Boolean);
+    _lbIdx = allWraps.indexOf(wrap);
+    if (_lbIdx < 0) _lbIdx = 0;
+    _lbUpdate();
     document.getElementById('lightbox').classList.add('open');
   }
+  function _lbUpdate() {
+    document.getElementById('lightboxImg').src = _lbImgs[_lbIdx] || '';
+    const hasPrev = _lbImgs.length > 1;
+    document.getElementById('lightboxPrev').classList.toggle('visible', hasPrev);
+    document.getElementById('lightboxNext').classList.toggle('visible', hasPrev);
+    const counter = document.getElementById('lightboxCounter');
+    counter.textContent = (_lbIdx + 1) + ' / ' + _lbImgs.length;
+    counter.classList.toggle('visible', hasPrev);
+  }
+  function _lbGo(dir) {
+    _lbIdx = ((_lbIdx + dir) % _lbImgs.length + _lbImgs.length) % _lbImgs.length;
+    _lbUpdate();
+  }
   function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  document.getElementById('lightboxPrev').addEventListener('click', function(e) { e.stopPropagation(); _lbGo(-1); });
+  document.getElementById('lightboxNext').addEventListener('click', function(e) { e.stopPropagation(); _lbGo(1); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') _lbGo(-1);
+    if (e.key === 'ArrowRight') _lbGo(1);
+  });
+  let _lbTouchX = 0;
+  document.getElementById('lightbox').addEventListener('touchstart', function(e) {
+    _lbTouchX = e.touches[0].clientX;
+  }, { passive: true });
+  document.getElementById('lightbox').addEventListener('touchend', function(e) {
+    const diff = _lbTouchX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) _lbGo(diff > 0 ? 1 : -1);
+  }, { passive: true });
 
   function showToast(msg, isError) {
     const toast = document.getElementById('toast');
