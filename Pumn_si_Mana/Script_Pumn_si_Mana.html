@@ -2105,9 +2105,9 @@
           const label = inp.closest('.option')?.querySelector('.option-label');
           if (label) {
             const frontendText = label.textContent.trim();
-            const clinicalValue = Teste_R[name]?.[frontendText] || frontendText;
-            const len = clinicalValue.length;
-            if (len > maxLen) { maxLen = len; longest = inp; }
+            const R = name.startsWith('a') ? Anamneza_R : name.startsWith('q') ? Intrebari_R : Teste_R;
+            const clinicalValue = R[name]?.[frontendText] || frontendText;
+            if (clinicalValue.length > maxLen) { maxLen = clinicalValue.length; longest = inp; }
           }
         });
         if (longest) longest.closest('.option')?.click();
