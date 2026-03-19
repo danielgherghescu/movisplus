@@ -1723,13 +1723,13 @@ function updateProgress() {
   };
 
   const Teste_Q = [
-    { key: 't1', label: 'T01 — Localizarea durerii', clinName: 'Zone dureroase sold', q: 'Unde doare cel mai mult?', multi: true },
-    { key: 't2', label: 'T02 — Rotație internă', clinName: 'Test rotatie interna', q: 'Ce simți în timpul mișcării?' },
-    { key: 't3', label: 'T03 — Testul FABER', clinName: 'FABER contra rezistentei', q: 'Ce simți în zona inghinală (marcată cu roșu)?' },
-    { key: 't4', label: 'T04 — Adducție cu rezistență', clinName: 'Piriformis test / FADIR', q: 'Ce simți în timpul testului?' },
-    { key: 't5', label: 'T05 — Flexie cu rezistență', clinName: 'Iliopsoas test', q: 'Simți durere sau disconfort în zona inghinală?' },
-    { key: 't6', label: 'T06 — Sprijin unipodal', clinName: 'Trendelenburg test', q: 'Ce se întâmplă când stai pe un singur picior?' },
-    { key: 't7', label: 'T07 — Testul Thomas', clinName: 'Ober test', q: 'Ce simți în punctul marcat cu roșu?' },
+    { key: 't1', clinName: 'Zone dureroase sold', multi: true },
+    { key: 't2', clinName: 'Test rotatie interna' },
+    { key: 't3', clinName: 'FABER contra rezistentei' },
+    { key: 't4', clinName: 'Piriformis test / FADIR' },
+    { key: 't5', clinName: 'Iliopsoas test' },
+    { key: 't6', clinName: 'Trendelenburg test' },
+    { key: 't7', clinName: 'Ober test' },
   ];
 
   const Teste_R = {
@@ -1753,7 +1753,7 @@ function updateProgress() {
     },
     t4: {
       'Nu simt nimic neobișnuit': 'Piriformis-FADIR negativ',
-      'Simt durere în fața șoldului (inghinal)': 'Piriformis-FADIR  negativ cu durere inghinala',
+      'Simt durere în fața șoldului (inghinal)': 'Piriformis-FADIR negativ cu durere inghinala',
       'Simt durere în spatele șoldului': 'Piriformis pozitiv',
       'Simt durere în spatele șoldului și coboară pe coapsă': 'Piriformis intens pozitiv'
     },
@@ -1876,29 +1876,34 @@ function updateProgress() {
     });
 
     function clinAns(key) { const raw = ans(key); return (Teste_R[key] && Teste_R[key][raw]) ? Teste_R[key][raw] : raw; }
-    function clinMultiAns() {
+    function clinMultiAns(key, noneKey) {
       const results = [];
-      document.querySelectorAll('input[name="t1"]').forEach(inp => {
+      document.querySelectorAll(`input[name="${key}"]`).forEach(inp => {
         if (inp.closest('.color-option.selected')) {
-          const label = inp.closest('.color-option').querySelector('.color-option-label')?.textContent.trim();
-          if (label) results.push(Teste_R.t1[label] || label);
+          const swatch = inp.closest('.color-option').querySelector('.color-swatch');
+          const cls = [...swatch.classList].find(c => c !== 'color-swatch');
+          if (cls) results.push(COLORS[cls] || cls);
         }
       });
+      if (noneKey) {
+        const noPain = document.querySelector(`input[name="${noneKey}"]`);
+        if (noPain && noPain.closest('.option.selected')) {
+          const label = noPain.closest('.option').querySelector('.option-label')?.textContent.trim();
+          if (label) results.push(Teste_R[key]?.[label] || label);
+        }
+      }
       return results.length ? results.join(', ') : '—';
     }
 
     let mdTeste = '';
     Teste_Q.forEach(t => {
       mdTeste += `Q: ${t.clinName}\n`;
-      mdTeste += `A: ${t.multi ? clinMultiAns() : clinAns(t.key)}\n`;
+      mdTeste += `A: ${t.multi ? clinMultiAns(t.key, t.noneKey) : clinAns(t.key)}\n`;
     });
 
     const sessionId = new URLSearchParams(window.location.search).get('session_id');
 
     let url = 'https://app.medicai.io/upload/movisplus?';
-    console.log(mdAnamneza);
-    console.log(mdIntrebari);
-    console.log(mdTeste);
     if (sessionId) url += 'session_id=' + encodeURIComponent(sessionId) + '&';
     url += 'region=sold';
     url += '&chestionar_anamneza=' + encodeURIComponent(mdAnamneza.trim());
