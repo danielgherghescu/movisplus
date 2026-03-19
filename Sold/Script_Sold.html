@@ -1973,6 +1973,86 @@ function updateProgress() {
 </script>
 <!-- Vertical Overflow code embed fix -->
 <script>
+  if (new URLSearchParams(window.location.search).get('test') === '1') {
+    const btn = document.createElement('button');
+    btn.textContent = '⚡ Autofill';
+    Object.assign(btn.style, {
+      position: 'fixed', bottom: '24px', right: '24px', zIndex: '9999',
+      background: '#00e4a7', color: '#0f0f0f', fontWeight: '700',
+      fontSize: '14px', padding: '14px 24px', borderRadius: '8px',
+      border: 'none', cursor: 'pointer', boxShadow: '0 4px 16px rgba(0,0,0,0.25)',
+      fontFamily: 'inherit'
+    });
+    btn.onclick = function() {
+      function clickLongest(name) {
+        const inputs = document.querySelectorAll(`input[name="${name}"]`);
+        let longest = null, maxLen = -1;
+        inputs.forEach(inp => {
+          const label = inp.closest('.option')?.querySelector('.option-label');
+          if (label) {
+            const frontendText = label.textContent.trim();
+            const R = name.startsWith('a') ? Anamneza_R : name.startsWith('q') ? Intrebari_R : Teste_R;
+            const clinicalValue = R[name]?.[frontendText] || frontendText;
+            if (clinicalValue.length > maxLen) { maxLen = clinicalValue.length; longest = inp; }
+          }
+        });
+        if (longest) longest.closest('.option')?.click();
+      }
+      function clickLongestColor(name) {
+        const card = document.querySelector(`[id="card-${name}"]`) ||
+                     document.querySelector(`[id="card-${name.replace(/[ab]$/, '')}"]`);
+        if (!card) return;
+        const opts = [...card.querySelectorAll('.color-option')].filter(opt => {
+          const inp = opt.querySelector('input');
+          return inp && inp.name === name;
+        });
+        let longest = null, maxLen = -1;
+        opts.forEach(opt => {
+          const label = opt.querySelector('.color-option-label')?.textContent.trim() || '';
+          const clinicalValue = Teste_R[name]?.[label] || label;
+          if (clinicalValue.length > maxLen) { maxLen = clinicalValue.length; longest = opt; }
+        });
+        if (longest && !longest.classList.contains('selected')) longest.click();
+      }
+      function clickAllColors(name) {
+        const card = document.querySelector(`[id="card-${name}"]`) ||
+                     document.querySelector(`[id="card-${name.replace(/[ab]$/, '')}"]`);
+        if (!card) return;
+        const opts = [...card.querySelectorAll('.color-option')].filter(opt => {
+          const inp = opt.querySelector('input');
+          return inp && inp.name === name;
+        });
+        const onclickAttr = opts[0]?.getAttribute('onclick') || '';
+        const maxSelMatch = onclickAttr.match(/,(\d+),event/);
+        const maxSel = maxSelMatch ? parseInt(maxSelMatch[1]) : opts.length;
+        opts.sort((a, b) => {
+          const labelA = a.querySelector('.color-option-label')?.textContent.trim() || '';
+          const labelB = b.querySelector('.color-option-label')?.textContent.trim() || '';
+          const lenA = (Teste_R[name]?.[labelA] || labelA).length;
+          const lenB = (Teste_R[name]?.[labelB] || labelB).length;
+          return lenB - lenA;
+        });
+        opts.slice(0, maxSel).forEach(opt => {
+          if (!opt.classList.contains('selected')) opt.click();
+        });
+      }
+      function clickAllChecks(name) {
+        const inputs = document.querySelectorAll(`input[name="${name}"]`);
+        inputs.forEach(inp => {
+          if (inp.type === 'checkbox' && inp.name !== name + '-none') {
+            if (!inp.checked) inp.closest('.option')?.click();
+          }
+        });
+      }
+      ['a1','a2','a3','a4','a5','a6','a8','a13','a15','a16','a17','a18','a19','a20'].forEach(clickLongest);
+      ['a7','a9','a10','a11','a12','a14'].forEach(clickAllChecks);
+      ['q1','q2','q3','q4','q5','q6','q7'].forEach(clickLongest);
+      ['t1'].forEach(clickAllColors);
+      ['t2','t3','t4','t5','t6','t7'].forEach(clickLongest);
+    };
+    document.body.appendChild(btn);
+  }
+
 function sendHeight() {
   const height = document.documentElement.scrollHeight;
   window.parent.postMessage({ iframeHeight: height }, '*');
