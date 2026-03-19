@@ -1972,12 +1972,30 @@ const Teste_Q = [
           const label = inp.closest('.option')?.querySelector('.option-label');
           if (label) {
             const frontendText = label.textContent.trim();
-            const clinicalValue = CLINICAL[name]?.[frontendText] || frontendText;
+            const R = name.startsWith('a') ? Anamneza_R : name.startsWith('q') ? Intrebari_R : Teste_R;
+            const clinicalValue = R[name]?.[frontendText] || frontendText;
             const len = clinicalValue.length;
             if (len > maxLen) { maxLen = len; longest = inp; }
           }
         });
         if (longest) longest.closest('.option')?.click();
+      }
+      function clickLongestColor(name) {
+        const card = document.querySelector(`[id="card-${name}"]`) ||
+                     document.querySelector(`[id="card-${name.replace(/[ab]$/, '')}"]`);
+        if (!card) return;
+        const opts = [...card.querySelectorAll('.color-option')].filter(opt => {
+          const inp = opt.querySelector('input');
+          return inp && inp.name === name;
+        });
+        let longest = null, maxLen = -1;
+        opts.forEach(opt => {
+          const label = opt.querySelector('.color-option-label')?.textContent.trim() || '';
+          const clinicalValue = Teste_R[name]?.[label] || label;
+          const len = clinicalValue.length;
+          if (len > maxLen) { maxLen = len; longest = opt; }
+        });
+        if (longest && !longest.classList.contains('selected')) longest.click();
       }
       function clickAllColors(name) {
         const card = document.querySelector(`[id="card-${name}"]`) ||
@@ -2009,7 +2027,8 @@ const Teste_Q = [
       ['a1','a2','a3','a4','a5','a6','a8','a13','a15','a16','a17','a18','a19','a20'].forEach(clickLongest);
       ['a7','a9','a10','a11','a12','a14'].forEach(clickAllChecks);
       ['q1','q2','q3','q4','q5','q6','q7','q8','q9'].forEach(clickLongest);
-      ['t1','t2','t3','t4','t5','t6','t7','t8','t9'].forEach(clickLongest);
+      ['t1','t2','t3','t4'].forEach(clickLongestColor);
+      ['t5','t6','t7','t8','t9'].forEach(clickLongest);
     };
     document.body.appendChild(btn);
   }
