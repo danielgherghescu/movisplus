@@ -1999,26 +1999,11 @@
     }
 
 
-    function multiAnsCheck(checkName, noneName) {
-      const results = [];
-      document.querySelectorAll(`input[name="${checkName}"]`).forEach(inp => {
-        if (inp.closest('.option.selected')) {
-          const span = inp.closest('.option').querySelector('.option-label');
-          if (span) results.push(span.textContent.trim());
-        }
-      });
-      if (results.length) return results.join(', ');
-      const noneInp = document.querySelector(`input[name="${noneName}"]`);
-      if (noneInp?.closest('.option.selected'))
-        return noneInp.closest('.option').querySelector('.option-label')?.textContent.trim() || '—';
-      return '—';
-    }
-
     function exportAnswer(qId, label) {
       return Anamneza_R[qId]?.[label] || label;
     }
 
-    function multiAnsCheckExport(qId, checkName, noneName) {
+    function multiAnsCheck(qId, checkName, noneName) {
       const results = [];
       document.querySelectorAll(`input[name="${checkName}"]`).forEach(inp => {
         if (inp.closest('.option.selected')) {
@@ -2037,7 +2022,7 @@
     Anamneza_Q.forEach((q, i) => {
       if (q.key === 'a13' && answered.has('a12-none')) return;
       mdAnamneza += `Q: ${q.label}\n`;
-      mdAnamneza += `A: ${q.multi ? multiAnsCheckExport(q.key, q.key, q.noneName) : exportAnswer(q.key, ans(q.key))}\n`;
+      mdAnamneza += `A: ${q.multi ? multiAnsCheck(q.key, q.key, q.noneName) : exportAnswer(q.key, ans(q.key))}\n`;
     });
 
     let mdIntrebari = '';
