@@ -1849,19 +1849,6 @@ function updateProgress() {
 
   const Teste_R = { t1: { 'Verde':'Maxima', 'Galben':'Partiala', 'Rosu':'Sever limitata' }, t2: { 'Verde':'Maxima', 'Albastru':'Buna', 'Galben':'Partiala', 'Rosu':'Sever limitata' }, t3: { 'Verde':'Lateral', 'Galben':'Anterior', 'Rosu':'Medial', 'Albastru':'Posterior' }, t4: { 'Rosu':'Anterior', 'Galben':'Posterior', 'Verde':'Fara durere' }, t5: { 'Da':'Pozitiv', 'Nu':'Negativ' }, t6: { 'Da':'ACL intact', 'Nu':'ACL lezat', 'Nu sunt sigur':'Nesigur' }, t6b: { 'Da':'Pozitiv', 'Nu':'Negativ' }, t7: { 'Da':'Pozitiv', 'Nu':'Negativ' }, t8: { 'Da':'Pozitiv', 'Nu':'Negativ' }, t9a: { 'Da':'Pozitiv', 'Nu':'Negativ', 'Nu sunt sigur':'Incert' }, t9b: { 'Da':'Pozitiv', 'Nu':'Negativ', 'Nu sunt sigur':'Incert' }, };
 
-  const CLINICAL = {
-    t1:  { 'Verde': '~140° (flexie completă)', 'Galben': '~110° (flexie limitată)', 'Rosu': '~90° (flexie sever limitată)' },
-    t2:  { 'Verde': 'Fără lag', 'Albastru': 'Lag 15°', 'Galben': 'Lag 30-45°', 'Rosu': 'Redoare severă (genu flectum)' },
-    t3:  { 'Verde': 'Lateral', 'Galben': 'Anterior', 'Rosu': 'Medial', 'Albastru': 'Posterior', 'Fără zonă clară de durere': 'Fără zonă clară' },
-    t4:  { 'Rosu': 'Durere anterioară', 'Galben': 'Durere posterioară', 'Nu simt': 'Negativ' },
-    t5:  { 'Da': 'Pozitiv', 'Nu': 'Negativ' },
-    t6:  { 'Da': 'Pozitiv', 'Nu': 'Negativ', 'Nu sunt sigur': 'Incert' },
-    t6b: { 'Da': 'ACL intact', 'Nu': 'ACL lezat' },
-    t7:  { 'Da': 'Pozitiv', 'Nu': 'Negativ' },
-    t8:  { 'Da': 'Pozitiv', 'Nu': 'Negativ' },
-    t9a: { 'Da': 'Pozitiv PLC', 'Nu': 'Negativ', 'Nu sunt sigur': 'Incert' },
-    t9b: { 'Da': 'Pozitiv PLC si PCL', 'Nu': 'Negativ', 'Nu sunt sigur': 'Incert' },
-  };
 
   function generateJSON() {
     // Validare câmpuri obligatorii
@@ -1983,9 +1970,6 @@ function updateProgress() {
     const sessionId = new URLSearchParams(window.location.search).get('session_id');
 
     let url = 'https://app.medicai.io/upload/movisplus?';
-    console.log(mdAnamneza);
-    console.log(mdIntrebari);
-    console.log(mdTeste);
     if (sessionId) url += 'session_id=' + encodeURIComponent(sessionId) + '&';
     url += 'region=genunchi';
     url += '&chestionar_anamneza=' + encodeURIComponent(mdAnamneza.trim());
@@ -2079,7 +2063,7 @@ function updateProgress() {
           const label = inp.closest('.option')?.querySelector('.option-label');
           if (label) {
             const frontendText = label.textContent.trim();
-            const clinicalValue = CLINICAL[name]?.[frontendText] || frontendText;
+            const clinicalValue = Teste_R[name]?.[frontendText] || frontendText;
             const len = clinicalValue.length;
             if (len > maxLen) { maxLen = len; longest = inp; }
           }
@@ -2097,8 +2081,8 @@ function updateProgress() {
         opts.sort((a, b) => {
           const labelA = a.querySelector('.color-option-label')?.textContent.trim() || '';
           const labelB = b.querySelector('.color-option-label')?.textContent.trim() || '';
-          const lenA = (CLINICAL[name]?.[labelA] || labelA).length;
-          const lenB = (CLINICAL[name]?.[labelB] || labelB).length;
+          const lenA = (Teste_R[name]?.[labelA] || labelA).length;
+          const lenB = (Teste_R[name]?.[labelB] || labelB).length;
           return lenB - lenA;
         });
         opts.slice(0, 2).forEach(opt => {
