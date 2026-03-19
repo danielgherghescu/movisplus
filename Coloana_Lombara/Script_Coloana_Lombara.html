@@ -2043,9 +2043,9 @@
           const label = inp.closest('.option')?.querySelector('.option-label');
           if (label) {
             const frontendText = label.textContent.trim();
-            const clinicalValue = Teste_R[name]?.[frontendText] || frontendText;
-            const len = clinicalValue.length;
-            if (len > maxLen) { maxLen = len; longest = inp; }
+            const R = name.startsWith('a') ? Anamneza_R : name.startsWith('q') ? Intrebari_R : Teste_R;
+            const clinicalValue = R[name]?.[frontendText] || frontendText;
+            if (clinicalValue.length > maxLen) { maxLen = clinicalValue.length; longest = inp; }
           }
         });
         if (longest) longest.closest('.option')?.click();
@@ -2058,7 +2058,9 @@
           const inp = opt.querySelector('input');
           return inp && inp.name === name;
         });
-        // Sortează după lungimea valorii Teste_R, descrescător
+        const onclickAttr = opts[0]?.getAttribute('onclick') || '';
+        const maxSelMatch = onclickAttr.match(/,(\d+),event/);
+        const maxSel = maxSelMatch ? parseInt(maxSelMatch[1]) : opts.length;
         opts.sort((a, b) => {
           const labelA = a.querySelector('.color-option-label')?.textContent.trim() || '';
           const labelB = b.querySelector('.color-option-label')?.textContent.trim() || '';
@@ -2066,8 +2068,7 @@
           const lenB = (Teste_R[name]?.[labelB] || labelB).length;
           return lenB - lenA;
         });
-        // Selectează primele 2 (cele cu valorile Teste_R cele mai lungi)
-        opts.slice(0, 2).forEach(opt => {
+        opts.slice(0, maxSel).forEach(opt => {
           if (!opt.classList.contains('selected')) opt.click();
         });
       }
