@@ -462,6 +462,17 @@
     cursor: zoom-in;
   }
   .test-img-wrap:hover img { transform: scale(1.02); }
+  .test-images.fit-row {
+    overflow-x: hidden;
+    padding-bottom: 0;
+  }
+  .test-images.fit-row .test-img-wrap {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .test-images.fit-row .test-img-wrap img {
+    width: 100%;
+  }
 
   /* ─── ZOOM BUTTON ────────────────────────────────────────── */
   .zoom-btn {
@@ -1986,6 +1997,14 @@
       });
 
       if (wraps.length <= 1) return; // single image — no carousel needed
+      // On desktop: check if images overflow the container — if yes, fit them in one row
+      if (window.innerWidth >= 768) {
+        const totalWidth = wraps.reduce((sum, w) => sum + w.offsetWidth, 0) + (wraps.length - 1) * 8;
+        if (totalWidth > track.offsetWidth) {
+          track.classList.add('fit-row');
+        }
+        return;
+      }
 
       let current = 0;
 
