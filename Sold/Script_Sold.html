@@ -1955,17 +1955,15 @@ function updateProgress() {
       const results = [];
       document.querySelectorAll(`input[name="${key}"]`).forEach(inp => {
         if (inp.closest('.color-option.selected')) {
-          const swatch = inp.closest('.color-option').querySelector('.color-swatch');
-          const cls = [...swatch.classList].find(c => c !== 'color-swatch');
-          if (cls) results.push(COLORS[cls] || cls);
-        }
-      });
-      if (noneKey) {
-        const noPain = document.querySelector(`input[name="${noneKey}"]`);
-        if (noPain && noPain.closest('.option.selected')) {
-          const label = noPain.closest('.option').querySelector('.option-label')?.textContent.trim();
+          const label = inp.closest('.color-option').querySelector('.color-option-label')?.textContent.trim();
           if (label) results.push(Teste_R[key]?.[label] || label);
         }
+      });
+      const resolvedNoneKey = noneKey || `${key}-none`;
+      const noPain = document.querySelector(`input[name="${resolvedNoneKey}"]`);
+      if (noPain && noPain.closest('.option.selected')) {
+        const label = noPain.closest('.option').querySelector('.option-label')?.textContent.trim();
+        if (label) results.push(Teste_R[key]?.[label] || label);
       }
       return results.length ? results.join(', ') : '—';
     }
