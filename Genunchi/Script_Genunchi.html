@@ -2041,16 +2041,26 @@ function updateProgress() {
     });
 
     function clinAns(key) { const raw = ans(key); return (Teste_R[key] && Teste_R[key][raw]) ? Teste_R[key][raw] : raw; }
-    function clinMultiAns() {
-      const raw = multiAns();
-      if (raw === '—') return '—';
-      return raw.split(', ').map(c => (Teste_R.t3[c] || c)).join(', ');
+    function clinMultiAns(key) {
+      const results = [];
+      document.querySelectorAll(`input[name="${key}"]`).forEach(inp => {
+        if (inp.closest('.color-option.selected')) {
+          const label = inp.closest('.color-option').querySelector('.color-option-label')?.textContent.trim();
+          if (label) results.push(Teste_R[key]?.[label] || label);
+        }
+      });
+      const noPain = document.querySelector(`input[name="${key}-none"]`);
+      if (noPain && noPain.closest('.option.selected')) {
+        const label = noPain.closest('.option').querySelector('.option-label')?.textContent.trim();
+        if (label) results.push(Teste_R[key]?.[label] || label);
+      }
+      return results.length ? results.join(', ') : '—';
     }
 
     let mdTeste = '';
     Teste_Q.forEach(t => {
       mdTeste += `Q: ${t.clinName}\n`;
-      mdTeste += `A: ${t.multi ? clinMultiAns() : clinAns(t.key)}\n`;
+      mdTeste += `A: ${t.multi ? clinMultiAns(t.key) : clinAns(t.key)}\n`;
     });
 
     const sessionId = new URLSearchParams(window.location.search).get('session_id');
