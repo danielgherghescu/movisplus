@@ -1373,18 +1373,35 @@
         Stai întins pe spate și ridică piciorul dureros (sau roagă pe cineva să ți-l ridice), fără să îndoi genunchiul sau încercând să ții genunchiul cât mai drept.<br>
         Oprește-te când apare simptomul obișnuit din picior.
       </div>
+      
       <div class="sub-question">Ce se întâmplă când ridici piciorul dureros?</div>
       <div class="options">
         <label class="option" onclick="sel(this,'t7a')"><input type="radio" name="t7a"><div class="option-radio"></div><span class="option-label">Doar întindere în spatele coapsei (zona mov)</span></label>
-        <label class="option" onclick="sel(this,'t7a')"><input type="radio" name="t7a"><div class="option-radio"></div><span class="option-label">Apar simptome pe traiectul colorat din imagine — durere</span></label>
         <label class="option" onclick="sel(this,'t7a')"><input type="radio" name="t7a"><div class="option-radio"></div><span class="option-label">Apar simptome pe traiectul colorat din imagine — amorțeală / furnicături</span></label>
       </div>
+
+     <div class="sub-question" style="margin-top:24px">Dacă apar simptome, ce fel de simptome simți?</div>
+      <div class="options">
+        <label class="option" onclick="sel(this,'t7b')"><input type="radio" name="t7b"><div class="option-radio"></div><span class="option-label">Durere</span></label>
+        <label class="option" onclick="sel(this,'t7b')"><input type="radio" name="t7b"><div class="option-radio"></div><span class="option-label">Amorțeală / furnicături</span></label>
+      </div>
+
+     <div class="sub-question" style="margin-top:24px">Când apar simptomele?</div>
+      <div class="options">
+        <label class="option" onclick="sel(this,'t7c')"><input type="radio" name="t7b"><div class="option-radio"></div><span class="option-label">Când piciorul este în zona verde</span></label>
+        <label class="option" onclick="sel(this,'t7c')"><input type="radio" name="t7b"><div class="option-radio"></div><span class="option-label">Când piciorul este în zona roșie</span></label>
+        <label class="option" onclick="sel(this,'t7c')"><input type="radio" name="t7b"><div class="option-radio"></div><span class="option-label">Când piciorul este în zona galbenă</span></label>
+      </div>
+      
       <div class="sub-question" style="margin-top:24px">Repetă testul și pentru celălalt picior. Ce se întâmplă?</div>
       <div class="options">
-        <label class="option" onclick="sel(this,'t7b')"><input type="radio" name="t7b"><div class="option-radio"></div><span class="option-label">Nu apar simptome</span></label>
-        <label class="option" onclick="sel(this,'t7b')"><input type="radio" name="t7b"><div class="option-radio"></div><span class="option-label">Apar simptome în același picior (mai sănătos)</span></label>
-        <label class="option" onclick="sel(this,'t7b')"><input type="radio" name="t7b"><div class="option-radio"></div><span class="option-label">Ridicarea piciorului sănătos declanșează simptome în piciorul dureros</span></label>
+        <label class="option" onclick="sel(this,'t7d')"><input type="radio" name="t7d"><div class="option-radio"></div><span class="option-label">Nu apar simptome</span></label>
+        <label class="option" onclick="sel(this,'t7d')"><input type="radio" name="t7d"><div class="option-radio"></div><span class="option-label">Apar simptome și în piciorul sănătos</span></label>
+        <label class="option" onclick="sel(this,'t7d')"><input type="radio" name="t7d"><div class="option-radio"></div><span class="option-label">Ridicarea piciorului sănătos declanșează simptome în piciorul dureros</span></label>
       </div>
+
+
+      
     </div>
   </div>
 
@@ -1446,7 +1463,7 @@
 
   const SECTION_A = [['a1'],['a2'],['a3'],['a4'],['a5'],['a6'],['a7','a7-none'],['a8'],['a9','a9-none'],['a10','a10-none'],['a11','a11-none'],['a12','a12-none'],['a13'],['a14','a14-none'],['a15'],['a16'],['a17'],['a18'],['a19'],['a20']];
   const SECTION_Q = Array.from(document.querySelectorAll('[id^="card-q"]')).map(el => [el.id.replace('card-','')]);
-  const SECTION_T = [['t1'],['t2'],['t3'],['t4'],['t5','t5-none'],['t6','t6-none'],['t7a'],['t7b'],['t8']];
+  const SECTION_T = [['t1'],['t2'],['t3'],['t4'],['t5','t5-none'],['t6','t6-none'],['t7a'],['t7b'],['t7c'],['t7d'],['t8']];
 
   function sel(el, name) {
     const container = el.closest('.options, .test-body, .question-card');
@@ -1921,7 +1938,9 @@
     { key: 't5',  clinName: 'Harta durere lombara', multi: true },
     { key: 't6',  clinName: 'Harta sensibilitate MI', multi: true },
     { key: 't7a', clinName: 'Lasegue si Pseudo-Lasegue' },
-    { key: 't7b', clinName: 'Lasegue incrucișat' },
+    { key: 't7b', clinName: 'Simptome Lasegue' },
+    { key: 't7c', clinName: 'Zona Lasegue' },
+    { key: 't7d', clinName: 'Cross-Lasegue' },
     { key: 't8',  clinName: 'Test Rotatie interna sold' },
   ];
   const Teste_R = {
@@ -1966,14 +1985,22 @@
       'Nicio zonă — simt la fel peste tot': 'Sensibilitate normala',
     },
     t7a: {
-      'Doar întindere în spatele coapsei (zona mov)': 'Pseudo-Lasegue pozitiv',
-      'Apar simptome pe traiectul colorat din imagine — durere': 'Pozitiv durere',
-      'Apar simptome pe traiectul colorat din imagine — amorțeală / furnicături': 'Pozitiv parestezii',
+      'Doar întindere în spatele coapsei (zona mov)': 'Pseudo-Lasegue pozitiv gastroc',
+      'Apar simptome pe traiectul colorat cu fulgere roșii - genunchiul rămâne întins maxim': 'Lasegue pozitiv,
     },
     t7b: {
+      'Durere': 'Durere',
+      'Amorțeală / furnicături': 'Parestezii',
+    },
+    t7c: {
+      'Când piciorul este în zona verde': '60-90 grade',
+      'Când piciorul este în zona roșie': '30-60 grade',
+      'Când piciorul este în zona galbenă': '0-30 grade',
+    },
+    t7d: {
       'Nu apar simptome': 'Negativ',
-      'Apar simptome în același picior (mai sănătos)': 'Pseudo-Lasegue pozitiv',
-      'Ridicarea piciorului sănătos declanșează simptome în piciorul dureros': 'Lasegue incrucișat pozitiv',
+      'Apar simptome și în piciorul sănătos': 'Pozitiv same side',
+      'Ridicarea piciorului sănătos declanșează simptome în piciorul dureros': 'Pozitiv cross-side',
     },
     t8: {
       'Normal': 'Normal',
@@ -2009,7 +2036,7 @@
       { key: 't3', cardId: 'card-t3' }, { key: 't4', cardId: 'card-t4' },
       { key: 't5', cardId: 'card-t5', altKey: 't5-none' },
       { key: 't6', cardId: 'card-t6', altKey: 't6-none' },
-      { key: 't7a', cardId: 'card-t7' }, { key: 't7b', cardId: 'card-t7' },
+      { key: 't7a', cardId: 'card-t7' }, { key: 't7b', cardId: 'card-t7' }, { key: 't7c', cardId: 'card-t7' }, { key: 't7d', cardId: 'card-t7' },
       { key: 't8', cardId: 'card-t8' },
     ];
     const missing = MANDATORY.filter(m => {
@@ -2175,7 +2202,7 @@
       ['a1','a2','a3','a4','a5','a6','a8','a13','a15','a16','a17','a18','a19','a20'].forEach(clickLongest);
       ['a7','a9','a10','a11','a12','a14'].forEach(clickAllChecks);
       ['q1','q2','q3','q4','q5','q6','q7','q8'].forEach(clickLongest);
-      ['t1','t2','t3','t4','t7a','t7b','t8'].forEach(clickLongest);
+      ['t1','t2','t3','t4','t7a','t7b','t7c','t7d','t8'].forEach(clickLongest);
       ['t5','t6'].forEach(clickAllColors);
     };
     document.body.appendChild(btn);
