@@ -1378,22 +1378,26 @@
       
       <div class="sub-question">Ce se întâmplă când ridici piciorul dureros?</div>
       <div class="options">
-        <label class="option" onclick="sel(this,'t7a')"><input type="radio" name="t7a"><div class="option-radio"></div><span class="option-label">Doar întindere în spatele coapsei (zona mov)</span></label>
-        <label class="option" onclick="sel(this,'t7a')"><input type="radio" name="t7a"><div class="option-radio"></div><span class="option-label">Apar simptome pe traiectul colorat cu fulgere roșii - genunchiul rămâne întins maxim</span></label>
+        <label class="option" onclick="sel(this,'t7a');toggleT7bc(true)"><input type="radio" name="t7a"><div class="option-radio"></div><span class="option-label">Doar întindere în spatele coapsei (zona mov)</span></label>
+        <label class="option" onclick="sel(this,'t7a');toggleT7bc(false)"><input type="radio" name="t7a"><div class="option-radio"></div><span class="option-label">Apar simptome pe traiectul colorat cu fulgere roșii - genunchiul rămâne întins maxim</span></label>
       </div>
 
-     <div class="sub-question" style="margin-top:24px">Dacă apar simptome, ce fel de simptome simți?</div>
+     <div id="t7b-block" style="display:none">
+      <div class="sub-question" style="margin-top:24px">Dacă apar simptome, ce fel de simptome simți?</div>
       <div class="options">
         <label class="option" onclick="sel(this,'t7b')"><input type="radio" name="t7b"><div class="option-radio"></div><span class="option-label">Durere</span></label>
         <label class="option" onclick="sel(this,'t7b')"><input type="radio" name="t7b"><div class="option-radio"></div><span class="option-label">Amorțeală / furnicături</span></label>
       </div>
+     </div>
 
-     <div class="sub-question" style="margin-top:24px">Când apar simptomele?</div>
+     <div id="t7c-block" style="display:none">
+      <div class="sub-question" style="margin-top:24px">Când apar simptomele?</div>
       <div class="options">
         <label class="option" onclick="sel(this,'t7c')"><input type="radio" name="t7c"><div class="option-radio"></div><span class="option-label">Când piciorul este în zona verde</span></label>
         <label class="option" onclick="sel(this,'t7c')"><input type="radio" name="t7c"><div class="option-radio"></div><span class="option-label">Când piciorul este în zona roșie</span></label>
         <label class="option" onclick="sel(this,'t7c')"><input type="radio" name="t7c"><div class="option-radio"></div><span class="option-label">Când piciorul este în zona galbenă</span></label>
       </div>
+     </div>
       
       <div class="sub-question" style="margin-top:24px">Repetă testul și pentru celălalt picior. Ce se întâmplă?</div>
       <div class="options">
@@ -1587,6 +1591,21 @@
     }
   }
 
+  function toggleT7bc(hide) {
+    ['t7b-block', 't7c-block'].forEach(id => {
+      const block = document.getElementById(id);
+      if (!block) return;
+      block.style.display = hide ? 'none' : '';
+    });
+    if (hide) {
+      ['t7b', 't7c'].forEach(key => {
+        document.querySelectorAll(`input[name="${key}"]`).forEach(inp => inp.closest('.option')?.classList.remove('selected'));
+        answered.delete(key);
+      });
+      updateProgress();
+    }
+  }
+
   function updateProgress() {
     function countSec(groups) { return groups.filter(g => g.some(k => answered.has(k))).length; }
 
@@ -1596,7 +1615,11 @@
 
     const pA = Math.round((countSec(groupsA) / groupsA.length) * 100) || 0;
     const pQ = Math.round((countSec(SECTION_Q) / Math.max(SECTION_Q.length, 1)) * 100) || 0;
-    const pT = Math.round((countSec(SECTION_T) / Math.max(SECTION_T.length, 1)) * 100) || 0;
+    const t7bcHidden = document.getElementById('t7b-block')?.style.display === 'none';
+    const groupsT = t7bcHidden
+      ? SECTION_T.filter(g => !g.includes('t7b') && !g.includes('t7c'))
+      : SECTION_T;
+    const pT = Math.round((countSec(groupsT) / Math.max(groupsT.length, 1)) * 100) || 0;
 
     document.getElementById('progressFillA').style.width = pA + '%';
     document.getElementById('progressFillQ').style.width = pQ + '%';
@@ -2043,8 +2066,10 @@
       { key: 't7a', cardId: 'card-t7' }, { key: 't7b', cardId: 'card-t7' }, { key: 't7c', cardId: 'card-t7' }, { key: 't7d', cardId: 'card-t7' },
       { key: 't8', cardId: 'card-t8' },
     ];
+    const t7bcHidden = document.getElementById('t7b-block')?.style.display === 'none';
     const missing = MANDATORY.filter(m => {
       if (m.key === 'a13' && answered.has('a12-none')) return false;
+      if ((m.key === 't7b' || m.key === 't7c') && t7bcHidden) return false;
       return m.altKey ? (!answered.has(m.key) && !answered.has(m.altKey)) : !answered.has(m.key);
     });
     if (missing.length > 0) {
@@ -2121,8 +2146,10 @@
       return results.length ? results.join(', ') : '—';
     }
 
+    const t7bcHiddenExport = document.getElementById('t7b-block')?.style.display === 'none';
     let mdTeste = '';
     Teste_Q.forEach(t => {
+      if ((t.key === 't7b' || t.key === 't7c') && t7bcHiddenExport) return;
       mdTeste += `Q: ${t.clinName}\n`;
       mdTeste += `A: ${t.multi ? clinMultiAns(t.key) : clinAns(t.key)}\n`;
     });
@@ -2206,7 +2233,11 @@
       ['a1','a2','a3','a4','a5','a6','a8','a13','a15','a16','a17','a18','a19','a20'].forEach(clickLongest);
       ['a7','a9','a10','a11','a12','a14'].forEach(clickAllChecks);
       ['q1','q2','q3','q4','q5','q6','q7','q8'].forEach(clickLongest);
-      ['t1','t2','t3','t4','t7a','t7b','t7c','t7d','t8'].forEach(clickLongest);
+      ['t1','t2','t3','t4'].forEach(clickLongest);
+      clickLongest('t7a');
+      ['t7b','t7c'].forEach(clickLongest);
+      clickLongest('t7d');
+      clickLongest('t8');
       ['t5','t6'].forEach(clickAllColors);
     };
     document.body.appendChild(btn);
