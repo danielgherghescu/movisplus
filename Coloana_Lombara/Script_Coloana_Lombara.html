@@ -1587,12 +1587,39 @@
   }
 
   let _lbImgs = [], _lbIdx = 0;
+  function _lbIsEmbedded() {
+    try { return window.self !== window.top; }
+    catch (_) { return true; }
+  }
+  function _lbPlaceForEmbed(anchorEl) {
+    const lb = document.getElementById('lightbox');
+    if (!_lbIsEmbedded()) return;
+    const rect = anchorEl.getBoundingClientRect();
+    const viewportH = window.innerHeight || document.documentElement.clientHeight || 800;
+    const top = Math.max(0, rect.top + (rect.height / 2) - (viewportH / 2));
+    lb.style.position = 'absolute';
+    lb.style.top = top + 'px';
+    lb.style.left = '0';
+    lb.style.right = '0';
+    lb.style.bottom = 'auto';
+    lb.style.height = viewportH + 'px';
+  }
+  function _lbResetPlacement() {
+    const lb = document.getElementById('lightbox');
+    lb.style.position = '';
+    lb.style.top = '';
+    lb.style.left = '';
+    lb.style.right = '';
+    lb.style.bottom = '';
+    lb.style.height = '';
+  }
   function zoom(wrap) {
     const card = wrap.closest('.test-card, .question-card') || wrap.parentNode;
     const allWraps = [...card.querySelectorAll('.test-img-wrap, .img-wrap')];
     _lbImgs = allWraps.map(w => w.querySelector('img')?.src).filter(Boolean);
     _lbIdx = allWraps.indexOf(wrap);
     if (_lbIdx < 0) _lbIdx = 0;
+    _lbPlaceForEmbed(wrap);
     _lbUpdate();
     observer.disconnect();
     document.getElementById('lightbox').classList.add('open');
@@ -1615,6 +1642,7 @@
     _lbUpdate();
   }
   function closeLightbox() {
+    _lbResetPlacement();
     document.getElementById('lightbox').classList.remove('open');
     observer.observe(document.body, { childList: true, subtree: true });
     sendHeight();
