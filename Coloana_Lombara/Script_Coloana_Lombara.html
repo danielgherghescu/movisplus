@@ -2237,37 +2237,95 @@
     document.body.appendChild(btn);
   }
 
+/* ─── DEBUG SAFE (nu afecteaza nimic existent) ───────────────────────── */
+
+function debug_exportAnswer(qId, label) {
+  return Anamneza_R[qId]?.[label] || label;
+}
+
+function debug_multiAnsCheck(qId, checkName, noneName) {
+  const results = [];
+
+  document.querySelectorAll(`input[name="${checkName}"]`).forEach(inp => {
+    if (inp.closest('.option.selected')) {
+      const span = inp.closest('.option').querySelector('.option-label');
+      if (span) results.push(debug_exportAnswer(qId, span.textContent.trim()));
+    }
+  });
+
+  if (results.length) return results.join(', ');
+
+  const noneInp = document.querySelector(`input[name="${noneName}"]`);
+  if (noneInp?.closest('.option.selected')) {
+    const span = noneInp.closest('.option').querySelector('.option-label');
+    return debug_exportAnswer(qId, span?.textContent.trim() || '—');
+  }
+
+  return '—';
+}
+
+function debug_clinAns(key) {
+  const raw = ans(key);
+  return (Teste_R[key] && Teste_R[key][raw]) ? Teste_R[key][raw] : raw;
+}
+
+function debug_clinMultiAns(key) {
+  const results = [];
+
+  document.querySelectorAll(`input[name="${key}"]`).forEach(inp => {
+    if (inp.closest('.color-option.selected')) {
+      const label = inp.closest('.color-option').querySelector('.color-option-label')?.textContent.trim();
+      if (label) results.push(Teste_R[key]?.[label] || label);
+    }
+  });
+
+  const noneInput = document.querySelector(`input[name="${key}-none"]`);
+  if (noneInput && noneInput.closest('.option.selected')) {
+    const span = noneInput.closest('.option').querySelector('.option-label');
+    if (span) results.push(Teste_R[key]?.[span.textContent.trim()] || span.textContent.trim());
+  }
+
+  return results.length ? results.join(', ') : '—';
+}
+
 function updateDebugPanel() {
-if (!window.location.search.includes('test=1')) return;
+  if (!window.location.search.includes('test=1')) return;
 
-const panel = document.getElementById('debugPanel');
-panel.style.display = 'block';
+  const panel = document.getElementById('debugPanel');
+  if (!panel) return;
 
-let out = '';
+  panel.style.display = 'block';
 
-out += '=== ANAMNEZA ===\n';
-Anamneza_Q.forEach(q => {
-if (q.key === 'a13' && answered.has('a12-none')) return;
-const val = q.multi
-? multiAnsCheck(q.key, q.key, q.noneName)
-: exportAnswer(q.key, ans(q.key));
-out += `${q.key}: ${val}\n`;
-});
+  let out = '';
 
-out += '\n=== INTREBARI ===\n';
-Intrebari_Q.forEach(q => {
-const raw = ans(q.key);
-const val = Intrebari_R[q.key]?.[raw] || raw;
-out += `${q.key}: ${val}\n`;
-});
+  out += '=== ANAMNEZA ===\n';
+  Anamneza_Q.forEach(q => {
+    if (q.key === 'a13' && answered.has('a12-none')) return;
 
-out += '\n=== TESTE ===\n';
-Teste_Q.forEach(t => {
-const val = t.multi ? clinMultiAns(t.key) : clinAns(t.key);
-out += `${t.key}: ${val}\n`;
-});
+    const val = q.multi
+      ? debug_multiAnsCheck(q.key, q.key, q.noneName)
+      : debug_exportAnswer(q.key, ans(q.key));
 
-panel.innerHTML = out;
+    out += `${q.key}: ${val}\n`;
+  });
+
+  out += '\n=== INTREBARI ===\n';
+  Intrebari_Q.forEach(q => {
+    const raw = ans(q.key);
+    const val = Intrebari_R[q.key]?.[raw] || raw;
+    out += `${q.key}: ${val}\n`;
+  });
+
+  out += '\n=== TESTE ===\n';
+  Teste_Q.forEach(t => {
+    const val = t.multi
+      ? debug_clinMultiAns(t.key)
+      : debug_clinAns(t.key);
+
+    out += `${t.key}: ${val}\n`;
+  });
+
+  panel.textContent = out;
 }
 
   
