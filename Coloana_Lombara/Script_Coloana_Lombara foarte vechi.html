@@ -1,0 +1,2070 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chestionar clinic ghidat pentru coloana lombară — Movis+</title>
+<link href="https://fonts.googleapis.com/css2?family=Museo+Moderno:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:    #0f0f0f;
+    --green:    #00e4a7;
+    --white:    #ffffff;
+    --grey-dark: #515151;
+    --grey-mid:  #c1c1c1;
+    --grey-light: #e2e2e2;
+    --bg:       #f7f7f7;
+
+    --font-display: 'Museo Moderno', sans-serif;
+    --font-body:    'Plus Jakarta Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--black);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── HEADER ─────────────────────────────────────────────── */
+  .header {
+    background: var(--black);
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-logo img { height: 32px; display: block; }
+  .header-badge {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green);
+    border: 1px solid rgba(0,228,167,0.3);
+    padding: 5px 14px;
+    border-radius: 100px;
+  }
+
+  /* ─── HERO ───────────────────────────────────────────────── */
+  .hero {
+    background: var(--black);
+    padding: 64px 40px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 80% 50%, rgba(0,228,167,0.07) 0%, transparent 60%),
+      radial-gradient(circle at 20% 80%, rgba(2,178,128,0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+  .hero-tag-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    flex-shrink: 0;
+  }
+  .hero-tag-text {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green);
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(38px, 5.5vw, 60px);
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.08;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+  .hero h1 span { color: var(--green); }
+  .hero-desc {
+    color: var(--grey-mid);
+    font-size: 15px;
+    line-height: 1.75;
+    max-width: 540px;
+    font-weight: 300;
+  }
+
+  /* ─── PROGRESS ───────────────────────────────────────────── */
+  .progress-wrap {
+    background: var(--black);
+    padding: 0 40px 14px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .progress-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    gap: 24px;
+    padding-top: 14px;
+  }
+  .progress-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .progress-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white);
+    white-space: nowrap;
+  }
+  .progress-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .progress-track {
+    flex: 1;
+    height: 8px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .progress-pct {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.05em;
+    min-width: 28px;
+    text-align: right;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--green);
+    border-radius: 4px;
+    transition: width 0.4s ease;
+  }
+
+  /* ─── CONTAINER ──────────────────────────────────────────── */
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px 100px;
+  }
+
+  /* ─── SECTION LABEL ──────────────────────────────────────── */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 64px 0 32px;
+  }
+  .section-label-line {
+    flex: 1;
+    height: 2px;
+    background: var(--green);
+    opacity: 1;
+  }
+  .sub-section-label-line {
+    flex: 1;
+    height: 2px;
+    background: var(--green);
+    opacity: 0.25;
+  }
+  .section-label-text {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--grey-dark);
+    white-space: nowrap;
+  }
+  .section-label-num {
+    font-family: var(--font-display);
+    font-size: 13px;
+    color: var(--green);
+    font-weight: 700;
+  }
+
+  /* ─── QUESTION CARD ──────────────────────────────────────── */
+  .question-card {
+    background: var(--white);
+    border: 1px solid var(--grey-light);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 12px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .question-card:hover {
+    border-color: var(--grey-mid);
+  }
+  .question-card.answered {
+    border-color: rgba(0,228,167,0.3);
+  }
+  .question-number {
+    display: none;
+  }
+  .question-text {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.55;
+    color: var(--black);
+    margin-bottom: 20px;
+  }
+
+  /* ─── OPTIONS ─────────────────────────────────────────────── */
+  .options { display: flex; flex-direction: column; gap: 8px; }
+
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1.5px solid var(--grey-light);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: none;
+    background: var(--bg);
+  }
+  .option:hover {
+    border-color: var(--green);
+    background: rgba(0,228,167,0.04);
+  }
+  .option input { display: none; }
+  .option.selected {
+    border-color: var(--green);
+    background: rgba(0,228,167,0.06);
+  }
+
+  .option-radio {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--grey-light);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    background: var(--white);
+  }
+  .option.selected .option-radio {
+    border-color: var(--green);
+    background: var(--green);
+  }
+  .option.selected .option-radio::after {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--black);
+  }
+
+  /* ─── CHECKBOX INDICATOR ─────────────────────────────────── */
+  .option-check {
+    width: 18px; height: 18px;
+    border-radius: 4px;
+    border: 2px solid var(--grey-light);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    background: var(--white);
+  }
+  .option.selected .option-check {
+    border-color: var(--green);
+    background: var(--green);
+  }
+  .option.selected .option-check::after {
+    content: '✓';
+    font-size: 11px;
+    color: var(--black);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .option-label {
+    font-size: 14px;
+    color: var(--grey-dark);
+    line-height: 1.4;
+    font-weight: 400;
+  }
+  .option.selected .option-label {
+    color: var(--black);
+    font-weight: 500;
+  }
+
+  /* ─── COLOR OPTIONS ──────────────────────────────────────── */
+  .color-options { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .color-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 14px;
+    border-radius: 8px;
+    border: 1.5px solid var(--grey-light);
+    cursor: pointer;
+    background: var(--bg);
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .color-option:hover {
+    border-color: var(--green);
+    background: rgba(0,228,167,0.04);
+  }
+  .color-option.selected {
+    border-color: var(--green);
+    background: rgba(0,228,167,0.06);
+  }
+
+  .color-swatch {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  .color-swatch.green  { background: #22c55e; }
+  .color-swatch.yellow { background: #f59e0b; }
+  .color-swatch.red    { background: #ef4444; }
+  .color-swatch.blue   { background: #3b82f6; }
+
+  .color-option-label { font-size: 13px; color: var(--black); font-weight: 400; }
+  .color-option.selected .color-option-label { font-weight: 500; }
+
+  /* ─── TEST CARD ───────────────────────────────────────────── */
+  .test-card {
+    background: var(--white);
+    border: 1px solid var(--grey-light);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .test-card.answered { border-color: rgba(0,228,167,0.3); }
+
+  .test-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--grey-light);
+    background: var(--white);
+  }
+
+  .test-badge {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 6px;
+    flex-shrink: 0;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+  .test-badge.optional {
+    background: transparent;
+    color: var(--grey-dark);
+    border: 1px solid var(--grey-light);
+  }
+  .test-badge .badge-accent { color: var(--green); }
+
+  .test-instructions {
+    color: var(--grey-dark);
+    font-size: 13px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .test-body { padding: 24px 28px; }
+
+  .test-question {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--black);
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+  .sub-question {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--grey-dark);
+    margin: 20px 0 10px;
+    padding-left: 12px;
+    border-left: 2px solid var(--green);
+  }
+
+  .instruction-steps {
+    background: #f9fafb;
+    border-left: 2px solid var(--green);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: var(--grey-dark);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+  .instruction-steps strong {
+    color: var(--black);
+    font-weight: 500;
+  }
+
+  /* ─── IMAGES ─────────────────────────────────────────────── */
+  .test-images {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .test-img-wrap {
+    flex-shrink: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--grey-light);
+    background: #f1f5f9;
+    position: relative;
+    cursor: zoom-in;
+  }
+  .test-img-wrap img {
+    display: block;
+    width: auto;
+    height: 380px;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.2s;
+    cursor: zoom-in;
+  }
+  .test-img-wrap:hover img { transform: scale(1.02); }
+
+  /* ─── ZOOM BUTTON ────────────────────────────────────────── */
+  .zoom-btn {
+    position: absolute;
+    bottom: 10px; right: 10px;
+    background: rgba(0,0,0,0.62);
+    border-radius: 6px;
+    width: 40px; height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  /* ─── CAROUSEL ───────────────────────────────────────────── */
+  .carousel {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .carousel .test-images {
+    overflow: hidden;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .carousel .test-img-wrap {
+    display: none;
+    width: 100%;
+  }
+  .carousel .test-img-wrap.carousel-active {
+    display: block;
+  }
+  .carousel .test-img-wrap.carousel-active img {
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    width: 44px;
+    height: 84px;
+    font-size: 42px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    padding: 0;
+    transition: background 0.15s;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .carousel-btn:hover { background: rgba(0,0,0,0.78); }
+  .carousel-btn-prev { left: 0; border-radius: 0 6px 6px 0; }
+  .carousel-btn-next { right: 0; border-radius: 6px 0 0 6px; }
+  .carousel-counter {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 12px;
+    border-radius: 100px;
+    pointer-events: none;
+    z-index: 10;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  /* ─── CAROUSEL: desktop — revert to side-by-side ─────────── */
+  @media (min-width: 768px) {
+    .carousel-btn,
+    .carousel-counter { display: none; }
+    .carousel .test-images { display: flex; overflow-x: auto; gap: 8px; }
+    .carousel .test-img-wrap { display: block; width: auto; }
+    .carousel .test-img-wrap.carousel-active img { width: auto; }
+    .carousel .test-images:has(.test-img-wrap:nth-child(3)) .test-img-wrap img { height: 260px; }
+    .carousel .test-images:has(.test-img-wrap:nth-child(4)) .test-img-wrap img { height: 200px; }
+  }
+
+
+  /* ─── LIGHTBOX ───────────────────────────────────────────── */
+  .lightbox {
+    position: fixed; inset: 0;
+    background: rgba(15,15,15,0.92);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+  .lightbox.open { opacity: 1; pointer-events: all; }
+  .lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 8px; }
+  .lightbox-close {
+    position: absolute;
+    top: 24px; right: 28px;
+    color: var(--grey-mid);
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.15s;
+  }
+  .lightbox-close:hover { color: var(--white); }
+
+  /* ─── SUBMIT AREA ─────────────────────────────────────────── */
+  .submit-area {
+    margin-top: 52px;
+    background: var(--black);
+    border-radius: 16px;
+    padding: 48px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .submit-area::before {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,228,167,0.08) 0%, transparent 70%);
+    top: -150px; right: -100px;
+    pointer-events: none;
+  }
+  .submit-title {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .submit-title span { color: var(--green); }
+  .submit-subtitle {
+    color: var(--grey-light);
+    font-size: 13px;
+    margin-bottom: 32px;
+    font-weight: 300;
+  }
+
+  .submit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--green);
+    color: var(--black);
+    border: none;
+    padding: 15px 40px;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
+  }
+  .submit-btn:hover {
+    background: var(--white);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(0,228,167,0.2);
+  }
+  .submit-btn-icon { font-size: 16px; transition: transform 0.2s; }
+  .submit-btn:hover .submit-btn-icon { transform: translateX(3px); }
+
+  .submit-note {
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--grey-light);
+    font-weight: 300;
+  }
+
+  /* ─── TOAST ──────────────────────────────────────────────── */
+  .toast {
+    position: fixed;
+    bottom: 32px; right: 32px;
+    background: var(--black);
+    color: var(--white);
+    border: 1px solid rgba(0,228,167,0.3);
+    padding: 14px 20px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 100;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+  .toast-icon {
+    width: 22px; height: 22px;
+    background: var(--green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 12px;
+    color: var(--black);
+    font-weight: 700;
+  }
+
+  /* ─── MISSING / VALIDATION ───────────────────────────────── */
+  .question-card.missing {
+    border-color: rgba(239,68,68,0.5);
+    background: rgba(239,68,68,0.02);
+  }
+  .test-card.missing {
+    border-color: rgba(239,68,68,0.5);
+  }
+  .toast.error { border-color: rgba(239,68,68,0.5); }
+  .toast.error .toast-icon { background: #ef4444; content: '!'; }
+
+  /* ─── RESPONSIVE ─────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .header { padding: 16px 20px; }
+    .hero { padding: 48px 20px 64px; }
+    .progress-wrap { padding: 0 20px 14px; }
+    .progress-inner { gap: 12px; }
+    .progress-label { font-size: 8px; }
+    .container { padding: 0 16px 80px; }
+    .question-card { padding: 22px 20px; }
+    .test-header, .test-body { padding: 18px 20px; }
+    .submit-area { padding: 36px 24px; border-radius: 12px; }
+    .color-options { flex-direction: column; }
+    .test-img-wrap img { height: 300px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-logo">
+    <a href="https://www.movisplus.com" target="_blank" rel="noopener noreferrer">
+      <img src="https://cdn.prod.website-files.com/69834dd53c9c7bcf1c2bf529/6984c62bb3578b0ae7237ddb_Moviswhite.svg" alt="Movis+">
+    </a>
+  </div>
+  <div class="header-badge">Chestionar Clinic</div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">
+      <div class="hero-tag-dot"></div>
+      <div class="hero-tag-text">Evaluare clinică ghidată</div>
+    </div>
+    <h1>Chestionar clinic ghidat pentru <span>coloana lombară</span></h1>
+    <p class="hero-desc">Acest chestionar ne ajută să înțelegem ce probleme din RMN sunt relevante clinic pentru problema ta de coloană lombară. Răspunde cât mai sincer.</p>
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <div class="progress-section">
+      <span class="progress-label">Anamneză Generală</span>
+      <div class="progress-row">
+        <div class="progress-track"><div class="progress-fill" id="progressFillA"></div></div>
+        <span class="progress-pct" id="progressPctA">0%</span>
+      </div>
+    </div>
+    <div class="progress-section">
+      <span class="progress-label">Întrebări Specifice</span>
+      <div class="progress-row">
+        <div class="progress-track"><div class="progress-fill" id="progressFillQ"></div></div>
+        <span class="progress-pct" id="progressPctQ">0%</span>
+      </div>
+    </div>
+    <div class="progress-section">
+      <span class="progress-label">Teste Specifice</span>
+      <div class="progress-row">
+        <div class="progress-track"><div class="progress-fill" id="progressFillT"></div></div>
+        <span class="progress-pct" id="progressPctT">0%</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+  <!-- ─── ANAMNEZĂ GENERALĂ ─── -->
+  <div class="section-label">
+    <div class="section-label-line"></div>
+    <div class="section-label-text">Anamneză Generală</div>
+    <div class="section-label-line"></div>
+  </div>
+
+  <!-- Sub I -->
+  <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
+    <div class="sub-section-label-line"></div>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">I — Despre Problema Actuală</span>
+    <div class="sub-section-label-line"></div>
+  </div>
+
+  <!-- A1 -->
+  <div class="question-card" id="card-a1">
+    <div class="question-number">Anamneză A01</div>
+    <div class="question-text">De cât timp ai simptomele?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a1')"><input type="radio" name="a1"><div class="option-radio"></div><span class="option-label">Sub 2 săptămâni</span></label>
+      <label class="option" onclick="sel(this,'a1')"><input type="radio" name="a1"><div class="option-radio"></div><span class="option-label">2–6 săptămâni</span></label>
+      <label class="option" onclick="sel(this,'a1')"><input type="radio" name="a1"><div class="option-radio"></div><span class="option-label">6 săptămâni – 3 luni</span></label>
+      <label class="option" onclick="sel(this,'a1')"><input type="radio" name="a1"><div class="option-radio"></div><span class="option-label">3–12 luni</span></label>
+      <label class="option" onclick="sel(this,'a1')"><input type="radio" name="a1"><div class="option-radio"></div><span class="option-label">Peste 1 an</span></label>
+    </div>
+  </div>
+
+  <!-- A2 -->
+  <div class="question-card" id="card-a2">
+    <div class="question-number">Anamneză A02</div>
+    <div class="question-text">Cum au apărut simptomele?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a2')"><input type="radio" name="a2"><div class="option-radio"></div><span class="option-label">Brusc, după un eveniment clar (cădere, accident, mișcare bruscă)</span></label>
+      <label class="option" onclick="sel(this,'a2')"><input type="radio" name="a2"><div class="option-radio"></div><span class="option-label">După efort repetitiv / suprasolicitare</span></label>
+      <label class="option" onclick="sel(this,'a2')"><input type="radio" name="a2"><div class="option-radio"></div><span class="option-label">Treptat, fără un motiv clar</span></label>
+      <label class="option" onclick="sel(this,'a2')"><input type="radio" name="a2"><div class="option-radio"></div><span class="option-label">Am mai avut episoade similare în trecut</span></label>
+    </div>
+  </div>
+
+  <!-- A3 -->
+  <div class="question-card" id="card-a3">
+    <div class="question-number">Anamneză A03</div>
+    <div class="question-text">Evoluția în timp:</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a3')"><input type="radio" name="a3"><div class="option-radio"></div><span class="option-label">Se ameliorează treptat</span></label>
+      <label class="option" onclick="sel(this,'a3')"><input type="radio" name="a3"><div class="option-radio"></div><span class="option-label">Este stabilă</span></label>
+      <label class="option" onclick="sel(this,'a3')"><input type="radio" name="a3"><div class="option-radio"></div><span class="option-label">Se agravează lent</span></label>
+      <label class="option" onclick="sel(this,'a3')"><input type="radio" name="a3"><div class="option-radio"></div><span class="option-label">Se agravează rapid în ultimele săptămâni</span></label>
+    </div>
+  </div>
+
+  <!-- Sub II -->
+  <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
+    <div class="sub-section-label-line"></div>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">II — Caracterul Durerii</span>
+    <div class="sub-section-label-line"></div>
+  </div>
+
+  <!-- A4 -->
+  <div class="question-card" id="card-a4">
+    <div class="question-number">Anamneză A04</div>
+    <div class="question-text">Cât de intensă este durerea, în medie?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a4')"><input type="radio" name="a4"><div class="option-radio"></div><span class="option-label">0–2 (ușoară)</span></label>
+      <label class="option" onclick="sel(this,'a4')"><input type="radio" name="a4"><div class="option-radio"></div><span class="option-label">3–5 (moderată)</span></label>
+      <label class="option" onclick="sel(this,'a4')"><input type="radio" name="a4"><div class="option-radio"></div><span class="option-label">6–8 (mare)</span></label>
+      <label class="option" onclick="sel(this,'a4')"><input type="radio" name="a4"><div class="option-radio"></div><span class="option-label">9–10 (foarte severă)</span></label>
+    </div>
+  </div>
+
+  <!-- A5 -->
+  <div class="question-card" id="card-a5">
+    <div class="question-number">Anamneză A05</div>
+    <div class="question-text">Durerea este:</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a5')"><input type="radio" name="a5"><div class="option-radio"></div><span class="option-label">Doar la mișcare / efort</span></label>
+      <label class="option" onclick="sel(this,'a5')"><input type="radio" name="a5"><div class="option-radio"></div><span class="option-label">Și la mișcare, și în repaus</span></label>
+      <label class="option" onclick="sel(this,'a5')"><input type="radio" name="a5"><div class="option-radio"></div><span class="option-label">Constantă, inclusiv noaptea</span></label>
+      <label class="option" onclick="sel(this,'a5')"><input type="radio" name="a5"><div class="option-radio"></div><span class="option-label">Mă trezește frecvent din somn</span></label>
+    </div>
+  </div>
+
+  <!-- A6 -->
+  <div class="question-card" id="card-a6">
+    <div class="question-number">Anamneză A06</div>
+    <div class="question-text">Dimineața, zona afectată este:</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a6')"><input type="radio" name="a6"><div class="option-radio"></div><span class="option-label">Fara redoare matinala</span></label>
+      <label class="option" onclick="sel(this,'a6')"><input type="radio" name="a6"><div class="option-radio"></div><span class="option-label">Rigidă sub 30 minute</span></label>
+      <label class="option" onclick="sel(this,'a6')"><input type="radio" name="a6"><div class="option-radio"></div><span class="option-label">Rigidă peste 30–60 minute</span></label>
+      <label class="option" onclick="sel(this,'a6')"><input type="radio" name="a6"><div class="option-radio"></div><span class="option-label">Rigidă peste 1 oră</span></label>
+    </div>
+  </div>
+
+  <!-- A7 multi -->
+  <div class="question-card" id="card-a7">
+    <div class="question-number">Anamneză A07</div>
+    <div class="question-text">Ai senzații de: <small style="font-weight:300;font-size:12px;">(poți bifa mai multe)</small></div>
+    <div class="options">
+      <label class="option" onclick="selCheck(this,'a7','a7-none',event)"><input type="checkbox" name="a7"><div class="option-check"></div><span class="option-label">Amorțeală</span></label>
+      <label class="option" onclick="selCheck(this,'a7','a7-none',event)"><input type="checkbox" name="a7"><div class="option-check"></div><span class="option-label">Furnicături</span></label>
+      <label class="option" onclick="selCheck(this,'a7','a7-none',event)"><input type="checkbox" name="a7"><div class="option-check"></div><span class="option-label">Slăbiciune clară</span></label>
+    </div>
+    <div style="margin-top:8px;">
+      <label class="option" onclick="selNone(this,'a7-none','a7',event)"><input type="radio" name="a7-none"><div class="option-radio"></div><span class="option-label">Fara amorteli, furnicaturi sau slabiciune</span></label>
+    </div>
+  </div>
+
+  <!-- Sub III -->
+  <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
+    <div class="sub-section-label-line"></div>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">III — Impact Funcțional</span>
+    <div class="sub-section-label-line"></div>
+  </div>
+
+  <!-- A8 -->
+  <div class="question-card" id="card-a8">
+    <div class="question-number">Anamneză A08</div>
+    <div class="question-text">Din cauza problemei actuale:</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a8')"><input type="radio" name="a8"><div class="option-radio"></div><span class="option-label">Pot face aproape toate activitățile normale</span></label>
+      <label class="option" onclick="sel(this,'a8')"><input type="radio" name="a8"><div class="option-radio"></div><span class="option-label">Evit anumite mișcări / activități</span></label>
+      <label class="option" onclick="sel(this,'a8')"><input type="radio" name="a8"><div class="option-radio"></div><span class="option-label">Mi-am redus semnificativ activitatea</span></label>
+      <label class="option" onclick="sel(this,'a8')"><input type="radio" name="a8"><div class="option-radio"></div><span class="option-label">Nu pot face activități uzuale (mers, urcat scări, ridicat obiecte)</span></label>
+    </div>
+  </div>
+
+  <!-- A9 multi -->
+  <div class="question-card" id="card-a9">
+    <div class="question-number">Anamneză A09</div>
+    <div class="question-text">Problema îți afectează: <small style="font-weight:300;font-size:12px;">(poți bifa mai multe)</small></div>
+    <div class="options">
+      <label class="option" onclick="selCheck(this,'a9','a9-none',event)"><input type="checkbox" name="a9"><div class="option-check"></div><span class="option-label">Somnul</span></label>
+      <label class="option" onclick="selCheck(this,'a9','a9-none',event)"><input type="checkbox" name="a9"><div class="option-check"></div><span class="option-label">Mersul</span></label>
+      <label class="option" onclick="selCheck(this,'a9','a9-none',event)"><input type="checkbox" name="a9"><div class="option-check"></div><span class="option-label">Munca</span></label>
+      <label class="option" onclick="selCheck(this,'a9','a9-none',event)"><input type="checkbox" name="a9"><div class="option-check"></div><span class="option-label">Sportul</span></label>
+    </div>
+    <div style="margin-top:8px;">
+      <label class="option" onclick="selNone(this,'a9-none','a9',event)"><input type="radio" name="a9-none"><div class="option-radio"></div><span class="option-label">Fara impact functional semnificativ</span></label>
+    </div>
+  </div>
+
+  <!-- Sub IV -->
+  <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
+    <div class="sub-section-label-line"></div>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">IV — Semnale de Alarmă</span>
+    <div class="sub-section-label-line"></div>
+  </div>
+
+  <!-- A10 multi -->
+  <div class="question-card" id="card-a10">
+    <div class="question-number">Anamneză A10</div>
+    <div class="question-text">În ultimele luni ai avut: <small style="font-weight:300;font-size:12px;">(poți bifa mai multe)</small></div>
+    <div class="options">
+      <label class="option" onclick="selCheck(this,'a10','a10-none',event)"><input type="checkbox" name="a10"><div class="option-check"></div><span class="option-label">Scădere în greutate neintenționate</span></label>
+      <label class="option" onclick="selCheck(this,'a10','a10-none',event)"><input type="checkbox" name="a10"><div class="option-check"></div><span class="option-label">Febră inexplicabilă</span></label>
+      <label class="option" onclick="selCheck(this,'a10','a10-none',event)"><input type="checkbox" name="a10"><div class="option-check"></div><span class="option-label">Transpirații nocturne persistente</span></label>
+      <label class="option" onclick="selCheck(this,'a10','a10-none',event)"><input type="checkbox" name="a10"><div class="option-check"></div><span class="option-label">Istoric personal de cancer</span></label>
+    </div>
+    <div style="margin-top:8px;">
+      <label class="option" onclick="selNone(this,'a10-none','a10',event)"><input type="radio" name="a10-none"><div class="option-radio"></div><span class="option-label">Fara semne de alarma</span></label>
+    </div>
+  </div>
+
+  <!-- A11 multi -->
+  <div class="question-card" id="card-a11">
+    <div class="question-number">Anamneză A11</div>
+    <div class="question-text">Ai avut recent: <small style="font-weight:300;font-size:12px;">(poți bifa mai multe)</small></div>
+    <div class="options">
+      <label class="option" onclick="selCheck(this,'a11','a11-none',event)"><input type="checkbox" name="a11"><div class="option-check"></div><span class="option-label">Traumatism major (accident, cădere serioasă)</span></label>
+      <label class="option" onclick="selCheck(this,'a11','a11-none',event)"><input type="checkbox" name="a11"><div class="option-check"></div><span class="option-label">Slăbiciune progresivă accentuată</span></label>
+      <label class="option" onclick="selCheck(this,'a11','a11-none',event)"><input type="checkbox" name="a11"><div class="option-check"></div><span class="option-label">Probleme noi cu controlul urinei sau scaunului</span></label>
+    </div>
+    <div style="margin-top:8px;">
+      <label class="option" onclick="selNone(this,'a11-none','a11',event)"><input type="radio" name="a11-none"><div class="option-radio"></div><span class="option-label">Fara evenimente recente relevante</span></label>
+    </div>
+  </div>
+
+  <!-- Sub V -->
+  <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
+    <div class="sub-section-label-line"></div>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">V — Tratament Anterior</span>
+    <div class="sub-section-label-line"></div>
+  </div>
+
+  <!-- A12 multi -->
+  <div class="question-card" id="card-a12">
+    <div class="question-number">Anamneză A12</div>
+    <div class="question-text">Ce ai încercat până acum? <small style="font-weight:300;font-size:12px;">(poți bifa mai multe)</small></div>
+    <div class="options">
+      <label class="option" onclick="selCheck(this,'a12','a12-none',event);toggleA13(false)"><input type="checkbox" name="a12"><div class="option-check"></div><span class="option-label">Antiinflamatoare / analgezice</span></label>
+      <label class="option" onclick="selCheck(this,'a12','a12-none',event);toggleA13(false)"><input type="checkbox" name="a12"><div class="option-check"></div><span class="option-label">Fizioterapie / kinetoterapie</span></label>
+      <label class="option" onclick="selCheck(this,'a12','a12-none',event);toggleA13(false)"><input type="checkbox" name="a12"><div class="option-check"></div><span class="option-label">Infiltrații</span></label>
+      <label class="option" onclick="selCheck(this,'a12','a12-none',event);toggleA13(false)"><input type="checkbox" name="a12"><div class="option-check"></div><span class="option-label">Repaus</span></label>
+    </div>
+    <div style="margin-top:8px;">
+      <label class="option" onclick="selNone(this,'a12-none','a12',event);toggleA13(true)"><input type="radio" name="a12-none"><div class="option-radio"></div><span class="option-label">Fara tratament anterior</span></label>
+    </div>
+  </div>
+
+  <!-- A13 -->
+  <div class="question-card" id="card-a13">
+    <div class="question-number">Anamneză A13</div>
+    <div class="question-text">Tratamentul a fost:</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a13')"><input type="radio" name="a13"><div class="option-radio"></div><span class="option-label">Clar eficient</span></label>
+      <label class="option" onclick="sel(this,'a13')"><input type="radio" name="a13"><div class="option-radio"></div><span class="option-label">Parțial eficient</span></label>
+      <label class="option" onclick="sel(this,'a13')"><input type="radio" name="a13"><div class="option-radio"></div><span class="option-label">Fără efect</span></label>
+      <label class="option" onclick="sel(this,'a13')"><input type="radio" name="a13"><div class="option-radio"></div><span class="option-label">Nu pot aprecia</span></label>
+    </div>
+  </div>
+
+  <!-- Sub VI -->
+  <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
+    <div class="sub-section-label-line"></div>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">VI — Context Medical</span>
+    <div class="sub-section-label-line"></div>
+  </div>
+
+  <!-- A14 multi -->
+  <div class="question-card" id="card-a14">
+    <div class="question-number">Anamneză A14</div>
+    <div class="question-text">Ai fost diagnosticat cu: <small style="font-weight:300;font-size:12px;">(poți bifa mai multe)</small></div>
+    <div class="options">
+      <label class="option" onclick="selCheck(this,'a14','a14-none',event)"><input type="checkbox" name="a14"><div class="option-check"></div><span class="option-label">Boală reumatologică</span></label>
+      <label class="option" onclick="selCheck(this,'a14','a14-none',event)"><input type="checkbox" name="a14"><div class="option-check"></div><span class="option-label">Diabet</span></label>
+      <label class="option" onclick="selCheck(this,'a14','a14-none',event)"><input type="checkbox" name="a14"><div class="option-check"></div><span class="option-label">Osteoporoză</span></label>
+      <label class="option" onclick="selCheck(this,'a14','a14-none',event)"><input type="checkbox" name="a14"><div class="option-check"></div><span class="option-label">Afecțiune neurologică</span></label>
+      <label class="option" onclick="selCheck(this,'a14','a14-none',event)"><input type="checkbox" name="a14"><div class="option-check"></div><span class="option-label">Boală oncologică în trecut</span></label>
+    </div>
+    <div style="margin-top:8px;">
+      <label class="option" onclick="selNone(this,'a14-none','a14',event)"><input type="radio" name="a14-none"><div class="option-radio"></div><span class="option-label">Fara comorbiditati relevante</span></label>
+    </div>
+  </div>
+
+  <!-- A15 -->
+  <div class="question-card" id="card-a15">
+    <div class="question-number">Anamneză A15</div>
+    <div class="question-text">Ai suferit intervenții chirurgicale în zona investigată?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a15')"><input type="radio" name="a15"><div class="option-radio"></div><span class="option-label">Da</span></label>
+      <label class="option" onclick="sel(this,'a15')"><input type="radio" name="a15"><div class="option-radio"></div><span class="option-label">Nu</span></label>
+    </div>
+  </div>
+
+  <!-- Sub VII -->
+  <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
+    <div class="sub-section-label-line"></div>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">VII — Stil de Viață</span>
+    <div class="sub-section-label-line"></div>
+  </div>
+
+  <!-- A16 -->
+  <div class="question-card" id="card-a16">
+    <div class="question-number">Anamneză A16</div>
+    <div class="question-text">Nivelul tău de activitate este:</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a16')"><input type="radio" name="a16"><div class="option-radio"></div><span class="option-label">Predominant sedentar</span></label>
+      <label class="option" onclick="sel(this,'a16')"><input type="radio" name="a16"><div class="option-radio"></div><span class="option-label">Activ moderat (mers, activitate fizică ușoară)</span></label>
+      <label class="option" onclick="sel(this,'a16')"><input type="radio" name="a16"><div class="option-radio"></div><span class="option-label">Activ regulat (sport 2–3 ori / săptămână)</span></label>
+      <label class="option" onclick="sel(this,'a16')"><input type="radio" name="a16"><div class="option-radio"></div><span class="option-label">Foarte activ / sport intensiv</span></label>
+    </div>
+  </div>
+
+  <!-- A17 -->
+  <div class="question-card" id="card-a17">
+    <div class="question-number">Anamneză A17</div>
+    <div class="question-text">La locul de muncă:</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a17')"><input type="radio" name="a17"><div class="option-radio"></div><span class="option-label">Stau mai mult pe scaun</span></label>
+      <label class="option" onclick="sel(this,'a17')"><input type="radio" name="a17"><div class="option-radio"></div><span class="option-label">Stau mult în picioare</span></label>
+      <label class="option" onclick="sel(this,'a17')"><input type="radio" name="a17"><div class="option-radio"></div><span class="option-label">Ridic greutăți frecvent</span></label>
+      <label class="option" onclick="sel(this,'a17')"><input type="radio" name="a17"><div class="option-radio"></div><span class="option-label">Activitate mixtă</span></label>
+    </div>
+  </div>
+
+  <!-- A18 -->
+  <div class="question-card" id="card-a18">
+    <div class="question-number">Anamneză A18</div>
+    <div class="question-text">Fumezi?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a18')"><input type="radio" name="a18"><div class="option-radio"></div><span class="option-label">Nu</span></label>
+      <label class="option" onclick="sel(this,'a18')"><input type="radio" name="a18"><div class="option-radio"></div><span class="option-label">Ocazional</span></label>
+      <label class="option" onclick="sel(this,'a18')"><input type="radio" name="a18"><div class="option-radio"></div><span class="option-label">Zilnic</span></label>
+    </div>
+  </div>
+
+  <!-- A19 -->
+  <div class="question-card" id="card-a19">
+    <div class="question-number">Anamneză A19</div>
+    <div class="question-text">Greutatea corporală:</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a19')"><input type="radio" name="a19"><div class="option-radio"></div><span class="option-label">Normoponderal</span></label>
+      <label class="option" onclick="sel(this,'a19')"><input type="radio" name="a19"><div class="option-radio"></div><span class="option-label">Ușor supraponderal</span></label>
+      <label class="option" onclick="sel(this,'a19')"><input type="radio" name="a19"><div class="option-radio"></div><span class="option-label">Obez</span></label>
+      <label class="option" onclick="sel(this,'a19')"><input type="radio" name="a19"><div class="option-radio"></div><span class="option-label">Nu știu / prefer să nu răspund</span></label>
+    </div>
+  </div>
+
+  <!-- Sub VIII -->
+  <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
+    <div class="sub-section-label-line"></div>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">VIII — Obiectivul Tău</span>
+    <div class="sub-section-label-line"></div>
+  </div>
+
+  <!-- A20 -->
+  <div class="question-card" id="card-a20">
+    <div class="question-number">Anamneză A20</div>
+    <div class="question-text">Ce ți-ai dori cel mai mult să poți face fără durere?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a20')"><input type="radio" name="a20"><div class="option-radio"></div><span class="option-label">Activități zilnice fără limitare</span></label>
+      <label class="option" onclick="sel(this,'a20')"><input type="radio" name="a20"><div class="option-radio"></div><span class="option-label">Revenirea la sport</span></label>
+      <label class="option" onclick="sel(this,'a20')"><input type="radio" name="a20"><div class="option-radio"></div><span class="option-label">Revenirea la muncă normal</span></label>
+      <label class="option" onclick="sel(this,'a20')"><input type="radio" name="a20"><div class="option-radio"></div><span class="option-label">Reducerea durerii, chiar dacă rămân unele limitări</span></label>
+    </div>
+  </div>
+  <div class="section-label">
+    <div class="section-label-line"></div>
+    <div class="section-label-text">Întrebări Specifice</div>
+    <div class="section-label-line"></div>
+  </div>
+
+  <!-- Q1 -->
+  <div class="question-card" id="card-q1">
+    <div class="question-number">Întrebarea 01</div>
+    <div class="question-text">Pe ce parte sunt mai intense simptomele?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'q1')"><input type="radio" name="q1"><div class="option-radio"></div><span class="option-label">Dreapta</span></label>
+      <label class="option" onclick="sel(this,'q1')"><input type="radio" name="q1"><div class="option-radio"></div><span class="option-label">Stânga</span></label>
+      <label class="option" onclick="sel(this,'q1')"><input type="radio" name="q1"><div class="option-radio"></div><span class="option-label">Ambele la fel</span></label>
+      <label class="option" onclick="sel(this,'q1')"><input type="radio" name="q1"><div class="option-radio"></div><span class="option-label">Doar în zona lombară, fără iradiere pe picior</span></label>
+    </div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="question-card" id="card-q2">
+    <div class="question-number">Întrebarea 02</div>
+    <div class="question-text">Ce te deranjează mai mult?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'q2')"><input type="radio" name="q2"><div class="option-radio"></div><span class="option-label">Durerea locală în zona lombară</span></label>
+      <label class="option" onclick="sel(this,'q2')"><input type="radio" name="q2"><div class="option-radio"></div><span class="option-label">Durerea care coboară pe picior</span></label>
+      <label class="option" onclick="sel(this,'q2')"><input type="radio" name="q2"><div class="option-radio"></div><span class="option-label">Amorțeala / furnicăturile pe picior</span></label>
+      <label class="option" onclick="sel(this,'q2')"><input type="radio" name="q2"><div class="option-radio"></div><span class="option-label">Slăbiciunea în picior</span></label>
+      <label class="option" onclick="sel(this,'q2')"><input type="radio" name="q2"><div class="option-radio"></div><span class="option-label">Niciuna</span></label>
+    </div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="question-card" id="card-q3">
+    <div class="question-number">Întrebarea 03</div>
+    <div class="question-text">Durerea coboară sub nivelul genunchiului?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'q3')"><input type="radio" name="q3"><div class="option-radio"></div><span class="option-label">Nu</span></label>
+      <label class="option" onclick="sel(this,'q3')"><input type="radio" name="q3"><div class="option-radio"></div><span class="option-label">Da, pe partea dreaptă</span></label>
+      <label class="option" onclick="sel(this,'q3')"><input type="radio" name="q3"><div class="option-radio"></div><span class="option-label">Da, pe partea stângă</span></label>
+      <label class="option" onclick="sel(this,'q3')"><input type="radio" name="q3"><div class="option-radio"></div><span class="option-label">Da, pe ambele părți</span></label>
+    </div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="question-card" id="card-q4">
+    <div class="question-number">Întrebarea 04</div>
+    <div class="question-text">Când mergi o perioadă mai lungă:</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'q4')"><input type="radio" name="q4"><div class="option-radio"></div><span class="option-label">Pot merge fără limitare</span></label>
+      <label class="option" onclick="sel(this,'q4')"><input type="radio" name="q4"><div class="option-radio"></div><span class="option-label">După un timp simt durere / greutate în picioare</span></label>
+      <label class="option" onclick="sel(this,'q4')"><input type="radio" name="q4"><div class="option-radio"></div><span class="option-label">Trebuie să mă opresc frecvent din cauza durerii sau slăbiciunii</span></label>
+    </div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="question-card" id="card-q5">
+    <div class="question-number">Întrebarea 05</div>
+    <div class="question-text">Când mă așez pe un scaun sau mă aplec ușor înainte:</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'q5')"><input type="radio" name="q5"><div class="option-radio"></div><span class="option-label">Nu se schimbă nimic</span></label>
+      <label class="option" onclick="sel(this,'q5')"><input type="radio" name="q5"><div class="option-radio"></div><span class="option-label">Durerea se ameliorează clar</span></label>
+      <label class="option" onclick="sel(this,'q5')"><input type="radio" name="q5"><div class="option-radio"></div><span class="option-label">Slăbiciunea din picioare se ameliorează</span></label>
+    </div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="question-card" id="card-q6">
+    <div class="question-number">Întrebarea 06</div>
+    <div class="question-text">Ai observat oricare dintre următoarele apărute recent?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'q6')"><input type="radio" name="q6"><div class="option-radio"></div><span class="option-label">Amorțeală în zona dintre picioare (zona „șeii")</span></label>
+      <label class="option" onclick="sel(this,'q6')"><input type="radio" name="q6"><div class="option-radio"></div><span class="option-label">Pierdere involuntară de urină sau scaun (brusc mai grav față de problemele tale digestive sau urinare cronice, dacă acestea există)</span></label>
+      <label class="option" onclick="sel(this,'q6')"><input type="radio" name="q6"><div class="option-radio"></div><span class="option-label">Dificultate bruscă de a porni jetul urinar (brusc mai grav față de problemele tale urinare cronice, dacă acestea există)</span></label>
+      <label class="option" onclick="sel(this,'q6')"><input type="radio" name="q6"><div class="option-radio"></div><span class="option-label">Slăbiciune progresivă accentuată într-un picior</span></label>
+      <label class="option" onclick="sel(this,'q6')"><input type="radio" name="q6"><div class="option-radio"></div><span class="option-label">Niciuna dintre acestea</span></label>
+    </div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="question-card" id="card-q7">
+    <div class="question-number">Întrebarea 07</div>
+    <div class="question-text">Dimineața, după ce te ridici din pat, cum te simți în zona lombară?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'q7')"><input type="radio" name="q7"><div class="option-radio"></div><span class="option-label">Mă simt rigid, dar se ameliorează după ce mă mișc, în 30-60 minute</span></label>
+      <label class="option" onclick="sel(this,'q7')"><input type="radio" name="q7"><div class="option-radio"></div><span class="option-label">Durerea este mai intensă la primii pași și când îndrept coloana</span></label>
+      <label class="option" onclick="sel(this,'q7')"><input type="radio" name="q7"><div class="option-radio"></div><span class="option-label">Nu observ diferențe</span></label>
+    </div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="question-card" id="card-q8">
+    <div class="question-number">Întrebarea 08</div>
+    <div class="question-text">Statul prelungit pe scaun:</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'q8')"><input type="radio" name="q8"><div class="option-radio"></div><span class="option-label">Nu influențează</span></label>
+      <label class="option" onclick="sel(this,'q8')"><input type="radio" name="q8"><div class="option-radio"></div><span class="option-label">Agravează durerea lombară</span></label>
+      <label class="option" onclick="sel(this,'q8')"><input type="radio" name="q8"><div class="option-radio"></div><span class="option-label">Agravează durerea pe picior</span></label>
+    </div>
+  </div>
+
+  <div class="section-label">
+    <div class="section-label-line"></div>
+    <span class="section-label-num">02</span>
+    <div class="section-label-text">Teste de Mobilitate</div>
+    <div class="section-label-line"></div>
+  </div>
+
+  <!-- ROM1 -->
+  <div class="question-card" id="card-rom1">
+    <div class="question-number">Aplecarea înainte — atingi vârfurile picioarelor?</div>
+    <div class="question-text">Apleacă-te înainte și încearcă să atingi vârfurile picioarelor.</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'rom1')"><input type="radio" name="rom1"><div class="option-radio"></div><span class="option-label">Este la fel ca înainte de episod</span></label>
+      <label class="option" onclick="sel(this,'rom1')"><input type="radio" name="rom1"><div class="option-radio"></div><span class="option-label">Simt că mă „ține" în zona lombară</span></label>
+      <label class="option" onclick="sel(this,'rom1')"><input type="radio" name="rom1"><div class="option-radio"></div><span class="option-label">Simt durere lombară</span></label>
+      <label class="option" onclick="sel(this,'rom1')"><input type="radio" name="rom1"><div class="option-radio"></div><span class="option-label">Durerea coboară pe picior</span></label>
+    </div>
+  </div>
+
+  <!-- ROM2 -->
+  <div class="question-card" id="card-rom2">
+    <div class="question-number">Extensia lombară — îndreaptă spatele</div>
+    <div class="question-text">Îndreaptă cât poți de mult spatele.</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'rom2')"><input type="radio" name="rom2"><div class="option-radio"></div><span class="option-label">Fără durere</span></label>
+      <label class="option" onclick="sel(this,'rom2')"><input type="radio" name="rom2"><div class="option-radio"></div><span class="option-label">Doare local în lombar</span></label>
+      <label class="option" onclick="sel(this,'rom2')"><input type="radio" name="rom2"><div class="option-radio"></div><span class="option-label">Durerea coboară pe picior</span></label>
+    </div>
+  </div>
+
+  <!-- ROM3 -->
+  <div class="question-card" id="card-rom3">
+    <div class="question-number">Mers pe călcâie — evaluarea forței L4-L5</div>
+    <div class="question-text">Mergi câțiva pași doar pe călcâie, ridicând cât poți de mult partea din față a piciorului și degetele în sus.</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'rom3')"><input type="radio" name="rom3"><div class="option-radio"></div><span class="option-label">Pot merge normal, fără diferență între picioare</span></label>
+      <label class="option" onclick="sel(this,'rom3')"><input type="radio" name="rom3"><div class="option-radio"></div><span class="option-label">Pot merge, dar simt o ușoară slăbiciune pe partea afectată</span></label>
+      <label class="option" onclick="sel(this,'rom3')"><input type="radio" name="rom3"><div class="option-radio"></div><span class="option-label">Pot merge, dar simt clar că degetul mare este mai slab pe partea afectată</span></label>
+      <label class="option" onclick="sel(this,'rom3')"><input type="radio" name="rom3"><div class="option-radio"></div><span class="option-label">Nu pot menține poziția pe partea afectată</span></label>
+    </div>
+  </div>
+
+  <!-- ROM4 -->
+  <div class="question-card" id="card-rom4">
+    <div class="question-number">Mers pe vârfuri — evaluarea forței S1</div>
+    <div class="question-text">Mergi câțiva pași doar pe vârfuri.</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'rom4')"><input type="radio" name="rom4"><div class="option-radio"></div><span class="option-label">Pot merge normal, fără diferență</span></label>
+      <label class="option" onclick="sel(this,'rom4')"><input type="radio" name="rom4"><div class="option-radio"></div><span class="option-label">Pot merge, dar simt slăbiciune pe partea afectată</span></label>
+      <label class="option" onclick="sel(this,'rom4')"><input type="radio" name="rom4"><div class="option-radio"></div><span class="option-label">Pot merge, dar degetul mare este mai slab pe partea afectată</span></label>
+      <label class="option" onclick="sel(this,'rom4')"><input type="radio" name="rom4"><div class="option-radio"></div><span class="option-label">Nu pot menține poziția din cauza slăbiciunii</span></label>
+      <label class="option" onclick="sel(this,'rom4')"><input type="radio" name="rom4"><div class="option-radio"></div><span class="option-label">Nu pot din cauza durerii sau instabilității în talpă / gleznă</span></label>
+    </div>
+  </div>
+
+  <div class="section-label">
+    <div class="section-label-line"></div>
+    <span class="section-label-num">03</span>
+    <div class="section-label-text">Teste Specifice</div>
+    <div class="section-label-line"></div>
+  </div>
+
+  <!-- TEST T1 -->
+  <div class="test-card" id="card-t1">
+    <div class="test-header">
+      <div class="test-badge">T<span class="badge-accent">01</span></div>
+      <div class="test-instructions">Testul de localizare a durerii — apasă zonele marcate</div>
+    </div>
+    <div class="test-body">
+      <div class="test-images">
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Lombara/images/image1.jpg" alt="Zone de durere lombară"></div>
+      </div>
+      <div class="instruction-steps">
+        Privește imaginea.<br>
+        Apasă ferm în zonele colorate (sau roagă pe cineva să te ajute cu asta). Dacă nu poți, încearcă să aproximezi care zone te dor mai tare.<br>
+        Alege maximum 1–2 zone care dor cel mai tare.
+      </div>
+      <div class="test-question">Care zone sunt dureroase la apăsare? (max. 2 zone)</div>
+      <div class="color-options">
+        <label class="color-option" onclick="selColorMulti(this,'t1','t1-none',2,event)"><input type="checkbox" name="t1" style="display:none"><div class="color-swatch red"></div><span class="color-option-label">Roșu</span></label>
+        <label class="color-option" onclick="selColorMulti(this,'t1','t1-none',2,event)"><input type="checkbox" name="t1" style="display:none"><div class="color-swatch purple"></div><span class="color-option-label">Mov</span></label>
+        <label class="color-option" onclick="selColorMulti(this,'t1','t1-none',2,event)"><input type="checkbox" name="t1" style="display:none"><div class="color-swatch blue"></div><span class="color-option-label">Albastru</span></label>
+        <label class="color-option" onclick="selColorMulti(this,'t1','t1-none',2,event)"><input type="checkbox" name="t1" style="display:none"><div class="color-swatch green"></div><span class="color-option-label">Verde</span></label>
+        <label class="color-option" onclick="selColorMulti(this,'t1','t1-none',2,event)"><input type="checkbox" name="t1" style="display:none"><div class="color-swatch yellow"></div><span class="color-option-label">Galben</span></label>
+      </div>
+      <div style="margin-top:10px">
+        <label class="option" onclick="selNoneColor(this,'t1-none','t1',event)" style="display:inline-flex;">
+          <input type="radio" name="t1-none"><div class="option-radio"></div>
+          <span class="option-label">Nicio zonă nu este clar mai dureroasă la apăsare</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST T2 -->
+  <div class="test-card" id="card-t2">
+    <div class="test-header">
+      <div class="test-badge">T<span class="badge-accent">02</span></div>
+      <div class="test-instructions">Testul de sensibilitate — compară picioarele</div>
+    </div>
+    <div class="test-body">
+      <div class="test-images">
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Lombara/images/image3.jpg" alt="Zone de sensibilitate"></div>
+      </div>
+      <div class="instruction-steps">
+        Privește imaginea.<br>
+        Folosește degetele și:<br>
+        — Atinge ușor fiecare zonă colorată<br>
+        — Ciupește ușor aceeași zonă (testăm durerea)<br>
+        Compară mereu cu piciorul opus.<br>
+        Bifează toate culorile unde senzația este diferită față de partea sănătoasă.
+      </div>
+      <div class="test-question">Care zone au sensibilitate diferită? (poți bifa mai multe)</div>
+      <div class="color-options">
+        <label class="color-option" onclick="selColorMulti(this,'t2','t2-none',5,event)"><input type="checkbox" name="t2" style="display:none"><div class="color-swatch green"></div><span class="color-option-label">Verde</span></label>
+        <label class="color-option" onclick="selColorMulti(this,'t2','t2-none',5,event)"><input type="checkbox" name="t2" style="display:none"><div class="color-swatch yellow"></div><span class="color-option-label">Galben</span></label>
+        <label class="color-option" onclick="selColorMulti(this,'t2','t2-none',5,event)"><input type="checkbox" name="t2" style="display:none"><div class="color-swatch purple"></div><span class="color-option-label">Mov</span></label>
+        <label class="color-option" onclick="selColorMulti(this,'t2','t2-none',5,event)"><input type="checkbox" name="t2" style="display:none"><div class="color-swatch blue"></div><span class="color-option-label">Albastru</span></label>
+        <label class="color-option" onclick="selColorMulti(this,'t2','t2-none',5,event)"><input type="checkbox" name="t2" style="display:none"><div class="color-swatch red"></div><span class="color-option-label">Roșu</span></label>
+      </div>
+      <div style="margin-top:10px">
+        <label class="option" onclick="selNoneColor(this,'t2-none','t2',event)" style="display:inline-flex;">
+          <input type="radio" name="t2-none"><div class="option-radio"></div>
+          <span class="option-label">Nicio zonă — simt la fel peste tot</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST T3 -->
+  <div class="test-card" id="card-t3">
+    <div class="test-header">
+      <div class="test-badge">T<span class="badge-accent">03</span></div>
+      <div class="test-instructions">Testul de elongație (SLR) — ridică piciorul întins</div>
+    </div>
+    <div class="test-body">
+      <div class="test-images">
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Lombara/images/image2.jpg" alt="Poziția 1 — picior afectat"></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Lombara/images/image5.jpg" alt="Poziția 2 — picior sănătos"></div>
+      </div>
+      <div class="instruction-steps">
+        Stai întins pe spate și ridică piciorul dureros (sau roagă pe cineva să ți-l ridice), fără să îndoi genunchiul sau încercând să ții genunchiul cât mai drept.<br>
+        Oprește-te când apare simptomul obișnuit din picior.
+      </div>
+      <div class="sub-question">Ce se întâmplă când ridici piciorul dureros?</div>
+      <div class="options">
+        <label class="option" onclick="sel(this,'t3a')"><input type="radio" name="t3a"><div class="option-radio"></div><span class="option-label">Doar întindere în spatele coapsei (zona mov)</span></label>
+        <label class="option" onclick="sel(this,'t3a')"><input type="radio" name="t3a"><div class="option-radio"></div><span class="option-label">Apar simptome pe traiectul colorat din imagine — durere</span></label>
+        <label class="option" onclick="sel(this,'t3a')"><input type="radio" name="t3a"><div class="option-radio"></div><span class="option-label">Apar simptome pe traiectul colorat din imagine — amorțeală / furnicături</span></label>
+      </div>
+      <div class="sub-question" style="margin-top:24px">Repetă testul și pentru celălalt picior. Ce se întâmplă?</div>
+      <div class="options">
+        <label class="option" onclick="sel(this,'t3b')"><input type="radio" name="t3b"><div class="option-radio"></div><span class="option-label">Nu apar simptome</span></label>
+        <label class="option" onclick="sel(this,'t3b')"><input type="radio" name="t3b"><div class="option-radio"></div><span class="option-label">Apar simptome în același picior (mai sănătos)</span></label>
+        <label class="option" onclick="sel(this,'t3b')"><input type="radio" name="t3b"><div class="option-radio"></div><span class="option-label">Ridicarea piciorului sănătos declanșează simptome în piciorul dureros</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- TEST T4 -->
+  <div class="test-card" id="card-t4">
+    <div class="test-header">
+      <div class="test-badge">T<span class="badge-accent">04</span></div>
+      <div class="test-instructions">Testul inghinal (FABER) — rotație externă șold</div>
+    </div>
+    <div class="test-body">
+      <div class="test-images">
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Lombara/images/image4.jpg" alt="Poziția 1 — start"></div>
+        <div class="test-img-wrap" onclick="zoom(this)"><img src="https://cdn.jsdelivr.net/gh/danielgherghescu/movisplus@main/Coloana_Lombara/images/image6.jpg" alt="Poziția 2 — rotație"></div>
+      </div>
+      <div class="instruction-steps">
+        Stai așezat ca în imaginea 1.<br>
+        Fără să miști genunchiul, rotește laba piciorului în afară, cât poți de mult (imaginea 2).<br>
+        Răspunde doar pentru partea cu probleme (cea în care coboară mai mult durerea pe picior, dacă coboară).
+      </div>
+      <div class="test-question">Ce simți în timp ce faci această mișcare?</div>
+      <div class="options">
+        <label class="option" onclick="sel(this,'t4')"><input type="radio" name="t4"><div class="option-radio"></div><span class="option-label">Normal</span></label>
+        <label class="option" onclick="sel(this,'t4')"><input type="radio" name="t4"><div class="option-radio"></div><span class="option-label">Durere în zona inghinală</span></label>
+        <label class="option" onclick="sel(this,'t4')"><input type="radio" name="t4"><div class="option-radio"></div><span class="option-label">Mișcare limitată față de celălalt șold</span></label>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUBMIT -->
+  <div class="submit-area">
+    <div class="submit-title">Trimite <span>răspunsurile</span> tale</div>
+    <p class="submit-subtitle">Răspunsurile de mai sus vor fi trimise către platforma Medicai. La pasul următor, în platforma Medicai, vei completa câteva informații personale și vei încărca RMN-ul.</p>
+    <button class="submit-btn" onclick="generateJSON()">
+      Trimite răspunsuri
+      <span class="submit-btn-icon">→</span>
+    </button>
+    <p class="submit-note">Vei fi redirecționat către platformă Medicai.</p>
+  </div>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close">✕</span>
+  <img id="lightboxImg" src="" alt="">
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="toast-icon" id="toastIcon">✓</div>
+  <span id="toastMsg">JSON generat cu succes!</span>
+</div>
+
+<script>
+  const answered = new Set();
+
+  const SECTION_A = [['a1'],['a2'],['a3'],['a4'],['a5'],['a6'],['a7','a7-none'],['a8'],['a9','a9-none'],['a10','a10-none'],['a11','a11-none'],['a12','a12-none'],['a13'],['a14','a14-none'],['a15'],['a16'],['a17'],['a18'],['a19'],['a20']];
+  const SECTION_Q = Array.from(document.querySelectorAll('[id^="card-q"]')).map(el => [el.id.replace('card-','')]);
+  const SECTION_T = [['rom1'],['rom2'],['rom3'],['rom4'],['t1','t1-none'],['t2','t2-none'],['t3a'],['t3b'],['t4']];
+
+  function sel(el, name) {
+    const container = el.closest('.options, .test-body, .question-card');
+    container.querySelectorAll('.option').forEach(s => s.classList.remove('selected'));
+    el.classList.add('selected');
+    answered.add(name);
+    updateProgress();
+    const card = el.closest('.question-card');
+    if (card) { card.classList.add('answered'); card.classList.remove('missing'); }
+    const testCard = el.closest('.test-card');
+    if (testCard) { testCard.classList.add('answered'); testCard.classList.remove('missing'); }
+  }
+
+  function selColor(el, name) {
+    const container = el.closest('.color-options');
+    container.querySelectorAll('.color-option').forEach(s => s.classList.remove('selected'));
+    el.classList.add('selected');
+    answered.add(name);
+    updateProgress();
+    el.closest('.test-card').classList.add('answered');
+    el.closest('.test-card').classList.remove('missing');
+  }
+
+  function selColorMulti(el, name, noneKey, max, event) {
+    if (event) event.preventDefault();
+    const card = el.closest('.test-card');
+    // Deselecteaza "Nicio zona"
+    const noneEl = card.querySelector(`input[name="${noneKey}"]`);
+    if (noneEl) {
+      noneEl.closest('.option')?.classList.remove('selected');
+      answered.delete(noneKey);
+    }
+    const container = el.closest('.color-options');
+    const alreadySelected = el.classList.contains('selected');
+    if (alreadySelected) {
+      // Deselecteaza
+      el.classList.remove('selected');
+    } else {
+      // Selecteaza — daca suntem la max, scoate cel mai vechi (primul ramas selectat != el)
+      const currentSel = [...container.querySelectorAll('.color-option.selected')];
+      if (currentSel.length >= max) {
+        currentSel[0].classList.remove('selected');
+      }
+      el.classList.add('selected');
+    }
+    if (container.querySelectorAll('.color-option.selected').length > 0) {
+      answered.add(name);
+      card.classList.add('answered');
+      card.classList.remove('missing');
+    } else {
+      answered.delete(name);
+    }
+    updateProgress();
+  }
+
+  function selNoneColor(el, noneKey, colorName, event) {
+    if (event) event.preventDefault();
+    const card = el.closest('.test-card');
+    card.querySelectorAll('.color-option').forEach(o => o.classList.remove('selected'));
+    answered.delete(colorName);
+    el.classList.add('selected');
+    answered.add(noneKey);
+    card.classList.add('answered');
+    card.classList.remove('missing');
+    updateProgress();
+  }
+
+  function selCheck(el, name, noneName, event) {
+    if (event) event.stopPropagation();
+    const input = el.querySelector('input[type="checkbox"]');
+    input.checked = !input.checked;
+    el.classList.toggle('selected', input.checked);
+
+    const noneEl = document.querySelector(`input[name="${noneName}"]`);
+    if (noneEl) { noneEl.checked = false; noneEl.closest('.option')?.classList.remove('selected'); }
+    answered.delete(noneName);
+
+    const card = el.closest('.question-card, .test-card');
+    const anyChecked = card.querySelectorAll(`input[name="${name}"]:checked`).length > 0;
+    if (anyChecked) {
+      answered.add(name);
+      card.classList.add('answered'); card.classList.remove('missing');
+    } else {
+      answered.delete(name);
+      card.classList.remove('answered');
+    }
+    updateProgress();
+  }
+
+  function selNone(el, name, checkName, event) {
+    if (event) event.stopPropagation();
+    const input = el.querySelector('input[type="radio"]');
+    input.checked = true;
+
+    const card = el.closest('.question-card, .test-card');
+    card.querySelectorAll(`input[name="${checkName}"]`).forEach(chk => {
+      chk.checked = false;
+      chk.closest('.option')?.classList.remove('selected');
+    });
+    answered.delete(checkName);
+
+    card.querySelectorAll(`input[name="${name}"]`).forEach(r => r.closest('.option')?.classList.remove('selected'));
+    el.classList.add('selected');
+
+    answered.add(name);
+    card.classList.add('answered'); card.classList.remove('missing');
+    updateProgress();
+  }
+
+  function toggleA13(hide) {
+    const card = document.getElementById('card-a13');
+    card.style.display = hide ? 'none' : '';
+    if (hide) {
+      card.querySelectorAll('input[name="a13"]').forEach(inp => inp.closest('.option')?.classList.remove('selected'));
+      answered.delete('a13');
+      updateProgress();
+    }
+  }
+
+  function updateProgress() {
+    function countSec(groups) { return groups.filter(g => g.some(k => answered.has(k))).length; }
+
+    const groupsA = answered.has('a12-none')
+      ? SECTION_A.filter(g => !g.includes('a13'))
+      : SECTION_A;
+
+    const pA = Math.round((countSec(groupsA) / groupsA.length) * 100) || 0;
+    const pQ = Math.round((countSec(SECTION_Q) / Math.max(SECTION_Q.length, 1)) * 100) || 0;
+    const pT = Math.round((countSec(SECTION_T) / Math.max(SECTION_T.length, 1)) * 100) || 0;
+
+    document.getElementById('progressFillA').style.width = pA + '%';
+    document.getElementById('progressFillQ').style.width = pQ + '%';
+    document.getElementById('progressFillT').style.width = pT + '%';
+
+    document.getElementById('progressPctA').textContent = pA + '%';
+    document.getElementById('progressPctQ').textContent = pQ + '%';
+    document.getElementById('progressPctT').textContent = pT + '%';
+  }
+
+  function zoom(wrap) {
+    document.getElementById('lightboxImg').src = wrap.querySelector('img').src;
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
+  (function initCarousels() {
+    const ZOOM_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>';
+
+    document.querySelectorAll('.test-images').forEach(track => {
+      const wraps = [...track.querySelectorAll('.test-img-wrap')];
+
+      // Zoom button on every image (bottom-right, SVG fullscreen icon)
+      wraps.forEach(wrap => {
+        const zb = document.createElement('div');
+        zb.className = 'zoom-btn';
+        zb.innerHTML = ZOOM_SVG;
+        wrap.appendChild(zb);
+      });
+
+      if (wraps.length <= 1) return; // single image — no carousel needed
+
+      let current = 0;
+
+      // Wrap track in carousel container
+      const carousel = document.createElement('div');
+      carousel.className = 'carousel';
+      track.parentNode.insertBefore(carousel, track);
+      carousel.appendChild(track);
+
+      // Show only first image
+      wraps.forEach((w, i) => w.classList.toggle('carousel-active', i === 0));
+
+      // "1 / N" counter badge
+      const counter = document.createElement('div');
+      counter.className = 'carousel-counter';
+      counter.textContent = '1 / ' + wraps.length;
+      carousel.appendChild(counter);
+
+      function goTo(idx) {
+        wraps[current].classList.remove('carousel-active');
+        current = ((idx % wraps.length) + wraps.length) % wraps.length;
+        wraps[current].classList.add('carousel-active');
+        counter.textContent = (current + 1) + ' / ' + wraps.length;
+      }
+
+      const prev = document.createElement('button');
+      prev.className = 'carousel-btn carousel-btn-prev';
+      prev.setAttribute('aria-label', 'Imaginea anterioară');
+      prev.innerHTML = '&#8249;';
+      prev.addEventListener('click', function(e) { e.stopPropagation(); goTo(current - 1); });
+      carousel.appendChild(prev);
+
+      const next = document.createElement('button');
+      next.className = 'carousel-btn carousel-btn-next';
+      next.setAttribute('aria-label', 'Imaginea următoare');
+      next.innerHTML = '&#8250;';
+      next.addEventListener('click', function(e) { e.stopPropagation(); goTo(current + 1); });
+      carousel.appendChild(next);
+    });
+  })();
+
+
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  function showToast(msg, isError) {
+    const toast = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
+    document.getElementById('toastIcon').textContent = isError ? '!' : '✓';
+    toast.classList.toggle('error', !!isError);
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3500);
+  }
+
+    function normRo(str) {
+      return (str || '')
+        .replace(/[ăĂ]/g, 'a')
+        .replace(/[âÂ]/g, 'a')
+        .replace(/[îÎ]/g, 'i')
+        .replace(/[șşȘŞ]/g, 's')
+        .replace(/[țţȚŢ]/g, 't');
+    }
+
+  function generateJSON() {
+    // Validare câmpuri obligatorii
+    document.querySelectorAll('.missing').forEach(el => el.classList.remove('missing'));
+    const MANDATORY = [
+      { key: 'a1',  cardId: 'card-a1'  }, { key: 'a2',  cardId: 'card-a2'  },
+      { key: 'a3',  cardId: 'card-a3'  }, { key: 'a4',  cardId: 'card-a4'  },
+      { key: 'a5',  cardId: 'card-a5'  }, { key: 'a6',  cardId: 'card-a6'  },
+      { key: 'a7',  cardId: 'card-a7',  altKey: 'a7-none'  },
+      { key: 'a8',  cardId: 'card-a8'  },
+      { key: 'a9',  cardId: 'card-a9',  altKey: 'a9-none'  },
+      { key: 'a10', cardId: 'card-a10', altKey: 'a10-none' },
+      { key: 'a11', cardId: 'card-a11', altKey: 'a11-none' },
+      { key: 'a12', cardId: 'card-a12', altKey: 'a12-none' },
+      { key: 'a13', cardId: 'card-a13' },
+      { key: 'a14', cardId: 'card-a14', altKey: 'a14-none' },
+      { key: 'a15', cardId: 'card-a15' },
+      { key: 'a16', cardId: 'card-a16' }, { key: 'a17', cardId: 'card-a17' },
+      { key: 'a18', cardId: 'card-a18' }, { key: 'a19', cardId: 'card-a19' },
+      { key: 'a20', cardId: 'card-a20' },
+      { key: 'q1', cardId: 'card-q1' }, { key: 'q2', cardId: 'card-q2' },
+      { key: 'q3', cardId: 'card-q3' }, { key: 'q4', cardId: 'card-q4' },
+      { key: 'q5', cardId: 'card-q5' }, { key: 'q6', cardId: 'card-q6' },
+      { key: 'q7', cardId: 'card-q7' }, { key: 'q8', cardId: 'card-q8' },
+      { key: 'rom1', cardId: 'card-rom1' }, { key: 'rom2', cardId: 'card-rom2' },
+      { key: 'rom3', cardId: 'card-rom3' }, { key: 'rom4', cardId: 'card-rom4' },
+      { key: 't1', cardId: 'card-t1', altKey: 't1-none' },
+      { key: 't2', cardId: 'card-t2', altKey: 't2-none' },
+      { key: 't3a', cardId: 'card-t3' }, { key: 't3b', cardId: 'card-t3' },
+      { key: 't4', cardId: 'card-t4' },
+    ];
+    const missing = MANDATORY.filter(m => {
+      if (m.key === 'a13' && answered.has('a12-none')) return false;
+      return m.altKey ? (!answered.has(m.key) && !answered.has(m.altKey)) : !answered.has(m.key);
+    });
+    if (missing.length > 0) {
+      missing.forEach(m => document.getElementById(m.cardId)?.classList.add('missing'));
+      document.getElementById(missing[0].cardId)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      showToast(`${missing.length} ${missing.length === 1 ? 'întrebare' : 'întrebări'} fără răspuns`, true);
+      return;
+    }
+
+    const COLORS = { green: 'Verde', yellow: 'Galben', red: 'Roșu', blue: 'Albastru', purple: 'Mov' };
+
+    function ans(n) {
+      const inputs = document.querySelectorAll(`input[name="${n}"]`);
+      for (const inp of inputs) {
+        const parent = inp.closest('.option.selected, .color-option.selected');
+        if (parent) {
+          const swatch = parent.querySelector('.color-swatch');
+          if (swatch) { const cls = [...swatch.classList].find(c => c !== 'color-swatch'); return COLORS[cls] || cls; }
+          const span = parent.querySelector('.option-label, .color-option-label');
+          return span ? span.textContent.trim() : '—';
+        }
+      }
+      return '—';
+    }
+
+    function ansMeta(n) {
+      const inputs = [...document.querySelectorAll(`input[name="${n}"]`)];
+      for (let i = 0; i < inputs.length; i++) {
+        const inp = inputs[i];
+        const parent = inp.closest('.option.selected, .color-option.selected');
+        if (parent) return { raw: ans(n), idx: i + 1 };
+      }
+      return { raw: '—', idx: 0 };
+    }
+
+    function multiAnsColor(name, maxSel) {
+      const selected = [];
+      document.querySelectorAll(`input[name="${name}"]`).forEach(inp => {
+        if (inp.closest('.color-option.selected, .option.selected')) {
+          const label = inp.closest('label')?.querySelector('.color-option-label, .option-label')?.textContent?.trim();
+          if (label) selected.push(label);
+        }
+      });
+      const none = document.querySelector(`input[name="${name}-none"]`);
+      if (none?.closest('.option.selected')) {
+        const lbl = none.closest('label')?.querySelector('.option-label')?.textContent?.trim();
+        if (lbl) return lbl;
+      }
+      return (maxSel ? selected.slice(0, maxSel) : selected).join(', ') || '—';
+    }
+
+    const CLINICAL = {
+      t0a:{ 'Normal, la fel ca înainte de episod':'Flexie lombara normala',
+            'Simt că mă \u201eține\u201d în zona lombară':'Flexie lombara tensiune posterioara',
+            'Simt durere lombară':'Flexie lombara dureroasa local',
+            'Durerea coboară pe picior':'Flexie lombara iradiere radiculara' },
+      t0b:{ 'Fără durere':'Extensie lombara fara durere',
+            'Doare local în lombar':'Extensie lombara dureroasa local',
+            'Durerea coboară pe picior':'Extensie lombara iradiere radiculara' },
+      t0c:{ 'Normal, fără diferență între picioare':'Mers calcaie normal L4-L5 ok',
+            'Ușoară slăbiciune pe partea afectată':'Mers calcaie slabiciune usoara L4-L5',
+            'Degetul mare este clar mai slab pe partea afectată':'Mers calcaie slabiciune clara L5',
+            'Nu pot menține poziția pe partea afectată':'Drop foot L4-L5' },
+      t0d:{ 'Normal, fără diferență':'Mers varfuri normal S1 ok',
+            'Ușoară slăbiciune pe partea afectată':'Mers varfuri slabiciune usoara S1',
+            'Nu pot menține poziția din cauza slăbiciunii':'Mers varfuri imposibil slabiciune S1 severa',
+            'Nu pot din cauza durerii sau instabilității':'Mers varfuri imposibil durere sau instabilitate' },
+      t1: { 'Roșu':'Musculatura paravertebrala lombara', 'Mov':'Procese spinoase medial',
+            'Albastru':'Articulatie sacro-iliaca', 'Verde':'Sold posterior',
+            'Galben':'Mare trohanter',
+            'Nicio zonă nu este clar mai dureroasă la apăsare':'Fara zona clara la palpare' },
+      t2: { 'Verde':'Dermatom L1-L2 afectat', 'Galben':'Dermatom L3 afectat',
+            'Mov':'Dermatom L4 afectat', 'Albastru':'Dermatom L5 afectat',
+            'Roșu':'Dermatom S1 afectat',
+            'Nicio zonă \u2014 simt la fel peste tot':'Sensibilitate normala bilateral' },
+      t3a:{ 'Doar întindere în spatele coapsei (zona mov)':'Pseudo-Lasegue pozitiv tightness gastroc',
+            'Apar simptome pe traiectul colorat din imagine \u2014 durere':'Lasegue pozitiv picior afectat durere',
+            'Apar simptome pe traiectul colorat din imagine \u2014 amorțeală / furnicături':'Lasegue pozitiv picior afectat parestezii' },
+      t3b:{ 'Nu apar simptome':'Lasegue incrucișat negativ',
+            'Apar simptome în același picior (mai sănătos)':'Pseudo-Lasegue pozitiv picior sanatos',
+            'Ridicarea piciorului sănătos declanșează simptome în piciorul dureros':'Lasegue incrucișat pozitiv' },
+      t4: { 'Normal':'FABER negativ',
+            'Durere în zona inghinală':'FABER pozitiv durere inghinala',
+            'Mișcare limitată față de celălalt șold':'FABER pozitiv limitare ROM' },
+    };
+
+    function clinFromRaw(key, raw) {
+      if (raw === '—') return raw;
+      if (CLINICAL.yesNo[raw]) return CLINICAL.yesNo[raw];
+      if (CLINICAL.colors[raw]) return CLINICAL.colors[raw];
+      if (/^(Verde|Albastru|Galben|Roșu|Portocaliu|Mov)/.test(raw)) {
+        const c = raw.match(/^(Verde|Albastru|Galben|Roșu|Portocaliu|Mov)/)[1];
+        return CLINICAL.colors[c] || c;
+      }
+      const short = normRo(raw).replace(/[^a-zA-Z0-9 -]/g, ' ').replace(/\s+/g, ' ').trim().split(' ').slice(0,4).join(' ');
+      return short || `${key}-1`;
+    }
+
+    function multiAns(name, noneKey) {
+      const results = [];
+      document.querySelectorAll(`input[name="${name}"]`).forEach(inp => {
+        if (inp.closest('.color-option.selected')) {
+          const swatch = inp.closest('.color-option').querySelector('.color-swatch');
+          const cls = [...swatch.classList].find(c => c !== 'color-swatch');
+          results.push(COLORS[cls] || cls);
+        }
+      });
+      if (noneKey) {
+        const noneInput = document.querySelector(`input[name="${noneKey}"]`);
+        if (noneInput && noneInput.closest('.option.selected')) {
+          const span = noneInput.closest('.option').querySelector('.option-label');
+          results.push(span ? span.textContent.trim() : 'Nicio zonă');
+        }
+      }
+      return results.length ? results.join(', ') : '—';
+    }
+
+
+    function multiAnsCheck(checkName, noneName) {
+      const results = [];
+      document.querySelectorAll(`input[name="${checkName}"]`).forEach(inp => {
+        if (inp.closest('.option.selected')) {
+          const span = inp.closest('.option').querySelector('.option-label');
+          if (span) results.push(span.textContent.trim());
+        }
+      });
+      if (results.length) return results.join(', ');
+      const noneInp = document.querySelector(`input[name="${noneName}"]`);
+      if (noneInp?.closest('.option.selected'))
+        return noneInp.closest('.option').querySelector('.option-label')?.textContent.trim() || '—';
+      return '—';
+    }
+
+    const ANAMNEZA_Q = [
+      { key: 'a1',  label: 'Durata simptome' },
+      { key: 'a2',  label: 'Debut' },
+      { key: 'a3',  label: 'Evolutie' },
+      { key: 'a4',  label: 'Intensitate durere' },
+      { key: 'a5',  label: 'Tipul durerii' },
+      { key: 'a6',  label: 'Redoare matinala' },
+      { key: 'a7',  label: 'Senzatii asociate', multi: true, noneName: 'a7-none' },
+      { key: 'a8',  label: 'Impact functional' },
+      { key: 'a9',  label: 'Activitati afectate', multi: true, noneName: 'a9-none' },
+      { key: 'a10', label: 'Semne de alarma', multi: true, noneName: 'a10-none' },
+      { key: 'a11', label: 'Evenimente recente', multi: true, noneName: 'a11-none' },
+      { key: 'a12', label: 'Tratament anterior', multi: true, noneName: 'a12-none' },
+      { key: 'a13', label: 'Eficienta tratament' },
+      { key: 'a14', label: 'Comorbiditati', multi: true, noneName: 'a14-none' },
+      { key: 'a15', label: 'Chirurgie anterioara' },
+      { key: 'a16', label: 'Nivel activitate' },
+      { key: 'a17', label: 'Activitate profesionala' },
+      { key: 'a18', label: 'Fumat' },
+      { key: 'a19', label: 'IMC' },
+      { key: 'a20', label: 'Obiectiv pacient' },
+    ];
+    const EXPORT_Q = {
+      a1: 'Durata simpt.',
+      a2: 'Debut',
+      a3: 'Evolutie',
+      a4: 'Intens. durere',
+      a5: 'Tip durere',
+      a6: 'Redoare mat.',
+      a7: 'Senz. asociate',
+      a8: 'Impact funct.',
+      a9: 'Act. afectate',
+      a10: 'Semne alarma',
+      a11: 'Evenim. recente',
+      a12: 'Tr. anterior',
+      a13: 'Eficienta tr.',
+      a14: 'Comorbiditati',
+      a15: 'Chir. anterioara',
+      a16: 'Nivel activ.',
+      a17: 'Act. profesionala',
+      a18: 'Fumat',
+      a19: 'IMC',
+      a20: 'Obiectiv',
+    };
+
+    const EXPORT_A = {
+      a1: {
+        'Sub 2 săptămâni': '<2 sapt.',
+        '2–6 săptămâni': '2–6 sapt.',
+        '6 săptămâni – 3 luni': '6 sapt.–3 luni',
+        '3–12 luni': '3–12 luni',
+        'Peste 1 an': '>1 an',
+      },
+      a2: {
+        'Brusc, după un eveniment clar (cădere, accident, mișcare bruscă)': 'Brusc după traumatism',
+        'După efort repetitiv / suprasolicitare': 'Suprasolicitare',
+        'Treptat, fără un motiv clar': 'Debut progresiv',
+        'Am mai avut episoade similare în trecut': 'Episoade recurente',
+      },
+      a3: {
+        'Se ameliorează treptat': 'Ameliorare treptată',
+        'Este stabilă': 'Stabil',
+        'Se agravează lent': 'Agravare lentă',
+        'Se agravează rapid în ultimele săptămâni': 'Agravare rapidă',
+      },
+      a4: {
+        '0–2 (ușoară)': '0–2 ușoară',
+        '3–5 (moderată)': '3–5 moderată',
+        '6–8 (mare)': '6–8 severă',
+        '9–10 (foarte severă)': '9–10 foarte severă',
+      },
+      a5: {
+        'Doar la mișcare / efort': 'Doar la mișcare',
+        'Și la mișcare, și în repaus': 'Mișcare + repaus',
+        'Constantă, inclusiv noaptea': 'Durere constantă',
+        'Mă trezește frecvent din somn': 'Durere nocturnă',
+      },
+      a6: {
+        'Fara redoare matinala': 'Fără redoare',
+        'Rigidă sub 30 minute': 'Redoare <30 min',
+        'Rigidă peste 30–60 minute': 'Redoare 30–60 min',
+        'Rigidă peste 1 oră': 'Redoare >1h',
+      },
+      a7: {
+        'Amorțeală': 'Amorțeală',
+        'Furnicături': 'Furnicături',
+        'Slăbiciune clară': 'Slăbiciune',
+        'Fara amorteli, furnicaturi sau slabiciune': 'Fără simptome neurologice',
+      },
+      a8: {
+        'Pot face aproape toate activitățile normale': 'Limitări minime',
+        'Evit anumite mișcări / activități': 'Evit anumite activități',
+        'Mi-am redus semnificativ activitatea': 'Activitate redusă',
+        'Nu pot face activități uzuale (mers, urcat scări, ridicat obiecte)': 'Activități uzuale imposibile',
+      },
+      a9: {
+        'Somnul': 'Somnul',
+        'Mersul': 'Mersul',
+        'Munca': 'Munca',
+        'Sportul': 'Sportul',
+        'Fara impact functional semnificativ': 'Fără impact semnificativ',
+      },
+      a10: {
+        'Scădere în greutate neintenționate': 'Scădere în greutate',
+        'Febră inexplicabilă': 'Febră',
+        'Transpirații nocturne persistente': 'Transpirații nocturne',
+        'Istoric personal de cancer': 'Istoric cancer',
+        'Fara semne de alarma': 'Fără semne de alarmă',
+      },
+      a11: {
+        'Traumatism major (accident, cădere serioasă)': 'Traumatism major',
+        'Slăbiciune progresivă accentuată': 'Slăbiciune progresivă',
+        'Probleme noi cu controlul urinei sau scaunului': 'Tulburări sfincteriene',
+        'Fara evenimente recente relevante': 'Fără evenimente recente',
+      },
+      a12: {
+        'Antiinflamatoare / analgezice': 'Antiinflamatoare',
+        'Fizioterapie / kinetoterapie': 'Fizioterapie',
+        'Infiltrații': 'Infiltrații',
+        'Repaus': 'Repaus',
+        'Fara tratament anterior': 'Fără tratament anterior',
+      },
+      a13: {
+        'Clar eficient': 'Eficient',
+        'Parțial eficient': 'Parțial eficient',
+        'Fără efect': 'Fără efect',
+        'Nu pot aprecia': 'Nu poate aprecia',
+      },
+      a14: {
+        'Boală reumatologică': 'Boală reumatologică',
+        'Diabet': 'Diabet',
+        'Osteoporoză': 'Osteoporoză',
+        'Afecțiune neurologică': 'Afecțiune neurologică',
+        'Boală oncologică în trecut': 'Istoric oncologic',
+        'Fara comorbiditati relevante': 'Fără comorbidități',
+      },
+      a15: {
+        'Da': 'Da',
+        'Nu': 'Nu',
+      },
+      a16: {
+        'Predominant sedentar': 'Sedentar',
+        'Activ moderat (mers, activitate fizică ușoară)': 'Activitate moderată',
+        'Activ regulat (sport 2–3 ori / săptămână)': 'Sport regulat',
+        'Foarte activ / sport intensiv': 'Foarte activ',
+      },
+      a17: {
+        'Stau mai mult pe scaun': 'Muncă sedentară',
+        'Stau mult în picioare': 'Muncă în picioare',
+        'Ridic greutăți frecvent': 'Ridic greutăți',
+        'Activitate mixtă': 'Activitate mixtă',
+      },
+      a18: {
+        'Nu': 'Nefumător',
+        'Ocazional': 'Fumător ocazional',
+        'Zilnic': 'Fumător zilnic',
+      },
+      a19: {
+        'Normoponderal': 'Normoponderal',
+        'Ușor supraponderal': 'Supraponderal',
+        'Obez': 'Obez',
+        'Nu știu / prefer să nu răspund': 'IMC necunoscut',
+      },
+      a20: {
+        'Activități zilnice fără limitare': 'Activități zilnice fără durere',
+        'Revenirea la sport': 'Revenire la sport',
+        'Revenirea la muncă normal': 'Revenire la muncă',
+        'Reducerea durerii, chiar dacă rămân unele limitări': 'Reducerea durerii',
+      },
+    };
+
+    let mdAnamneza = '';
+    ANAMNEZA_Q.forEach(q => {
+      if (q.key === 'a13' && answered.has('a12-none')) return;
+      const questionText = document.querySelector(`#card-${q.key} .question-text`)?.childNodes[0]?.textContent?.trim() || q.label;
+      const rawAnswer = q.multi ? multiAnsCheck(q.key, q.noneName) : ans(q.key);
+      mdAnamneza += `**Q:** ${normRo(questionText)}  
+`;
+      mdAnamneza += `**A:** ${normRo(rawAnswer)}  
+
+`;
+    });
+
+    const QUESTIONS_Q = [
+      { key: 'q1', label: 'Pe ce parte sunt mai intense simptomele?' },
+      { key: 'q2', label: 'Ce te deranjează mai mult?' },
+      { key: 'q3', label: 'Durerea coboară sub nivelul genunchiului?' },
+      { key: 'q4', label: 'Când mergi o perioadă mai lungă:' },
+      { key: 'q5', label: 'Când mă așez pe un scaun sau mă aplec ușor înainte:' },
+      { key: 'q6', label: 'Ai observat oricare dintre următoarele apărute recent?' },
+      { key: 'q7', label: 'Dimineața, după ce te ridici din pat, cum te simți în zona lombară?' },
+      { key: 'q8', label: 'Statul prelungit pe scaun:' },
+    ];
+
+    let mdIntrebari = '';
+    QUESTIONS_Q.forEach((q) => {
+      mdIntrebari += `**Q:** ${normRo(q.label)}  \n`;
+      mdIntrebari += `**A:** ${normRo(ans(q.key))}  \n\n`;
+    });
+
+    const ROM_TESTS = [
+      { key: 'rom1', label: 'ROM1 — Aplecarea înainte', q: 'Apleacă-te înainte și încearcă să atingi vârfurile picioarelor.' },
+      { key: 'rom2', label: 'ROM2 — Extensia lombară', q: 'Îndreaptă cât poți de mult spatele.' },
+      { key: 'rom3', label: 'ROM3 — Mers pe călcâie (L4-L5)', q: 'Mergi câțiva pași doar pe călcâie.' },
+      { key: 'rom4', label: 'ROM4 — Mers pe vârfuri (S1)', q: 'Mergi câțiva pași doar pe vârfuri.' },
+    ];
+
+    let mdMobilitate = '';
+    ROM_TESTS.forEach(r => {
+      mdMobilitate += `**${r.label}:**  \n`;
+      mdMobilitate += `**Q:** ${r.q}  \n`;
+      mdMobilitate += `**A:** ${ans(r.key)}  \n\n`;
+    });
+
+    const TESTS = [
+      { key: 't1', label: 'T01 — Testul de localizare a durerii', q: 'Care zone sunt dureroase la apăsare? (max. 2 zone)', multi: true, altKey: 't1-none', clinName: 'Harta durere lombara' },
+      { key: 't2', label: 'T02 — Testul de sensibilitate', q: 'Care zone au sensibilitate diferită?', multi: true, altKey: 't2-none', clinName: 'Harta sensibilitate MI' },
+      { key: 't3a', label: 'T03 — Testul de elongație (SLR)', q: 'Ce se întâmplă când ridici piciorul dureros?', clinName: 'Lasegue picior afectat' },
+      { key: 't3b', label: 'T03 — Testul de elongație (SLR)', q: 'Repetă testul și pentru celălalt picior. Ce se întâmplă?', clinName: 'Lasegue picior sanatos' },
+      { key: 't4', label: 'T04 — Testul inghinal (FABER)', q: 'Ce simți în timp ce faci această mișcare?', clinName: 'Test FABER sold' },
+    ];
+
+    let mdTeste = '';
+    TESTS.forEach(t => {
+      mdTeste += `**Q:** ${normRo(t.clinName)}  \n`;
+      const raw = t.multi
+        ? multiAnsColor(t.key, t.maxSel || 2)
+        : ans(t.key);
+      const mapped = raw.split(', ').map(v => {
+        const v2 = v.trim();
+        return CLINICAL[t.key]?.[v2] || v2;
+      }).join(', ');
+      mdTeste += `**A:** ${normRo(mapped)}  \n\n`;
+    });
+
+    const sessionId = new URLSearchParams(window.location.search).get('session_id');
+
+    let url = 'https://app.medicai.io/upload/movisplus?';
+    if (sessionId) url += 'session_id=' + encodeURIComponent(sessionId) + '&';
+    url += 'region=coloana-lombara';
+    url += '&chestionar_anamneza=' + encodeURIComponent(mdAnamneza.trim());
+    url += '&chestionar_intrebari=' + encodeURIComponent(mdIntrebari.trim());
+    url += '&chestionar_mobilitate=' + encodeURIComponent(mdMobilitate.trim());
+    url += '&chestionar_teste=' + encodeURIComponent(mdTeste.trim());
+
+    window.top.location.href = url;
+  }
+
+  /* ─── AUTOFILL (doar când ?test=1) ─────────────────────────── */
+  if (new URLSearchParams(window.location.search).get('test') === '1') {
+    const btn = document.createElement('button');
+    btn.textContent = '⚡ Autofill';
+    Object.assign(btn.style, {
+      position: 'fixed', bottom: '24px', right: '24px', zIndex: '9999',
+      background: '#00e4a7', color: '#0f0f0f', fontWeight: '700',
+      fontSize: '14px', padding: '14px 24px', borderRadius: '8px',
+      border: 'none', cursor: 'pointer', boxShadow: '0 4px 16px rgba(0,0,0,0.25)',
+      fontFamily: 'inherit'
+    });
+    btn.onclick = function() {
+      function clickFirst(name) {
+        const el = document.querySelector(`input[name="${name}"]`);
+        if (el) el.closest('.option, .color-option')?.click();
+      }
+      function clickNone(name) {
+        const el = document.querySelector(`input[name="${name}-none"]`);
+        if (el) el.closest('.option')?.click();
+      }
+      ['a1','a2','a3','a4','a5','a6','a8','a13','a15','a16','a17','a18','a19','a20'].forEach(clickFirst);
+      ['a7','a9','a10','a11','a12','a14'].forEach(clickNone);
+      ['q1','q2','q3','q4','q5','q6','q7','q8'].forEach(clickFirst);
+      ['rom1','rom2','rom3','rom4'].forEach(clickFirst);
+      ['t1','t2'].forEach(clickNone);
+      ['t3a','t3b','t4'].forEach(clickFirst);
+    };
+    document.body.appendChild(btn);
+  }
+</script>
+<!-- Vertical Overflow code embed fix -->
+<script>
+function sendHeight() {
+  const height = document.documentElement.scrollHeight;
+  window.parent.postMessage({ iframeHeight: height }, '*');
+}
+window.addEventListener('load', sendHeight);
+window.addEventListener('resize', sendHeight);
+// Also observe DOM changes (for dynamic content like form steps)
+const observer = new MutationObserver(sendHeight);
+observer.observe(document.body, { childList: true, subtree: true });
+</script>
+</body>
+</html>
