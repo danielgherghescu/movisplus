@@ -1595,6 +1595,7 @@
     if (_lbIdx < 0) _lbIdx = 0;
     _lbUpdate();
     document.getElementById('lightbox').classList.add('open');
+    window.scrollTo(0, 0);
   }
   function _lbUpdate() {
     document.getElementById('lightboxImg').src = _lbImgs[_lbIdx] || '';
