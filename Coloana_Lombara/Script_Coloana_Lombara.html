@@ -728,29 +728,7 @@
   .toast.error { border-color: rgba(239,68,68,0.5); }
   .toast.error .toast-icon { background: #ef4444; content: '!'; }
 
-  /* ─── debug ───────────────────────────────── */
-  #debugPanel {
-        position: fixed;
-        bottom: 24px;
-        left: 24px;
-        width: 380px;
-        max-height: 70vh;
-        overflow-y: auto;
-        background: #0f0f0f;
-        color: #00e4a7;
-        font-size: 11px;
-        font-family: monospace;
-        padding: 16px;
-        border-radius: 10px;
-        z-index: 9999;
-        box-shadow: 0 8px 30px rgba(0,0,0,0.5);
-        line-height: 1.5;
-        white-space: pre-wrap;
-        }
 
-    #debugPanel b {
-    color: #ffffff;
-    }
 
   /* ─── RESPONSIVE ─────────────────────────────────────────── */
   @media (max-width: 640px) {
@@ -1489,7 +1467,7 @@
   const SECTION_Q = Array.from(document.querySelectorAll('[id^="card-q"]')).map(el => [el.id.replace('card-','')]);
   const SECTION_T = [['t1'],['t2'],['t3'],['t4'],['t5','t5-none'],['t6','t6-none'],['t7a'],['t7b'],['t7c'],['t7d'],['t8']];
 
-  function updateDebugPanel() {}
+
   
   function sel(el, name) {
     const container = el.closest('.options, .test-body, .question-card');
@@ -1497,7 +1475,6 @@
     el.classList.add('selected');
     answered.add(name);
     updateProgress();
-    updateDebugPanel();
     const card = el.closest('.question-card');
     if (card) { card.classList.add('answered'); card.classList.remove('missing'); }
     const testCard = el.closest('.test-card');
@@ -1510,7 +1487,6 @@
     el.classList.add('selected');
     answered.add(name);
     updateProgress();
-    updateDebugPanel();
     el.closest('.test-card').classList.add('answered');
     el.closest('.test-card').classList.remove('missing');
   }
@@ -1545,7 +1521,6 @@
       answered.delete(name);
     }
     updateProgress();
-    updateDebugPanel();
   }
 
   function selNoneColor(el, noneKey, colorName, event) {
@@ -1558,7 +1533,6 @@
     card.classList.add('answered');
     card.classList.remove('missing');
     updateProgress();
-    updateDebugPanel();
   }
 
   function selCheck(el, name, noneName, event) {
@@ -1581,7 +1555,6 @@
       card.classList.remove('answered');
     }
     updateProgress();
-    updateDebugPanel();
   }
 
   function selNone(el, name, checkName, event) {
@@ -2239,98 +2212,7 @@
     document.body.appendChild(btn);
   }
 
-/* ─── DEBUG SAFE (nu afecteaza nimic existent) ───────────────────────── */
-
-function debug_exportAnswer(qId, label) {
-  return Anamneza_R[qId]?.[label] || label;
-}
-
-function debug_multiAnsCheck(qId, checkName, noneName) {
-  const results = [];
-
-  document.querySelectorAll(`input[name="${checkName}"]`).forEach(inp => {
-    if (inp.closest('.option.selected')) {
-      const span = inp.closest('.option').querySelector('.option-label');
-      if (span) results.push(debug_exportAnswer(qId, span.textContent.trim()));
-    }
-  });
-
-  if (results.length) return results.join(', ');
-
-  const noneInp = document.querySelector(`input[name="${noneName}"]`);
-  if (noneInp?.closest('.option.selected')) {
-    const span = noneInp.closest('.option').querySelector('.option-label');
-    return debug_exportAnswer(qId, span?.textContent.trim() || '—');
-  }
-
-  return '—';
-}
-
-function debug_clinAns(key) {
-  const raw = ans(key);
-  return (Teste_R[key] && Teste_R[key][raw]) ? Teste_R[key][raw] : raw;
-}
-
-function debug_clinMultiAns(key) {
-  const results = [];
-
-  document.querySelectorAll(`input[name="${key}"]`).forEach(inp => {
-    if (inp.closest('.color-option.selected')) {
-      const label = inp.closest('.color-option').querySelector('.color-option-label')?.textContent.trim();
-      if (label) results.push(Teste_R[key]?.[label] || label);
-    }
-  });
-
-  const noneInput = document.querySelector(`input[name="${key}-none"]`);
-  if (noneInput && noneInput.closest('.option.selected')) {
-    const span = noneInput.closest('.option').querySelector('.option-label');
-    if (span) results.push(Teste_R[key]?.[span.textContent.trim()] || span.textContent.trim());
-  }
-
-  return results.length ? results.join(', ') : '—';
-}
-
-function updateDebugPanel() {
-  if (!window.location.search.includes('test=1')) return;
-
-  const panel = document.getElementById('debugPanel');
-  if (!panel) return;
-
-  panel.style.display = 'block';
-
-  let out = '';
-
-  out += '=== ANAMNEZA ===\n';
-  Anamneza_Q.forEach(q => {
-    if (q.key === 'a13' && answered.has('a12-none')) return;
-
-    const val = q.multi
-      ? debug_multiAnsCheck(q.key, q.key, q.noneName)
-      : debug_exportAnswer(q.key, ans(q.key));
-
-    out += `${q.key}: ${val}\n`;
-  });
-
-  out += '\n=== INTREBARI ===\n';
-  Intrebari_Q.forEach(q => {
-    const raw = ans(q.key);
-    const val = Intrebari_R[q.key]?.[raw] || raw;
-    out += `${q.key}: ${val}\n`;
-  });
-
-  out += '\n=== TESTE ===\n';
-  Teste_Q.forEach(t => {
-    const val = t.multi
-      ? debug_clinMultiAns(t.key)
-      : debug_clinAns(t.key);
-
-    out += `${t.key}: ${val}\n`;
-  });
-
-  panel.textContent = out;
-}
-
-  
+ 
 </script>
   
 <!-- Vertical Overflow code embed fix 
@@ -2347,6 +2229,5 @@ observer.observe(document.body, { childList: true, subtree: true });
 </script>
 -->
 
- <div id="debugPanel" style="display:none;"></div> 
 </body>
 </html>
