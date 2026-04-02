@@ -728,6 +728,30 @@
   .toast.error { border-color: rgba(239,68,68,0.5); }
   .toast.error .toast-icon { background: #ef4444; content: '!'; }
 
+  /* ─── debug ───────────────────────────────── */
+  #debugPanel {
+        position: fixed;
+        bottom: 24px;
+        left: 24px;
+        width: 380px;
+        max-height: 70vh;
+        overflow-y: auto;
+        background: #0f0f0f;
+        color: #00e4a7;
+        font-size: 11px;
+        font-family: monospace;
+        padding: 16px;
+        border-radius: 10px;
+        z-index: 9999;
+        box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+        line-height: 1.5;
+        white-space: pre-wrap;
+        }
+
+    #debugPanel b {
+    color: #ffffff;
+    }
+
   /* ─── RESPONSIVE ─────────────────────────────────────────── */
   @media (max-width: 640px) {
     .header { padding: 16px 20px; }
@@ -1471,6 +1495,7 @@
     el.classList.add('selected');
     answered.add(name);
     updateProgress();
+    updateDebugPanel();
     const card = el.closest('.question-card');
     if (card) { card.classList.add('answered'); card.classList.remove('missing'); }
     const testCard = el.closest('.test-card');
@@ -1483,6 +1508,7 @@
     el.classList.add('selected');
     answered.add(name);
     updateProgress();
+    updateDebugPanel();
     el.closest('.test-card').classList.add('answered');
     el.closest('.test-card').classList.remove('missing');
   }
@@ -1517,6 +1543,7 @@
       answered.delete(name);
     }
     updateProgress();
+    updateDebugPanel();
   }
 
   function selNoneColor(el, noneKey, colorName, event) {
@@ -1529,6 +1556,7 @@
     card.classList.add('answered');
     card.classList.remove('missing');
     updateProgress();
+    updateDebugPanel();
   }
 
   function selCheck(el, name, noneName, event) {
@@ -1551,6 +1579,7 @@
       card.classList.remove('answered');
     }
     updateProgress();
+    updateDebugPanel();
   }
 
   function selNone(el, name, checkName, event) {
@@ -1986,7 +2015,7 @@
     },
     t7a: {
       'Doar întindere în spatele coapsei (zona mov)': 'Pseudo-Lasegue pozitiv gastroc',
-      'Apar simptome pe traiectul colorat cu fulgere roșii - genunchiul rămâne întins maxim': 'Lasegue pozitiv,
+      'Apar simptome pe traiectul colorat cu fulgere roșii - genunchiul rămâne întins maxim': 'Lasegue pozitiv',
     },
     t7b: {
       'Durere': 'Durere',
@@ -2135,7 +2164,7 @@
     window.top.location.href = url;
   }
 
-  /* ─── AUTOFILL (doar când ?test=1) ─────────────────────────── */
+  /* ─── AUTOFILL & DEBUG (doar când ?test=1) ─────────────────────────── */
   if (new URLSearchParams(window.location.search).get('test') === '1') {
     const btn = document.createElement('button');
     btn.textContent = '⚡ Autofill';
@@ -2207,6 +2236,41 @@
     };
     document.body.appendChild(btn);
   }
+
+function updateDebugPanel() {
+if (!window.location.search.includes('test=1')) return;
+
+const panel = document.getElementById('debugPanel');
+panel.style.display = 'block';
+
+let out = '';
+
+out += '=== ANAMNEZA ===\n';
+Anamneza_Q.forEach(q => {
+if (q.key === 'a13' && answered.has('a12-none')) return;
+const val = q.multi
+? multiAnsCheck(q.key, q.key, q.noneName)
+: exportAnswer(q.key, ans(q.key));
+out += `${q.key}: ${val}\n`;
+});
+
+out += '\n=== INTREBARI ===\n';
+Intrebari_Q.forEach(q => {
+const raw = ans(q.key);
+const val = Intrebari_R[q.key]?.[raw] || raw;
+out += `${q.key}: ${val}\n`;
+});
+
+out += '\n=== TESTE ===\n';
+Teste_Q.forEach(t => {
+const val = t.multi ? clinMultiAns(t.key) : clinAns(t.key);
+out += `${t.key}: ${val}\n`;
+});
+
+panel.innerHTML = out;
+}
+
+  
 </script>
   
 <!-- Vertical Overflow code embed fix 
@@ -2222,6 +2286,7 @@ const observer = new MutationObserver(sendHeight);
 observer.observe(document.body, { childList: true, subtree: true });
 </script>
 -->
-  
+
+ <div id="debugPanel" style="display:none;"></div> 
 </body>
 </html>
