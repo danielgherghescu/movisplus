@@ -1596,7 +1596,9 @@
     _lbUpdate();
     observer.disconnect();
     document.getElementById('lightbox').classList.add('open');
-    window.scrollTo(0, 0);
+  }
+  function _lbIsOpen() {
+    return document.getElementById('lightbox').classList.contains('open');
   }
   function _lbUpdate() {
     document.getElementById('lightboxImg').src = _lbImgs[_lbIdx] || '';
@@ -1608,6 +1610,7 @@
     counter.classList.toggle('visible', hasPrev);
   }
   function _lbGo(dir) {
+    if (!_lbImgs.length) return;
     _lbIdx = ((_lbIdx + dir) % _lbImgs.length + _lbImgs.length) % _lbImgs.length;
     _lbUpdate();
   }
@@ -1631,12 +1634,27 @@
       });
 
       if (wraps.length <= 1) return; // single image — no carousel needed
+      const applyDesktopFit = () => {
+        if (window.innerWidth < 768) {
+          track.classList.remove('fit-row');
+          return;
+        }
+        const styles = window.getComputedStyle(track);
+        const gap = parseFloat(styles.columnGap || styles.gap) || 8;
+        const totalWidth = wraps.reduce((sum, w) => sum + w.getBoundingClientRect().width, 0) + (wraps.length - 1) * gap;
+        track.classList.toggle('fit-row', totalWidth > track.clientWidth + 1);
+      };
       // On desktop: check if images overflow the container — if yes, fit them in one row
       if (window.innerWidth >= 768) {
-        const totalWidth = wraps.reduce((sum, w) => sum + w.offsetWidth, 0) + (wraps.length - 1) * 8;
-        if (totalWidth > track.offsetWidth) {
-          track.classList.add('fit-row');
-        }
+        wraps.forEach(w => {
+          const img = w.querySelector('img');
+          if (img && !img.complete) {
+            img.addEventListener('load', applyDesktopFit, { once: true });
+            img.addEventListener('error', applyDesktopFit, { once: true });
+          }
+        });
+        requestAnimationFrame(applyDesktopFit);
+        window.addEventListener('resize', applyDesktopFit, { passive: true });
         return;
       }
 
@@ -1689,16 +1707,20 @@
 
   document.getElementById('lightboxPrev').addEventListener('click', function(e) { e.stopPropagation(); _lbGo(-1); });
   document.getElementById('lightboxNext').addEventListener('click', function(e) { e.stopPropagation(); _lbGo(1); });
+  document.getElementById('lightboxImg').addEventListener('click', function(e) { e.stopPropagation(); });
   document.addEventListener('keydown', e => {
+    if (!_lbIsOpen()) return;
     if (e.key === 'Escape') closeLightbox();
     if (e.key === 'ArrowLeft') _lbGo(-1);
     if (e.key === 'ArrowRight') _lbGo(1);
   });
   let _lbTouchX = 0;
   document.getElementById('lightbox').addEventListener('touchstart', function(e) {
+    if (!_lbIsOpen()) return;
     _lbTouchX = e.touches[0].clientX;
   }, { passive: true });
   document.getElementById('lightbox').addEventListener('touchend', function(e) {
+    if (!_lbIsOpen() || !_lbImgs.length) return;
     const diff = _lbTouchX - e.changedTouches[0].clientX;
     if (Math.abs(diff) > 40) _lbGo(diff > 0 ? 1 : -1);
   }, { passive: true });
