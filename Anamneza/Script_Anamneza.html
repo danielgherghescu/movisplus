@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Anamneză Generală — Movis+</title>
+<link href="https://fonts.googleapis.com/css2?family=Museo+Moderno:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black:    #0f0f0f;
+    --green:    #00e4a7;
+    --white:    #ffffff;
+    --grey-dark: #515151;
+    --grey-mid:  #c1c1c1;
+    --grey-light: #e2e2e2;
+    --bg:       #f7f7f7;
+
+    --font-display: 'Museo Moderno', sans-serif;
+    --font-body:    'Plus Jakarta Sans', sans-serif;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font-body);
+    background: var(--bg);
+    color: var(--black);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ─── HEADER ─────────────────────────────────────────────── */
+  .header {
+    background: var(--black);
+    padding: 20px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .header-logo img { height: 32px; display: block; }
+  .header-badge {
+    font-family: var(--font-body);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--green);
+    border: 1px solid rgba(0,228,167,0.3);
+    padding: 5px 14px;
+    border-radius: 100px;
+  }
+
+  /* ─── HERO ───────────────────────────────────────────────── */
+  .hero {
+    background: var(--black);
+    padding: 64px 40px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle at 80% 50%, rgba(0,228,167,0.07) 0%, transparent 60%),
+      radial-gradient(circle at 20% 80%, rgba(2,178,128,0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 28px;
+  }
+  .hero-tag-dot {
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--green);
+    flex-shrink: 0;
+  }
+  .hero-tag-text {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--green);
+  }
+  .hero h1 {
+    font-family: var(--font-display);
+    font-size: clamp(38px, 5.5vw, 60px);
+    font-weight: 500;
+    color: var(--white);
+    line-height: 1.08;
+    margin-bottom: 20px;
+    letter-spacing: -0.02em;
+  }
+  .hero h1 span { color: var(--green); }
+  .hero-desc {
+    color: var(--grey-mid);
+    font-size: 15px;
+    line-height: 1.75;
+    max-width: 540px;
+    font-weight: 300;
+  }
+
+  /* ─── PROGRESS ───────────────────────────────────────────── */
+  .progress-wrap {
+    background: var(--black);
+    padding: 0 40px 14px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  }
+  .progress-inner {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    gap: 24px;
+    padding-top: 14px;
+  }
+  .progress-section {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .progress-label {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--white);
+    white-space: nowrap;
+  }
+  .progress-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .progress-track {
+    flex: 1;
+    height: 8px;
+    background: rgba(255,255,255,0.7);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .progress-pct {
+    font-size: 9px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 0.05em;
+    min-width: 28px;
+    text-align: right;
+  }
+  .progress-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--green);
+    border-radius: 4px;
+    transition: width 0.4s ease;
+  }
+
+  /* ─── CONTAINER ──────────────────────────────────────────── */
+  .container {
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 24px 100px;
+  }
+
+  /* ─── SECTION LABEL ──────────────────────────────────────── */
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 64px 0 32px;
+  }
+  .section-label-line {
+    flex: 1;
+    height: 2px;
+    background: var(--green);
+    opacity: 1;
+  }
+  .sub-section-label-line {
+    flex: 1;
+    height: 2px;
+    background: var(--green);
+    opacity: 0.25;
+  }
+  .section-label-text {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--grey-dark);
+    white-space: nowrap;
+  }
+  .section-label-num {
+    font-family: var(--font-display);
+    font-size: 13px;
+    color: var(--green);
+    font-weight: 700;
+  }
+
+  /* ─── QUESTION CARD ──────────────────────────────────────── */
+  .question-card {
+    background: var(--white);
+    border: 1px solid var(--grey-light);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 12px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  .question-card:hover {
+    border-color: var(--grey-mid);
+  }
+  .question-card.answered {
+    border-color: rgba(0,228,167,0.3);
+  }
+  .question-number {
+    display: none;
+  }
+  .question-text {
+    font-size: 15px;
+    font-weight: 500;
+    line-height: 1.55;
+    color: var(--black);
+    margin-bottom: 20px;
+  }
+
+  /* ─── OPTIONS ─────────────────────────────────────────────── */
+  .options { display: flex; flex-direction: column; gap: 8px; }
+
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1.5px solid var(--grey-light);
+    cursor: pointer;
+    transition: all 0.15s ease;
+    user-select: none;
+    background: var(--bg);
+  }
+  .option:hover {
+    border-color: var(--green);
+    background: rgba(0,228,167,0.04);
+  }
+  .option input { display: none; }
+  .option.selected {
+    border-color: var(--green);
+    background: rgba(0,228,167,0.06);
+  }
+
+  .option-radio {
+    width: 18px; height: 18px;
+    border-radius: 50%;
+    border: 2px solid var(--grey-light);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    background: var(--white);
+  }
+  .option.selected .option-radio {
+    border-color: var(--green);
+    background: var(--green);
+  }
+  .option.selected .option-radio::after {
+    content: '';
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--black);
+  }
+
+  /* ─── CHECKBOX INDICATOR ─────────────────────────────────── */
+  .option-check {
+    width: 18px; height: 18px;
+    border-radius: 4px;
+    border: 2px solid var(--grey-light);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s;
+    background: var(--white);
+  }
+  .option.selected .option-check {
+    border-color: var(--green);
+    background: var(--green);
+  }
+  .option.selected .option-check::after {
+    content: '✓';
+    font-size: 11px;
+    color: var(--black);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .option-label {
+    font-size: 14px;
+    color: var(--grey-dark);
+    line-height: 1.4;
+    font-weight: 400;
+  }
+  .option.selected .option-label {
+    color: var(--black);
+    font-weight: 500;
+  }
+
+  /* ─── COLOR OPTIONS ──────────────────────────────────────── */
+  .color-options { display: flex; flex-wrap: wrap; gap: 8px; }
+
+  .color-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 14px;
+    border-radius: 8px;
+    border: 1.5px solid var(--grey-light);
+    cursor: pointer;
+    background: var(--bg);
+    transition: all 0.15s;
+    user-select: none;
+  }
+  .color-option:hover {
+    border-color: var(--green);
+    background: rgba(0,228,167,0.04);
+  }
+  .color-option.selected {
+    border-color: var(--green);
+    background: rgba(0,228,167,0.06);
+  }
+
+  .color-swatch {
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  }
+  .color-swatch.green  { background: #22c55e; }
+  .color-swatch.yellow { background: #f59e0b; }
+  .color-swatch.red    { background: #ef4444; }
+  .color-swatch.blue   { background: #3b82f6; }
+
+  .color-option-label { font-size: 13px; color: var(--black); font-weight: 400; }
+  .color-option.selected .color-option-label { font-weight: 500; }
+
+  /* ─── TEST CARD ───────────────────────────────────────────── */
+  .test-card {
+    background: var(--white);
+    border: 1px solid var(--grey-light);
+    border-radius: 12px;
+    margin-bottom: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .test-card.answered { border-color: rgba(0,228,167,0.3); }
+
+  .test-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--grey-light);
+    background: var(--white);
+  }
+
+  .test-badge {
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-display);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 5px 12px;
+    border-radius: 6px;
+    flex-shrink: 0;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+  .test-badge.optional {
+    background: transparent;
+    color: var(--grey-dark);
+    border: 1px solid var(--grey-light);
+  }
+  .test-badge .badge-accent { color: var(--green); }
+
+  .test-instructions {
+    color: var(--grey-dark);
+    font-size: 13px;
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  .test-body { padding: 24px 28px; }
+
+  .test-question {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--black);
+    margin-bottom: 14px;
+    line-height: 1.5;
+  }
+  .sub-question {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--grey-dark);
+    margin: 20px 0 10px;
+    padding-left: 12px;
+    border-left: 2px solid var(--green);
+  }
+
+  .instruction-steps {
+    background: #f9fafb;
+    border-left: 2px solid var(--green);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: var(--grey-dark);
+    line-height: 1.8;
+    font-weight: 300;
+  }
+  .instruction-steps strong {
+    color: var(--black);
+    font-weight: 500;
+  }
+
+  /* ─── IMAGES ─────────────────────────────────────────────── */
+  .test-images {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 20px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .test-img-wrap {
+    flex-shrink: 0;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--grey-light);
+    background: #f1f5f9;
+    position: relative;
+    cursor: zoom-in;
+  }
+  .test-img-wrap img {
+    display: block;
+    width: auto;
+    height: 380px;
+    object-fit: cover;
+    object-position: top;
+    transition: transform 0.2s;
+    cursor: zoom-in;
+  }
+  .test-img-wrap:hover img { transform: scale(1.02); }
+  .test-images.fit-row {
+    overflow-x: hidden;
+    padding-bottom: 0;
+  }
+  .test-images.fit-row .test-img-wrap {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .test-images.fit-row .test-img-wrap img {
+    width: 100%;
+  }
+
+  /* ─── ZOOM BUTTON ────────────────────────────────────────── */
+  .zoom-btn {
+    position: absolute;
+    bottom: 10px; right: 10px;
+    background: rgba(0,0,0,0.62);
+    border-radius: 6px;
+    width: 40px; height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 3;
+  }
+
+  /* ─── CAROUSEL ───────────────────────────────────────────── */
+  .carousel {
+    position: relative;
+    margin-bottom: 20px;
+  }
+  .carousel .test-images {
+    overflow: hidden;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+  .carousel .test-img-wrap {
+    display: none;
+    width: 100%;
+  }
+  .carousel .test-img-wrap.carousel-active {
+    display: block;
+  }
+  .carousel .test-img-wrap.carousel-active img {
+    width: 100%;
+    object-fit: cover;
+    object-position: top;
+  }
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    width: 44px;
+    height: 84px;
+    font-size: 42px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    padding: 0;
+    transition: background 0.15s;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+  .carousel-btn:hover { background: rgba(0,0,0,0.78); }
+  .carousel-btn-prev { left: 0; border-radius: 0 6px 6px 0; }
+  .carousel-btn-next { right: 0; border-radius: 6px 0 0 6px; }
+  .carousel-counter {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0,0,0,0.55);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 12px;
+    border-radius: 100px;
+    pointer-events: none;
+    z-index: 10;
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+  }
+
+  /* ─── CAROUSEL: desktop — revert to side-by-side ─────────── */
+  @media (min-width: 768px) {
+    .carousel-btn,
+    .carousel-counter { display: none; }
+    .carousel .test-images { display: flex; overflow-x: auto; gap: 8px; }
+    .carousel .test-img-wrap { display: block; width: auto; }
+    .carousel .test-img-wrap.carousel-active img { width: auto; }
+  }
+
+
+  /* ─── LIGHTBOX ───────────────────────────────────────────── */
+  .lightbox {
+    position: fixed; inset: 0;
+    background: rgba(15,15,15,0.92);
+    z-index: 999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+  }
+  .lightbox.open { opacity: 1; pointer-events: all; }
+  .lightbox img { max-width: 90vw; max-height: 90vh; border-radius: 8px; }
+  .lightbox-close {
+    position: absolute;
+    top: 24px; right: 28px;
+    color: var(--grey-mid);
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 1;
+    transition: color 0.15s;
+  }
+  .lightbox-close:hover { color: var(--white); }
+  .lightbox-nav {
+    position: absolute;
+    top: 50%; transform: translateY(-50%);
+    background: rgba(0,0,0,0.55);
+    color: var(--white);
+    border: none; cursor: pointer;
+    font-size: 28px; line-height: 1;
+    padding: 12px 16px;
+    border-radius: 6px;
+    transition: background 0.15s;
+    display: none;
+  }
+  .lightbox-nav:hover { background: rgba(0,0,0,0.78); }
+  .lightbox-nav.visible { display: block; }
+  .lightbox-nav-prev { left: 16px; }
+  .lightbox-nav-next { right: 16px; }
+  .lightbox-counter {
+    position: absolute;
+    top: 16px; left: 50%; transform: translateX(-50%);
+    background: rgba(0,0,0,0.55);
+    color: var(--white);
+    font-size: 13px; font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 100px;
+    display: none;
+  }
+  .lightbox-counter.visible { display: block; }
+
+  /* ─── SUBMIT AREA ─────────────────────────────────────────── */
+  .submit-area {
+    margin-top: 52px;
+    background: var(--black);
+    border-radius: 16px;
+    padding: 48px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .submit-area::before {
+    content: '';
+    position: absolute;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(0,228,167,0.08) 0%, transparent 70%);
+    top: -150px; right: -100px;
+    pointer-events: none;
+  }
+  .submit-title {
+    font-family: var(--font-display);
+    font-size: 26px;
+    font-weight: 500;
+    color: var(--white);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+  }
+  .submit-title span { color: var(--green); }
+  .submit-subtitle {
+    color: var(--grey-light);
+    font-size: 13px;
+    margin-bottom: 32px;
+    font-weight: 300;
+  }
+
+  .submit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--green);
+    color: var(--black);
+    border: none;
+    padding: 15px 40px;
+    border-radius: 8px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.01em;
+  }
+  .submit-btn:hover {
+    background: var(--white);
+    transform: translateY(-1px);
+    box-shadow: 0 8px 24px rgba(0,228,167,0.2);
+  }
+  .submit-btn-icon { font-size: 16px; transition: transform 0.2s; }
+  .submit-btn:hover .submit-btn-icon { transform: translateX(3px); }
+
+  .submit-note {
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--grey-light);
+    font-weight: 300;
+  }
+
+  /* ─── TOAST ──────────────────────────────────────────────── */
+  .toast {
+    position: fixed;
+    bottom: 32px; right: 32px;
+    background: var(--black);
+    color: var(--white);
+    border: 1px solid rgba(0,228,167,0.3);
+    padding: 14px 20px;
+    border-radius: 10px;
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 100;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+  .toast-icon {
+    width: 22px; height: 22px;
+    background: var(--green);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    font-size: 12px;
+    color: var(--black);
+    font-weight: 700;
+  }
+
+  /* ─── MISSING / VALIDATION ───────────────────────────────── */
+  .question-card.missing {
+    border-color: rgba(239,68,68,0.5);
+    background: rgba(239,68,68,0.02);
+  }
+  .test-card.missing {
+    border-color: rgba(239,68,68,0.5);
+  }
+  .toast.error { border-color: rgba(239,68,68,0.5); }
+  .toast.error .toast-icon { background: #ef4444; content: '!'; }
+
+  /* ─── RESPONSIVE ─────────────────────────────────────────── */
+  @media (max-width: 640px) {
+    .header { padding: 16px 20px; }
+    .hero { padding: 48px 20px 64px; }
+    .progress-wrap { padding: 0 20px 14px; }
+    .progress-inner { gap: 12px; }
+    .progress-label { font-size: 8px; }
+    .container { padding: 0 16px 80px; }
+    .question-card { padding: 22px 20px; }
+    .test-header, .test-body { padding: 18px 20px; }
+    .submit-area { padding: 36px 24px; border-radius: 12px; }
+    .color-options { flex-direction: column; }
+    .test-img-wrap img { height: 300px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-logo">
+    <a href="https://www.movisplus.com" target="_blank" rel="noopener noreferrer">
+      <img src="https://cdn.prod.website-files.com/69834dd53c9c7bcf1c2bf529/6984c62bb3578b0ae7237ddb_Moviswhite.svg" alt="Movis+">
+    </a>
+  </div>
+  <div class="header-badge">Chestionar Clinic</div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">
+      <div class="hero-tag-dot"></div>
+      <div class="hero-tag-text">Evaluare clinică ghidată</div>
+    </div>
+    <h1>Anamneză <span>Generală</span></h1>
+    <p class="hero-desc">Acest chestionar ne ajută să înțelegem contextul clinic al problemei tale. Răspunde cât mai sincer.</p>
+  </div>
+</div>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <div class="progress-section">
+      <span class="progress-label"><a href="#section-anamneza" style="text-decoration:none;color:inherit;">Anamneză Generală</a></span>
+      <div class="progress-row">
+        <div class="progress-track"><div class="progress-fill" id="progressFillA"></div></div>
+        <span class="progress-pct" id="progressPctA">0%</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="container">
+
+
+  <!-- ─── ANAMNEZĂ GENERALĂ ─── -->
+  <div class="section-label">
+    <div class="section-label-line"></div>
+    <div class="section-label-text" id="section-anamneza">Anamneză Generală</div>
+    <div class="section-label-line"></div>
+  </div>
+
+  <!-- Sub I -->
+  <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
+    <div class="sub-section-label-line"></div>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Despre Problema Actuală</span>
+    <div class="sub-section-label-line"></div>
+  </div>
+
+  <!-- A1 -->
+  <div class="question-card" id="card-a1">
+    <div class="question-number">Anamneză A01</div>
+    <div class="question-text">De cât timp ai simptomele?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a1')"><input type="radio" name="a1"><div class="option-radio"></div><span class="option-label">Sub 2 săptămâni</span></label>
+      <label class="option" onclick="sel(this,'a1')"><input type="radio" name="a1"><div class="option-radio"></div><span class="option-label">2–6 săptămâni</span></label>
+      <label class="option" onclick="sel(this,'a1')"><input type="radio" name="a1"><div class="option-radio"></div><span class="option-label">6 săptămâni – 3 luni</span></label>
+      <label class="option" onclick="sel(this,'a1')"><input type="radio" name="a1"><div class="option-radio"></div><span class="option-label">3–12 luni</span></label>
+      <label class="option" onclick="sel(this,'a1')"><input type="radio" name="a1"><div class="option-radio"></div><span class="option-label">Peste 1 an</span></label>
+    </div>
+  </div>
+
+  <!-- A2 -->
+  <div class="question-card" id="card-a2">
+    <div class="question-number">Anamneză A02</div>
+    <div class="question-text">Cum au apărut simptomele?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a2')"><input type="radio" name="a2"><div class="option-radio"></div><span class="option-label">Brusc, după un eveniment clar (cădere, accident, mișcare bruscă)</span></label>
+      <label class="option" onclick="sel(this,'a2')"><input type="radio" name="a2"><div class="option-radio"></div><span class="option-label">După efort repetitiv / suprasolicitare</span></label>
+      <label class="option" onclick="sel(this,'a2')"><input type="radio" name="a2"><div class="option-radio"></div><span class="option-label">Treptat, fără un motiv clar</span></label>
+      <label class="option" onclick="sel(this,'a2')"><input type="radio" name="a2"><div class="option-radio"></div><span class="option-label">Am mai avut episoade similare în trecut</span></label>
+    </div>
+  </div>
+
+  <!-- A3 -->
+  <div class="question-card" id="card-a3">
+    <div class="question-number">Anamneză A03</div>
+    <div class="question-text">Evoluția în timp:</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a3')"><input type="radio" name="a3"><div class="option-radio"></div><span class="option-label">Se ameliorează treptat</span></label>
+      <label class="option" onclick="sel(this,'a3')"><input type="radio" name="a3"><div class="option-radio"></div><span class="option-label">Este stabilă</span></label>
+      <label class="option" onclick="sel(this,'a3')"><input type="radio" name="a3"><div class="option-radio"></div><span class="option-label">Se agravează lent</span></label>
+      <label class="option" onclick="sel(this,'a3')"><input type="radio" name="a3"><div class="option-radio"></div><span class="option-label">Se agravează rapid în ultimele săptămâni</span></label>
+    </div>
+  </div>
+
+  <!-- Sub II -->
+  <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
+    <div class="sub-section-label-line"></div>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Caracterul Durerii</span>
+    <div class="sub-section-label-line"></div>
+  </div>
+
+  <!-- A4 -->
+  <div class="question-card" id="card-a4">
+    <div class="question-number">Anamneză A04</div>
+    <div class="question-text">Cât de intensă este durerea, în medie?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a4')"><input type="radio" name="a4"><div class="option-radio"></div><span class="option-label">0–2 (ușoară)</span></label>
+      <label class="option" onclick="sel(this,'a4')"><input type="radio" name="a4"><div class="option-radio"></div><span class="option-label">3–5 (moderată)</span></label>
+      <label class="option" onclick="sel(this,'a4')"><input type="radio" name="a4"><div class="option-radio"></div><span class="option-label">6–8 (mare)</span></label>
+      <label class="option" onclick="sel(this,'a4')"><input type="radio" name="a4"><div class="option-radio"></div><span class="option-label">9–10 (foarte severă)</span></label>
+    </div>
+  </div>
+
+  <!-- A5 -->
+  <div class="question-card" id="card-a5">
+    <div class="question-number">Anamneză A05</div>
+    <div class="question-text">Durerea este:</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a5')"><input type="radio" name="a5"><div class="option-radio"></div><span class="option-label">Doar la mișcare / efort</span></label>
+      <label class="option" onclick="sel(this,'a5')"><input type="radio" name="a5"><div class="option-radio"></div><span class="option-label">Și la mișcare, și în repaus</span></label>
+      <label class="option" onclick="sel(this,'a5')"><input type="radio" name="a5"><div class="option-radio"></div><span class="option-label">Constantă, inclusiv noaptea</span></label>
+      <label class="option" onclick="sel(this,'a5')"><input type="radio" name="a5"><div class="option-radio"></div><span class="option-label">Mă trezește frecvent din somn</span></label>
+    </div>
+  </div>
+
+  <!-- A6 -->
+  <div class="question-card" id="card-a6">
+    <div class="question-number">Anamneză A06</div>
+    <div class="question-text">Dimineața, zona afectată este:</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a6')"><input type="radio" name="a6"><div class="option-radio"></div><span class="option-label">Fara redoare matinala</span></label>
+      <label class="option" onclick="sel(this,'a6')"><input type="radio" name="a6"><div class="option-radio"></div><span class="option-label">Rigidă sub 30 minute</span></label>
+      <label class="option" onclick="sel(this,'a6')"><input type="radio" name="a6"><div class="option-radio"></div><span class="option-label">Rigidă peste 30–60 minute</span></label>
+      <label class="option" onclick="sel(this,'a6')"><input type="radio" name="a6"><div class="option-radio"></div><span class="option-label">Rigidă peste 1 oră</span></label>
+    </div>
+  </div>
+
+  <!-- A7 multi -->
+  <div class="question-card" id="card-a7">
+    <div class="question-number">Anamneză A07</div>
+    <div class="question-text">Ai senzații de: <small style="font-weight:300;font-size:12px;">(poți bifa mai multe)</small></div>
+    <div class="options">
+      <label class="option" onclick="selCheck(this,'a7','a7-none',event)"><input type="checkbox" name="a7"><div class="option-check"></div><span class="option-label">Amorțeală</span></label>
+      <label class="option" onclick="selCheck(this,'a7','a7-none',event)"><input type="checkbox" name="a7"><div class="option-check"></div><span class="option-label">Furnicături</span></label>
+      <label class="option" onclick="selCheck(this,'a7','a7-none',event)"><input type="checkbox" name="a7"><div class="option-check"></div><span class="option-label">Slăbiciune clară</span></label>
+    </div>
+    <div style="margin-top:8px;">
+      <label class="option" onclick="selNone(this,'a7-none','a7',event)"><input type="radio" name="a7-none"><div class="option-radio"></div><span class="option-label">Fara amorteli, furnicaturi sau slabiciune</span></label>
+    </div>
+  </div>
+
+  <!-- Sub III -->
+  <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
+    <div class="sub-section-label-line"></div>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Impact Funcțional</span>
+    <div class="sub-section-label-line"></div>
+  </div>
+
+  <!-- A8 -->
+  <div class="question-card" id="card-a8">
+    <div class="question-number">Anamneză A08</div>
+    <div class="question-text">Din cauza problemei actuale:</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a8')"><input type="radio" name="a8"><div class="option-radio"></div><span class="option-label">Pot face aproape toate activitățile normale</span></label>
+      <label class="option" onclick="sel(this,'a8')"><input type="radio" name="a8"><div class="option-radio"></div><span class="option-label">Evit anumite mișcări / activități</span></label>
+      <label class="option" onclick="sel(this,'a8')"><input type="radio" name="a8"><div class="option-radio"></div><span class="option-label">Mi-am redus semnificativ activitatea</span></label>
+      <label class="option" onclick="sel(this,'a8')"><input type="radio" name="a8"><div class="option-radio"></div><span class="option-label">Nu pot face activități uzuale (mers, urcat scări, ridicat obiecte)</span></label>
+    </div>
+  </div>
+
+  <!-- A9 multi -->
+  <div class="question-card" id="card-a9">
+    <div class="question-number">Anamneză A09</div>
+    <div class="question-text">Problema îți afectează: <small style="font-weight:300;font-size:12px;">(poți bifa mai multe)</small></div>
+    <div class="options">
+      <label class="option" onclick="selCheck(this,'a9','a9-none',event)"><input type="checkbox" name="a9"><div class="option-check"></div><span class="option-label">Somnul</span></label>
+      <label class="option" onclick="selCheck(this,'a9','a9-none',event)"><input type="checkbox" name="a9"><div class="option-check"></div><span class="option-label">Mersul</span></label>
+      <label class="option" onclick="selCheck(this,'a9','a9-none',event)"><input type="checkbox" name="a9"><div class="option-check"></div><span class="option-label">Munca</span></label>
+      <label class="option" onclick="selCheck(this,'a9','a9-none',event)"><input type="checkbox" name="a9"><div class="option-check"></div><span class="option-label">Sportul</span></label>
+    </div>
+    <div style="margin-top:8px;">
+      <label class="option" onclick="selNone(this,'a9-none','a9',event)"><input type="radio" name="a9-none"><div class="option-radio"></div><span class="option-label">Fara impact functional semnificativ</span></label>
+    </div>
+  </div>
+
+  <!-- Sub IV -->
+  <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
+    <div class="sub-section-label-line"></div>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Semnale de Alarmă</span>
+    <div class="sub-section-label-line"></div>
+  </div>
+
+  <!-- A10 multi -->
+  <div class="question-card" id="card-a10">
+    <div class="question-number">Anamneză A10</div>
+    <div class="question-text">În ultimele luni ai avut: <small style="font-weight:300;font-size:12px;">(poți bifa mai multe)</small></div>
+    <div class="options">
+      <label class="option" onclick="selCheck(this,'a10','a10-none',event)"><input type="checkbox" name="a10"><div class="option-check"></div><span class="option-label">Scădere în greutate neintenționate</span></label>
+      <label class="option" onclick="selCheck(this,'a10','a10-none',event)"><input type="checkbox" name="a10"><div class="option-check"></div><span class="option-label">Febră inexplicabilă</span></label>
+      <label class="option" onclick="selCheck(this,'a10','a10-none',event)"><input type="checkbox" name="a10"><div class="option-check"></div><span class="option-label">Transpirații nocturne persistente</span></label>
+      <label class="option" onclick="selCheck(this,'a10','a10-none',event)"><input type="checkbox" name="a10"><div class="option-check"></div><span class="option-label">Istoric personal de cancer</span></label>
+    </div>
+    <div style="margin-top:8px;">
+      <label class="option" onclick="selNone(this,'a10-none','a10',event)"><input type="radio" name="a10-none"><div class="option-radio"></div><span class="option-label">Fara semne de alarma</span></label>
+    </div>
+  </div>
+
+  <!-- A11 multi -->
+  <div class="question-card" id="card-a11">
+    <div class="question-number">Anamneză A11</div>
+    <div class="question-text">Ai avut recent: <small style="font-weight:300;font-size:12px;">(poți bifa mai multe)</small></div>
+    <div class="options">
+      <label class="option" onclick="selCheck(this,'a11','a11-none',event)"><input type="checkbox" name="a11"><div class="option-check"></div><span class="option-label">Traumatism major (accident, cădere serioasă)</span></label>
+      <label class="option" onclick="selCheck(this,'a11','a11-none',event)"><input type="checkbox" name="a11"><div class="option-check"></div><span class="option-label">Slăbiciune progresivă accentuată</span></label>
+      <label class="option" onclick="selCheck(this,'a11','a11-none',event)"><input type="checkbox" name="a11"><div class="option-check"></div><span class="option-label">Probleme noi cu controlul urinei sau scaunului</span></label>
+    </div>
+    <div style="margin-top:8px;">
+      <label class="option" onclick="selNone(this,'a11-none','a11',event)"><input type="radio" name="a11-none"><div class="option-radio"></div><span class="option-label">Fara evenimente recente relevante</span></label>
+    </div>
+  </div>
+
+  <!-- Sub V -->
+  <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
+    <div class="sub-section-label-line"></div>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Tratament Anterior</span>
+    <div class="sub-section-label-line"></div>
+  </div>
+
+  <!-- A12 multi -->
+  <div class="question-card" id="card-a12">
+    <div class="question-number">Anamneză A12</div>
+    <div class="question-text">Ce ai încercat până acum? <small style="font-weight:300;font-size:12px;">(poți bifa mai multe)</small></div>
+    <div class="options">
+      <label class="option" onclick="selCheck(this,'a12','a12-none',event);toggleA13(false)"><input type="checkbox" name="a12"><div class="option-check"></div><span class="option-label">Antiinflamatoare / analgezice</span></label>
+      <label class="option" onclick="selCheck(this,'a12','a12-none',event);toggleA13(false)"><input type="checkbox" name="a12"><div class="option-check"></div><span class="option-label">Fizioterapie / kinetoterapie</span></label>
+      <label class="option" onclick="selCheck(this,'a12','a12-none',event);toggleA13(false)"><input type="checkbox" name="a12"><div class="option-check"></div><span class="option-label">Infiltrații</span></label>
+      <label class="option" onclick="selCheck(this,'a12','a12-none',event);toggleA13(false)"><input type="checkbox" name="a12"><div class="option-check"></div><span class="option-label">Repaus</span></label>
+    </div>
+    <div style="margin-top:8px;">
+      <label class="option" onclick="selNone(this,'a12-none','a12',event);toggleA13(true)"><input type="radio" name="a12-none"><div class="option-radio"></div><span class="option-label">Fara tratament anterior</span></label>
+    </div>
+  </div>
+
+  <!-- A13 -->
+  <div class="question-card" id="card-a13">
+    <div class="question-number">Anamneză A13</div>
+    <div class="question-text">Tratamentul a fost:</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a13')"><input type="radio" name="a13"><div class="option-radio"></div><span class="option-label">Clar eficient</span></label>
+      <label class="option" onclick="sel(this,'a13')"><input type="radio" name="a13"><div class="option-radio"></div><span class="option-label">Parțial eficient</span></label>
+      <label class="option" onclick="sel(this,'a13')"><input type="radio" name="a13"><div class="option-radio"></div><span class="option-label">Fără efect</span></label>
+      <label class="option" onclick="sel(this,'a13')"><input type="radio" name="a13"><div class="option-radio"></div><span class="option-label">Nu pot aprecia</span></label>
+    </div>
+  </div>
+
+  <!-- Sub VI -->
+  <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
+    <div class="sub-section-label-line"></div>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Context Medical</span>
+    <div class="sub-section-label-line"></div>
+  </div>
+
+  <!-- A14 multi -->
+  <div class="question-card" id="card-a14">
+    <div class="question-number">Anamneză A14</div>
+    <div class="question-text">Ai fost diagnosticat cu: <small style="font-weight:300;font-size:12px;">(poți bifa mai multe)</small></div>
+    <div class="options">
+      <label class="option" onclick="selCheck(this,'a14','a14-none',event)"><input type="checkbox" name="a14"><div class="option-check"></div><span class="option-label">Boală reumatologică</span></label>
+      <label class="option" onclick="selCheck(this,'a14','a14-none',event)"><input type="checkbox" name="a14"><div class="option-check"></div><span class="option-label">Diabet</span></label>
+      <label class="option" onclick="selCheck(this,'a14','a14-none',event)"><input type="checkbox" name="a14"><div class="option-check"></div><span class="option-label">Osteoporoză</span></label>
+      <label class="option" onclick="selCheck(this,'a14','a14-none',event)"><input type="checkbox" name="a14"><div class="option-check"></div><span class="option-label">Afecțiune neurologică</span></label>
+      <label class="option" onclick="selCheck(this,'a14','a14-none',event)"><input type="checkbox" name="a14"><div class="option-check"></div><span class="option-label">Boală oncologică în trecut</span></label>
+    </div>
+    <div style="margin-top:8px;">
+      <label class="option" onclick="selNone(this,'a14-none','a14',event)"><input type="radio" name="a14-none"><div class="option-radio"></div><span class="option-label">Fara comorbiditati relevante</span></label>
+    </div>
+  </div>
+
+  <!-- A15 -->
+  <div class="question-card" id="card-a15">
+    <div class="question-number">Anamneză A15</div>
+    <div class="question-text">Ai suferit intervenții chirurgicale în zona investigată?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a15')"><input type="radio" name="a15"><div class="option-radio"></div><span class="option-label">Da</span></label>
+      <label class="option" onclick="sel(this,'a15')"><input type="radio" name="a15"><div class="option-radio"></div><span class="option-label">Nu</span></label>
+    </div>
+  </div>
+
+  <!-- Sub VII -->
+  <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
+    <div class="sub-section-label-line"></div>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Stil de Viață</span>
+    <div class="sub-section-label-line"></div>
+  </div>
+
+  <!-- A16 -->
+  <div class="question-card" id="card-a16">
+    <div class="question-number">Anamneză A16</div>
+    <div class="question-text">Nivelul tău de activitate este:</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a16')"><input type="radio" name="a16"><div class="option-radio"></div><span class="option-label">Predominant sedentar</span></label>
+      <label class="option" onclick="sel(this,'a16')"><input type="radio" name="a16"><div class="option-radio"></div><span class="option-label">Activ moderat (mers, activitate fizică ușoară)</span></label>
+      <label class="option" onclick="sel(this,'a16')"><input type="radio" name="a16"><div class="option-radio"></div><span class="option-label">Activ regulat (sport 2–3 ori / săptămână)</span></label>
+      <label class="option" onclick="sel(this,'a16')"><input type="radio" name="a16"><div class="option-radio"></div><span class="option-label">Foarte activ / sport intensiv</span></label>
+    </div>
+  </div>
+
+  <!-- A17 -->
+  <div class="question-card" id="card-a17">
+    <div class="question-number">Anamneză A17</div>
+    <div class="question-text">La locul de muncă:</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a17')"><input type="radio" name="a17"><div class="option-radio"></div><span class="option-label">Stau mai mult pe scaun</span></label>
+      <label class="option" onclick="sel(this,'a17')"><input type="radio" name="a17"><div class="option-radio"></div><span class="option-label">Stau mult în picioare</span></label>
+      <label class="option" onclick="sel(this,'a17')"><input type="radio" name="a17"><div class="option-radio"></div><span class="option-label">Ridic greutăți frecvent</span></label>
+      <label class="option" onclick="sel(this,'a17')"><input type="radio" name="a17"><div class="option-radio"></div><span class="option-label">Activitate mixtă</span></label>
+    </div>
+  </div>
+
+  <!-- A18 -->
+  <div class="question-card" id="card-a18">
+    <div class="question-number">Anamneză A18</div>
+    <div class="question-text">Fumezi?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a18')"><input type="radio" name="a18"><div class="option-radio"></div><span class="option-label">Nu</span></label>
+      <label class="option" onclick="sel(this,'a18')"><input type="radio" name="a18"><div class="option-radio"></div><span class="option-label">Ocazional</span></label>
+      <label class="option" onclick="sel(this,'a18')"><input type="radio" name="a18"><div class="option-radio"></div><span class="option-label">Zilnic</span></label>
+    </div>
+  </div>
+
+  <!-- A19 -->
+  <div class="question-card" id="card-a19">
+    <div class="question-number">Anamneză A19</div>
+    <div class="question-text">Greutatea corporală:</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a19')"><input type="radio" name="a19"><div class="option-radio"></div><span class="option-label">Normoponderal</span></label>
+      <label class="option" onclick="sel(this,'a19')"><input type="radio" name="a19"><div class="option-radio"></div><span class="option-label">Ușor supraponderal</span></label>
+      <label class="option" onclick="sel(this,'a19')"><input type="radio" name="a19"><div class="option-radio"></div><span class="option-label">Obez</span></label>
+      <label class="option" onclick="sel(this,'a19')"><input type="radio" name="a19"><div class="option-radio"></div><span class="option-label">Nu știu / prefer să nu răspund</span></label>
+    </div>
+  </div>
+
+  <!-- Sub VIII -->
+  <div class="section-label" style="margin-top:28px;margin-bottom:14px;">
+    <div class="sub-section-label-line"></div>
+    <span style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--grey-dark);white-space:nowrap;">Obiectivul Tău</span>
+    <div class="sub-section-label-line"></div>
+  </div>
+
+  <!-- A20 -->
+  <div class="question-card" id="card-a20">
+    <div class="question-number">Anamneză A20</div>
+    <div class="question-text">Ce ți-ai dori cel mai mult să poți face fără durere?</div>
+    <div class="options">
+      <label class="option" onclick="sel(this,'a20')"><input type="radio" name="a20"><div class="option-radio"></div><span class="option-label">Activități zilnice fără limitare</span></label>
+      <label class="option" onclick="sel(this,'a20')"><input type="radio" name="a20"><div class="option-radio"></div><span class="option-label">Revenirea la sport</span></label>
+      <label class="option" onclick="sel(this,'a20')"><input type="radio" name="a20"><div class="option-radio"></div><span class="option-label">Revenirea la muncă normal</span></label>
+      <label class="option" onclick="sel(this,'a20')"><input type="radio" name="a20"><div class="option-radio"></div><span class="option-label">Reducerea durerii, chiar dacă rămân unele limitări</span></label>
+    </div>
+  </div>
+
+
+
+  <!-- SUBMIT -->
+  <div class="submit-area">
+    <div class="submit-title">Trimite <span>răspunsurile</span> tale</div>
+    <p class="submit-subtitle">Răspunsurile de mai sus vor fi trimise către platforma Medicai. La pasul următor, în platforma Medicai, vei completa câteva informații personale și vei încărca RMN-ul.</p>
+    <button class="submit-btn" onclick="generateJSON()">
+      Trimite răspunsuri
+      <span class="submit-btn-icon">→</span>
+    </button>
+    <p class="submit-note">Vei fi redirecționat către platformă Medicai.</p>
+  </div>
+
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+  <span class="lightbox-close">✕</span>
+  <button class="lightbox-nav lightbox-nav-prev" id="lightboxPrev">&#8249;</button>
+  <img id="lightboxImg" src="" alt="">
+  <div id="lightboxCounter" class="lightbox-counter"></div>
+  <button class="lightbox-nav lightbox-nav-next" id="lightboxNext">&#8250;</button>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="toast-icon" id="toastIcon">✓</div>
+  <span id="toastMsg">JSON generat cu succes!</span>
+</div>
+
+<script>
+  const answered = new Set();
+  const total = 20;
+
+  function sel(el, name) {
+    const container = el.closest('.options, .test-body, .question-card');
+    container.querySelectorAll('.option').forEach(s => s.classList.remove('selected'));
+    el.classList.add('selected');
+    answered.add(name);
+    updateProgress();
+    const card = el.closest('.question-card');
+    if (card) { card.classList.add('answered'); card.classList.remove('missing'); }
+    const testCard = el.closest('.test-card');
+    if (testCard) { testCard.classList.add('answered'); testCard.classList.remove('missing'); }
+  }
+
+  function selColor(el, name) {
+    const container = el.closest('.color-options');
+    container.querySelectorAll('.color-option').forEach(s => s.classList.remove('selected'));
+    el.classList.add('selected');
+    answered.add(name);
+    updateProgress();
+    el.closest('.test-card').classList.add('answered');
+    el.closest('.test-card').classList.remove('missing');
+  }
+
+  function selMulti(el, name, max, event) {
+    if (event) event.preventDefault();
+    const container = el.closest('.color-options');
+    const alreadySelected = el.classList.contains('selected');
+    if (alreadySelected) {
+      el.classList.remove('selected');
+    } else {
+      const currentSel = [...container.querySelectorAll('.color-option.selected')];
+      if (currentSel.length >= max) {
+        currentSel[0].classList.remove('selected');
+      }
+      el.classList.add('selected');
+    }
+    if (container.querySelectorAll('.color-option.selected').length > 0) {
+      answered.add(name);
+      el.closest('.test-card').classList.add('answered');
+      el.closest('.test-card').classList.remove('missing');
+    } else {
+      answered.delete(name);
+    }
+    updateProgress();
+  }
+
+  function selColor3(el, event) {
+    if (event) event.preventDefault();
+    el.classList.toggle('selected');
+    const card = el.closest('.test-card');
+    // Clear the none option whenever any color is toggled
+    const noneEl = card.querySelector('input[name="t3-none"]');
+    if (noneEl) { noneEl.closest('.option')?.classList.remove('selected'); answered.delete('t3-none'); }
+    const container = el.closest('.color-options');
+    if (container.querySelectorAll('.color-option.selected').length > 0) {
+      answered.add('t3');
+      card.classList.add('answered'); card.classList.remove('missing');
+    } else { answered.delete('t3'); card.classList.remove('answered'); }
+    updateProgress();
+  }
+
+  function selT3None(el, event) {
+    if (event) event.preventDefault();
+    const card = el.closest('.test-card');
+    // Clear all color selections
+    card.querySelectorAll('.color-option').forEach(o => o.classList.remove('selected'));
+    answered.delete('t3');
+    // Select none
+    el.classList.add('selected');
+    answered.add('t3-none');
+    card.classList.add('answered'); card.classList.remove('missing');
+    updateProgress();
+  }
+
+  function selCheck(el, name, noneName, event) {
+    if (event) event.preventDefault();
+    const card = el.closest('.question-card');
+    el.classList.toggle('selected');
+    // Clear the "none" option
+    card.querySelectorAll(`input[name="${noneName}"]`).forEach(inp =>
+      inp.closest('.option')?.classList.remove('selected'));
+    answered.delete(noneName);
+    // Update answered state for this group
+    const anySelected = [...card.querySelectorAll(`input[name="${name}"]`)]
+      .some(inp => inp.closest('.option.selected'));
+    if (anySelected) {
+      answered.add(name);
+      card.classList.add('answered'); card.classList.remove('missing');
+    } else {
+      answered.delete(name);
+      card.classList.remove('answered');
+    }
+    updateProgress();
+  }
+
+  function selNone(el, name, checkName, event) {
+    if (event) event.preventDefault();
+    const card = el.closest('.question-card');
+    // Clear all checkboxes for this group
+    card.querySelectorAll(`input[name="${checkName}"]`).forEach(inp =>
+      inp.closest('.option')?.classList.remove('selected'));
+    answered.delete(checkName);
+    // Clear previous none selection, then select this
+    card.querySelectorAll(`input[name="${name}"]`).forEach(inp =>
+      inp.closest('.option')?.classList.remove('selected'));
+    el.classList.add('selected');
+    answered.add(name);
+    card.classList.add('answered'); card.classList.remove('missing');
+    updateProgress();
+  }
+
+  function toggleA13(hide) {
+    const card = document.getElementById('card-a13');
+    card.style.display = hide ? 'none' : '';
+    if (hide) {
+      card.querySelectorAll('input[name="a13"]').forEach(inp => inp.closest('.option')?.classList.remove('selected'));
+      answered.delete('a13');
+      updateProgress();
+    }
+  }
+
+    const SECTION_A = [['a1'],['a2'],['a3'],['a4'],['a5'],['a6'],['a7','a7-none'],['a8'],['a9','a9-none'],['a10','a10-none'],['a11','a11-none'],['a12','a12-none'],['a13'],['a14','a14-none'],['a15'],['a16'],['a17'],['a18'],['a19'],['a20']];
+    function countSec(groups) { return groups.filter(g => g.some(k => answered.has(k))).length; }
+function updateProgress() {
+
+  const groupsA = answered.has('a12-none')
+    ? SECTION_A.filter(g => !g.includes('a13'))
+    : SECTION_A;
+
+  const pA = Math.round(countSec(groupsA) / groupsA.length * 100);
+
+  document.getElementById('progressFillA').style.width = pA + '%';
+
+  document.getElementById('progressPctA').textContent = pA + '%';
+}
+
+  let _lbImgs = [], _lbIdx = 0;
+  function zoom(wrap) {
+    const card = wrap.closest('.test-card, .question-card') || wrap.parentNode;
+    const allWraps = [...card.querySelectorAll('.test-img-wrap, .img-wrap')];
+    _lbImgs = allWraps.map(w => w.querySelector('img')?.src).filter(Boolean);
+    _lbIdx = allWraps.indexOf(wrap);
+    if (_lbIdx < 0) _lbIdx = 0;
+    _lbUpdate();
+    document.getElementById('lightbox').classList.add('open');
+  }
+  function _lbUpdate() {
+    document.getElementById('lightboxImg').src = _lbImgs[_lbIdx] || '';
+    const hasPrev = _lbImgs.length > 1;
+    document.getElementById('lightboxPrev').classList.toggle('visible', hasPrev);
+    document.getElementById('lightboxNext').classList.toggle('visible', hasPrev);
+    const counter = document.getElementById('lightboxCounter');
+    counter.textContent = (_lbIdx + 1) + ' / ' + _lbImgs.length;
+    counter.classList.toggle('visible', hasPrev);
+  }
+  function _lbGo(dir) {
+    _lbIdx = ((_lbIdx + dir) % _lbImgs.length + _lbImgs.length) % _lbImgs.length;
+    _lbUpdate();
+  }
+  function closeLightbox() { document.getElementById('lightbox').classList.remove('open'); }
+  document.getElementById('lightboxPrev').addEventListener('click', function(e) { e.stopPropagation(); _lbGo(-1); });
+  document.getElementById('lightboxNext').addEventListener('click', function(e) { e.stopPropagation(); _lbGo(1); });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') _lbGo(-1);
+    if (e.key === 'ArrowRight') _lbGo(1);
+  });
+  let _lbTouchX = 0;
+  document.getElementById('lightbox').addEventListener('touchstart', function(e) {
+    _lbTouchX = e.touches[0].clientX;
+  }, { passive: true });
+  document.getElementById('lightbox').addEventListener('touchend', function(e) {
+    const diff = _lbTouchX - e.changedTouches[0].clientX;
+    if (Math.abs(diff) > 40) _lbGo(diff > 0 ? 1 : -1);
+  }, { passive: true });
+
+  function showToast(msg, isError) {
+    const toast = document.getElementById('toast');
+    document.getElementById('toastMsg').textContent = msg;
+    document.getElementById('toastIcon').textContent = isError ? '!' : '✓';
+    toast.classList.toggle('error', !!isError);
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3500);
+  }
+
+  const Anamneza_Q = [
+    { key: 'a1',  label: 'Durata simptome' },
+    { key: 'a2',  label: 'Debut' },
+    { key: 'a3',  label: 'Evolutie' },
+    { key: 'a4',  label: 'Intens. durere' },
+    { key: 'a5',  label: 'Tip durere' },
+    { key: 'a6',  label: 'Redoare mat.' },
+    { key: 'a7',  label: 'Senz. asociate', multi: true, noneName: 'a7-none' },
+    { key: 'a8',  label: 'Impact funct.' },
+    { key: 'a9',  label: 'Act. afectate', multi: true, noneName: 'a9-none' },
+    { key: 'a10', label: 'Semne alarma', multi: true, noneName: 'a10-none' },
+    { key: 'a11', label: 'Evenim. recente', multi: true, noneName: 'a11-none' },
+    { key: 'a12', label: 'Tr. anterior', multi: true, noneName: 'a12-none' },
+    { key: 'a13', label: 'Eficienta tr.' },
+    { key: 'a14', label: 'Comorbiditati', multi: true, noneName: 'a14-none' },
+    { key: 'a15', label: 'Chir. anterioara' },
+    { key: 'a16', label: 'Nivel activ.' },
+    { key: 'a17', label: 'Act. profesionala' },
+    { key: 'a18', label: 'Fumat' },
+    { key: 'a19', label: 'IMC' },
+    { key: 'a20', label: 'Obiectiv' },
+  ];
+
+  const Anamneza_R = {
+    a1: {
+      'Sub 2 săptămâni': 'Sub 2 sapt.',
+      '2–6 săptămâni': '2–6 sapt.',
+      '6 săptămâni – 3 luni': '6 sapt.–3 luni',
+      '3–12 luni': '3–12 luni',
+      'Peste 1 an': 'Peste 1 an',
+    },
+    a2: {
+      'Brusc, după un eveniment clar (cădere, accident, mișcare bruscă)': 'Brusc dupa trauma',
+      'După efort repetitiv / suprasolicitare': 'Suprasolicitare',
+      'Treptat, fără un motiv clar': 'Debut progresiv',
+      'Am mai avut episoade similare în trecut': 'Episoade recurente',
+    },
+    a3: {
+      'Se ameliorează treptat': 'Ameliorare treptata',
+      'Este stabilă': 'Stabil',
+      'Se agravează lent': 'Agravare lenta',
+      'Se agravează rapid în ultimele săptămâni': 'Agravare rapidă',
+    },
+    a4: {
+      '0–2 (ușoară)': '0–2',
+      '3–5 (moderată)': '3–5',
+      '6–8 (mare)': '6–8',
+      '9–10 (foarte severă)': '9–10',
+    },
+    a5: {
+      'Doar la mișcare / efort': 'La miscare',
+      'Și la mișcare, și în repaus': 'Miscare si repaus',
+      'Constantă, inclusiv noaptea': 'Constanta',
+      'Mă trezește frecvent din somn': 'Nocturna',
+    },
+    a6: {
+      'Fara redoare matinala': 'Fara redoare',
+      'Rigidă sub 30 minute': 'Sub 30 min',
+      'Rigidă peste 30–60 minute': '30–60 min',
+      'Rigidă peste 1 oră': 'Peste 1h',
+    },
+    a7: {
+      'Amorțeală': 'Amorteala',
+      'Furnicături': 'Furnicaturi',
+      'Slăbiciune clară': 'Slabiciune',
+      'Fara amorteli, furnicaturi sau slabiciune': 'Fara simptome neurologice',
+    },
+    a8: {
+      'Pot face aproape toate activitățile normale': 'Limitări minime',
+      'Evit anumite mișcări / activități': 'Evit anumite activitati',
+      'Mi-am redus semnificativ activitatea': 'Activitate redusa',
+      'Nu pot face activități uzuale (mers, urcat scări, ridicat obiecte)': 'Activitati uzuale imposibile',
+    },
+    a9: {
+      Somnul: 'Somnul',
+      Mersul: 'Mersul',
+      Munca: 'Munca',
+      Sportul: 'Sportul',
+      'Fara impact functional semnificativ': 'Fara impact semnificativ',
+    },
+    a10: {
+      'Scădere în greutate neintenționate': 'Scadere in greutate',
+      'Febră inexplicabilă': 'Febra',
+      'Transpirații nocturne persistente': 'Transpiratii nocturne',
+      'Istoric personal de cancer': 'Istoric cancer',
+      'Fara semne de alarma': 'Fara semne de alarma',
+    },
+    a11: {
+      'Traumatism major (accident, cădere serioasă)': 'Traumatism major',
+      'Slăbiciune progresivă accentuată': 'Slabiciune progresiva',
+      'Probleme noi cu controlul urinei sau scaunului': 'Tulburari sfincteriene',
+      'Fara evenimente recente relevante': 'Fara evenimente recente',
+    },
+    a12: {
+      'Antiinflamatoare / analgezice': 'Antiinflamatoare',
+      'Fizioterapie / kinetoterapie': 'Fizioterapie',
+      Infiltrații: 'Infiltratii',
+      Repaus: 'Repaus',
+      'Fara tratament anterior': 'Fara tratament anterior',
+    },
+    a13: {
+      'Clar eficient': 'Eff',
+      'Parțial eficient': 'Partial eff.',
+      'Fără efect': 'Fara efect',
+      'Nu pot aprecia': 'Nu poate aprecia',
+    },
+    a14: {
+      'Boală reumatologică': 'Reumato',
+      Diabet: 'Diabet',
+      Osteoporoză: 'Osteoporoza',
+      'Afecțiune neurologică': 'Neuro',
+      'Boală oncologică în trecut': 'Onco',
+      'Fara comorbiditati relevante': 'Fara',
+    },
+    a15: {
+      Da: 'Da',
+      Nu: 'Nu',
+    },
+    a16: {
+      'Predominant sedentar': 'Sedentar',
+      'Activ moderat (mers, activitate fizică ușoară)': 'Activitate moderata',
+      'Activ regulat (sport 2–3 ori / săptămână)': 'Sport regulat',
+      'Foarte activ / sport intensiv': 'Foarte activ',
+    },
+    a17: {
+      'Stau mai mult pe scaun': 'Munca sedentara',
+      'Stau mult în picioare': 'Munca in picioare',
+      'Ridic greutăți frecvent': 'Ridic greutati',
+      'Activitate mixtă': 'Activitate mixta',
+    },
+    a18: {
+      Nu: 'Nu',
+      Ocazional: 'Ocazional',
+      Zilnic: 'Zilnic',
+    },
+    a19: {
+      Normoponderal: 'Sub 25',
+      'Ușor supraponderal': '25-29',
+      Obez: 'Peste 30',
+      'Nu știu / prefer să nu răspund': 'Necunoscut',
+    },
+    a20: {
+      'Activități zilnice fără limitare': 'Activități zilnice fara durere',
+      'Revenirea la sport': 'Revenire la sport',
+      'Revenirea la muncă normal': 'Revenire la munca',
+      'Reducerea durerii, chiar dacă rămân unele limitări': 'Reducerea durerii',
+    },
+  };
+
+
+  function generateJSON() {
+    // Validare câmpuri obligatorii
+    document.querySelectorAll('.missing').forEach(el => el.classList.remove('missing'));
+    const MANDATORY = [
+      { key: 'a1',  cardId: 'card-a1'  }, { key: 'a2',  cardId: 'card-a2'  },
+      { key: 'a3',  cardId: 'card-a3'  }, { key: 'a4',  cardId: 'card-a4'  },
+      { key: 'a5',  cardId: 'card-a5'  }, { key: 'a6',  cardId: 'card-a6'  },
+      { key: 'a7',  cardId: 'card-a7',  altKey: 'a7-none'  },
+      { key: 'a8',  cardId: 'card-a8'  },
+      { key: 'a9',  cardId: 'card-a9',  altKey: 'a9-none'  },
+      { key: 'a10', cardId: 'card-a10', altKey: 'a10-none' },
+      { key: 'a11', cardId: 'card-a11', altKey: 'a11-none' },
+      { key: 'a12', cardId: 'card-a12', altKey: 'a12-none' },
+      { key: 'a13', cardId: 'card-a13' },
+      { key: 'a14', cardId: 'card-a14', altKey: 'a14-none' },
+      { key: 'a15', cardId: 'card-a15' },
+      { key: 'a16', cardId: 'card-a16' }, { key: 'a17', cardId: 'card-a17' },
+      { key: 'a18', cardId: 'card-a18' }, { key: 'a19', cardId: 'card-a19' },
+      { key: 'a20', cardId: 'card-a20' },
+    ];
+    const missing = MANDATORY.filter(m => {
+      if (m.key === 'a13' && answered.has('a12-none')) return false;
+      return m.altKey ? (!answered.has(m.key) && !answered.has(m.altKey)) : !answered.has(m.key);
+    });
+    if (missing.length > 0) {
+      missing.forEach(m => document.getElementById(m.cardId)?.classList.add('missing'));
+      document.getElementById(missing[0].cardId)?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      showToast(`${missing.length} ${missing.length === 1 ? 'întrebare' : 'întrebări'} fără răspuns`, true);
+      return;
+    }
+
+    function exportAnswer(qId, label) {
+      return Anamneza_R[qId]?.[label] || label;
+    }
+
+    function multiAnsCheck(qId, checkName, noneName) {
+      const results = [];
+      document.querySelectorAll(`input[name="${checkName}"]`).forEach(inp => {
+        if (inp.closest('.option.selected')) {
+          const span = inp.closest('.option').querySelector('.option-label');
+          if (span) results.push(exportAnswer(qId, span.textContent.trim()));
+        }
+      });
+      if (results.length) return results.join(', ');
+      const noneInp = document.querySelector(`input[name="${noneName}"]`);
+      if (noneInp?.closest('.option.selected'))
+        return exportAnswer(qId, noneInp.closest('.option').querySelector('.option-label')?.textContent.trim() || '—');
+      return '—';
+    }
+
+        function ans(n) {
+      const inputs = document.querySelectorAll(`input[name="${n}"]`);
+      for (const inp of inputs) {
+        const parent = inp.closest('.option.selected, .color-option.selected');
+        if (parent) {
+          const span = parent.querySelector('.option-label, .color-option-label');
+          return span ? span.textContent.trim() : '—';
+        }
+      }
+      return '—';
+    }
+
+    let mdAnamneza = '';
+    Anamneza_Q.forEach((q, i) => {
+      if (q.key === 'a13' && answered.has('a12-none')) return;
+      mdAnamneza += `Q: ${q.label}\n`;
+      mdAnamneza += `A: ${q.multi ? multiAnsCheck(q.key, q.key, q.noneName) : exportAnswer(q.key, ans(q.key))}\n`;
+    });
+
+    const sessionId = new URLSearchParams(window.location.search).get('session_id');
+
+    let url = 'https://app.medicai.io/upload/movisplus?';
+    if (sessionId) url += 'session_id=' + encodeURIComponent(sessionId) + '&';
+    url += 'region=anamneza-generala';
+    url += '&chestionar_anamneza=' + encodeURIComponent(mdAnamneza.trim());
+
+    window.top.location.href = url;
+  }
+
+  /* ─── CAROUSEL + ZOOM INIT ──────────────────────────────────────────── */
+  (function initCarousels() {
+    const ZOOM_SVG = '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>';
+
+    document.querySelectorAll('.test-images').forEach(track => {
+      const wraps = [...track.querySelectorAll('.test-img-wrap')];
+
+      // Zoom button on every image (bottom-right, SVG fullscreen icon)
+      wraps.forEach(wrap => {
+        const zb = document.createElement('div');
+        zb.className = 'zoom-btn';
+        zb.innerHTML = ZOOM_SVG;
+        wrap.appendChild(zb);
+      });
+
+      if (wraps.length <= 1) return; // single image — no carousel needed
+      // On desktop: check if images overflow the container — if yes, fit them in one row
+      if (window.innerWidth >= 768) {
+        const totalWidth = wraps.reduce((sum, w) => sum + w.offsetWidth, 0) + (wraps.length - 1) * 8;
+        if (totalWidth > track.offsetWidth) {
+          track.classList.add('fit-row');
+        }
+        return;
+      }
+
+      let current = 0;
+
+      // Wrap track in carousel container
+      const carousel = document.createElement('div');
+      carousel.className = 'carousel';
+      track.parentNode.insertBefore(carousel, track);
+      carousel.appendChild(track);
+
+      // Show only first image
+      wraps.forEach((w, i) => w.classList.toggle('carousel-active', i === 0));
+
+      // "1 / N" counter badge
+      const counter = document.createElement('div');
+      counter.className = 'carousel-counter';
+      counter.textContent = '1 / ' + wraps.length;
+      carousel.appendChild(counter);
+
+      function goTo(idx) {
+        wraps[current].classList.remove('carousel-active');
+        current = ((idx % wraps.length) + wraps.length) % wraps.length;
+        wraps[current].classList.add('carousel-active');
+        counter.textContent = (current + 1) + ' / ' + wraps.length;
+      }
+
+      const prev = document.createElement('button');
+      prev.className = 'carousel-btn carousel-btn-prev';
+      prev.setAttribute('aria-label', 'Imaginea anterioară');
+      prev.innerHTML = '&#8249;';
+      prev.addEventListener('click', function(e) { e.stopPropagation(); goTo(current - 1); });
+      carousel.appendChild(prev);
+
+      const next = document.createElement('button');
+      next.className = 'carousel-btn carousel-btn-next';
+      next.setAttribute('aria-label', 'Imaginea următoare');
+      next.innerHTML = '&#8250;';
+      next.addEventListener('click', function(e) { e.stopPropagation(); goTo(current + 1); });
+      carousel.appendChild(next);
+      let touchStartX = 0;
+      carousel.addEventListener('touchstart', function(e) { touchStartX = e.touches[0].clientX; }, { passive: true });
+      carousel.addEventListener('touchend', function(e) {
+        const diff = touchStartX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+      }, { passive: true });
+    });
+  })();
+
+</script>
+<!-- Vertical Overflow code embed fix -->
+<script>
+  if (new URLSearchParams(window.location.search).get('test') === '1') {
+    const btn = document.createElement('button');
+    btn.textContent = '⚡ Autofill';
+    Object.assign(btn.style, {
+      position: 'fixed', bottom: '24px', right: '24px', zIndex: '9999',
+      background: '#00e4a7', color: '#0f0f0f', fontWeight: '700',
+      fontSize: '14px', padding: '14px 24px', borderRadius: '8px',
+      border: 'none', cursor: 'pointer', boxShadow: '0 4px 16px rgba(0,0,0,0.25)',
+      fontFamily: 'inherit'
+    });
+    btn.onclick = function() {
+      function clickLongest(name) {
+        const inputs = document.querySelectorAll(`input[name="${name}"]`);
+        let longest = null, maxLen = -1;
+        inputs.forEach(inp => {
+          const label = inp.closest('.option')?.querySelector('.option-label');
+          if (label) {
+            const frontendText = label.textContent.trim();
+            const R = Anamneza_R;
+            const clinicalValue = R[name]?.[frontendText] || frontendText;
+            if (clinicalValue.length > maxLen) { maxLen = clinicalValue.length; longest = inp; }
+          }
+        });
+        if (longest) longest.closest('.option')?.click();
+      }
+      function clickAllChecks(name) {
+        const inputs = document.querySelectorAll(`input[name="${name}"]`);
+        inputs.forEach(inp => {
+          if (inp.type === 'checkbox' && inp.name !== name + '-none') {
+            if (!inp.checked) inp.closest('.option')?.click();
+          }
+        });
+      }
+      ['a1','a2','a3','a4','a5','a6','a8','a13','a15','a16','a17','a18','a19','a20'].forEach(clickLongest);
+      ['a7','a9','a10','a11','a12','a14'].forEach(clickAllChecks);
+    };
+    document.body.appendChild(btn);
+  }
+
+</script>
+
+  <!-- Vertical Overflow code embed fix 
+<script>
+function sendHeight() {
+  const height = document.documentElement.scrollHeight;
+  window.parent.postMessage({ iframeHeight: height }, '*');
+}
+window.addEventListener('load', sendHeight);
+window.addEventListener('resize', sendHeight);
+// Also observe DOM changes (for dynamic content like form steps)
+const observer = new MutationObserver(sendHeight);
+observer.observe(document.body, { childList: true, subtree: true });
+</script>
+  -->
+  </body>
+</html>
